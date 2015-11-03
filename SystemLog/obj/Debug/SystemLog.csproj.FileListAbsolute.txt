@@ -1,0 +1,4 @@
+D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\SystemLog\bin\Debug\SystemLog.dll
+D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\SystemLog\bin\Debug\SystemLog.pdb
+D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\SystemLog\obj\Debug\SystemLog.dll
+D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\SystemLog\obj\Debug\SystemLog.pdb
