@@ -25,6 +25,10 @@ namespace POSEZ2U
                 ucTable.lbTime.Text = "03/11/2015";
                 ucTable.lbSubTotal.Text = "20,000";
                 //ftpEatIn.Controls.Add(ucTable);
+                if (i == 7 || i == 15 || i == 28)
+                {
+                    ucTable.BackColor = Color.Green;
+                }
                 flowLayoutPanel1.Controls.Add(ucTable);
             }
         }
