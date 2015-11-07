@@ -144,6 +144,7 @@
             this.ucKeypad1.Name = "ucKeypad1";
             this.ucKeypad1.Size = new System.Drawing.Size(287, 292);
             this.ucKeypad1.TabIndex = 4;
+            this.ucKeypad1.txtResult = null;
             // 
             // Form1
             // 
