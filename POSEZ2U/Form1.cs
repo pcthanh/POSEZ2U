@@ -24,5 +24,11 @@ namespace POSEZ2U
             frm.ShowDialog();
 
         }
+
+        private void btnPrePage_Click(object sender, EventArgs e)
+        {
+            frmPaymentCash frm = new frmPaymentCash();
+            frm.ShowDialog();
+        }
     }
 }

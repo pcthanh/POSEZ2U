@@ -76,6 +76,7 @@
             this.btnPrePage.TabIndex = 2;
             this.btnPrePage.Text = "<";
             this.btnPrePage.UseVisualStyleBackColor = true;
+            this.btnPrePage.Click += new System.EventHandler(this.btnPrePage_Click);
             // 
             // btnNextPage
             // 
