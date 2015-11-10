@@ -16,19 +16,37 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
-
-        private void btnNextPage_Click(object sender, EventArgs e)
+        
+        private void Form1_Load(object sender, EventArgs e)
         {
-            frmMain frm = new frmMain();
-            this.Hide();
-            frm.ShowDialog();
-
+            flowLayoutPanel1.Controls.Clear();
+            for (int i = 1; i <= 8; i++)
+            {
+                Button btn = new Button();
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Text = i.ToString();
+                btn.Name = i.ToString();
+                btn.Width=155;
+                btn.Height = 65;
+                btn.Tag = i;
+                btn.BackColor = Color.FromArgb(153, 153, 153);
+                btn.ForeColor = Color.White;
+                if (i == 8)
+                {
+                    btn.Text = ">";
+                }
+                btn.Click += btn_Click;
+                flowLayoutPanel1.Controls.Add(btn);
+            }
         }
 
-        private void btnPrePage_Click(object sender, EventArgs e)
+        void btn_Click(object sender, EventArgs e)
         {
-            frmPaymentCash frm = new frmPaymentCash();
-            frm.ShowDialog();
+            Button btn = (Button)sender;
+            MessageBox.Show(btn.Tag.ToString());
         }
+
+        
     }
 }

@@ -118,6 +118,11 @@ namespace POSEZ2U.UC
             SendKeys.Send("0");
         }
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
 
 
     }
