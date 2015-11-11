@@ -23,5 +23,12 @@ namespace POSEZ2U
             this.Hide();
             frm.ShowDialog();
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+       
     }
 }

@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Microsoft.Win32;
+using System.Runtime.InteropServices;
+ 
+
+
 namespace POSEZ2U
 {
     public partial class frmFloor : Form
@@ -16,9 +21,20 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+        const int AW_HOR_POSITIVE = 1;
+        const int AW_HOR_NEGATIVE = 2;
+        const int AW_VER_POSITIVE = 4;
+        const int AW_VER_NEGATIVE = 8;
+        const int AW_HIDE = 65536;
+        const int AW_ACTIVATE = 131072;
+        const int AW_SLIDE = 262144;
+        const int AW_BLEND = 524288;
+
+        [DllImport("user32", CharSet = CharSet.Auto)]
+        private static extern int AnimateWindow(IntPtr hwnd, int dwTime, int dwFlags);
         private void paintFloor()
         {
-            for (int i = 1; i < 60; i++)
+            for (int i = 1; i < 40; i++)
             {
                 UC.UCTable ucTable = new UC.UCTable();
                 ucTable.lbTableNo.Text = i.ToString();
@@ -32,15 +48,22 @@ namespace POSEZ2U
                 flowLayoutPanel1.Controls.Add(ucTable);
             }
         }
+        
 
         private void frmFloor_Load(object sender, EventArgs e)
         {
+          
             this.paintFloor();
+            AnimateWindow(Handle, 10000, AW_BLEND | AW_ACTIVATE);
+           
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Hide();
+            frmMain frm = new frmMain();
+            frm.ShowDialog();
         }
+
     }
 }
