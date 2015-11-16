@@ -519,7 +519,7 @@
             // 
             this.txtresult.BackColor = System.Drawing.Color.White;
             this.txtresult.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtresult.ForeColor = System.Drawing.Color.White;
+            this.txtresult.ForeColor = System.Drawing.Color.Black;
             this.txtresult.Location = new System.Drawing.Point(2, 4);
             this.txtresult.Name = "txtresult";
             this.txtresult.Size = new System.Drawing.Size(860, 47);

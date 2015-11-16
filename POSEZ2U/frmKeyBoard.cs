@@ -20,6 +20,30 @@ namespace POSEZ2U
             capslock = false;
             IsShift = true;
             ChangerCaplock(!capslock);
+            Point positionInForm = this.GetPositionInForm(txt);
+            if ((positionInForm.X + base.Width) > Screen.PrimaryScreen.Bounds.Width)
+            {
+                positionInForm.X = Screen.PrimaryScreen.Bounds.Width - base.Width;
+            }
+            base.Location = positionInForm;
+        }
+        public static int chk = 0;
+        public Point GetPositionInForm(Control ctrl)
+        {
+
+            Point point = new Point();
+            point = ctrl.Parent.PointToScreen(ctrl.Location);
+            if (chk == 0)
+            {
+                point.X += (ctrl.Width - base.Width) / 2;
+            }
+            else
+            {
+                point.X += ctrl.Width - base.Width;
+            }
+            point.Y += ctrl.Height;
+            return point;
+
         }
         private void ChangerCaplock(bool key)
         {
