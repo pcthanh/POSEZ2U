@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
-
+using POSEZ2U.UC;
 namespace POSEZ2U.UC
 {
     public partial class UCMenu : UserControl
@@ -26,7 +26,57 @@ namespace POSEZ2U.UC
             {
                 this.cbColor.Items.Add(c.Name);
             }
+            addUcMenuGroup();
+            addButton();
         }
+        private void addUcMenuGroup()
+        {
+          
+            string[] array = { "Coffee", "Smoothie", "Juice" };
+
+            List<string> lst = new List<string>();
+            foreach (string str in array)
+            {
+                lst.Add(str);
+            }
+            UCGroup[] ucGroup = new UCGroup[lst.Count];
+            for (int i = 0; i <lst.Count; i++)
+            {
+                ucGroup[i]= new UCGroup();
+                ucGroup[i].lblNameGroup.Text = lst[i].ToString();
+                ucGroup[i].Tag = lst[i];
+                ucGroup[i].Click += new EventHandler(UCGroup_Click);
+                flpIncludesGroup.Controls.AddRange(ucGroup);
+            }
+            
+        }
+        private void addButton()
+        {
+            Button btn = new Button();
+            btn.Width = 107;
+            btn.Height = 44;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(0, 153, 0);
+            btn.ForeColor = Color.White;
+            btn.Name = "btnAdd";
+            btn.Text = "Add";
+            btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn.Click += btn_Click;
+            flpIncludesGroup.Controls.Add(btn);
+
+        }
+
+        void btn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("btnAdd");
+        }
+       private void UCGroup_Click(object sender, EventArgs e)
+        {
+            UCGroup ucGroup = (UCGroup)sender;
+            MessageBox.Show(ucGroup.Tag.ToString());
+        }
+
 
         private void cbColor_DrawItem(object sender, DrawItemEventArgs e)
         {

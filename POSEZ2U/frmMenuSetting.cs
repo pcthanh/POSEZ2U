@@ -20,6 +20,12 @@ namespace POSEZ2U
         private void btnAdd_Click(object sender, EventArgs e)
         {
             pnDetail.Controls.Clear();
+            //frmMenu frm = new frmMenu();
+            //frm.Dock = DockStyle.Fill;
+            //frm.TopLevel = false;
+            //frm.AutoScroll = true;
+            //pnDetail.Controls.Add(frm);
+            //frm.Show();
             UCMenu ucMenu = new UCMenu();
             ucMenu.Dock = DockStyle.Fill;
             pnDetail.Controls.Add(ucMenu);
