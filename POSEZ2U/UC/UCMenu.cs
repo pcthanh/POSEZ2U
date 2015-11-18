@@ -96,5 +96,10 @@ namespace POSEZ2U.UC
                 g.FillRectangle(b, rct);
             }
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(txtMenuName.Text + "-----" + cbColor.SelectedValue.ToString());
+        }
     }
 }

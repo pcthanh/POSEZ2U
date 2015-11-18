@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtMenuName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
             this.cbColor = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.flpIncludesGroup = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucTextBoxKeyBoard1 = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +51,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.ucTextBoxKeyBoard1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtMenuName, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.cbColor, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 5);
@@ -92,6 +92,18 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Category Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtMenuName
+            // 
+            this.txtMenuName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.txtMenuName, 3);
+            this.txtMenuName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMenuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuName.Location = new System.Drawing.Point(3, 62);
+            this.txtMenuName.Multiline = true;
+            this.txtMenuName.Name = "txtMenuName";
+            this.txtMenuName.Size = new System.Drawing.Size(480, 48);
+            this.txtMenuName.TabIndex = 2;
             // 
             // label3
             // 
@@ -158,6 +170,7 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRemove
             // 
@@ -182,18 +195,6 @@
             this.flpIncludesGroup.Size = new System.Drawing.Size(486, 258);
             this.flpIncludesGroup.TabIndex = 2;
             // 
-            // ucTextBoxKeyBoard1
-            // 
-            this.ucTextBoxKeyBoard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.ucTextBoxKeyBoard1, 3);
-            this.ucTextBoxKeyBoard1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTextBoxKeyBoard1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTextBoxKeyBoard1.Location = new System.Drawing.Point(3, 62);
-            this.ucTextBoxKeyBoard1.Multiline = true;
-            this.ucTextBoxKeyBoard1.Name = "ucTextBoxKeyBoard1";
-            this.ucTextBoxKeyBoard1.Size = new System.Drawing.Size(480, 48);
-            this.ucTextBoxKeyBoard1.TabIndex = 2;
-            // 
             // UCMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,14 +218,14 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private UCTextBoxKeyBoard ucTextBoxKeyBoard1;
+        public UCTextBoxKeyBoard txtMenuName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbColor;
+        public System.Windows.Forms.ComboBox cbColor;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.FlowLayoutPanel flpIncludesGroup;
+        public System.Windows.Forms.FlowLayoutPanel flpIncludesGroup;
 
     }
 }
