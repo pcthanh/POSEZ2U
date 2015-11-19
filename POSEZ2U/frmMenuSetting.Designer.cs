@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flpProdutcSetting = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -42,13 +41,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpMenuList = new System.Windows.Forms.FlowLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -57,7 +54,6 @@
             this.panel11.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -68,14 +64,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(945, 39);
             this.panel1.TabIndex = 0;
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(945, 39);
-            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -202,15 +190,6 @@
             this.panel11.Size = new System.Drawing.Size(262, 35);
             this.panel11.TabIndex = 9;
             // 
-            // txtNameMenuList
-            // 
-            this.txtNameMenuList.BackColor = System.Drawing.Color.White;
-            this.txtNameMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNameMenuList.Location = new System.Drawing.Point(0, 0);
-            this.txtNameMenuList.Name = "txtNameMenuList";
-            this.txtNameMenuList.Size = new System.Drawing.Size(262, 35);
-            this.txtNameMenuList.TabIndex = 0;
-            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
@@ -232,7 +211,6 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Controls.Add(this.panel10);
             this.panel9.Controls.Add(this.pnDetail);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(513, 39);
@@ -240,48 +218,22 @@
             this.panel9.Size = new System.Drawing.Size(432, 458);
             this.panel9.TabIndex = 9;
             // 
-            // panel10
+            // txtNameMenuList
             // 
-            this.panel10.Controls.Add(this.button2);
-            this.panel10.Controls.Add(this.btnSave);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(0, 407);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(432, 51);
-            this.panel10.TabIndex = 6;
+            this.txtNameMenuList.BackColor = System.Drawing.Color.White;
+            this.txtNameMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNameMenuList.Location = new System.Drawing.Point(0, 0);
+            this.txtNameMenuList.Name = "txtNameMenuList";
+            this.txtNameMenuList.Size = new System.Drawing.Size(262, 35);
+            this.txtNameMenuList.TabIndex = 0;
             // 
-            // button2
+            // ucInfoTop1
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(324, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(105, 38);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Remove";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(3, 7);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(105, 39);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(945, 39);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // frmMenuSetting
             // 
@@ -310,7 +262,6 @@
             this.panel11.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,9 +282,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.FlowLayoutPanel flpProdutcSetting;
         private System.Windows.Forms.FlowLayoutPanel flpMenuList;
         private UC.UCMenuList txtNameMenuList;

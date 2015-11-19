@@ -185,6 +185,7 @@
             this.btn5.TabIndex = 155;
             this.btn5.Text = "5";
             this.btn5.UseVisualStyleBackColor = false;
+            this.btn5.Click += new System.EventHandler(this.btn0_Click);
             // 
             // btn0
             // 

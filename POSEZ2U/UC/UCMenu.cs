@@ -99,7 +99,7 @@ namespace POSEZ2U.UC
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(txtMenuName.Text + "-----" + cbColor.SelectedValue.ToString());
+            
         }
     }
 }

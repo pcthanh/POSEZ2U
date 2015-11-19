@@ -62,11 +62,11 @@
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.91304F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.08696F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 238);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 226);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -77,7 +77,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(480, 29);
+            this.label1.Size = new System.Drawing.Size(480, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "BEVERAGE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -86,7 +86,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label2, 3);
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 29);
+            this.label2.Location = new System.Drawing.Point(3, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(480, 30);
             this.label2.TabIndex = 1;
@@ -98,20 +98,20 @@
             this.txtMenuName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtMenuName, 3);
             this.txtMenuName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMenuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuName.Location = new System.Drawing.Point(3, 62);
+            this.txtMenuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuName.Location = new System.Drawing.Point(3, 61);
             this.txtMenuName.Multiline = true;
             this.txtMenuName.Name = "txtMenuName";
-            this.txtMenuName.Size = new System.Drawing.Size(480, 48);
+            this.txtMenuName.Size = new System.Drawing.Size(480, 33);
             this.txtMenuName.TabIndex = 2;
             // 
             // label3
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label3, 3);
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 113);
+            this.label3.Location = new System.Drawing.Point(3, 97);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(480, 40);
+            this.label3.Size = new System.Drawing.Size(480, 38);
             this.label3.TabIndex = 3;
             this.label3.Text = "Menu Button Color";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -124,7 +124,7 @@
             this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbColor.FormattingEnabled = true;
-            this.cbColor.Location = new System.Drawing.Point(3, 156);
+            this.cbColor.Location = new System.Drawing.Point(3, 138);
             this.cbColor.Name = "cbColor";
             this.cbColor.Size = new System.Drawing.Size(480, 30);
             this.cbColor.TabIndex = 4;
@@ -134,9 +134,9 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.label4, 3);
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 197);
+            this.label4.Location = new System.Drawing.Point(3, 174);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(480, 41);
+            this.label4.Size = new System.Drawing.Size(480, 52);
             this.label4.TabIndex = 5;
             this.label4.Text = "Includes these groups";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -190,9 +190,9 @@
             // flpIncludesGroup
             // 
             this.flpIncludesGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpIncludesGroup.Location = new System.Drawing.Point(0, 238);
+            this.flpIncludesGroup.Location = new System.Drawing.Point(0, 226);
             this.flpIncludesGroup.Name = "flpIncludesGroup";
-            this.flpIncludesGroup.Size = new System.Drawing.Size(486, 258);
+            this.flpIncludesGroup.Size = new System.Drawing.Size(486, 270);
             this.flpIncludesGroup.TabIndex = 2;
             // 
             // UCMenu
