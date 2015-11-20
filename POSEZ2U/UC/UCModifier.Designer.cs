@@ -97,8 +97,9 @@
             // txtModifierName
             // 
             this.txtModifierName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtModifierName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtModifierName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtModifierName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtModifierName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtModifierName.Location = new System.Drawing.Point(3, 77);
             this.txtModifierName.Multiline = true;
             this.txtModifierName.Name = "txtModifierName";
@@ -143,8 +144,9 @@
             // txtModifierPrice
             // 
             this.txtModifierPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtModifierPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtModifierPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtModifierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtModifierPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtModifierPrice.Location = new System.Drawing.Point(3, 225);
             this.txtModifierPrice.Multiline = true;
             this.txtModifierPrice.Name = "txtModifierPrice";

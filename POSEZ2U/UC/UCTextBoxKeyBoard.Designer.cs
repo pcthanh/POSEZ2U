@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            
+            this.SuspendLayout();
+            // 
+            // UCTextBoxKeyBoard
+            // 
+            this.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ResumeLayout(false);
+
         }
 
         #endregion

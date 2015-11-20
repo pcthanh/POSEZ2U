@@ -31,7 +31,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtMenuName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
             this.cbColor = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.flpIncludesGroup = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtMenuName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -92,18 +92,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Category Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMenuName
-            // 
-            this.txtMenuName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.txtMenuName, 3);
-            this.txtMenuName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtMenuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMenuName.Location = new System.Drawing.Point(3, 61);
-            this.txtMenuName.Multiline = true;
-            this.txtMenuName.Name = "txtMenuName";
-            this.txtMenuName.Size = new System.Drawing.Size(480, 33);
-            this.txtMenuName.TabIndex = 2;
             // 
             // label3
             // 
@@ -194,6 +182,19 @@
             this.flpIncludesGroup.Name = "flpIncludesGroup";
             this.flpIncludesGroup.Size = new System.Drawing.Size(486, 270);
             this.flpIncludesGroup.TabIndex = 2;
+            // 
+            // txtMenuName
+            // 
+            this.txtMenuName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtMenuName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel1.SetColumnSpan(this.txtMenuName, 3);
+            this.txtMenuName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMenuName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMenuName.Location = new System.Drawing.Point(3, 61);
+            this.txtMenuName.Multiline = true;
+            this.txtMenuName.Name = "txtMenuName";
+            this.txtMenuName.Size = new System.Drawing.Size(480, 33);
+            this.txtMenuName.TabIndex = 2;
             // 
             // UCMenu
             // 

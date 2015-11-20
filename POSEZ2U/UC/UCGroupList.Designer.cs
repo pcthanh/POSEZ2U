@@ -67,15 +67,15 @@
             this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.07955F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.806818F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.79545F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.818182F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.06818F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(501, 308);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(501, 352);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblTitel
@@ -86,7 +86,7 @@
             this.lblTitel.ForeColor = System.Drawing.Color.White;
             this.lblTitel.Location = new System.Drawing.Point(3, 0);
             this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(495, 30);
+            this.lblTitel.Size = new System.Drawing.Size(495, 35);
             this.lblTitel.TabIndex = 0;
             this.lblTitel.Text = "COFFEE";
             this.lblTitel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -95,9 +95,9 @@
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 30);
+            this.label2.Location = new System.Drawing.Point(3, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(495, 30);
+            this.label2.Size = new System.Drawing.Size(495, 35);
             this.label2.TabIndex = 0;
             this.label2.Text = "Group Name Desc";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,20 +105,22 @@
             // txtGroupNameDesc
             // 
             this.txtGroupNameDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtGroupNameDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroupNameDesc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGroupNameDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtGroupNameDesc.Location = new System.Drawing.Point(3, 63);
+            this.txtGroupNameDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGroupNameDesc.Location = new System.Drawing.Point(3, 73);
+            this.txtGroupNameDesc.Multiline = true;
             this.txtGroupNameDesc.Name = "txtGroupNameDesc";
-            this.txtGroupNameDesc.Size = new System.Drawing.Size(495, 26);
+            this.txtGroupNameDesc.Size = new System.Drawing.Size(495, 33);
             this.txtGroupNameDesc.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 90);
+            this.label3.Location = new System.Drawing.Point(3, 109);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(495, 30);
+            this.label3.Size = new System.Drawing.Size(495, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "Group Name Sort";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,20 +128,22 @@
             // txtGroupNameSort
             // 
             this.txtGroupNameSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtGroupNameSort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGroupNameSort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGroupNameSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtGroupNameSort.Location = new System.Drawing.Point(3, 123);
+            this.txtGroupNameSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGroupNameSort.Location = new System.Drawing.Point(3, 143);
+            this.txtGroupNameSort.Multiline = true;
             this.txtGroupNameSort.Name = "txtGroupNameSort";
-            this.txtGroupNameSort.Size = new System.Drawing.Size(495, 26);
+            this.txtGroupNameSort.Size = new System.Drawing.Size(495, 32);
             this.txtGroupNameSort.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 150);
+            this.label4.Location = new System.Drawing.Point(3, 178);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(495, 30);
+            this.label4.Size = new System.Drawing.Size(495, 24);
             this.label4.TabIndex = 4;
             this.label4.Text = "Group Button Color";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -148,9 +152,9 @@
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 210);
+            this.label5.Location = new System.Drawing.Point(3, 248);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(495, 30);
+            this.label5.Size = new System.Drawing.Size(495, 32);
             this.label5.TabIndex = 5;
             this.label5.Text = "Product Button Color";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,31 +163,31 @@
             // 
             this.cbGroupColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.cbGroupColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbGroupColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGroupColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbGroupColor.FormattingEnabled = true;
-            this.cbGroupColor.Location = new System.Drawing.Point(3, 183);
+            this.cbGroupColor.Location = new System.Drawing.Point(3, 205);
             this.cbGroupColor.Name = "cbGroupColor";
-            this.cbGroupColor.Size = new System.Drawing.Size(495, 28);
+            this.cbGroupColor.Size = new System.Drawing.Size(495, 33);
             this.cbGroupColor.TabIndex = 6;
             // 
             // cbProductColor
             // 
             this.cbProductColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.cbProductColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbProductColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbProductColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbProductColor.FormattingEnabled = true;
-            this.cbProductColor.Location = new System.Drawing.Point(3, 243);
+            this.cbProductColor.Location = new System.Drawing.Point(3, 283);
             this.cbProductColor.Name = "cbProductColor";
-            this.cbProductColor.Size = new System.Drawing.Size(495, 28);
+            this.cbProductColor.Size = new System.Drawing.Size(495, 33);
             this.cbProductColor.TabIndex = 7;
             // 
             // label6
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 270);
+            this.label6.Location = new System.Drawing.Point(3, 315);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(495, 38);
+            this.label6.Size = new System.Drawing.Size(495, 37);
             this.label6.TabIndex = 8;
             this.label6.Text = "Group Item Include";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -236,9 +240,9 @@
             // flpGroup
             // 
             this.flpGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpGroup.Location = new System.Drawing.Point(0, 308);
+            this.flpGroup.Location = new System.Drawing.Point(0, 352);
             this.flpGroup.Name = "flpGroup";
-            this.flpGroup.Size = new System.Drawing.Size(501, 179);
+            this.flpGroup.Size = new System.Drawing.Size(501, 135);
             this.flpGroup.TabIndex = 3;
             // 
             // UCGroupList

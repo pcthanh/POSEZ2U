@@ -17,6 +17,21 @@ namespace POSEZ2U
             InitializeComponent();
         }
         int flag = 0;
+        int OldWidthPn2 = 262;
+        int NewWidthPn2 = Screen.PrimaryScreen.WorkingArea.Width - 400;
+        private void ResizeTopriceList()
+        {
+            pn2.MaximumSize = new Size(NewWidthPn2, pn2.Height);
+            pn2.Size = new Size(NewWidthPn2, pn2.Height);
+           
+        }
+        private void ResizeToOthder()
+        {
+            this.ucPriceListTitle.Visible = false;
+            pn2.MaximumSize = new Size(OldWidthPn2, pn2.Height);
+            pn2.Size = new Size(OldWidthPn2, pn2.Height);
+            
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             pnDetail.Controls.Clear();
@@ -66,17 +81,18 @@ namespace POSEZ2U
             addModifier("Modifier List", tag);
             addGroupList("Group List", tag);
             addItemList("ItemList", tag);
+            addPriceList(tag);
             
         }
         private void addMenuList(string lblName,int i)
         {
-            
+            ResizeToOthder();
             int index = 1;
             string[] str = { "FOOD", "BEVEGARE", "ENTREE", "DESSERT" };
             if (i == 1)
             {
                 flpMenuList.Controls.Clear();
-                txtNameMenuList.Visible = true;
+                //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
                 txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
@@ -94,18 +110,18 @@ namespace POSEZ2U
             {
                 flpMenuList.Controls.Clear();
                 pnDetail.Controls.Clear();
-                txtNameMenuList.Visible = false;
+                //txtNameMenuList.Visible = false;
             }
         }
         private void addModifier(string lblName, int i)
         {
-           
+            ResizeToOthder();
             int index = 1;
             string[] str = { "No Sugar", "More Sugar", "More Ice", "Less Ice", "More Milk", "Them Bun", "Them Thit" };
             if (i == 4)
             {
                 flpMenuList.Controls.Clear();
-                txtNameMenuList.Visible = true;
+                //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
                 txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
@@ -129,7 +145,7 @@ namespace POSEZ2U
             if (i == 2)
             {
                 flpMenuList.Controls.Clear();
-                txtNameMenuList.Visible = true;
+                //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
                 txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
@@ -148,13 +164,13 @@ namespace POSEZ2U
 
         private void addItemList(string lblName, int i)
         {
-
+            ResizeToOthder();
             int index = 1;
             string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
             if (i == 3)
             {
                 flpMenuList.Controls.Clear();
-                txtNameMenuList.Visible = true;
+                //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
                 txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
@@ -171,6 +187,91 @@ namespace POSEZ2U
 
         }
 
+        private void addPriceList(int i)
+        {
+            
+            string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
+            if (i == 5)
+            {
+                this.ResizeTopriceList();
+                flpMenuList.Controls.Clear();
+               // txtNameMenuList.Visible = false;
+                ucPriceListTitle.Visible = true;
+                ucPriceListTitle.BackColor = Color.FromArgb(0, 102, 204);
+                ucPriceListTitle.ForeColor = Color.FromArgb(255, 255, 255);
+                ucPriceListTitle.Dock = DockStyle.Fill;
+                foreach (string strPriceList in str)
+                {
+                    UCPriceList ucPriceList = new UCPriceList();
+                    ucPriceList.lblPriceNameProduct.Text = strPriceList;
+                    ucPriceList.lblPriceSizeProduct.Text = "Regular";
+                    ucPriceList.lblPriceProduct.Text= "10.00";
+                    ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
+                    //ucPriceList.Dock = DockStyle.Fill;
+                    ucPriceList.Click += ucPriceList_Click;
+                    flpMenuList.Controls.Add(ucPriceList);
+                }
+                addButtonPriceList();
+            }
+            
+        }
+
+        void ucPriceList_Click(object sender, EventArgs e)
+        {
+            UCPriceList ucPriceList = (UCPriceList)sender;
+            int tag = Convert.ToInt32(ucPriceList.Tag);
+            foreach (Control ctr in flpMenuList.Controls)
+            {
+                if (ctr.BackColor == Color.FromArgb(0, 153, 51))
+                {
+                    ctr.BackColor = Color.FromArgb(255, 255, 255);
+                    ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                }
+            }
+            ucPriceList.BackColor = Color.FromArgb(0, 153, 51);
+            ucPriceList.ForeColor = Color.FromArgb(255, 255, 255);
+        }
+        private void addButtonPriceList()
+        {
+            
+
+
+
+            
+            ////////////////////////
+            int i = 1;
+            FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
+            flpButtonPriceList.Dock = DockStyle.Fill;
+            flpButtonPriceList.BackColor = Color.FromArgb(215, 214, 216);
+            pnDetail.Controls.Add(flpButtonPriceList);
+            string[] strlst = { "Search","Edit","Go To Product" };
+            foreach (string str in strlst)
+            {
+                Button btnGoToProduct = new Button();
+                btnGoToProduct.Width = 115;
+                btnGoToProduct.Height = 67;
+                btnGoToProduct.FlatStyle = FlatStyle.Flat;
+                btnGoToProduct.FlatAppearance.BorderSize = 0;
+                btnGoToProduct.Dock = DockStyle.Top;
+                btnGoToProduct.Text = str;
+                btnGoToProduct.Tag = str;
+                btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
+                btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
+                btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btnGoToProduct.Click += btnGoToProduct_Click;
+                i++;
+                flpButtonPriceList.Controls.Add(btnGoToProduct);
+            }
+
+        }
+
+        void btnGoToProduct_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            MessageBox.Show(btn.Tag.ToString());
+        }
+
+        
         void ucItem_Click(object sender, EventArgs e)
         {
             UCItem ucItem = (UCItem)sender;
@@ -295,6 +396,11 @@ namespace POSEZ2U
         private void frmMenuSetting_Load(object sender, EventArgs e)
         {
             loadDataProductSetting();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
         
     }

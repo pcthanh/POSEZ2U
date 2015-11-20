@@ -38,19 +38,22 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.pn2 = new System.Windows.Forms.Panel();
             this.flpMenuList = new System.Windows.Forms.FlowLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.ucPriceListTitle = new POSEZ2U.UC.UCPriceList();
             this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.flpProdutcSetting.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.pn2.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -69,26 +72,25 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.flpProdutcSetting);
-            this.panel2.Controls.Add(this.panel5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 39);
+            this.panel2.Location = new System.Drawing.Point(0, 49);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(231, 458);
+            this.panel2.Size = new System.Drawing.Size(231, 448);
             this.panel2.TabIndex = 1;
             // 
             // flpProdutcSetting
             // 
+            this.flpProdutcSetting.Controls.Add(this.panel5);
             this.flpProdutcSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpProdutcSetting.Location = new System.Drawing.Point(0, 35);
+            this.flpProdutcSetting.Location = new System.Drawing.Point(0, 0);
             this.flpProdutcSetting.Name = "flpProdutcSetting";
-            this.flpProdutcSetting.Size = new System.Drawing.Size(231, 423);
+            this.flpProdutcSetting.Size = new System.Drawing.Size(231, 448);
             this.flpProdutcSetting.TabIndex = 8;
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.label1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(231, 35);
             this.panel5.TabIndex = 0;
@@ -109,9 +111,9 @@
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(231, 39);
+            this.panel3.Location = new System.Drawing.Point(231, 49);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 458);
+            this.panel3.Size = new System.Drawing.Size(10, 448);
             this.panel3.TabIndex = 2;
             // 
             // pnDetail
@@ -119,7 +121,7 @@
             this.pnDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnDetail.Location = new System.Drawing.Point(0, 0);
             this.pnDetail.Name = "pnDetail";
-            this.pnDetail.Size = new System.Drawing.Size(432, 458);
+            this.pnDetail.Size = new System.Drawing.Size(432, 448);
             this.pnDetail.TabIndex = 5;
             // 
             // panel8
@@ -161,28 +163,30 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // panel4
+            // pn2
             // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.flpMenuList);
-            this.panel4.Controls.Add(this.panel11);
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(241, 39);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(262, 458);
-            this.panel4.TabIndex = 7;
+            this.pn2.BackColor = System.Drawing.Color.White;
+            this.pn2.Controls.Add(this.flpMenuList);
+            this.pn2.Controls.Add(this.panel11);
+            this.pn2.Controls.Add(this.panel6);
+            this.pn2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pn2.Location = new System.Drawing.Point(241, 49);
+            this.pn2.Name = "pn2";
+            this.pn2.Size = new System.Drawing.Size(262, 448);
+            this.pn2.TabIndex = 7;
             // 
             // flpMenuList
             // 
+            this.flpMenuList.BackColor = System.Drawing.Color.White;
             this.flpMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMenuList.Location = new System.Drawing.Point(0, 35);
             this.flpMenuList.Name = "flpMenuList";
-            this.flpMenuList.Size = new System.Drawing.Size(262, 372);
+            this.flpMenuList.Size = new System.Drawing.Size(262, 362);
             this.flpMenuList.TabIndex = 8;
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.ucPriceListTitle);
             this.panel11.Controls.Add(this.txtNameMenuList);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(0, 0);
@@ -195,7 +199,7 @@
             this.panel6.BackColor = System.Drawing.Color.White;
             this.panel6.Controls.Add(this.btnAdd);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 407);
+            this.panel6.Location = new System.Drawing.Point(0, 397);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(262, 51);
             this.panel6.TabIndex = 7;
@@ -203,9 +207,9 @@
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(503, 39);
+            this.panel7.Location = new System.Drawing.Point(503, 49);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(10, 458);
+            this.panel7.Size = new System.Drawing.Size(10, 448);
             this.panel7.TabIndex = 8;
             // 
             // panel9
@@ -213,10 +217,28 @@
             this.panel9.BackColor = System.Drawing.Color.White;
             this.panel9.Controls.Add(this.pnDetail);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(513, 39);
+            this.panel9.Location = new System.Drawing.Point(513, 49);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(432, 458);
+            this.panel9.Size = new System.Drawing.Size(432, 448);
             this.panel9.TabIndex = 9;
+            // 
+            // panel10
+            // 
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 39);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(945, 10);
+            this.panel10.TabIndex = 10;
+            // 
+            // ucPriceListTitle
+            // 
+            this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
+            this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
+            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.Name = "ucPriceListTitle";
+            this.ucPriceListTitle.Size = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.TabIndex = 1;
+            this.ucPriceListTitle.Visible = false;
             // 
             // txtNameMenuList
             // 
@@ -244,9 +266,10 @@
             this.ControlBox = false;
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.pn2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -256,9 +279,10 @@
             this.Load += new System.EventHandler(this.frmMenuSetting_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.flpProdutcSetting.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
+            this.pn2.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
@@ -278,7 +302,7 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pn2;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel9;
@@ -286,5 +310,7 @@
         private System.Windows.Forms.FlowLayoutPanel flpMenuList;
         private UC.UCMenuList txtNameMenuList;
         private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel10;
+        private UC.UCPriceList ucPriceListTitle;
     }
 }
