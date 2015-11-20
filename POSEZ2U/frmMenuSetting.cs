@@ -8,10 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
+using ServicePOS;
+
 namespace POSEZ2U
 {
     public partial class frmMenuSetting : Form
     {
+
+
+        #region Variables & Constructors
+        private ICatalogueService _catalogeService;
+        private ICatalogueService CatalogeService
+        {
+            get { return _catalogeService ?? (_catalogeService = new CatalogueService()); }
+            set { _catalogeService = value; }
+        }
+        #endregion
+
+        
+       
+
         public frmMenuSetting()
         {
             InitializeComponent();
@@ -50,6 +66,7 @@ namespace POSEZ2U
             flpProdutcSetting.Controls.Clear();
             int i = 1;
             string [] lstProduct= {"Menu List","Group List","Item List","Modifier List","Price List"};
+
             foreach (string str in lstProduct)
             {
                
@@ -88,7 +105,19 @@ namespace POSEZ2U
         {
             ResizeToOthder();
             int index = 1;
-            string[] str = { "FOOD", "BEVEGARE", "ENTREE", "DESSERT" };
+            //string[] str = { "FOOD", "BEVEGARE", "ENTREE", "DESSERT" };
+
+            var dataCatalogue = CatalogeService.GetCatalogueList().ToList();
+            var nlist = dataCatalogue.Count();
+            string[] str = new string[nlist];
+
+            int ilist = 0;
+            foreach (var item in dataCatalogue)
+            {
+                str[ilist] = item.CatalogueName;
+                ilist++;
+            }
+
             if (i == 1)
             {
                 flpMenuList.Controls.Clear();
@@ -398,10 +427,9 @@ namespace POSEZ2U
             loadDataProductSetting();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
+      
 
-        }
+     
         
     }
 }
