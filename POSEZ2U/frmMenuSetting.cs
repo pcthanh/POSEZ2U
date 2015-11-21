@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
 using ServicePOS;
+using ServicePOS.Model;
 
 namespace POSEZ2U
 {
@@ -108,15 +109,16 @@ namespace POSEZ2U
             //string[] str = { "FOOD", "BEVEGARE", "ENTREE", "DESSERT" };
 
             var dataCatalogue = CatalogeService.GetCatalogueList().ToList();
+           // CatalogueModel data = (CatalogueModel)dataCatalogue;
             var nlist = dataCatalogue.Count();
             string[] str = new string[nlist];
 
-            int ilist = 0;
-            foreach (var item in dataCatalogue)
-            {
-                str[ilist] = item.CatalogueName;
-                ilist++;
-            }
+            //int ilist = 0;
+            //foreach (var item in dataCatalogue)
+            //{
+            //    str[ilist] = item.CatalogueName;
+            //    ilist++;
+            //}
 
             if (i == 1)
             {
@@ -125,11 +127,11 @@ namespace POSEZ2U
                 txtNameMenuList.lblMenuListName.Text = lblName;
                 txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
-                foreach (string strList in str)
+                foreach (var item in dataCatalogue)
                 {
                     UCMenuList ucMenuList = new UCMenuList();
-                    ucMenuList.lblMenuListName.Text = strList;
-                    ucMenuList.Tag = index;
+                    ucMenuList.lblMenuListName.Text = item.CatalogueName;
+                    ucMenuList.Tag = item;
                     ucMenuList.Click += ucMenuList_Click;
                     flpMenuList.Controls.Add(ucMenuList);
                     index++;
@@ -139,7 +141,7 @@ namespace POSEZ2U
             {
                 flpMenuList.Controls.Clear();
                 pnDetail.Controls.Clear();
-                //txtNameMenuList.Visible = false;
+                
             }
         }
         private void addModifier(string lblName, int i)
@@ -353,7 +355,7 @@ namespace POSEZ2U
         void ucMenuList_Click(object sender, EventArgs e)
         {
             UCMenuList ucProduct = (UCMenuList)sender;
-            int tag = Convert.ToInt32(ucProduct.Tag);
+            CatalogueModel tag = (CatalogueModel)(ucProduct.Tag);
             foreach (Control ctr in flpMenuList.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 153, 51))
@@ -364,7 +366,7 @@ namespace POSEZ2U
             }
             ucProduct.BackColor = Color.FromArgb(0, 153, 51);
             ucProduct.ForeColor = Color.FromArgb(255, 255, 255);
-            addMenuListDetail(tag);
+            addMenuListDetail(tag.CatalogueID);
         }
         private void addMenuListDetail(int i)
         {
