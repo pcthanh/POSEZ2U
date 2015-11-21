@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelPOS", "ModelPOS\ModelP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Printer", "Printer\Printer.csproj", "{DC3F2115-2144-4A2D-BE1D-D0FDFA84F991}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicePOS", "ServicePOS\ServicePOS.csproj", "{51045385-D22A-46E9-9230-C0EAB53C3338}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DC3F2115-2144-4A2D-BE1D-D0FDFA84F991}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC3F2115-2144-4A2D-BE1D-D0FDFA84F991}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC3F2115-2144-4A2D-BE1D-D0FDFA84F991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51045385-D22A-46E9-9230-C0EAB53C3338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51045385-D22A-46E9-9230-C0EAB53C3338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51045385-D22A-46E9-9230-C0EAB53C3338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51045385-D22A-46E9-9230-C0EAB53C3338}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
