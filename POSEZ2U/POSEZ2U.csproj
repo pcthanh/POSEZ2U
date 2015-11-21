@@ -11,6 +11,21 @@
     <AssemblyName>POSEZ2U</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +47,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\IniFile.cs" />
+    <Compile Include="Class\MoneyFortmat.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,19 +81,157 @@
     <Compile Include="frmFloor.Designer.cs">
       <DependentUpon>frmFloor.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKeyBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKeyBoard.Designer.cs">
+      <DependentUpon>frmKeyBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKeyPad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKeyPad.Designer.cs">
+      <DependentUpon>frmKeyPad.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenu.Designer.cs">
+      <DependentUpon>frmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuSetting.Designer.cs">
+      <DependentUpon>frmMenuSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaymentCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentCard.Designer.cs">
+      <DependentUpon>frmPaymentCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaymentCash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentCash.Designer.cs">
+      <DependentUpon>frmPaymentCash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UC\UCAllPayMent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCAllPayMent.Designer.cs">
+      <DependentUpon>UCAllPayMent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCGroup.Designer.cs">
+      <DependentUpon>UCGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCGroupList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCGroupList.Designer.cs">
+      <DependentUpon>UCGroupList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCGroupListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCGroupListItem.Designer.cs">
+      <DependentUpon>UCGroupListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCInfoTop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCInfoTop.Designer.cs">
+      <DependentUpon>UCInfoTop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCItem.Designer.cs">
+      <DependentUpon>UCItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCItemList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCItemList.Designer.cs">
+      <DependentUpon>UCItemList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCItemListButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCItemListButton.Designer.cs">
+      <DependentUpon>UCItemListButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCKeypad.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC\UCKeypad.Designer.cs">
       <DependentUpon>UCKeypad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCMenu.Designer.cs">
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCMenuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCMenuList.Designer.cs">
+      <DependentUpon>UCMenuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCModifier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCModifier.Designer.cs">
+      <DependentUpon>UCModifier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCModifierItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCModifierItem.Designer.cs">
+      <DependentUpon>UCModifierItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCPayment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCPayment.Designer.cs">
+      <DependentUpon>UCPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCPaymentKeyPad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCPaymentKeyPad.Designer.cs">
+      <DependentUpon>UCPaymentKeyPad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCPriceList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCPriceList.Designer.cs">
+      <DependentUpon>UCPriceList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCProductIncl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCProductIncl.Designer.cs">
+      <DependentUpon>UCProductIncl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCProductSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCProductSetting.Designer.cs">
+      <DependentUpon>UCProductSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\UCTable.cs">
       <SubType>UserControl</SubType>
@@ -76,14 +239,41 @@
     <Compile Include="UC\UCTable.Designer.cs">
       <DependentUpon>UCTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCTextBoxKeyBoard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\UCTextBoxKeyBoard.Designer.cs">
+      <DependentUpon>UCTextBoxKeyBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCTextBoxKeyPad.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\UCTextBoxKeyPad.Designer.cs">
+      <DependentUpon>UCTextBoxKeyPad.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFloor.resx">
       <DependentUpon>frmFloor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmKeyBoard.resx">
+      <DependentUpon>frmKeyBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKeyPad.resx">
+      <DependentUpon>frmKeyPad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuSetting.resx">
+      <DependentUpon>frmMenuSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentCard.resx">
+      <DependentUpon>frmPaymentCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentCash.resx">
+      <DependentUpon>frmPaymentCash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -94,12 +284,49 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UC\UCAllPayMent.resx">
+      <DependentUpon>UCAllPayMent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCGroupList.resx">
+      <DependentUpon>UCGroupList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCGroupListItem.resx">
+      <DependentUpon>UCGroupListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCInfoTop.resx">
+      <DependentUpon>UCInfoTop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCItem.resx">
+      <DependentUpon>UCItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCItemList.resx">
+      <DependentUpon>UCItemList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCItemListButton.resx">
+      <DependentUpon>UCItemListButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UCKeypad.resx">
       <DependentUpon>UCKeypad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCModifierItem.resx">
+      <DependentUpon>UCModifierItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCPayment.resx">
+      <DependentUpon>UCPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCPaymentKeyPad.resx">
+      <DependentUpon>UCPaymentKeyPad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCPriceList.resx">
+      <DependentUpon>UCPriceList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCProductIncl.resx">
+      <DependentUpon>UCProductIncl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UCTable.resx">
       <DependentUpon>UCTable.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -118,10 +345,31 @@
       <Project>{4065a0ed-288b-4694-81d5-c6f02421277c}</Project>
       <Name>ModelPOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServicePOS\ServicePOS.csproj">
+      <Project>{51045385-d22a-46e9-9230-c0eab53c3338}</Project>
+      <Name>ServicePOS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SystemLog\SystemLog.csproj">
       <Project>{c3deb7b0-9be5-430e-b774-715f65e6a8ff}</Project>
       <Name>SystemLog</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
