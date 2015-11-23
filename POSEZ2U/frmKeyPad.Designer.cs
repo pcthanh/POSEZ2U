@@ -170,6 +170,7 @@
             this.btndot.Size = new System.Drawing.Size(71, 68);
             this.btndot.TabIndex = 161;
             this.btndot.UseVisualStyleBackColor = false;
+            this.btndot.Click += new System.EventHandler(this.btndot_Click);
             // 
             // btn5
             // 

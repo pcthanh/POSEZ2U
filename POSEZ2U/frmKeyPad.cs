@@ -74,5 +74,17 @@ namespace POSEZ2U
                 mTextBox.Text = text.Remove(text.Length - 1, 1);
             }
         }
+
+        private void btndot_Click(object sender, EventArgs e)
+        {
+            if (this.mTextBox.Text.Length == 0)
+            {
+                this.mTextBox.Text = this.mTextBox.Text + "0.";
+            }
+            else if (!this.mTextBox.Text.Contains<char>('.'))
+            {
+                this.mTextBox.Text = this.mTextBox.Text + ".";
+            }
+        }
     }
 }
