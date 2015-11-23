@@ -40,6 +40,7 @@ namespace POSEZ2U
                 ucTable.lbTableNo.Text = i.ToString();
                 ucTable.lbTime.Text = "03/11/2015";
                 ucTable.lbSubTotal.Text = "20,000";
+                ucTable.Click += ucTable_Click;
                 //ftpEatIn.Controls.Add(ucTable);
                 if (i == 7 || i == 15 || i == 28)
                 {
@@ -47,6 +48,12 @@ namespace POSEZ2U
                 }
                 flowLayoutPanel1.Controls.Add(ucTable);
             }
+        }
+
+        void ucTable_Click(object sender, EventArgs e)
+        {
+            frmOrder frm = new frmOrder();
+            frm.ShowDialog();
         }
         
 

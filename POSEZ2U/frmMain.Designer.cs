@@ -43,7 +43,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnEatIn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnSettingAll = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2.SuspendLayout();
@@ -157,13 +157,13 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.10532F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.73186F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.16282F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 309F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 312F));
             this.tableLayoutPanel3.Controls.Add(this.button4, 2, 2);
             this.tableLayoutPanel3.Controls.Add(this.button5, 3, 2);
             this.tableLayoutPanel3.Controls.Add(this.button2, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.btnEatIn, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.button3, 2, 3);
-            this.tableLayoutPanel3.Controls.Add(this.button6, 3, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnSettingAll, 3, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -183,9 +183,9 @@
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(449, 169);
+            this.button4.Location = new System.Drawing.Point(448, 169);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 72);
+            this.button4.Size = new System.Drawing.Size(93, 72);
             this.button4.TabIndex = 0;
             this.button4.UseVisualStyleBackColor = true;
             // 
@@ -195,9 +195,9 @@
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(549, 169);
+            this.button5.Location = new System.Drawing.Point(547, 169);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 72);
+            this.button5.Size = new System.Drawing.Size(80, 72);
             this.button5.TabIndex = 0;
             this.button5.UseVisualStyleBackColor = true;
             // 
@@ -209,7 +209,7 @@
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.Location = new System.Drawing.Point(348, 247);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 72);
+            this.button2.Size = new System.Drawing.Size(94, 72);
             this.button2.TabIndex = 0;
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -221,7 +221,7 @@
             this.btnEatIn.Image = ((System.Drawing.Image)(resources.GetObject("btnEatIn.Image")));
             this.btnEatIn.Location = new System.Drawing.Point(348, 169);
             this.btnEatIn.Name = "btnEatIn";
-            this.btnEatIn.Size = new System.Drawing.Size(95, 72);
+            this.btnEatIn.Size = new System.Drawing.Size(94, 72);
             this.btnEatIn.TabIndex = 0;
             this.btnEatIn.UseVisualStyleBackColor = true;
             this.btnEatIn.Click += new System.EventHandler(this.btnEatIn_Click);
@@ -232,23 +232,24 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(449, 247);
+            this.button3.Location = new System.Drawing.Point(448, 247);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 72);
+            this.button3.Size = new System.Drawing.Size(93, 72);
             this.button3.TabIndex = 0;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnSettingAll
             // 
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(549, 247);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(81, 72);
-            this.button6.TabIndex = 0;
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSettingAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSettingAll.FlatAppearance.BorderSize = 0;
+            this.btnSettingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSettingAll.Image = ((System.Drawing.Image)(resources.GetObject("btnSettingAll.Image")));
+            this.btnSettingAll.Location = new System.Drawing.Point(547, 247);
+            this.btnSettingAll.Name = "btnSettingAll";
+            this.btnSettingAll.Size = new System.Drawing.Size(80, 72);
+            this.btnSettingAll.TabIndex = 0;
+            this.btnSettingAll.UseVisualStyleBackColor = true;
+            this.btnSettingAll.Click += new System.EventHandler(this.btnSettingAll_Click);
             // 
             // panel1
             // 
@@ -311,7 +312,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnSettingAll;
         private System.Windows.Forms.Button btnEatIn;
         private System.Windows.Forms.Panel panel1;
         private UC.UCInfoTop ucInfoTop1;

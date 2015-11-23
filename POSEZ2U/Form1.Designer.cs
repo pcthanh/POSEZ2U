@@ -45,8 +45,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.ucKeypad1 = new POSEZ2U.UC.UCKeypad();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ucKeypadLogin = new POSEZ2U.UC.UCKeypad();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -246,24 +246,22 @@
             this.button8.Text = ">";
             this.button8.UseVisualStyleBackColor = false;
             // 
-            // button9
+            // textBox1
             // 
-            this.button9.Location = new System.Drawing.Point(352, 455);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.textBox1.Location = new System.Drawing.Point(330, 442);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // ucKeypad1
+            // ucKeypadLogin
             // 
-            this.ucKeypad1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-            this.ucKeypad1.Location = new System.Drawing.Point(330, 151);
-            this.ucKeypad1.Name = "ucKeypad1";
-            this.ucKeypad1.Size = new System.Drawing.Size(287, 285);
-            this.ucKeypad1.TabIndex = 4;
-            this.ucKeypad1.txtResult = null;
+            this.ucKeypadLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+            this.ucKeypadLogin.Location = new System.Drawing.Point(330, 151);
+            this.ucKeypadLogin.Name = "ucKeypadLogin";
+            this.ucKeypadLogin.Size = new System.Drawing.Size(287, 285);
+            this.ucKeypadLogin.TabIndex = 4;
+            this.ucKeypadLogin.txtResult = null;
             // 
             // Form1
             // 
@@ -272,7 +270,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(618, 488);
             this.ControlBox = false;
-            this.Controls.Add(this.button9);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -280,7 +278,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.ucKeypad1);
+            this.Controls.Add(this.ucKeypadLogin);
             this.Controls.Add(this.lblMessger);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
@@ -293,13 +291,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label lblMessger;
-        private UC.UCKeypad ucKeypad1;
+        private UC.UCKeypad ucKeypadLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -315,7 +314,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

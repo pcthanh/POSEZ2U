@@ -42,6 +42,7 @@
             this.lbTableNo.TabIndex = 0;
             this.lbTableNo.Text = "TableNo";
             this.lbTableNo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTableNo.Click += new System.EventHandler(this.UCTable_Click);
             // 
             // lbTime
             // 
@@ -52,6 +53,7 @@
             this.lbTime.TabIndex = 0;
             this.lbTime.Text = "Time";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbTime.Click += new System.EventHandler(this.UCTable_Click);
             // 
             // lbSubTotal
             // 
@@ -62,6 +64,7 @@
             this.lbSubTotal.TabIndex = 0;
             this.lbSubTotal.Text = "SubTotal";
             this.lbSubTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbSubTotal.Click += new System.EventHandler(this.UCTable_Click);
             // 
             // UCTable
             // 
@@ -74,6 +77,7 @@
             this.Controls.Add(this.lbTableNo);
             this.Name = "UCTable";
             this.Size = new System.Drawing.Size(105, 123);
+            
             this.ResumeLayout(false);
 
         }

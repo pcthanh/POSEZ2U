@@ -29,6 +29,12 @@ namespace POSEZ2U
             Application.Exit();
         }
 
+        private void btnSettingAll_Click(object sender, EventArgs e)
+        {
+            frmSettingAll frm = new frmSettingAll();
+            frm.ShowDialog();
+        }
+
        
     }
 }

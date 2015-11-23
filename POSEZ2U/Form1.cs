@@ -15,6 +15,7 @@ namespace POSEZ2U
         public Form1()
         {
             InitializeComponent();
+            ucKeypadLogin.txtResult = textBox1;
         }
         
         private void Form1_Load(object sender, EventArgs e)
@@ -51,6 +52,16 @@ namespace POSEZ2U
         {
             frmMain frm = new frmMain();
             frm.ShowDialog();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(textBox1.Text=="123456")
+            {
+                frmMain frm = new frmMain();
+                frm.ShowDialog();
+            }
+               
         }
 
         
