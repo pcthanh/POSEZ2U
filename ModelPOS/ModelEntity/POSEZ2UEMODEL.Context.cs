@@ -26,5 +26,22 @@ namespace ModelPOS.ModelEntity
         }
     
         public virtual DbSet<CATALOGUE> CATALOGUEs { get; set; }
+        public virtual DbSet<CATEGORY> CATEGORies { get; set; }
+        public virtual DbSet<CLIENT> CLIENTs { get; set; }
+        public virtual DbSet<DEPARMENT> DEPARMENTs { get; set; }
+        public virtual DbSet<FLOOR> FLOORs { get; set; }
+        public virtual DbSet<MAP_CATEGORY_TO_CATALOGUE> MAP_CATEGORY_TO_CATALOGUE { get; set; }
+        public virtual DbSet<MAP_MODIFIRE_TO_PRODUCT> MAP_MODIFIRE_TO_PRODUCT { get; set; }
+        public virtual DbSet<MAP_PRODUCT_TO_CATEGORY> MAP_PRODUCT_TO_CATEGORY { get; set; }
+        public virtual DbSet<MENU> MENUs { get; set; }
+        public virtual DbSet<MODIFIRE> MODIFIREs { get; set; }
+        public virtual DbSet<MODIFIRE_PRICE> MODIFIRE_PRICE { get; set; }
+        public virtual DbSet<PAYMENT_TYPE> PAYMENT_TYPE { get; set; }
+        public virtual DbSet<PERMISSION> PERMISSIONs { get; set; }
+        public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
+        public virtual DbSet<PRODUCT_PRICE> PRODUCT_PRICE { get; set; }
+        public virtual DbSet<SHIFT_HISTORY> SHIFT_HISTORY { get; set; }
+        public virtual DbSet<STAFF> STAFFs { get; set; }
+        public virtual DbSet<SUB_MENU> SUB_MENU { get; set; }
     }
 }

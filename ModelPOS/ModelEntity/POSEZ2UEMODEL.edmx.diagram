@@ -6,6 +6,23 @@
     <edmx:Diagrams>
       <Diagram DiagramId="311b8d6ee54047159ffddfb011be5b7c" Name="Diagram1">
         <EntityTypeShape EntityType="POSEZ2UModel.CATALOGUE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="POSEZ2UModel.CATEGORY" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.CLIENT" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.DEPARMENT" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.FLOOR" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.MAP_CATEGORY_TO_CATALOGUE" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.MAP_MODIFIRE_TO_PRODUCT" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.MAP_PRODUCT_TO_CATEGORY" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.MENU" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.MODIFIRE" Width="1.5" PointX="8.75" PointY="4.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.MODIFIRE_PRICE" Width="1.5" PointX="4.75" PointY="8.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.PAYMENT_TYPE" Width="1.5" PointX="6.75" PointY="8.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.PERMISSION" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.PRODUCT" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.PRODUCT_PRICE" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.SHIFT_HISTORY" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.STAFF" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.SUB_MENU" Width="1.5" PointX="0.75" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
