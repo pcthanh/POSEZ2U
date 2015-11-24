@@ -51,6 +51,42 @@
     <Compile Include="ModelEntity\CATALOGUE.cs">
       <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelEntity\CATEGORY.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\CLIENT.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\DEPARMENT.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\FLOOR.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\MAP_CATEGORY_TO_CATALOGUE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\MAP_MODIFIRE_TO_PRODUCT.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\MAP_PRODUCT_TO_CATEGORY.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\MENU.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\MODIFIRE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\MODIFIRE_PRICE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\PAYMENT_TYPE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\PERMISSION.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelEntity\POSEZ2UEMODEL.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,6 +101,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>POSEZ2UEMODEL.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\PRODUCT.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\PRODUCT_PRICE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\SHIFT_HISTORY.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\STAFF.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\SUB_MENU.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

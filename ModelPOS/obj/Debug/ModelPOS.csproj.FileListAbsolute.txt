@@ -3,3 +3,12 @@ D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\ModelPOS\bin\Debug\ModelPOS.pdb
 D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\ModelPOS\obj\Debug\ModelPOS.csprojResolveAssemblyReference.cache
 D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\ModelPOS\obj\Debug\ModelPOS.dll
 D:\MyProject\THANH.PHAN\POSEZ2U\POSEZ2U\ModelPOS\obj\Debug\ModelPOS.pdb
+E:\git\POSEZ2U\ModelPOS\bin\Debug\ModelPOS.dll
+E:\git\POSEZ2U\ModelPOS\bin\Debug\ModelPOS.pdb
+E:\git\POSEZ2U\ModelPOS\obj\Debug\ModelPOS.dll
+E:\git\POSEZ2U\ModelPOS\obj\Debug\ModelPOS.pdb
+E:\git\POSEZ2U\ModelPOS\bin\Debug\ModelPOS.dll.config
+E:\git\POSEZ2U\ModelPOS\bin\Debug\EntityFramework.dll
+E:\git\POSEZ2U\ModelPOS\bin\Debug\EntityFramework.SqlServer.dll
+E:\git\POSEZ2U\ModelPOS\bin\Debug\EntityFramework.xml
+E:\git\POSEZ2U\ModelPOS\bin\Debug\EntityFramework.SqlServer.xml

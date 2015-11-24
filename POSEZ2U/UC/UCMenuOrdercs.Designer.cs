@@ -1,3 +1,4 @@
+
 ﻿namespace POSEZ2U.UC
 {
     partial class UCMenuOrdercs

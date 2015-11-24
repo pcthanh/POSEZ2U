@@ -46,6 +46,7 @@
     <Compile Include="CatalogueService.cs" />
     <Compile Include="ICatalogueService.cs" />
     <Compile Include="Model\CatalogueModel.cs" />
+    <Compile Include="Model\ProductionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

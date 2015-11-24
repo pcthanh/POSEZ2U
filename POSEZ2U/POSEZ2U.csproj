@@ -111,6 +111,12 @@
     <Compile Include="frmMenuSetting.Designer.cs">
       <DependentUpon>frmMenuSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOrder.Designer.cs">
+      <DependentUpon>frmOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPaymentCard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,12 @@
     </Compile>
     <Compile Include="frmPaymentCash.Designer.cs">
       <DependentUpon>frmPaymentCash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettingAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettingAll.Designer.cs">
+      <DependentUpon>frmSettingAll.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,6 +191,12 @@
     <Compile Include="UC\UCKeypad.Designer.cs">
       <DependentUpon>UCKeypad.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCKeyPadOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCKeyPadOrder.Designer.cs">
+      <DependentUpon>UCKeyPadOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCMenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -190,6 +208,12 @@
     </Compile>
     <Compile Include="UC\UCMenuList.Designer.cs">
       <DependentUpon>UCMenuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCMenuOrdercs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCMenuOrdercs.Designer.cs">
+      <DependentUpon>UCMenuOrdercs.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\UCModifier.cs">
       <SubType>UserControl</SubType>
@@ -269,11 +293,17 @@
     <EmbeddedResource Include="frmMenuSetting.resx">
       <DependentUpon>frmMenuSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmOrder.resx">
+      <DependentUpon>frmOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPaymentCard.resx">
       <DependentUpon>frmPaymentCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaymentCash.resx">
       <DependentUpon>frmPaymentCash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettingAll.resx">
+      <DependentUpon>frmSettingAll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -308,6 +338,12 @@
     <EmbeddedResource Include="UC\UCKeypad.resx">
       <DependentUpon>UCKeypad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCKeyPadOrder.resx">
+      <DependentUpon>UCKeyPadOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCMenuOrdercs.resx">
+      <DependentUpon>UCMenuOrdercs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UCModifierItem.resx">
       <DependentUpon>UCModifierItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -338,7 +374,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ModelPOS\ModelPOS.csproj">
