@@ -31,14 +31,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.flpGroupMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSendOrder = new System.Windows.Forms.Button();
             this.btnReprint = new System.Windows.Forms.Button();
@@ -52,21 +54,20 @@
             this.btnPayMent = new System.Windows.Forms.Button();
             this.btnPrintBill = new System.Windows.Forms.Button();
             this.btnDisCount = new System.Windows.Forms.Button();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel14 = new System.Windows.Forms.Panel();
             this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
-            this.flpGroupMenu = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel15 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,6 +95,23 @@
             this.panel3.Size = new System.Drawing.Size(954, 47);
             this.panel3.TabIndex = 3;
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnLogOut.FlatAppearance.BorderSize = 0;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.Color.White;
+            this.btnLogOut.Location = new System.Drawing.Point(10, 3);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(97, 40);
+            this.btnLogOut.TabIndex = 0;
+            this.btnLogOut.Text = "LOG OUT";
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
@@ -112,6 +130,14 @@
             this.panel5.Size = new System.Drawing.Size(685, 48);
             this.panel5.TabIndex = 5;
             // 
+            // flpGroupMenu
+            // 
+            this.flpGroupMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpGroupMenu.Location = new System.Drawing.Point(0, 0);
+            this.flpGroupMenu.Name = "flpGroupMenu";
+            this.flpGroupMenu.Size = new System.Drawing.Size(685, 48);
+            this.flpGroupMenu.TabIndex = 0;
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.panel13);
@@ -121,6 +147,22 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(236, 429);
             this.panel6.TabIndex = 6;
+            // 
+            // panel13
+            // 
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(0, 100);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(236, 329);
+            this.panel13.TabIndex = 1;
+            // 
+            // panel12
+            // 
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(236, 100);
+            this.panel12.TabIndex = 0;
             // 
             // panel7
             // 
@@ -141,14 +183,6 @@
             this.panel10.Size = new System.Drawing.Size(685, 193);
             this.panel10.TabIndex = 10;
             // 
-            // panel8
-            // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(488, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(10, 193);
-            this.panel8.TabIndex = 0;
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.tableLayoutPanel1);
@@ -157,17 +191,6 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(488, 193);
             this.panel9.TabIndex = 1;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
-            this.panel11.Controls.Add(this.flowLayoutPanel1);
-            this.panel11.Controls.Add(this.panel14);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(10, 100);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(685, 188);
-            this.panel11.TabIndex = 11;
             // 
             // tableLayoutPanel1
             // 
@@ -379,46 +402,25 @@
             this.btnDisCount.Text = "DIS - COUNT";
             this.btnDisCount.UseVisualStyleBackColor = false;
             // 
-            // btnLogOut
+            // panel8
             // 
-            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnLogOut.FlatAppearance.BorderSize = 0;
-            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogOut.ForeColor = System.Drawing.Color.White;
-            this.btnLogOut.Location = new System.Drawing.Point(10, 3);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(97, 40);
-            this.btnLogOut.TabIndex = 0;
-            this.btnLogOut.Text = "LOG OUT";
-            this.btnLogOut.UseVisualStyleBackColor = false;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(488, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(10, 193);
+            this.panel8.TabIndex = 0;
             // 
-            // panel12
+            // panel11
             // 
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(236, 100);
-            this.panel12.TabIndex = 0;
-            // 
-            // panel13
-            // 
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(0, 100);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(236, 329);
-            this.panel13.TabIndex = 1;
-            // 
-            // panel14
-            // 
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel14.Location = new System.Drawing.Point(0, 178);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(685, 10);
-            this.panel14.TabIndex = 0;
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
+            this.panel11.Controls.Add(this.panel15);
+            this.panel11.Controls.Add(this.flowLayoutPanel1);
+            this.panel11.Controls.Add(this.panel14);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(10, 100);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(685, 188);
+            this.panel11.TabIndex = 11;
             // 
             // flowLayoutPanel1
             // 
@@ -428,6 +430,14 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(685, 178);
             this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // panel14
+            // 
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel14.Location = new System.Drawing.Point(0, 178);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(685, 10);
+            this.panel14.TabIndex = 0;
             // 
             // ucKeyPadOrder1
             // 
@@ -446,13 +456,13 @@
             this.ucInfoTop1.Size = new System.Drawing.Size(954, 42);
             this.ucInfoTop1.TabIndex = 0;
             // 
-            // flpGroupMenu
+            // panel15
             // 
-            this.flpGroupMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpGroupMenu.Location = new System.Drawing.Point(0, 0);
-            this.flpGroupMenu.Name = "flpGroupMenu";
-            this.flpGroupMenu.Size = new System.Drawing.Size(685, 48);
-            this.flpGroupMenu.TabIndex = 0;
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(685, 10);
+            this.panel15.TabIndex = 2;
             // 
             // frmOrder
             // 
@@ -481,8 +491,8 @@
             this.panel6.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -521,5 +531,6 @@
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flpGroupMenu;
+        private System.Windows.Forms.Panel panel15;
     }
 }

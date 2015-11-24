@@ -39,7 +39,7 @@
             this.lblNameGroup.ForeColor = System.Drawing.Color.White;
             this.lblNameGroup.Location = new System.Drawing.Point(0, 0);
             this.lblNameGroup.Name = "lblNameGroup";
-            this.lblNameGroup.Size = new System.Drawing.Size(130, 32);
+            this.lblNameGroup.Size = new System.Drawing.Size(137, 32);
             this.lblNameGroup.TabIndex = 0;
             this.lblNameGroup.Text = "Com";
             this.lblNameGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -51,7 +51,7 @@
             this.lblCount.Dock = System.Windows.Forms.DockStyle.Right;
             this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.lblCount.Location = new System.Drawing.Point(88, 32);
+            this.lblCount.Location = new System.Drawing.Point(95, 32);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(42, 40);
             this.lblCount.TabIndex = 0;
@@ -66,7 +66,7 @@
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblNameGroup);
             this.Name = "UCMenuOrdercs";
-            this.Size = new System.Drawing.Size(130, 72);
+            this.Size = new System.Drawing.Size(137, 72);
             this.ResumeLayout(false);
 
         }

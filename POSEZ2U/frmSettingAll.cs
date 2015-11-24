@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POSEZ2U.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,12 @@ namespace POSEZ2U
         public frmSettingAll()
         {
             InitializeComponent();
+           
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        
+
+        private void btnProduct_Click(object sender, EventArgs e)
         {
             frmMenuSetting frm = new frmMenuSetting();
             frm.ShowDialog();
