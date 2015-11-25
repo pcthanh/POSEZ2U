@@ -7,7 +7,7 @@ using ServicePOS.Model;
 
 namespace ServicePOS
 {
-    public class IProductService : IDisposable
+    public interface IProductService : IDisposable
     {
         IEnumerable<ProductionModel> GetProductsList();
     }
