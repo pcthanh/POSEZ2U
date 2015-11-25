@@ -23,6 +23,16 @@
         <EntityTypeShape EntityType="POSEZ2UModel.SHIFT_HISTORY" Width="1.5" PointX="10.75" PointY="8.75" />
         <EntityTypeShape EntityType="POSEZ2UModel.STAFF" Width="1.5" PointX="12.75" PointY="0.75" />
         <EntityTypeShape EntityType="POSEZ2UModel.SUB_MENU" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.INVOICE" Width="1.5" PointX="3.375" PointY="12.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.INVOICE_DETAIL" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.INVOICE_DETAIL_MODIFIRE" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.ORDER" Width="1.5" PointX="9.375" PointY="12.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.ORDER_DATE" Width="1.5" PointX="11.375" PointY="12.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.ORDER_DETAIL" Width="1.5" PointX="13.375" PointY="6.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.ORDER_DETAIL_DATE" Width="1.5" PointX="13.375" PointY="11.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.ORDER_DETAIL_MODIFIRE" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.ORDER_DETAIL_MODIFIRE_DATE" Width="1.5" PointX="15.375" PointY="5.75" />
+        <EntityTypeShape EntityType="POSEZ2UModel.PAYMENT_INVOICE_HISTORY" Width="1.5" PointX="15.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

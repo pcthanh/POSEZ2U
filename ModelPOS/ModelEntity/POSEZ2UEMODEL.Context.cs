@@ -43,5 +43,15 @@ namespace ModelPOS.ModelEntity
         public virtual DbSet<SHIFT_HISTORY> SHIFT_HISTORY { get; set; }
         public virtual DbSet<STAFF> STAFFs { get; set; }
         public virtual DbSet<SUB_MENU> SUB_MENU { get; set; }
+        public virtual DbSet<INVOICE> INVOICEs { get; set; }
+        public virtual DbSet<INVOICE_DETAIL> INVOICE_DETAIL { get; set; }
+        public virtual DbSet<INVOICE_DETAIL_MODIFIRE> INVOICE_DETAIL_MODIFIRE { get; set; }
+        public virtual DbSet<ORDER> ORDERs { get; set; }
+        public virtual DbSet<ORDER_DATE> ORDER_DATE { get; set; }
+        public virtual DbSet<ORDER_DETAIL> ORDER_DETAIL { get; set; }
+        public virtual DbSet<ORDER_DETAIL_DATE> ORDER_DETAIL_DATE { get; set; }
+        public virtual DbSet<ORDER_DETAIL_MODIFIRE> ORDER_DETAIL_MODIFIRE { get; set; }
+        public virtual DbSet<ORDER_DETAIL_MODIFIRE_DATE> ORDER_DETAIL_MODIFIRE_DATE { get; set; }
+        public virtual DbSet<PAYMENT_INVOICE_HISTORY> PAYMENT_INVOICE_HISTORY { get; set; }
     }
 }
