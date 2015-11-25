@@ -63,6 +63,15 @@
     <Compile Include="ModelEntity\FLOOR.cs">
       <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelEntity\INVOICE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\INVOICE_DETAIL.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\INVOICE_DETAIL_MODIFIRE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelEntity\MAP_CATEGORY_TO_CATALOGUE.cs">
       <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
     </Compile>
@@ -79,6 +88,27 @@
       <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelEntity\MODIFIRE_PRICE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\ORDER.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\ORDER_DATE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\ORDER_DETAIL.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\ORDER_DETAIL_DATE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\ORDER_DETAIL_MODIFIRE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\ORDER_DETAIL_MODIFIRE_DATE.cs">
+      <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelEntity\PAYMENT_INVOICE_HISTORY.cs">
       <DependentUpon>POSEZ2UEMODEL.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelEntity\PAYMENT_TYPE.cs">
