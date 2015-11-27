@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using POSEZ2U.UC;
+using POSEZ2U.Class;
 namespace POSEZ2U.UC
 {
     public partial class UCMenu : UserControl
@@ -17,7 +18,9 @@ namespace POSEZ2U.UC
         {
             InitializeComponent();
         }
-
+        int flagAddNewGroup = 0;
+        string[] array = { "Coffee", "Smoothie", "Juice" };
+        List<MenuGroup> lst = new List<MenuGroup>();
         private void UCMenu_Load(object sender, EventArgs e)
         {
             Type colorType = typeof(System.Drawing.Color);
@@ -28,26 +31,30 @@ namespace POSEZ2U.UC
             }
             addUcMenuGroup();
             addButton();
+            
         }
         private void addUcMenuGroup()
         {
-          
-            string[] array = { "Coffee", "Smoothie", "Juice" };
-
-            List<string> lst = new List<string>();
-            foreach (string str in array)
+            if (flagAddNewGroup == 0)
             {
-                lst.Add(str);
+                foreach (string str in array)
+                {
+
+                    MenuGroup item = new MenuGroup();
+                    item.nameGroup = str;
+                    lst.Add(item);
+                }
             }
             UCGroup[] ucGroup = new UCGroup[lst.Count];
             for (int i = 0; i <lst.Count; i++)
             {
                 ucGroup[i]= new UCGroup();
-                ucGroup[i].lblNameGroup.Text = lst[i].ToString();
+                ucGroup[i].lblNameGroup.Text = lst[i].nameGroup;
                 ucGroup[i].Tag = lst[i];
                 ucGroup[i].Click += new EventHandler(UCGroup_Click);
                 flpIncludesGroup.Controls.AddRange(ucGroup);
             }
+            
             
         }
         private void addButton()
@@ -69,12 +76,22 @@ namespace POSEZ2U.UC
 
         void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("btnAdd");
+            frmMenuAdd frmMenuAdd = new frmMenuAdd(lst);
+            if (frmMenuAdd.ShowDialog() == DialogResult.OK)
+            {
+
+                flagAddNewGroup = 1;
+                lst = frmMenuAdd.lst;
+                flpIncludesGroup.Controls.Clear();
+                this.addUcMenuGroup();
+                addButton();
+                flagAddNewGroup = 0;
+            }
         }
        private void UCGroup_Click(object sender, EventArgs e)
         {
             UCGroup ucGroup = (UCGroup)sender;
-            MessageBox.Show(ucGroup.Tag.ToString());
+            
         }
 
 

@@ -375,7 +375,10 @@ namespace POSEZ2U
             ucMenu.Dock = DockStyle.Fill;
             if (i == 2)
             {
+               
                 pnDetail.Controls.Add(ucMenu);
+                ucMenu = (UCMenu)pnDetail.Controls[0];
+                ucMenu.cbColor.SelectedItem = "Red";
             }
             else
             {
