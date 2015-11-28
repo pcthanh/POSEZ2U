@@ -7,7 +7,7 @@ using System.Linq;
 
 using System.Windows.Forms;
 using System.Reflection;
-
+using POSEZ2U.Class;
 using ServicePOS;
 
 namespace POSEZ2U.UC
@@ -51,8 +51,6 @@ namespace POSEZ2U.UC
                     UCGroup[] ucGroup = new UCGroup[data.Count];
                     for (int i = 0; i < data.Count; i++)
                     {
-                        //MenuGroup item = new MenuGroup();
-                        //item.nameGroup = data[i].CategoryName;
                         ucGroup[i] = new UCGroup();
                         ucGroup[i].lblNameGroup.Text = data[i].CategoryName;
                         ucGroup[i].Tag = data[i];
