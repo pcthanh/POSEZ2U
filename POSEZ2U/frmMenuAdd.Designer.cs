@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.flpAllitems = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnAllRight = new System.Windows.Forms.Button();
+            this.btnAllLeft = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
+            this.btnLeft = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.flpAllitems = new System.Windows.Forms.FlowLayoutPanel();
             this.flpThisgroupitems = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
-            this.btnAllLeft = new System.Windows.Forms.Button();
-            this.btnAllRight = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,16 +62,6 @@
             this.panel1.Size = new System.Drawing.Size(528, 38);
             this.panel1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 32);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "All Items";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -82,6 +72,16 @@
             this.label2.Text = "This group items";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(198, 32);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "All Items";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnOk);
@@ -91,21 +91,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(528, 55);
             this.panel2.TabIndex = 1;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(3, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(124, 41);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
@@ -122,6 +107,21 @@
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(121)))), ((int)(((byte)(121)))));
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(3, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(124, 41);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.flpAllitems);
@@ -130,6 +130,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(228, 393);
             this.panel3.TabIndex = 2;
+            // 
+            // flpAllitems
+            // 
+            this.flpAllitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.flpAllitems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpAllitems.Location = new System.Drawing.Point(0, 0);
+            this.flpAllitems.Name = "flpAllitems";
+            this.flpAllitems.Size = new System.Drawing.Size(228, 393);
+            this.flpAllitems.TabIndex = 0;
             // 
             // panel4
             // 
@@ -151,6 +160,59 @@
             this.panel5.Size = new System.Drawing.Size(53, 393);
             this.panel5.TabIndex = 4;
             // 
+            // btnAllRight
+            // 
+            this.btnAllRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.btnAllRight.FlatAppearance.BorderSize = 0;
+            this.btnAllRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllRight.Location = new System.Drawing.Point(3, 162);
+            this.btnAllRight.Name = "btnAllRight";
+            this.btnAllRight.Size = new System.Drawing.Size(47, 33);
+            this.btnAllRight.TabIndex = 0;
+            this.btnAllRight.Text = "< All";
+            this.btnAllRight.UseVisualStyleBackColor = false;
+            // 
+            // btnAllLeft
+            // 
+            this.btnAllLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.btnAllLeft.FlatAppearance.BorderSize = 0;
+            this.btnAllLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllLeft.Location = new System.Drawing.Point(3, 109);
+            this.btnAllLeft.Name = "btnAllLeft";
+            this.btnAllLeft.Size = new System.Drawing.Size(47, 33);
+            this.btnAllLeft.TabIndex = 0;
+            this.btnAllLeft.Text = "All >";
+            this.btnAllLeft.UseVisualStyleBackColor = false;
+            // 
+            // btnRight
+            // 
+            this.btnRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.btnRight.FlatAppearance.BorderSize = 0;
+            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRight.Location = new System.Drawing.Point(3, 55);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(47, 33);
+            this.btnRight.TabIndex = 0;
+            this.btnRight.Text = "<";
+            this.btnRight.UseVisualStyleBackColor = false;
+            // 
+            // btnLeft
+            // 
+            this.btnLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.btnLeft.FlatAppearance.BorderSize = 0;
+            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeft.Location = new System.Drawing.Point(3, 3);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(47, 33);
+            this.btnLeft.TabIndex = 0;
+            this.btnLeft.Text = ">";
+            this.btnLeft.UseVisualStyleBackColor = false;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
@@ -168,15 +230,6 @@
             this.panel7.Size = new System.Drawing.Size(227, 393);
             this.panel7.TabIndex = 6;
             // 
-            // flpAllitems
-            // 
-            this.flpAllitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.flpAllitems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpAllitems.Location = new System.Drawing.Point(0, 0);
-            this.flpAllitems.Name = "flpAllitems";
-            this.flpAllitems.Size = new System.Drawing.Size(228, 393);
-            this.flpAllitems.TabIndex = 0;
-            // 
             // flpThisgroupitems
             // 
             this.flpThisgroupitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
@@ -185,59 +238,6 @@
             this.flpThisgroupitems.Name = "flpThisgroupitems";
             this.flpThisgroupitems.Size = new System.Drawing.Size(227, 393);
             this.flpThisgroupitems.TabIndex = 0;
-            // 
-            // btnLeft
-            // 
-            this.btnLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.btnLeft.FlatAppearance.BorderSize = 0;
-            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLeft.Location = new System.Drawing.Point(3, 3);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(47, 33);
-            this.btnLeft.TabIndex = 0;
-            this.btnLeft.Text = ">";
-            this.btnLeft.UseVisualStyleBackColor = false;
-            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
-            // 
-            // btnRight
-            // 
-            this.btnRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.btnRight.FlatAppearance.BorderSize = 0;
-            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRight.Location = new System.Drawing.Point(3, 55);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(47, 33);
-            this.btnRight.TabIndex = 0;
-            this.btnRight.Text = "<";
-            this.btnRight.UseVisualStyleBackColor = false;
-            // 
-            // btnAllLeft
-            // 
-            this.btnAllLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.btnAllLeft.FlatAppearance.BorderSize = 0;
-            this.btnAllLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAllLeft.Location = new System.Drawing.Point(3, 109);
-            this.btnAllLeft.Name = "btnAllLeft";
-            this.btnAllLeft.Size = new System.Drawing.Size(47, 33);
-            this.btnAllLeft.TabIndex = 0;
-            this.btnAllLeft.Text = "All >";
-            this.btnAllLeft.UseVisualStyleBackColor = false;
-            // 
-            // btnAllRight
-            // 
-            this.btnAllRight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.btnAllRight.FlatAppearance.BorderSize = 0;
-            this.btnAllRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAllRight.Location = new System.Drawing.Point(3, 162);
-            this.btnAllRight.Name = "btnAllRight";
-            this.btnAllRight.Size = new System.Drawing.Size(47, 33);
-            this.btnAllRight.TabIndex = 0;
-            this.btnAllRight.Text = "< All";
-            this.btnAllRight.UseVisualStyleBackColor = false;
             // 
             // frmMenuAdd
             // 
@@ -273,18 +273,18 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.FlowLayoutPanel flpAllitems;
-        private System.Windows.Forms.FlowLayoutPanel flpThisgroupitems;
-        private System.Windows.Forms.Button btnAllRight;
-        private System.Windows.Forms.Button btnAllLeft;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnLeft;
+        public System.Windows.Forms.Button btnOk;
+        public System.Windows.Forms.Button btnCancel;
+        public System.Windows.Forms.FlowLayoutPanel flpAllitems;
+        public System.Windows.Forms.FlowLayoutPanel flpThisgroupitems;
+        public System.Windows.Forms.Button btnAllRight;
+        public System.Windows.Forms.Button btnAllLeft;
+        public System.Windows.Forms.Button btnRight;
+        public System.Windows.Forms.Button btnLeft;
     }
 }

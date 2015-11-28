@@ -19,7 +19,7 @@ namespace POSEZ2U
         private void addUcMenuGroup()
         {
 
-            string[] array = { "Coffee", "Smoothie", "Juice" };
+            string[] array = new[] { "Coffee", "Smoothie", "Juice" };
 
             List<string> lst = new List<string>();
             foreach (string str in array)
@@ -46,7 +46,7 @@ namespace POSEZ2U
         
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            addUcMenuGroup();
+            //addUcMenuGroup();
         }
 
     }
