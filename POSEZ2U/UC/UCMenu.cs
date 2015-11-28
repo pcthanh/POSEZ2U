@@ -4,23 +4,29 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using System.Reflection;
-using POSEZ2U.UC;
-using POSEZ2U.Class;
+
+using ServicePOS;
+
 namespace POSEZ2U.UC
 {
     public partial class UCMenu : UserControl
     {
+        #region Variables & Constructors
+        private ICatalogueService _catalogeService;
+        private ICatalogueService CatalogeService
+        {
+            get { return _catalogeService ?? (_catalogeService = new CatalogueService()); }
+            set { _catalogeService = value; }
+        }
+        #endregion
         public UCMenu()
         {
             InitializeComponent();
         }
-        int flagAddNewGroup = 0;
-        string[] array = { "Coffee", "Smoothie", "Juice" };
-        List<MenuGroup> lst = new List<MenuGroup>();
+       
         private void UCMenu_Load(object sender, EventArgs e)
         {
             Type colorType = typeof(System.Drawing.Color);
@@ -29,35 +35,36 @@ namespace POSEZ2U.UC
             {
                 this.cbColor.Items.Add(c.Name);
             }
-            addUcMenuGroup();
-            addButton();
+            //addUcMenuGroup();
+            //addButton();
             
         }
-        private void addUcMenuGroup()
-        {
-            if (flagAddNewGroup == 0)
-            {
-                foreach (string str in array)
-                {
 
-                    MenuGroup item = new MenuGroup();
-                    item.nameGroup = str;
-                    lst.Add(item);
-                }
-            }
-            UCGroup[] ucGroup = new UCGroup[lst.Count];
-            for (int i = 0; i <lst.Count; i++)
+        public void addUcMenuGroup(int catalogueid)
+        {
+
+            if (catalogueid > 0)
             {
-                ucGroup[i]= new UCGroup();
-                ucGroup[i].lblNameGroup.Text = lst[i].nameGroup;
-                ucGroup[i].Tag = lst[i];
-                ucGroup[i].Click += new EventHandler(UCGroup_Click);
-                flpIncludesGroup.Controls.AddRange(ucGroup);
+                var data = CatalogeService.GetCategoryByCatalogueID(catalogueid).ToList();
+                if (data.Count > 0)
+                {
+                    UCGroup[] ucGroup = new UCGroup[data.Count];
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        //MenuGroup item = new MenuGroup();
+                        //item.nameGroup = data[i].CategoryName;
+                        ucGroup[i] = new UCGroup();
+                        ucGroup[i].lblNameGroup.Text = data[i].CategoryName;
+                        ucGroup[i].Tag = data[i];
+                        // ucGroup[i].Click += new EventHandler(UCGroup_Click);
+                        flpIncludesGroup.Controls.AddRange(ucGroup);
+                    }
+                }
+
             }
-            
-            
         }
-        private void addButton()
+
+        public void addButton()
         {
             Button btn = new Button();
             btn.Width = 107;
@@ -76,17 +83,17 @@ namespace POSEZ2U.UC
 
         void btn_Click(object sender, EventArgs e)
         {
-            frmMenuAdd frmMenuAdd = new frmMenuAdd(lst);
-            if (frmMenuAdd.ShowDialog() == DialogResult.OK)
-            {
+            //frmMenuAdd frmMenuAdd = new frmMenuAdd(lst);
+            //if (frmMenuAdd.ShowDialog() == DialogResult.OK)
+            //{
 
-                flagAddNewGroup = 1;
-                lst = frmMenuAdd.lst;
-                flpIncludesGroup.Controls.Clear();
-                this.addUcMenuGroup();
-                addButton();
-                flagAddNewGroup = 0;
-            }
+            //    flagAddNewGroup = 1;
+            //    lst = frmMenuAdd.lst;
+            //    flpIncludesGroup.Controls.Clear();
+            //    this.addUcMenuGroup();
+            //    addButton();
+            //    flagAddNewGroup = 0;
+            //}
         }
        private void UCGroup_Click(object sender, EventArgs e)
         {

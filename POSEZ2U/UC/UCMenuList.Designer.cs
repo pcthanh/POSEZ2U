@@ -39,7 +39,6 @@
             this.lblMenuListName.Name = "lblMenuListName";
             this.lblMenuListName.Size = new System.Drawing.Size(262, 47);
             this.lblMenuListName.TabIndex = 0;
-            this.lblMenuListName.Text = "label1";
             this.lblMenuListName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMenuListName.Click += new System.EventHandler(this.UCMenuList_Click);
             // 
