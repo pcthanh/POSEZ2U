@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +20,6 @@ namespace ServicePOS.Model
         public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public int CatalogueID { get; set; }
+
     }
 }
