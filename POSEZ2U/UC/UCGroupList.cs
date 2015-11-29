@@ -35,15 +35,7 @@ namespace POSEZ2U.UC
         public void addUcMenuGroup(int categoryID)
         {
 
-            //string[] array = { "Coffee", "Smoothie", "Juice" };
-
-            //List<string> lst = new List<string>();
-            //foreach (string str in array)
-            //{
-            //    lst.Add(str);
-            //}
-
-
+           
             if (categoryID > 0)
             {
                 var productlist = CatalogeService.GetProductByCategoryID(categoryID).ToList();
@@ -63,7 +55,7 @@ namespace POSEZ2U.UC
            
 
         }
-        public void addButton()
+        public void addButton(int categoryID)
         {
             Button btn = new Button();
             btn.Width = 107;
@@ -75,13 +67,23 @@ namespace POSEZ2U.UC
             btn.Name = "btnAdd";
             btn.Text = "Add";
             btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn.Tag = categoryID;
             btn.Click += btn_Click;
             flpGroup.Controls.Add(btn);
 
         }
         void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("btnAdd");
+            Button addnewGroup = (Button)sender;
+            int tag = Convert.ToInt16(addnewGroup.Tag);
+            frmGroupAdd frmGroupAdd = new frmGroupAdd(tag);
+            if (frmGroupAdd.ShowDialog() == DialogResult.OK)
+            {
+                flpGroup.Controls.Clear();
+                addUcMenuGroup(tag);
+                addButton(tag);
+
+            }
         }
         void UCGroupList_Click(object sender, EventArgs e)
         {

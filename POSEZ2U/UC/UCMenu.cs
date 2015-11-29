@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using POSEZ2U.Class;
 using ServicePOS;
+using ServicePOS.Model;
 
 namespace POSEZ2U.UC
 {
@@ -22,6 +24,11 @@ namespace POSEZ2U.UC
             set { _catalogeService = value; }
         }
         #endregion
+
+
+        //int flagAddNewGroup = 0;
+        //string[] array = { "Coffee", "Smoothie", "Juice" };
+        //List<CategoryModel> lst = new List<CategoryModel>();
         public UCMenu()
         {
             InitializeComponent();
@@ -62,7 +69,7 @@ namespace POSEZ2U.UC
             }
         }
 
-        public void addButton()
+        public void addButton(int catalogueid)
         {
             Button btn = new Button();
             btn.Width = 107;
@@ -74,6 +81,7 @@ namespace POSEZ2U.UC
             btn.Name = "btnAdd";
             btn.Text = "Add";
             btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn.Tag = catalogueid;
             btn.Click += btn_Click;
             flpIncludesGroup.Controls.Add(btn);
 
@@ -81,23 +89,23 @@ namespace POSEZ2U.UC
 
         void btn_Click(object sender, EventArgs e)
         {
-            //frmMenuAdd frmMenuAdd = new frmMenuAdd(lst);
-            //if (frmMenuAdd.ShowDialog() == DialogResult.OK)
-            //{
-
-            //    flagAddNewGroup = 1;
-            //    lst = frmMenuAdd.lst;
-            //    flpIncludesGroup.Controls.Clear();
-            //    this.addUcMenuGroup();
-            //    addButton();
-            //    flagAddNewGroup = 0;
-            //}
+            Button addnewGroup = (Button)sender;
+            int tag = Convert.ToInt16(addnewGroup.Tag);
+                frmMenuAdd frmMenuAdd = new frmMenuAdd(tag);
+                if (frmMenuAdd.ShowDialog() == DialogResult.OK)
+                {
+                    flpIncludesGroup.Controls.Clear();
+                    addUcMenuGroup(tag);
+                    addButton(tag);
+                   
+                }
         }
        private void UCGroup_Click(object sender, EventArgs e)
         {
-            UCGroup ucGroup = (UCGroup)sender;
+           // UCGroup ucGroup = (UCGroup)sender;
             
         }
+
 
         private void cbColor_DrawItem(object sender, DrawItemEventArgs e)
         {

@@ -1,3 +1,4 @@
+
 ﻿namespace POSEZ2U.UC
 {
     partial class UCMenu
@@ -223,10 +224,10 @@
         public System.Windows.Forms.ComboBox cbColor;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.FlowLayoutPanel flpIncludesGroup;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Label TilteMenu;
+        public System.Windows.Forms.Button btnRemove;
 
     }
 }
