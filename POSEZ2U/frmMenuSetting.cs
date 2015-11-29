@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,7 @@ namespace POSEZ2U
         }
         #endregion
 
-        #region Variables & Constructors Product
+         #region Variables & Constructors Product
         private IProductService _productService;
         private IProductService ProductService
         {
@@ -44,6 +45,7 @@ namespace POSEZ2U
         #endregion
         
        
+
         public frmMenuSetting()
         {
             InitializeComponent();
@@ -67,25 +69,26 @@ namespace POSEZ2U
         private void btnAdd_Click(object sender, EventArgs e)
         {
             pnDetail.Controls.Clear();
-
             Button addNew = (Button)sender;
             int tag = Convert.ToInt32(addNew.Tag);
 
             switch (tag)
             {
                 case 1:
-            UCMenu ucMenu = new UCMenu();
-            ucMenu.Dock = DockStyle.Fill;
-                    //ucMenu.btnSave.Click += ucMenuList_btnSave_Click;
-            pnDetail.Controls.Add(ucMenu);
+                    UCMenu ucMenu = new UCMenu();
+                    ucMenu.Dock = DockStyle.Fill;
+                    ucMenu.btnSave.Click += ucMenuList_btnSave_Click;
+                    ucMenu.btnRemove.Hide();
+                    pnDetail.Controls.Add(ucMenu);
                     break;
                 case 2:
                     UCGroupList ucGroupItem = new UCGroupList();
                     ucGroupItem.Dock = DockStyle.Fill;
-                    //ucGroupItem.btnSave.Click += ucGroupList_btnSave_Click;
+                    ucGroupItem.btnSave.Click += ucGroupList_btnSave_Click;
+                    ucGroupItem.btnRemove.Hide();
                     pnDetail.Controls.Add(ucGroupItem);
                     break;
-                case 3 :
+                     case 3 :
                     UCItemList ucItemList = new UCItemList();
                     ucItemList.Dock = DockStyle.Fill;
                     ucItemList.btnSave.Click += ucItemList_btnSave_Click;
@@ -108,7 +111,6 @@ namespace POSEZ2U
                     pnDetail.Controls.Add(ucPriceList);
                     break;
             }
-           
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -135,58 +137,52 @@ namespace POSEZ2U
 
         void ucProduct_Click(object sender, EventArgs e)
         {
+            
             UCProductSetting ucProduct = (UCProductSetting)sender;
             int tag = Convert.ToInt32(ucProduct.Tag);
             foreach (Control ctr in flpProdutcSetting.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 102, 204))
                 {
-                    ctr.BackColor = Color.FromArgb(255, 255, 255);
+                    ctr.BackColor = Color.FromArgb(255,255,255);
                     ctr.ForeColor = Color.FromArgb(51, 51, 51);
                 }
             }
             ucProduct.BackColor = Color.FromArgb(0, 102, 204);
             ucProduct.ForeColor = Color.FromArgb(255, 255, 255);
+          
             pnDetail.Controls.Clear();
             switch (tag)
             {
                 case 1:
-            addMenuList("Menu List", tag);
+                    addMenuList("Menu List", tag);
                     break;
                 case 2:
-            addGroupList("Group List", tag);
+                    addGroupList("Group List", tag);
                     break;
                 case 3:
-                    addItemList("Item List", tag);
+                    addItemList("ItemList", tag);
                     break;
                 case 4:
                     addModifier("Modifier List", tag);
                     break;
                 case 5:
-            addPriceList(tag);
+                    addPriceList(tag);
                     break;
-        }
+            }
+           
+            
         }
         private void addMenuList(string lblName,int i)
         {
+            btnAdd.Tag = i;
             ResizeToOthder();
             int index = 1;
+
             //string[] str = { "FOOD", "BEVEGARE", "ENTREE", "DESSERT" };
-
-            var dataCatalogue = CatalogeService.GetCatalogueList().ToList();
-           // CatalogueModel data = (CatalogueModel)dataCatalogue;
-            var nlist = dataCatalogue.Count();
-            string[] str = new string[nlist];
-
-            //int ilist = 0;
-            //foreach (var item in dataCatalogue)
-            //{
-            //    str[ilist] = item.CatalogueName;
-            //    ilist++;
-            //}
-
             if (i == 1)
             {
+                var dataCatalogue = CatalogeService.GetCatalogueList().ToList();
                 flpMenuList.Controls.Clear();
                 //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
@@ -201,20 +197,18 @@ namespace POSEZ2U
                     flpMenuList.Controls.Add(ucMenuList);
                     index++;
                 }
+
             }
             else
             {
                 flpMenuList.Controls.Clear();
                 pnDetail.Controls.Clear();
-                
+
             }
         }
-
-        #region Vupl
-        // add List Modifier
         private void addModifier(string lblName, int i)
         {
-            btnAdd.Tag = i;
+           btnAdd.Tag = i;
             ResizeToOthder();
             int index = 1;
             //string[] str = { "No Sugar", "More Sugar", "More Ice", "Less Ice", "More Milk", "Them Bun", "Them Thit" };
@@ -241,25 +235,28 @@ namespace POSEZ2U
                 flpMenuList.Controls.Clear();
                 pnDetail.Controls.Clear();
             }
+           
         }
-        #endregion
         private void addGroupList(string lblName, int i)
         {
 
+            btnAdd.Tag = i;
             int index = 1;
-            string[] str = { "COM", "PHO", "HU TIEU", "CHAO", "Coffee", "Tea", "Smoothie" };
+            // string[] str = { "COM", "PHO", "HU TIEU", "CHAO", "Coffee", "Tea", "Smoothie" };
             if (i == 2)
             {
+
+                var dataCategory = CatalogeService.GetListCategory().ToList();
                 flpMenuList.Controls.Clear();
                 //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
                 txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
-                foreach (string strList in str)
+                foreach (var item in dataCategory)
                 {
                     UCGroupListItem ucGroupListItem = new UCGroupListItem();
-                    ucGroupListItem.lblGroupListItemName.Text = strList;
-                    ucGroupListItem.Tag = index;
+                    ucGroupListItem.lblGroupListItemName.Text = item.CategoryName;
+                    ucGroupListItem.Tag = item;
                     ucGroupListItem.Click += ucGroupListItem_Click;
                     flpMenuList.Controls.Add(ucGroupListItem);
                     index++;
@@ -296,6 +293,7 @@ namespace POSEZ2U
                 flpMenuList.Controls.Clear();
                 pnDetail.Controls.Clear();
             }
+
 
         }
 
@@ -346,6 +344,11 @@ namespace POSEZ2U
         private void addButtonPriceList()
         {
             
+
+
+
+            
+            ////////////////////////
             int i = 1;
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
@@ -378,11 +381,10 @@ namespace POSEZ2U
             MessageBox.Show(btn.Tag.ToString());
         }
 
-        #region Vupl
-        //Click Item list
+        
         void ucItem_Click(object sender, EventArgs e)
         {
-            UCItem ucItem = (UCItem)sender;
+           UCItem ucItem = (UCItem)sender;
             ProductionModel dataProduct = (ProductionModel)ucItem.Tag;
             flag = 3;
             foreach (Control ctr in flpMenuList.Controls)
@@ -397,11 +399,11 @@ namespace POSEZ2U
             ucItem.ForeColor = Color.FromArgb(255, 255, 255);
             addItemListDetail(dataProduct);
         }
-        #endregion
+
         void ucGroupListItem_Click(object sender, EventArgs e)
         {
             UCGroupListItem ucGroupListItem = (UCGroupListItem)sender;
-            int tag = Convert.ToInt32(ucGroupListItem.Tag);
+            CategoryModel tag = (CategoryModel)(ucGroupListItem.Tag);
             foreach (Control ctr in flpMenuList.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 153, 51))
@@ -414,11 +416,9 @@ namespace POSEZ2U
             ucGroupListItem.ForeColor = Color.FromArgb(255, 255, 255);
             addGroupListDetail(tag);
         }
-        #region Vupl
-        //Click Modifier Item
         void ucModifierItem_Click(object sender, EventArgs e)
         {
-            UCModifierItem ucModifierItem = (UCModifierItem)sender;
+              UCModifierItem ucModifierItem = (UCModifierItem)sender;
             ModifireModel dataModifire = (ModifireModel)(ucModifierItem.Tag);
             flag = 4;
             foreach (Control ctr in flpMenuList.Controls)
@@ -433,7 +433,6 @@ namespace POSEZ2U
             ucModifierItem.ForeColor = Color.FromArgb(255, 255, 255);
             addModifierItemDetail(dataModifire);
         }
-        #endregion
         void ucMenuList_Click(object sender, EventArgs e)
         {
             UCMenuList ucProduct = (UCMenuList)sender;
@@ -448,28 +447,110 @@ namespace POSEZ2U
             }
             ucProduct.BackColor = Color.FromArgb(0, 153, 51);
             ucProduct.ForeColor = Color.FromArgb(255, 255, 255);
-            addMenuListDetail(tag.CatalogueID);
+            addMenuListDetail(tag);
         }
-        private void addMenuListDetail(int i)
+        private void addMenuListDetail(CatalogueModel cata)
         {
             pnDetail.Controls.Clear();
             UCMenu ucMenu = new UCMenu();
             ucMenu.Dock = DockStyle.Fill;
-            if (i == 2)
+
+            if (cata.CatalogueID > 0)
             {
-               
+                ucMenu.TilteMenu.Text = cata.CatalogueName;
+                ucMenu.txtMenuName.Text = cata.CatalogueName;
+
+                ucMenu.addUcMenuGroup(cata.CatalogueID);
+                ucMenu.addButton(cata.CatalogueID);
+
+
+                ucMenu.btnSave.Tag = cata;
+                ucMenu.btnSave.Click += ucMenuList_btnSave_Click;
+
+                ucMenu.btnRemove.Tag = cata;
+                ucMenu.btnRemove.Click += ucMenuList_btnRemove_Click;
+
                 pnDetail.Controls.Add(ucMenu);
+
                 ucMenu = (UCMenu)pnDetail.Controls[0];
-                ucMenu.cbColor.SelectedItem = "Red";
+                ucMenu.cbColor.SelectedItem = cata.Color;
+
             }
             else
             {
                 pnDetail.Controls.Clear();
             }
         }
-        #region Vupl
-        //add List Modifier
-        private void addModifierItemDetail(ModifireModel dataModifire)
+
+        void ucMenuList_btnSave_Click(object sender, EventArgs e)
+        {
+            Button catalogue = (Button)sender;
+            CatalogueModel tag = (CatalogueModel)(catalogue.Tag);
+
+            var ucMenu = (UCMenu)pnDetail.Controls[0];
+            if (tag == null)
+            {
+                tag = new CatalogueModel();
+            }
+
+            tag.CatalogueName = ucMenu.txtMenuName.Text;
+            tag.Color = ucMenu.cbColor.Text ?? "";
+
+            if (tag.CatalogueName != "")
+            {
+                var result = CatalogeService.SavaDataCatalogue(tag);
+
+                if (result == 1)
+                {
+                    addMenuList("Menu List", 1);
+                   
+                    MessageBox.Show("Save data menu successful", "Messenger");
+                }
+                else
+                {
+                    if (result == -1)
+                    {
+                        MessageBox.Show("Group name already exist. Please change menu name.", "Messenger");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save data menu fail", "Messenger");
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Menu name isn't empty.", "Messenger");
+            }
+
+
+        }
+
+        void ucMenuList_btnRemove_Click(object sender, EventArgs e)
+        {
+            Button btnRemove = (Button)sender;
+            CatalogueModel tag = (CatalogueModel)(btnRemove.Tag);
+            if (tag.CatalogueID > 0)
+            {
+                var result = CatalogeService.RemoveCatalogue(tag.CatalogueID,0);
+                if (result == 1)
+                {
+                    addMenuList("Menu List", 1);
+                    pnDetail.Controls.Clear();
+                    MessageBox.Show("Remove menu successful", "Messenger");
+                }
+                else
+                {
+                    MessageBox.Show("Remove menu fail", "Messenger");
+                }
+            }
+
+         
+        }
+
+        
+         private void addModifierItemDetail(ModifireModel dataModifire)
         {
             pnDetail.Controls.Clear();
             UCModifier ucModifier = new UCModifier();
@@ -492,8 +573,7 @@ namespace POSEZ2U
                 pnDetail.Controls.Clear();
             }
         }
-
-        private void ucModifier_btnRemove_Click(object sender, EventArgs e)
+          private void ucModifier_btnRemove_Click(object sender, EventArgs e)
         {
             Button modifier = (Button)sender;
             ModifireModel dataModifier = (ModifireModel)(modifier.Tag);
@@ -563,25 +643,111 @@ namespace POSEZ2U
                 MessageBox.Show(message_error,"Messenger");
             }
         }
-        #endregion
-        private void addGroupListDetail(int i)
+
+        private void addGroupListDetail(CategoryModel cate)
         {
             pnDetail.Controls.Clear();
             UCGroupList ucGroupList = new UCGroupList();
             ucGroupList.Dock = DockStyle.Fill;
-            if (i == 5)
+            if (cate.CategoryID > 0)
             {
+
+
+                ucGroupList.lblTilte.Text = cate.CategoryName;
+                ucGroupList.txtGroupNameDesc.Text = cate.CategoryName;
+                ucGroupList.txtGroupNameSort.Text = cate.CategoryNameSort;
+
+                ucGroupList.btnSave.Tag = cate;
+                ucGroupList.btnSave.Click += ucGroupList_btnSave_Click;
+
+                ucGroupList.btnRemove.Tag = cate;
+                ucGroupList.btnRemove.Click += ucGroupList_btnRemove_Click;
+
+                ucGroupList.addUcMenuGroup(cate.CategoryID);
+                ucGroupList.addButton(cate.CategoryID);
+
                 pnDetail.Controls.Add(ucGroupList);
+
+
+                ucGroupList = (UCGroupList)pnDetail.Controls[0];
+                ucGroupList.cbGroupColor.SelectedItem = cate.Color;
+                ucGroupList.cbProductColor.SelectedItem = cate.ProductColor;
             }
             else
             {
                 pnDetail.Controls.Clear();
             }
         }
-        #region Vupl 
-        //author Pham Le Vu
-        //add Item Product
-        private void addItemListDetail(ProductionModel productData)
+
+        void ucGroupList_btnSave_Click(object sender, EventArgs e)
+        {
+            Button btnSaveGroup = (Button)sender;
+            CategoryModel tag = (CategoryModel)(btnSaveGroup.Tag);
+
+            var ucGroupItem = (UCGroupList)pnDetail.Controls[0];
+
+            if (tag == null)
+            {
+                tag = new CategoryModel();
+            }
+
+            tag.CategoryName = ucGroupItem.txtGroupNameDesc.Text;
+            tag.CategoryNameSort = ucGroupItem.txtGroupNameSort.Text ?? "";
+            tag.Color = ucGroupItem.cbGroupColor.Text ?? "";
+            tag.ProductColor = ucGroupItem.cbProductColor.Text ?? "";
+            if (tag.CategoryName != "")
+            {
+                var result = CatalogeService.SaveDataCategory(tag);
+
+                if (result == 1)
+                {
+
+                    addGroupList("Group List", 2);
+                    MessageBox.Show("Save data group successful", "Messenger");
+                }
+                else
+                {
+                    if (result == -1)
+                    {
+                        MessageBox.Show("Menu name already exist. Please change group name.", "Messenger");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save data group Fail", "Messenger");
+                    }
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Group name isn't empty.", "Messenger");
+            }
+
+        }
+
+        void ucGroupList_btnRemove_Click(object sender, EventArgs e)
+        {
+            Button btnRemoveGroup = (Button)sender;
+            CategoryModel tag = (CategoryModel)(btnRemoveGroup.Tag);
+            if (tag.CategoryID > 0)
+            {
+                var result = CatalogeService.RemoveCategory(tag.CategoryID, 0);
+                if (result == 1)
+                {
+                    addGroupList("Group List", 2);
+                    pnDetail.Controls.Clear();
+                    MessageBox.Show("Remove group successful", "Messenger");
+                }
+                else
+                {
+                    MessageBox.Show("Remove group fail", "Messenger");
+                }
+            }
+
+           
+
+        }
+          private void addItemListDetail(ProductionModel productData)
         {
             pnDetail.Controls.Clear();
             UCItemList ucItemList = new UCItemList();
@@ -608,8 +774,7 @@ namespace POSEZ2U
                 pnDetail.Controls.Clear();
             }
         }
-
-        private void ucItemList_btnRemove_Click(object sender, EventArgs e)
+            private void ucItemList_btnRemove_Click(object sender, EventArgs e)
         {
             Button product = (Button)sender;
             ProductionModel dataProduct = (ProductionModel)(product.Tag);
@@ -621,72 +786,94 @@ namespace POSEZ2U
                 MessageBox.Show("Delete product success", "Messenger");
             }
         }
+            private void ucItemList_btnSave_Click(object sender, EventArgs e)
+            {
+                Button product = (Button)sender;
+                ProductionModel dataProduct = (ProductionModel)(product.Tag);
+                string messageError = "";
+                var ucItemList = (UCItemList)pnDetail.Controls[0];
+                var productNameDesc = ucItemList.txtNameDesc.Text;
+                var productNameSort = ucItemList.txtNameSort.Text;
+                var productPrice = ucItemList.txtPrice.Text;
+                var productColor = ucItemList.cbProductColor.Text;
 
-        private void ucItemList_btnSave_Click(object sender, EventArgs e)
-        {
-            Button product = (Button)sender;
-            ProductionModel dataProduct = (ProductionModel)(product.Tag);
-            string messageError = "";
-            var ucItemList = (UCItemList)pnDetail.Controls[0];
-            var productNameDesc = ucItemList.txtNameDesc.Text;
-            var productNameSort = ucItemList.txtNameSort.Text;
-            var productPrice = ucItemList.txtPrice.Text;
-            var productColor = ucItemList.cbProductColor.Text;
-     
-            if (dataProduct == null)
-            {
-                dataProduct = new ProductionModel();
-            }
-            if (productNameDesc == "")
-            {
-                messageError += "Product name desc isn't empty.";
-            }
-            if (productNameSort == "")
-            {
-                messageError += "Product name sort isn't empty.";
-            }
-            if (productColor == "")
-            {
-                messageError += "Product Color isn't empty";
-            }
-            if (productPrice == "")
-            {
-                messageError += "Product price isn't empty";
-            }
-            if (messageError == "")
-            {
-                dataProduct.ProductName = productNameSort;
-                dataProduct.Color = productColor;
-                dataProduct.CurrentPrice = double.Parse(productPrice);
-                var result = ProductService.Created(dataProduct);
-                if (result == 1)
+                if (dataProduct == null)
                 {
-                    addItemList("Item List", 3);
-                    pnDetail.Controls.Clear();
-                    MessageBox.Show("Save Product Successful", "Messenger");
+                    dataProduct = new ProductionModel();
                 }
-                else
+                if (productNameDesc == "")
                 {
-                    if (result == -1)
+                    messageError += "Product name desc isn't empty.";
+                }
+                if (productNameSort == "")
+                {
+                    messageError += "Product name sort isn't empty.";
+                }
+                if (productColor == "")
+                {
+                    messageError += "Product Color isn't empty";
+                }
+                if (productPrice == "")
+                {
+                    messageError += "Product price isn't empty";
+                }
+                if (messageError == "")
+                {
+                    dataProduct.ProductName = productNameSort;
+                    dataProduct.Color = productColor;
+                    dataProduct.CurrentPrice = double.Parse(productPrice);
+                    var result = ProductService.Created(dataProduct);
+                    if (result == 1)
                     {
-                        MessageBox.Show("Product name already exist. Please change product name.", "Messenger");
+                        addItemList("Item List", 3);
+                        pnDetail.Controls.Clear();
+                        MessageBox.Show("Save Product Successful", "Messenger");
                     }
                     else
                     {
-                        MessageBox.Show("Save Product Fail", "Messenger");
+                        if (result == -1)
+                        {
+                            MessageBox.Show("Product name already exist. Please change product name.", "Messenger");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Save Product Fail", "Messenger");
+                        }
+
                     }
-        
-    }
-}
-            else
-            {
-                MessageBox.Show(messageError, "Messenger");
+                }
+                else
+                {
+                    MessageBox.Show(messageError, "Messenger");
+                }
             }
-        }
-        #endregion
         private void frmMenuSetting_Load(object sender, EventArgs e)
         {
             loadDataProductSetting();
         }
-     }
+
+        
+    }
 }
+
+       
+       
+       
+      
+
+       
+       
+
+       
+
+      
+
+      
+
+      
+
+    
+       
+     
+      
+      

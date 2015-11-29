@@ -298,19 +298,19 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel pnDetail;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel pn2;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.FlowLayoutPanel flpProdutcSetting;
-        private System.Windows.Forms.FlowLayoutPanel flpMenuList;
         private UC.UCMenuList txtNameMenuList;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel10;
         private UC.UCPriceList ucPriceListTitle;
+        public System.Windows.Forms.Button btnAdd;
+        public System.Windows.Forms.Panel pnDetail;
+        public System.Windows.Forms.FlowLayoutPanel flpMenuList;
     }
 }
