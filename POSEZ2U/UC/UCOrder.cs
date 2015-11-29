@@ -10,18 +10,16 @@ using System.Windows.Forms;
 
 namespace POSEZ2U.UC
 {
-    public partial class UCMenuOfGroup : UserControl
+    public partial class UCOrder : UserControl
     {
-        public UCMenuOfGroup()
+        public UCOrder()
         {
             InitializeComponent();
         }
 
-        private void UCMenuOfGroup_Click(object sender, EventArgs e)
+        private void UCOrder_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
         }
-
-        
     }
 }

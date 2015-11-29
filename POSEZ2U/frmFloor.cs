@@ -10,8 +10,8 @@ using System.Windows.Forms;
 
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
- 
-
+using POSEZ2U.Class;
+using POSEZ2U.UC;
 
 namespace POSEZ2U
 {
@@ -21,6 +21,7 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+        Order OrderMain = new Order();
         const int AW_HOR_POSITIVE = 1;
         const int AW_HOR_NEGATIVE = 2;
         const int AW_VER_POSITIVE = 4;
@@ -52,7 +53,10 @@ namespace POSEZ2U
 
         void ucTable_Click(object sender, EventArgs e)
         {
-            frmOrder frm = new frmOrder();
+            UCTable ucTable = (UCTable)sender;
+            OrderMain.TableId = ucTable.lbTableNo.Text;
+            frmOrder frm = new frmOrder(OrderMain);
+            
             frm.ShowDialog();
         }
         

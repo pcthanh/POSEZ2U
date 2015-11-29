@@ -99,7 +99,6 @@ namespace POSEZ2U.UC
             
         }
 
-
         private void cbColor_DrawItem(object sender, DrawItemEventArgs e)
         {
             Graphics g = e.Graphics;

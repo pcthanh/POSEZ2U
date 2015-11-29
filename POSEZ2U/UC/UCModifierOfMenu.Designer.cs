@@ -1,6 +1,6 @@
 ﻿namespace POSEZ2U.UC
 {
-    partial class UCMenuOfGroup
+    partial class UCModifierOfMenu
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,38 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblNameMenuOfGroup = new System.Windows.Forms.Label();
+            this.lblModifierOfMenu = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblNameMenuOfGroup
+            // lblModifierOfMenu
             // 
-            this.lblNameMenuOfGroup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.lblNameMenuOfGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNameMenuOfGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameMenuOfGroup.ForeColor = System.Drawing.Color.White;
-            this.lblNameMenuOfGroup.Location = new System.Drawing.Point(0, 0);
-            this.lblNameMenuOfGroup.Name = "lblNameMenuOfGroup";
-            this.lblNameMenuOfGroup.Size = new System.Drawing.Size(137, 68);
-            this.lblNameMenuOfGroup.TabIndex = 0;
-            this.lblNameMenuOfGroup.Text = "label1";
-            this.lblNameMenuOfGroup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblNameMenuOfGroup.Click += new System.EventHandler(this.UCMenuOfGroup_Click);
+            this.lblModifierOfMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblModifierOfMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModifierOfMenu.ForeColor = System.Drawing.Color.White;
+            this.lblModifierOfMenu.Location = new System.Drawing.Point(0, 0);
+            this.lblModifierOfMenu.Name = "lblModifierOfMenu";
+            this.lblModifierOfMenu.Size = new System.Drawing.Size(137, 68);
+            this.lblModifierOfMenu.TabIndex = 0;
+            this.lblModifierOfMenu.Text = "label1";
+            this.lblModifierOfMenu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblModifierOfMenu.Click += new System.EventHandler(this.UCModifierOfMenu_Click);
             // 
-            // UCMenuOfGroup
+            // UCModifierOfMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.Controls.Add(this.lblNameMenuOfGroup);
-            this.Name = "UCMenuOfGroup";
+            this.Controls.Add(this.lblModifierOfMenu);
+            this.Name = "UCModifierOfMenu";
             this.Size = new System.Drawing.Size(137, 68);
-           
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.Label lblNameMenuOfGroup;
+        public System.Windows.Forms.Label lblModifierOfMenu;
     }
 }

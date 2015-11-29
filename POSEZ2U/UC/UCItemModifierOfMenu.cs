@@ -8,20 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POSEZ2U.UC
+namespace POSEZ2U
 {
-    public partial class UCMenuOfGroup : UserControl
+    public partial class UCItemModifierOfMenu : UserControl
     {
-        public UCMenuOfGroup()
+        public UCItemModifierOfMenu()
         {
             InitializeComponent();
         }
-
-        private void UCMenuOfGroup_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
-
-        
     }
 }
