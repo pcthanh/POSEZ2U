@@ -24,6 +24,7 @@ namespace POSEZ2U
         List<Order.Modifier> Listmodifier = new List<Order.Modifier>();
         int keyItemTemp;
         int indexControl;
+        int seat = 0;
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadMenuGroup();
@@ -194,6 +195,8 @@ namespace POSEZ2U
         {
             UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
             Order.Item item = new Order.Item();
+            if (seat > 0)
+                item.Seat = seat;
             item.ItemName = ucMenuOfGroup.Tag.ToString();
             OrderMain.addItemToList(item);
             addOrderToFlp(item);
@@ -241,8 +244,11 @@ namespace POSEZ2U
             UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
             ucItemModifierOfMenu.lblNameItenModifierMenu.Text = modifier.ModifierName;
             flpOrder.Controls.Add(ucItemModifierOfMenu);
-            flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp );
-           
+            if(seat>0)
+                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp+1 );
+            else
+                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp);
+
         }
 
         void AddControlToFlowLayoutPanel(FlowLayoutPanel flowlayoutpanel, Control ctrl)
@@ -275,6 +281,21 @@ namespace POSEZ2U
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnAddSeat_Click(object sender, EventArgs e)
+        {
+            frmAddSeat frm = new frmAddSeat();
+           
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                seat = frm.NumberSeat;
+                UCSeat ucSeat = new UCSeat();
+                ucSeat.lblSeat.Text = "Seat " + seat;
+                flpOrder.Controls.Add(ucSeat);
+                
+            }
+            //frm.ShowDialog();
         }
     }
 }

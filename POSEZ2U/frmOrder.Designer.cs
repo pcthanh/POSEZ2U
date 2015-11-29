@@ -38,6 +38,7 @@
             this.flpGroupMenu = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.flpOrder = new System.Windows.Forms.FlowLayoutPanel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -56,13 +57,12 @@
             this.btnPrintBill = new System.Windows.Forms.Button();
             this.btnDisCount = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
-            this.flpOrder = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -159,6 +159,16 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(295, 329);
             this.panel13.TabIndex = 1;
+            // 
+            // flpOrder
+            // 
+            this.flpOrder.AutoScroll = true;
+            this.flpOrder.AutoSize = true;
+            this.flpOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpOrder.Location = new System.Drawing.Point(0, 0);
+            this.flpOrder.Name = "flpOrder";
+            this.flpOrder.Size = new System.Drawing.Size(295, 329);
+            this.flpOrder.TabIndex = 0;
             // 
             // panel12
             // 
@@ -331,6 +341,7 @@
             this.btnAddSeat.TabIndex = 1;
             this.btnAddSeat.Text = "Add Seat";
             this.btnAddSeat.UseVisualStyleBackColor = false;
+            this.btnAddSeat.Click += new System.EventHandler(this.btnAddSeat_Click);
             // 
             // btnNewItem
             // 
@@ -415,6 +426,15 @@
             this.panel8.Size = new System.Drawing.Size(10, 193);
             this.panel8.TabIndex = 0;
             // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
+            // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
@@ -452,15 +472,6 @@
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
             // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
             // ucInfoTop1
             // 
             this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -468,16 +479,6 @@
             this.ucInfoTop1.Name = "ucInfoTop1";
             this.ucInfoTop1.Size = new System.Drawing.Size(954, 42);
             this.ucInfoTop1.TabIndex = 0;
-            // 
-            // flpOrder
-            // 
-            this.flpOrder.AutoScroll = true;
-            this.flpOrder.AutoSize = true;
-            this.flpOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpOrder.Location = new System.Drawing.Point(0, 0);
-            this.flpOrder.Name = "flpOrder";
-            this.flpOrder.Size = new System.Drawing.Size(295, 329);
-            this.flpOrder.TabIndex = 0;
             // 
             // frmOrder
             // 

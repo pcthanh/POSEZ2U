@@ -9,13 +9,14 @@ namespace POSEZ2U.Class
    public class Order
     {
        public string TableId { get; set; }
-       public string Seat { get; set; }
+       
        public double Total { get; set; }
        public List<Item> ListItem = new List<Item>();
        
-       int keyItem = 1;
+       
        public class Item
        {
+           public int Seat { get; set; }
            public string ItemName { get; set; }
            public int Qunatity { get; set; }
            public double Price { get; set; }
@@ -50,7 +51,7 @@ namespace POSEZ2U.Class
        }
        public void addSeat(string numberSeat)
        {
-           Seat = numberSeat;
+          
        }
     }
 }
