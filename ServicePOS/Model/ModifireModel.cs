@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServicePOS.Model
 {
-    public class ProductionModel
+    public partial class ModifireModel
     {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
+        public int ModifireID { get; set; }
+        public string ModifireName { get; set; }
         public int Status { get; set; }
         public string Color { get; set; }
         public string Note { get; set; }

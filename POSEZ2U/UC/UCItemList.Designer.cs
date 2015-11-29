@@ -30,17 +30,17 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ucTextBoxKeyBoard1 = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.lbProductName = new System.Windows.Forms.Label();
+            this.txtNameDesc = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
-            this.ucTextBoxKeyBoard2 = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtNameSort = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbProductColor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ucTextBoxKeyPad1 = new POSEZ2U.UC.UCTextBoxKeyPad();
-            this.label6 = new System.Windows.Forms.Label();
+            this.txtPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
+            this.lbPortions = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lwPortions = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAddProtions = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -58,15 +58,15 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ucTextBoxKeyBoard1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbProductName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtNameDesc, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.ucTextBoxKeyBoard2, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.txtNameSort, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox1, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.cbProductColor, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.ucTextBoxKeyPad1, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.txtPrice, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lbPortions, 0, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -95,30 +95,29 @@
             this.label1.Text = "Product Name Desc";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // lbProductName
             // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(546, 30);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "White Coffee";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbProductName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.lbProductName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbProductName.ForeColor = System.Drawing.Color.White;
+            this.lbProductName.Location = new System.Drawing.Point(3, 0);
+            this.lbProductName.Name = "lbProductName";
+            this.lbProductName.Size = new System.Drawing.Size(546, 30);
+            this.lbProductName.TabIndex = 0;
+            this.lbProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ucTextBoxKeyBoard1
+            // txtNameDesc
             // 
-            this.ucTextBoxKeyBoard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.ucTextBoxKeyBoard1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucTextBoxKeyBoard1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTextBoxKeyBoard1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTextBoxKeyBoard1.Location = new System.Drawing.Point(3, 61);
-            this.ucTextBoxKeyBoard1.Multiline = true;
-            this.ucTextBoxKeyBoard1.Name = "ucTextBoxKeyBoard1";
-            this.ucTextBoxKeyBoard1.Size = new System.Drawing.Size(546, 31);
-            this.ucTextBoxKeyBoard1.TabIndex = 1;
+            this.txtNameDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtNameDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNameDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNameDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameDesc.Location = new System.Drawing.Point(3, 61);
+            this.txtNameDesc.Multiline = true;
+            this.txtNameDesc.Name = "txtNameDesc";
+            this.txtNameDesc.Size = new System.Drawing.Size(546, 31);
+            this.txtNameDesc.TabIndex = 1;
             // 
             // label3
             // 
@@ -131,17 +130,17 @@
             this.label3.Text = "Product Name Sort";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ucTextBoxKeyBoard2
+            // txtNameSort
             // 
-            this.ucTextBoxKeyBoard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.ucTextBoxKeyBoard2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucTextBoxKeyBoard2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTextBoxKeyBoard2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTextBoxKeyBoard2.Location = new System.Drawing.Point(3, 117);
-            this.ucTextBoxKeyBoard2.Multiline = true;
-            this.ucTextBoxKeyBoard2.Name = "ucTextBoxKeyBoard2";
-            this.ucTextBoxKeyBoard2.Size = new System.Drawing.Size(546, 30);
-            this.ucTextBoxKeyBoard2.TabIndex = 3;
+            this.txtNameSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtNameSort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNameSort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNameSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameSort.Location = new System.Drawing.Point(3, 117);
+            this.txtNameSort.Multiline = true;
+            this.txtNameSort.Name = "txtNameSort";
+            this.txtNameSort.Size = new System.Drawing.Size(546, 30);
+            this.txtNameSort.TabIndex = 3;
             // 
             // label4
             // 
@@ -154,15 +153,17 @@
             this.label4.Text = "Product Button Color";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox1
+            // cbProductColor
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 175);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(546, 28);
-            this.comboBox1.TabIndex = 5;
+            this.cbProductColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbProductColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbProductColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbProductColor.FormattingEnabled = true;
+            this.cbProductColor.Location = new System.Drawing.Point(3, 175);
+            this.cbProductColor.Name = "cbProductColor";
+            this.cbProductColor.Size = new System.Drawing.Size(546, 27);
+            this.cbProductColor.TabIndex = 5;
+            this.cbProductColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbProductColor_DrawItem);
             // 
             // label5
             // 
@@ -175,47 +176,47 @@
             this.label5.Text = "Price";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ucTextBoxKeyPad1
+            // txtPrice
             // 
-            this.ucTextBoxKeyPad1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.ucTextBoxKeyPad1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ucTextBoxKeyPad1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTextBoxKeyPad1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTextBoxKeyPad1.Location = new System.Drawing.Point(3, 229);
-            this.ucTextBoxKeyPad1.Multiline = true;
-            this.ucTextBoxKeyPad1.Name = "ucTextBoxKeyPad1";
-            this.ucTextBoxKeyPad1.Size = new System.Drawing.Size(546, 31);
-            this.ucTextBoxKeyPad1.TabIndex = 7;
+            this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(3, 229);
+            this.txtPrice.Multiline = true;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(546, 31);
+            this.txtPrice.TabIndex = 7;
             // 
-            // label6
+            // lbPortions
             // 
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 263);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(546, 53);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Portions";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbPortions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPortions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPortions.Location = new System.Drawing.Point(3, 263);
+            this.lbPortions.Name = "lbPortions";
+            this.lbPortions.Size = new System.Drawing.Size(546, 53);
+            this.lbPortions.TabIndex = 8;
+            this.lbPortions.Text = "Portions";
+            this.lbPortions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.listView1);
+            this.panel1.Controls.Add(this.lwPortions);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 316);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(552, 74);
             this.panel1.TabIndex = 1;
             // 
-            // listView1
+            // lwPortions
             // 
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(552, 74);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lwPortions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lwPortions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lwPortions.Location = new System.Drawing.Point(0, 0);
+            this.lwPortions.Name = "lwPortions";
+            this.lwPortions.Size = new System.Drawing.Size(552, 74);
+            this.lwPortions.TabIndex = 0;
+            this.lwPortions.UseCompatibleStateImageBehavior = false;
             // 
             // panel2
             // 
@@ -269,6 +270,7 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRemove
             // 
@@ -317,24 +319,24 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private UCTextBoxKeyBoard ucTextBoxKeyBoard1;
-        private System.Windows.Forms.Label label3;
-        private UCTextBoxKeyBoard ucTextBoxKeyBoard2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label5;
-        private UCTextBoxKeyPad ucTextBoxKeyPad1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnAddProtions;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.FlowLayoutPanel flpItemList;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lbProductName;
+        public UCTextBoxKeyBoard txtNameDesc;
+        public System.Windows.Forms.Label label3;
+        public UCTextBoxKeyBoard txtNameSort;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.ComboBox cbProductColor;
+        public System.Windows.Forms.Label label5;
+        public UCTextBoxKeyPad txtPrice;
+        public System.Windows.Forms.Label lbPortions;
+        public System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.ListView lwPortions;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Button btnAddProtions;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnRemove;
+        public System.Windows.Forms.FlowLayoutPanel flpItemList;
     }
 }

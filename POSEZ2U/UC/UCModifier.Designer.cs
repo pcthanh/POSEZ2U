@@ -79,7 +79,6 @@
             this.lblModifierName.Name = "lblModifierName";
             this.lblModifierName.Size = new System.Drawing.Size(541, 37);
             this.lblModifierName.TabIndex = 0;
-            this.lblModifierName.Text = "More milk";
             this.lblModifierName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -122,12 +121,15 @@
             // 
             this.cbColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.cbColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbColor.FormattingEnabled = true;
             this.cbColor.Location = new System.Drawing.Point(3, 151);
             this.cbColor.Name = "cbColor";
-            this.cbColor.Size = new System.Drawing.Size(541, 32);
+            this.cbColor.Size = new System.Drawing.Size(541, 30);
             this.cbColor.TabIndex = 4;
+            this.cbColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbColor_DrawItem);
             // 
             // label4
             // 
@@ -207,6 +209,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UCModifier";
             this.Size = new System.Drawing.Size(547, 517);
+            this.Load += new System.EventHandler(this.UCModifier_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -217,15 +220,15 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblModifierName;
+        public System.Windows.Forms.Label lblModifierName;
         private System.Windows.Forms.Label label2;
-        private UCTextBoxKeyBoard txtModifierName;
+        public UCTextBoxKeyBoard txtModifierName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbColor;
+        public System.Windows.Forms.ComboBox cbColor;
         private System.Windows.Forms.Label label4;
-        private UCTextBoxKeyPad txtModifierPrice;
+        public UCTextBoxKeyPad txtModifierPrice;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnRemove;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnRemove;
     }
 }

@@ -10,5 +10,7 @@ namespace ServicePOS
     public interface IProductService : IDisposable
     {
         IEnumerable<ProductionModel> GetProductsList();
+        int Created(ProductionModel product);
+        int Delete(ProductionModel product);
     }
 }
