@@ -42,8 +42,8 @@ namespace POSEZ2U
             set { _modifireService = value; }
         }
         #endregion
-
-
+        
+       
         public frmMenuSetting()
         {
             InitializeComponent();
@@ -74,10 +74,10 @@ namespace POSEZ2U
             switch (tag)
             {
                 case 1:
-                    UCMenu ucMenu = new UCMenu();
-                    ucMenu.Dock = DockStyle.Fill;
+            UCMenu ucMenu = new UCMenu();
+            ucMenu.Dock = DockStyle.Fill;
                     //ucMenu.btnSave.Click += ucMenuList_btnSave_Click;
-                    pnDetail.Controls.Add(ucMenu);
+            pnDetail.Controls.Add(ucMenu);
                     break;
                 case 2:
                     UCGroupList ucGroupItem = new UCGroupList();
@@ -108,7 +108,7 @@ namespace POSEZ2U
                     pnDetail.Controls.Add(ucPriceList);
                     break;
             }
-            
+           
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -151,10 +151,10 @@ namespace POSEZ2U
             switch (tag)
             {
                 case 1:
-                    addMenuList("Menu List", tag);
+            addMenuList("Menu List", tag);
                     break;
                 case 2:
-                    addGroupList("Group List", tag);
+            addGroupList("Group List", tag);
                     break;
                 case 3:
                     addItemList("Item List", tag);
@@ -163,9 +163,9 @@ namespace POSEZ2U
                     addModifier("Modifier List", tag);
                     break;
                 case 5:
-                    addPriceList(tag);
+            addPriceList(tag);
                     break;
-            } 
+        }
         }
         private void addMenuList(string lblName,int i)
         {
@@ -345,7 +345,7 @@ namespace POSEZ2U
         }
         private void addButtonPriceList()
         {
-           
+            
             int i = 1;
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
@@ -457,7 +457,10 @@ namespace POSEZ2U
             ucMenu.Dock = DockStyle.Fill;
             if (i == 2)
             {
+               
                 pnDetail.Controls.Add(ucMenu);
+                ucMenu = (UCMenu)pnDetail.Controls[0];
+                ucMenu.cbColor.SelectedItem = "Red";
             }
             else
             {
@@ -539,15 +542,15 @@ namespace POSEZ2U
                 if (result == 1)
                 {
                     addModifier("Modifier List", 4);
-                    pnDetail.Controls.Clear();
+                pnDetail.Controls.Clear();
                     MessageBox.Show("Save Modifire Successful", "Messenger");
-                }
+            }
                 else
                 {
                     if (result == -1)
                     {
                         MessageBox.Show("Modifire name already exist. Please change modifire name.", "Messenger");
-                    }
+        }
                     else
                     {
                         MessageBox.Show("Save Modifire Fail", "Messenger");
@@ -612,7 +615,7 @@ namespace POSEZ2U
             ProductionModel dataProduct = (ProductionModel)(product.Tag);
             var result = ProductService.Delete(dataProduct);
             if (result == 1)
-            {
+        {
                 addItemList("Item List", 3);
                 pnDetail.Controls.Clear();
                 MessageBox.Show("Delete product success", "Messenger");
@@ -629,7 +632,7 @@ namespace POSEZ2U
             var productNameSort = ucItemList.txtNameSort.Text;
             var productPrice = ucItemList.txtPrice.Text;
             var productColor = ucItemList.cbProductColor.Text;
-
+     
             if (dataProduct == null)
             {
                 dataProduct = new ProductionModel();
@@ -672,9 +675,9 @@ namespace POSEZ2U
                     {
                         MessageBox.Show("Save Product Fail", "Messenger");
                     }
-
-                }
-            }
+        
+    }
+}
             else
             {
                 MessageBox.Show(messageError, "Messenger");

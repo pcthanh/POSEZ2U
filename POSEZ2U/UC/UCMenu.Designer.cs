@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.TilteMenu = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMenuName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.TilteMenu, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtMenuName, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
@@ -69,18 +69,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 226);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // TilteMenu
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.label1, 3);
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(480, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "BEVERAGE";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.TilteMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.TilteMenu, 3);
+            this.TilteMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TilteMenu.ForeColor = System.Drawing.Color.White;
+            this.TilteMenu.Location = new System.Drawing.Point(3, 0);
+            this.TilteMenu.Name = "TilteMenu";
+            this.TilteMenu.Size = new System.Drawing.Size(480, 28);
+            this.TilteMenu.TabIndex = 0;
+            this.TilteMenu.Text = "ADD MENU";
+            this.TilteMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -217,16 +217,16 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public UCTextBoxKeyBoard txtMenuName;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.ComboBox cbColor;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.FlowLayoutPanel flpIncludesGroup;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Label TilteMenu;
 
     }
 }

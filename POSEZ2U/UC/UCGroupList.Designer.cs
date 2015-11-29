@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblTitel = new System.Windows.Forms.Label();
+            this.lblTilte = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtGroupNameDesc = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,7 +51,7 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.lblTitel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblTilte, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtGroupNameDesc, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
@@ -78,18 +78,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(501, 352);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lblTitel
+            // lblTilte
             // 
-            this.lblTitel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
-            this.lblTitel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitel.ForeColor = System.Drawing.Color.White;
-            this.lblTitel.Location = new System.Drawing.Point(3, 0);
-            this.lblTitel.Name = "lblTitel";
-            this.lblTitel.Size = new System.Drawing.Size(495, 35);
-            this.lblTitel.TabIndex = 0;
-            this.lblTitel.Text = "COFFEE";
-            this.lblTitel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTilte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.lblTilte.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTilte.ForeColor = System.Drawing.Color.White;
+            this.lblTilte.Location = new System.Drawing.Point(3, 0);
+            this.lblTilte.Name = "lblTilte";
+            this.lblTilte.Size = new System.Drawing.Size(495, 35);
+            this.lblTilte.TabIndex = 0;
+            this.lblTilte.Text = "ADD GROUP";
+            this.lblTilte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -163,23 +163,29 @@
             // 
             this.cbGroupColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.cbGroupColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbGroupColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbGroupColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGroupColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbGroupColor.FormattingEnabled = true;
             this.cbGroupColor.Location = new System.Drawing.Point(3, 205);
             this.cbGroupColor.Name = "cbGroupColor";
-            this.cbGroupColor.Size = new System.Drawing.Size(495, 33);
+            this.cbGroupColor.Size = new System.Drawing.Size(495, 32);
             this.cbGroupColor.TabIndex = 6;
+            this.cbGroupColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbColor_DrawItem);
             // 
             // cbProductColor
             // 
             this.cbProductColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.cbProductColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbProductColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbProductColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProductColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbProductColor.FormattingEnabled = true;
             this.cbProductColor.Location = new System.Drawing.Point(3, 283);
             this.cbProductColor.Name = "cbProductColor";
-            this.cbProductColor.Size = new System.Drawing.Size(495, 33);
+            this.cbProductColor.Size = new System.Drawing.Size(495, 32);
             this.cbProductColor.TabIndex = 7;
+            this.cbProductColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbColor_DrawItem);
             // 
             // label6
             // 
@@ -266,19 +272,19 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblTitel;
         private System.Windows.Forms.Label label2;
-        private UCTextBoxKeyBoard txtGroupNameDesc;
         private System.Windows.Forms.Label label3;
-        private UCTextBoxKeyBoard txtGroupNameSort;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cbGroupColor;
-        private System.Windows.Forms.ComboBox cbProductColor;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.FlowLayoutPanel flpGroup;
+        public System.Windows.Forms.Label lblTilte;
+        public UCTextBoxKeyBoard txtGroupNameDesc;
+        public UCTextBoxKeyBoard txtGroupNameSort;
+        public System.Windows.Forms.ComboBox cbGroupColor;
+        public System.Windows.Forms.ComboBox cbProductColor;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnRemove;
     }
 }

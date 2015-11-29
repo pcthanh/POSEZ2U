@@ -9,15 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
+using POSEZ2U.Class;
 namespace POSEZ2U
 {
     public partial class frmOrder : Form
     {
-        public frmOrder()
+        Order OrderMain;
+        public frmOrder(Order _orderMain)
         {
             InitializeComponent();
+            OrderMain = _orderMain;
         }
-
+        List<Order.Item> Listitem = new List<Order.Item>();
+        List<Order.Modifier> Listmodifier = new List<Order.Modifier>();
+        int keyItemTemp;
+        int indexControl;
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadMenuGroup();
@@ -165,12 +171,16 @@ namespace POSEZ2U
         {
             this.flowLayoutPanel1.Controls.Clear();
             this.AddButtonBackItem();
+            
             string[] str = { "Com Suon", "Com Dac Biet", "Com Ca Chien", "Com Chien Don", "Com Tay Cam", "Com Vit Kho", "Com Chay", "Com ABC", "Com XYZ","Com Xao","Com Duong Chau",
                            "Com Suon", "Com Dac Biet", "Com Ca Chien", "Com Chien Don", "Com Tay Cam", "Com Vit Kho", "Com Chay", "Com ABC", "Com XYZ","Com Xao","Com Duong Chau"};
+            int keyItem = 1;
             foreach (string strlst in str)
             {
+                keyItem++;
                 UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
                 ucMenuOfGroup.lblNameMenuOfGroup.Text = strlst;
+                
                 ucMenuOfGroup.Tag = strlst;
                 ucMenuOfGroup.Click += ucMenuOfGroup_Click;
                 flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
@@ -182,7 +192,66 @@ namespace POSEZ2U
 
         void ucMenuOfGroup_Click(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
+            Order.Item item = new Order.Item();
+            item.ItemName = ucMenuOfGroup.Tag.ToString();
+            OrderMain.addItemToList(item);
+            addOrderToFlp(item);
+
+        }
+        private void addOrderToFlp(Order.Item items)
+        {
+            UCOrder ucOrder = new UCOrder();
+            ucOrder.lblNameItem.Text = items.ItemName;
+            ucOrder.Tag = items;
+            ucOrder.Click+=ucOrder_Click;
+            
+            flpOrder.Controls.Add(ucOrder);
+        }
+
+        void ucOrder_Click(object sender, EventArgs e)
+        {
+            UCOrder ucOder = (UCOrder)sender;
+            Order.Item item = (Order.Item)ucOder.Tag;
+            indexControl = flpOrder.Controls.GetChildIndex(ucOder);
+            if (item.ItemName == "Com Suon")
+            {
+                flowLayoutPanel1.Controls.Clear();
+                string[] str = { "Khong hanh", "It com", "Khong thit" };
+                keyItemTemp = item.KeyItem;
+                foreach (string Modififer in str)
+                {
+                    UCModifierOfMenu ucModifierOfMenu = new UCModifierOfMenu();
+                    ucModifierOfMenu.lblModifierOfMenu.Text = Modififer;
+                    ucModifierOfMenu.Tag = Modififer;
+                    ucModifierOfMenu.Click += ucModifierOfMenu_Click;
+                    flowLayoutPanel1.Controls.Add(ucModifierOfMenu);
+                }
+                //MessageBox.Show(item.ItemName);
+            }
+        }
+
+        void ucModifierOfMenu_Click(object sender, EventArgs e)
+        {
+
+            UCModifierOfMenu ucModifierOfMenu = (UCModifierOfMenu)sender;
+            Order.Modifier modifier = new Order.Modifier();
+            modifier.ModifierName = ucModifierOfMenu.Tag.ToString();
+            OrderMain.addModifierToList(modifier,keyItemTemp);
+            UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
+            ucItemModifierOfMenu.lblNameItenModifierMenu.Text = modifier.ModifierName;
+            flpOrder.Controls.Add(ucItemModifierOfMenu);
+            flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp );
+           
+        }
+
+        void AddControlToFlowLayoutPanel(FlowLayoutPanel flowlayoutpanel, Control ctrl)
+        {
+            flowlayoutpanel.Controls.Add(ctrl);
+
+            // SetChildIndex does the trick
+            if (flowlayoutpanel.Controls.Count > 2)
+                flowlayoutpanel.Controls.SetChildIndex(ctrl, flowlayoutpanel.Controls.Count - 2);
         }
         void ucGroupMenuOrder_Click(object sender, EventArgs e)
         {

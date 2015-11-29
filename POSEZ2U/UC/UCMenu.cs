@@ -4,20 +4,29 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using System.Reflection;
-using POSEZ2U.UC;
+using POSEZ2U.Class;
+using ServicePOS;
+
 namespace POSEZ2U.UC
 {
     public partial class UCMenu : UserControl
     {
+        #region Variables & Constructors
+        private ICatalogueService _catalogeService;
+        private ICatalogueService CatalogeService
+        {
+            get { return _catalogeService ?? (_catalogeService = new CatalogueService()); }
+            set { _catalogeService = value; }
+        }
+        #endregion
         public UCMenu()
         {
             InitializeComponent();
         }
-
+       
         private void UCMenu_Load(object sender, EventArgs e)
         {
             Type colorType = typeof(System.Drawing.Color);
@@ -26,31 +35,34 @@ namespace POSEZ2U.UC
             {
                 this.cbColor.Items.Add(c.Name);
             }
-            addUcMenuGroup();
-            addButton();
-        }
-        private void addUcMenuGroup()
-        {
-          
-            string[] array = { "Coffee", "Smoothie", "Juice" };
-
-            List<string> lst = new List<string>();
-            foreach (string str in array)
-            {
-                lst.Add(str);
-            }
-            UCGroup[] ucGroup = new UCGroup[lst.Count];
-            for (int i = 0; i <lst.Count; i++)
-            {
-                ucGroup[i]= new UCGroup();
-                ucGroup[i].lblNameGroup.Text = lst[i].ToString();
-                ucGroup[i].Tag = lst[i];
-                ucGroup[i].Click += new EventHandler(UCGroup_Click);
-                flpIncludesGroup.Controls.AddRange(ucGroup);
-            }
+            //addUcMenuGroup();
+            //addButton();
             
         }
-        private void addButton()
+
+        public void addUcMenuGroup(int catalogueid)
+        {
+
+            if (catalogueid > 0)
+            {
+                var data = CatalogeService.GetCategoryByCatalogueID(catalogueid).ToList();
+                if (data.Count > 0)
+                {
+                    UCGroup[] ucGroup = new UCGroup[data.Count];
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        ucGroup[i] = new UCGroup();
+                        ucGroup[i].lblNameGroup.Text = data[i].CategoryName;
+                        ucGroup[i].Tag = data[i];
+                        // ucGroup[i].Click += new EventHandler(UCGroup_Click);
+                        flpIncludesGroup.Controls.AddRange(ucGroup);
+                    }
+                }
+
+            }
+        }
+
+        public void addButton()
         {
             Button btn = new Button();
             btn.Width = 107;
@@ -69,14 +81,23 @@ namespace POSEZ2U.UC
 
         void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("btnAdd");
+            //frmMenuAdd frmMenuAdd = new frmMenuAdd(lst);
+            //if (frmMenuAdd.ShowDialog() == DialogResult.OK)
+            //{
+
+            //    flagAddNewGroup = 1;
+            //    lst = frmMenuAdd.lst;
+            //    flpIncludesGroup.Controls.Clear();
+            //    this.addUcMenuGroup();
+            //    addButton();
+            //    flagAddNewGroup = 0;
+            //}
         }
        private void UCGroup_Click(object sender, EventArgs e)
         {
             UCGroup ucGroup = (UCGroup)sender;
-            MessageBox.Show(ucGroup.Tag.ToString());
+            
         }
-
 
         private void cbColor_DrawItem(object sender, DrawItemEventArgs e)
         {

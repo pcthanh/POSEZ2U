@@ -23,5 +23,7 @@ namespace ModelPOS.ModelEntity
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
+        public string CategoryNameSort { get; set; }
+        public string ProductColor { get; set; }
     }
 }

@@ -57,14 +57,16 @@
             this.btnDisCount = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
-            this.panel15 = new System.Windows.Forms.Panel();
+            this.flpOrder = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -128,7 +130,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(10, 52);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(685, 48);
+            this.panel5.Size = new System.Drawing.Size(629, 48);
             this.panel5.TabIndex = 5;
             // 
             // flpGroupMenu
@@ -136,7 +138,7 @@
             this.flpGroupMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpGroupMenu.Location = new System.Drawing.Point(0, 0);
             this.flpGroupMenu.Name = "flpGroupMenu";
-            this.flpGroupMenu.Size = new System.Drawing.Size(685, 48);
+            this.flpGroupMenu.Size = new System.Drawing.Size(629, 48);
             this.flpGroupMenu.TabIndex = 0;
             // 
             // panel6
@@ -144,17 +146,18 @@
             this.panel6.Controls.Add(this.panel13);
             this.panel6.Controls.Add(this.panel12);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(708, 52);
+            this.panel6.Location = new System.Drawing.Point(649, 52);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(236, 429);
+            this.panel6.Size = new System.Drawing.Size(295, 429);
             this.panel6.TabIndex = 6;
             // 
             // panel13
             // 
+            this.panel13.Controls.Add(this.flpOrder);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(0, 100);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(236, 329);
+            this.panel13.Size = new System.Drawing.Size(295, 329);
             this.panel13.TabIndex = 1;
             // 
             // panel12
@@ -162,15 +165,16 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(236, 100);
+            this.panel12.Size = new System.Drawing.Size(295, 100);
             this.panel12.TabIndex = 0;
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(695, 52);
+            this.panel7.Location = new System.Drawing.Point(639, 52);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(13, 429);
+            this.panel7.Size = new System.Drawing.Size(10, 429);
             this.panel7.TabIndex = 7;
             // 
             // panel10
@@ -181,7 +185,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel10.Location = new System.Drawing.Point(10, 288);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(685, 193);
+            this.panel10.Size = new System.Drawing.Size(629, 193);
             this.panel10.TabIndex = 10;
             // 
             // panel9
@@ -190,7 +194,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(488, 193);
+            this.panel9.Size = new System.Drawing.Size(448, 193);
             this.panel9.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -223,7 +227,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(488, 193);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(448, 193);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnSendOrder
@@ -236,7 +240,7 @@
             this.btnSendOrder.Location = new System.Drawing.Point(3, 3);
             this.btnSendOrder.Name = "btnSendOrder";
             this.tableLayoutPanel1.SetRowSpan(this.btnSendOrder, 2);
-            this.btnSendOrder.Size = new System.Drawing.Size(75, 122);
+            this.btnSendOrder.Size = new System.Drawing.Size(68, 122);
             this.btnSendOrder.TabIndex = 0;
             this.btnSendOrder.Text = "SEND ORDER";
             this.btnSendOrder.UseVisualStyleBackColor = false;
@@ -250,7 +254,7 @@
             this.btnReprint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReprint.Location = new System.Drawing.Point(3, 131);
             this.btnReprint.Name = "btnReprint";
-            this.btnReprint.Size = new System.Drawing.Size(75, 59);
+            this.btnReprint.Size = new System.Drawing.Size(68, 59);
             this.btnReprint.TabIndex = 1;
             this.btnReprint.Text = "RePrint DOCKET\r\n\r\n";
             this.btnReprint.UseVisualStyleBackColor = false;
@@ -262,9 +266,9 @@
             this.btnJoinTable.FlatAppearance.BorderSize = 0;
             this.btnJoinTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoinTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJoinTable.Location = new System.Drawing.Point(84, 3);
+            this.btnJoinTable.Location = new System.Drawing.Point(77, 3);
             this.btnJoinTable.Name = "btnJoinTable";
-            this.btnJoinTable.Size = new System.Drawing.Size(75, 58);
+            this.btnJoinTable.Size = new System.Drawing.Size(68, 58);
             this.btnJoinTable.TabIndex = 1;
             this.btnJoinTable.Text = "Join Table";
             this.btnJoinTable.UseVisualStyleBackColor = false;
@@ -276,9 +280,9 @@
             this.btnTransferTable.FlatAppearance.BorderSize = 0;
             this.btnTransferTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransferTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransferTable.Location = new System.Drawing.Point(165, 3);
+            this.btnTransferTable.Location = new System.Drawing.Point(151, 3);
             this.btnTransferTable.Name = "btnTransferTable";
-            this.btnTransferTable.Size = new System.Drawing.Size(75, 58);
+            this.btnTransferTable.Size = new System.Drawing.Size(68, 58);
             this.btnTransferTable.TabIndex = 1;
             this.btnTransferTable.Text = "Transfer Table";
             this.btnTransferTable.UseVisualStyleBackColor = false;
@@ -291,9 +295,9 @@
             this.btnVoid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoid.ForeColor = System.Drawing.Color.White;
-            this.btnVoid.Location = new System.Drawing.Point(84, 67);
+            this.btnVoid.Location = new System.Drawing.Point(77, 67);
             this.btnVoid.Name = "btnVoid";
-            this.btnVoid.Size = new System.Drawing.Size(75, 58);
+            this.btnVoid.Size = new System.Drawing.Size(68, 58);
             this.btnVoid.TabIndex = 1;
             this.btnVoid.Text = "VOID";
             this.btnVoid.UseVisualStyleBackColor = false;
@@ -306,9 +310,9 @@
             this.btnVoidAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoidAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoidAll.ForeColor = System.Drawing.Color.White;
-            this.btnVoidAll.Location = new System.Drawing.Point(165, 67);
+            this.btnVoidAll.Location = new System.Drawing.Point(151, 67);
             this.btnVoidAll.Name = "btnVoidAll";
-            this.btnVoidAll.Size = new System.Drawing.Size(75, 58);
+            this.btnVoidAll.Size = new System.Drawing.Size(68, 58);
             this.btnVoidAll.TabIndex = 1;
             this.btnVoidAll.Text = "VOID ALL";
             this.btnVoidAll.UseVisualStyleBackColor = false;
@@ -321,9 +325,9 @@
             this.btnAddSeat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddSeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSeat.ForeColor = System.Drawing.Color.White;
-            this.btnAddSeat.Location = new System.Drawing.Point(246, 3);
+            this.btnAddSeat.Location = new System.Drawing.Point(225, 3);
             this.btnAddSeat.Name = "btnAddSeat";
-            this.btnAddSeat.Size = new System.Drawing.Size(75, 58);
+            this.btnAddSeat.Size = new System.Drawing.Size(68, 58);
             this.btnAddSeat.TabIndex = 1;
             this.btnAddSeat.Text = "Add Seat";
             this.btnAddSeat.UseVisualStyleBackColor = false;
@@ -336,9 +340,9 @@
             this.btnNewItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewItem.ForeColor = System.Drawing.Color.White;
-            this.btnNewItem.Location = new System.Drawing.Point(246, 67);
+            this.btnNewItem.Location = new System.Drawing.Point(225, 67);
             this.btnNewItem.Name = "btnNewItem";
-            this.btnNewItem.Size = new System.Drawing.Size(75, 58);
+            this.btnNewItem.Size = new System.Drawing.Size(68, 58);
             this.btnNewItem.TabIndex = 1;
             this.btnNewItem.Text = "New Item";
             this.btnNewItem.UseVisualStyleBackColor = false;
@@ -351,9 +355,9 @@
             this.btnNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNote.ForeColor = System.Drawing.Color.White;
-            this.btnNote.Location = new System.Drawing.Point(246, 131);
+            this.btnNote.Location = new System.Drawing.Point(225, 131);
             this.btnNote.Name = "btnNote";
-            this.btnNote.Size = new System.Drawing.Size(75, 59);
+            this.btnNote.Size = new System.Drawing.Size(68, 59);
             this.btnNote.TabIndex = 1;
             this.btnNote.Text = "NOTE";
             this.btnNote.UseVisualStyleBackColor = false;
@@ -367,9 +371,9 @@
             this.btnPayMent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayMent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayMent.ForeColor = System.Drawing.Color.White;
-            this.btnPayMent.Location = new System.Drawing.Point(327, 131);
+            this.btnPayMent.Location = new System.Drawing.Point(299, 131);
             this.btnPayMent.Name = "btnPayMent";
-            this.btnPayMent.Size = new System.Drawing.Size(158, 59);
+            this.btnPayMent.Size = new System.Drawing.Size(146, 59);
             this.btnPayMent.TabIndex = 1;
             this.btnPayMent.Text = "PAYMENT";
             this.btnPayMent.UseVisualStyleBackColor = false;
@@ -382,9 +386,9 @@
             this.btnPrintBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintBill.ForeColor = System.Drawing.Color.White;
-            this.btnPrintBill.Location = new System.Drawing.Point(408, 67);
+            this.btnPrintBill.Location = new System.Drawing.Point(373, 67);
             this.btnPrintBill.Name = "btnPrintBill";
-            this.btnPrintBill.Size = new System.Drawing.Size(77, 58);
+            this.btnPrintBill.Size = new System.Drawing.Size(72, 58);
             this.btnPrintBill.TabIndex = 1;
             this.btnPrintBill.Text = "Print Bill";
             this.btnPrintBill.UseVisualStyleBackColor = false;
@@ -396,9 +400,9 @@
             this.btnDisCount.FlatAppearance.BorderSize = 0;
             this.btnDisCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisCount.Location = new System.Drawing.Point(408, 3);
+            this.btnDisCount.Location = new System.Drawing.Point(373, 3);
             this.btnDisCount.Name = "btnDisCount";
-            this.btnDisCount.Size = new System.Drawing.Size(77, 58);
+            this.btnDisCount.Size = new System.Drawing.Size(72, 58);
             this.btnDisCount.TabIndex = 1;
             this.btnDisCount.Text = "DIS - COUNT";
             this.btnDisCount.UseVisualStyleBackColor = false;
@@ -406,7 +410,7 @@
             // panel8
             // 
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(488, 0);
+            this.panel8.Location = new System.Drawing.Point(448, 0);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(10, 193);
             this.panel8.TabIndex = 0;
@@ -420,8 +424,16 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(10, 100);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(685, 188);
+            this.panel11.Size = new System.Drawing.Size(629, 188);
             this.panel11.TabIndex = 11;
+            // 
+            // panel15
+            // 
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(629, 10);
+            this.panel15.TabIndex = 2;
             // 
             // flowLayoutPanel1
             // 
@@ -429,7 +441,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(685, 178);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(629, 178);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // panel14
@@ -437,15 +449,15 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel14.Location = new System.Drawing.Point(0, 178);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(685, 10);
+            this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
             // 
             // ucKeyPadOrder1
             // 
             this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(498, 0);
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
             this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(187, 193);
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
             this.ucKeyPadOrder1.TabIndex = 0;
             this.ucKeyPadOrder1.txtResult = null;
             // 
@@ -457,13 +469,15 @@
             this.ucInfoTop1.Size = new System.Drawing.Size(954, 42);
             this.ucInfoTop1.TabIndex = 0;
             // 
-            // panel15
+            // flpOrder
             // 
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(685, 10);
-            this.panel15.TabIndex = 2;
+            this.flpOrder.AutoScroll = true;
+            this.flpOrder.AutoSize = true;
+            this.flpOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpOrder.Location = new System.Drawing.Point(0, 0);
+            this.flpOrder.Name = "flpOrder";
+            this.flpOrder.Size = new System.Drawing.Size(295, 329);
+            this.flpOrder.TabIndex = 0;
             // 
             // frmOrder
             // 
@@ -490,6 +504,8 @@
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -533,5 +549,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flpGroupMenu;
         private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.FlowLayoutPanel flpOrder;
     }
 }
