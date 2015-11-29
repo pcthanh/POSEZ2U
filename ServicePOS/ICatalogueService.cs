@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,19 @@ namespace ServicePOS
 
         int SavaDataCatalogue(CatalogueModel cata);
 
-        IEnumerable<CategoryModel> GetCategoryByCatalogueID(int CatalogueID);
+        int RemoveCatalogue(int catalogueid, int userid);
 
+        IEnumerable<CategoryModel> GetCategoryByCatalogueID(int CatalogueID);
+        int SaveMapCategoryToCatalogue(List<CategoryModel> data, int catalogueid,int userid);
+        IEnumerable<CategoryModel> GetAllListCategoryByCatalogue(int CatalogueID);
 
         IEnumerable<CategoryModel> GetListCategory();
         int SaveDataCategory(CategoryModel cate);
+        int RemoveCategory(int categoryid, int userid);
 
         IEnumerable<ProductionModel> GetProductByCategoryID(int CategoryID);
+        IEnumerable<ProductionModel> GetAllListProductByCategory(int CategoryID);
+
+        int SaveDataMapProductToCategory(List<ProductionModel> data, int categoryid, int userid);
     }
 }
