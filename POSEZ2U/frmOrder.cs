@@ -185,6 +185,7 @@ namespace POSEZ2U
                 ucMenuOfGroup.Tag = strlst;
                 ucMenuOfGroup.Click += ucMenuOfGroup_Click;
                 flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
+                
             }
             this.AddButtonOpenItemItem();
             this.AddButtonBackItemPage();
@@ -198,8 +199,10 @@ namespace POSEZ2U
             if (seat > 0)
                 item.Seat = seat;
             item.ItemName = ucMenuOfGroup.Tag.ToString();
+            item.SubTotal = 4;
             OrderMain.addItemToList(item);
             addOrderToFlp(item);
+            lblSubtotal.Text = OrderMain.SubTotal().ToString();
 
         }
         private void addOrderToFlp(Order.Item items)
@@ -207,6 +210,7 @@ namespace POSEZ2U
             UCOrder ucOrder = new UCOrder();
             ucOrder.lblNameItem.Text = items.ItemName;
             ucOrder.Tag = items;
+            ucOrder.lblPriceItem.Text = "4.00";
             ucOrder.Click+=ucOrder_Click;
             
             flpOrder.Controls.Add(ucOrder);

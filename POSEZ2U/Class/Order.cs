@@ -53,5 +53,15 @@ namespace POSEZ2U.Class
        {
           
        }
+       public Double SubTotal()
+       {
+           Double total = 0;
+           for (int i = 0; i <ListItem.Count; i++)
+           {
+               
+               total += ListItem[i].SubTotal;
+           }
+           return total;
+       }
     }
 }

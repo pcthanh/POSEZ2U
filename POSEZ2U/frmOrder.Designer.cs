@@ -57,11 +57,14 @@
             this.btnPrintBill = new System.Windows.Forms.Button();
             this.btnDisCount = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSubtotal = new System.Windows.Forms.Label();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -71,6 +74,7 @@
             this.panel9.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -154,6 +158,7 @@
             // panel13
             // 
             this.panel13.Controls.Add(this.flpOrder);
+            this.panel13.Controls.Add(this.panel16);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(0, 100);
             this.panel13.Name = "panel13";
@@ -167,7 +172,7 @@
             this.flpOrder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpOrder.Location = new System.Drawing.Point(0, 0);
             this.flpOrder.Name = "flpOrder";
-            this.flpOrder.Size = new System.Drawing.Size(295, 329);
+            this.flpOrder.Size = new System.Drawing.Size(295, 288);
             this.flpOrder.TabIndex = 0;
             // 
             // panel12
@@ -426,15 +431,6 @@
             this.panel8.Size = new System.Drawing.Size(10, 193);
             this.panel8.TabIndex = 0;
             // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
@@ -471,6 +467,48 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.panel16.Controls.Add(this.lblSubtotal);
+            this.panel16.Controls.Add(this.label1);
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel16.Location = new System.Drawing.Point(0, 288);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(295, 41);
+            this.panel16.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(9, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "SUBTOTAL";
+            // 
+            // lblSubtotal
+            // 
+            this.lblSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtotal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(204)))), ((int)(((byte)(0)))));
+            this.lblSubtotal.Location = new System.Drawing.Point(139, 7);
+            this.lblSubtotal.Name = "lblSubtotal";
+            this.lblSubtotal.Size = new System.Drawing.Size(153, 28);
+            this.lblSubtotal.TabIndex = 1;
+            this.lblSubtotal.Text = "label2";
+            this.lblSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
             // 
             // ucInfoTop1
             // 
@@ -511,6 +549,8 @@
             this.panel9.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -551,5 +591,8 @@
         private System.Windows.Forms.FlowLayoutPanel flpGroupMenu;
         private System.Windows.Forms.Panel panel15;
         private System.Windows.Forms.FlowLayoutPanel flpOrder;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSubtotal;
     }
 }
