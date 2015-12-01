@@ -37,7 +37,7 @@
             this.lblGroupName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupName.Location = new System.Drawing.Point(0, 0);
             this.lblGroupName.Name = "lblGroupName";
-            this.lblGroupName.Size = new System.Drawing.Size(228, 31);
+            this.lblGroupName.Size = new System.Drawing.Size(180, 31);
             this.lblGroupName.TabIndex = 0;
             this.lblGroupName.Text = "label1";
             this.lblGroupName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -49,8 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblGroupName);
             this.Name = "UCMenuAdd";
-            this.Size = new System.Drawing.Size(228, 31);
-            
+            this.Size = new System.Drawing.Size(180, 31);
             this.ResumeLayout(false);
 
         }

@@ -133,6 +133,7 @@
             // 
             // flpAllitems
             // 
+            this.flpAllitems.AutoScroll = true;
             this.flpAllitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.flpAllitems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpAllitems.Location = new System.Drawing.Point(0, 0);
@@ -242,7 +243,7 @@
             this.flpThisgroupitems.Size = new System.Drawing.Size(227, 393);
             this.flpThisgroupitems.TabIndex = 0;
             // 
-            // frmMenuAdd
+            // frmGroupAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -257,7 +258,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmMenuAdd";
+            this.Name = "frmGroupAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmMenuAdd";
             this.Load += new System.EventHandler(this.frmMenuAdd_Load);

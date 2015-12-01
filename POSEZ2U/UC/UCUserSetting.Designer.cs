@@ -1,6 +1,6 @@
 ﻿namespace POSEZ2U.UC
 {
-    partial class UCItem
+    partial class UCUserSetting
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,35 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblItem = new System.Windows.Forms.Label();
+            this.lblUserSetting = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblItem
+            // lblUserSetting
             // 
-            this.lblItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItem.Location = new System.Drawing.Point(0, 0);
-            this.lblItem.Name = "lblItem";
-            this.lblItem.Size = new System.Drawing.Size(238, 37);
-            this.lblItem.TabIndex = 1;
-            this.lblItem.Text = "label1";
-            this.lblItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblItem.Click += new System.EventHandler(this.UCItem_Click);
+            this.lblUserSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblUserSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserSetting.Location = new System.Drawing.Point(0, 0);
+            this.lblUserSetting.Name = "lblUserSetting";
+            this.lblUserSetting.Size = new System.Drawing.Size(177, 37);
+            this.lblUserSetting.TabIndex = 0;
+            this.lblUserSetting.Text = "User List";
+            this.lblUserSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUserSetting.Click += new System.EventHandler(this.UCUserSetting_Click);
             // 
-            // UCItem
+            // UCUserSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.lblItem);
-            this.Name = "UCItem";
-            this.Size = new System.Drawing.Size(238, 37);
+            this.Controls.Add(this.lblUserSetting);
+            this.Name = "UCUserSetting";
+            this.Size = new System.Drawing.Size(177, 37);
+           
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.Label lblItem;
+        public System.Windows.Forms.Label lblUserSetting;
     }
 }

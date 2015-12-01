@@ -49,7 +49,7 @@ namespace POSEZ2U.UC
 
         public void addUcMenuGroup(int catalogueid)
         {
-
+            
             if (catalogueid > 0)
             {
                 var data = CatalogeService.GetCategoryByCatalogueID(catalogueid).ToList();

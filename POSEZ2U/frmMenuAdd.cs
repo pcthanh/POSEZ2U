@@ -37,6 +37,7 @@ namespace POSEZ2U
             catalogueid = _catalogueid;
             listmap = CatalogeService.GetCategoryByCatalogueID(catalogueid).ToList();
             listall = CatalogeService.GetAllListCategoryByCatalogue(catalogueid).ToList();
+            flpAllitems.AutoScroll = true;
         }
         //string[] str = { "Green Tea" };
         private void LoadThisGroupItems()
@@ -96,7 +97,7 @@ namespace POSEZ2U
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void frmMenuAdd_Load(object sender, EventArgs e)
@@ -141,6 +142,7 @@ namespace POSEZ2U
             if (result == 1)
             {
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
             }
             else
             {
