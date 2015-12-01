@@ -20,7 +20,7 @@ namespace POSEZ2U.UC
         }
         protected override void OnEnter(EventArgs e)
         {
-            this.InitForcus();
+           // this.InitForcus();
             base.OnEnter(e);
         }
 
@@ -46,7 +46,7 @@ namespace POSEZ2U.UC
         public void SetForcus()
         {
             //this.InitForcus();
-            this.Focus();
+           this.Focus();
         }
     }
 }

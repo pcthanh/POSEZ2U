@@ -25,12 +25,14 @@ namespace POSEZ2U
         int keyItemTemp;
         int indexControl;
         int seat = 0;
+        int flagBack;
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadMenuGroup();
             LoadMenuOfGroup();
-            this.AddButtonOpenItem();
             this.SelectGroupMenu();
+            this.lblTable.Text = OrderMain.TableId;
+            //flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
         }
         private void LoadMenuOfGroup()
         {
@@ -44,6 +46,7 @@ namespace POSEZ2U
                 ucMenuOrder.Click += ucMenuOrder_Click;
                 flowLayoutPanel1.Controls.Add(ucMenuOrder);
             }
+            this.AddButtonOpenItem();
         }
         private void AddButtonOpenItem()
         {
@@ -135,18 +138,38 @@ namespace POSEZ2U
 
         void btnOpenItemItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Open Ite Item");
+            frmOpenItem frm = new frmOpenItem();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                OrderMain.addItemToList(frm.items);
+                addOrderToFlp(frm.items);
+                lblSubtotal.Text = OrderMain.SubTotal().ToString();
+            }
         }
 
         void btnBack_Click(object sender, EventArgs e)
         {
             this.flowLayoutPanel1.Controls.Clear();
-            this.LoadMenuOfGroup();
+            if (flagBack == 1)
+            {
+                this.LoadItemOfGroup();
+                flagBack = 0;
+            }
+            else
+            {
+                this.LoadMenuOfGroup();
+            }
         }
 
         void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Open Item");
+            frmOpenItem frm = new frmOpenItem();
+            if(frm.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+            {
+                OrderMain.addItemToList(frm.items);
+                addOrderToFlp(frm.items);
+                lblSubtotal.Text = OrderMain.SubTotal().ToString();
+            }
         }
         private void LoadMenuGroup()
         {
@@ -236,6 +259,8 @@ namespace POSEZ2U
                 }
                 //MessageBox.Show(item.ItemName);
             }
+            flagBack = 1;
+            this.AddButtonBackItem();
         }
 
         void ucModifierOfMenu_Click(object sender, EventArgs e)
@@ -248,10 +273,10 @@ namespace POSEZ2U
             UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
             ucItemModifierOfMenu.lblNameItenModifierMenu.Text = modifier.ModifierName;
             flpOrder.Controls.Add(ucItemModifierOfMenu);
-            if(seat>0)
-                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp+1 );
-            else
-                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp);
+            //if(seat>0)
+            //    flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, indexControl+1);
+            //else
+                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, indexControl+1);
 
         }
 
@@ -266,7 +291,8 @@ namespace POSEZ2U
         void ucGroupMenuOrder_Click(object sender, EventArgs e)
         {
             UCGroupMenuOrder ucGroupMenuOrder = (UCGroupMenuOrder)sender;
-            MessageBox.Show(ucGroupMenuOrder.Tag.ToString());
+            this.flowLayoutPanel1.Controls.Clear();
+            LoadMenuOfGroup();
         }
 
         void ucMenuOrder_Click(object sender, EventArgs e)
@@ -274,9 +300,27 @@ namespace POSEZ2U
             //throw new NotImplementedException();
             UCMenuOrdercs ucGroup = (UCMenuOrdercs)sender;
             string tag = ucGroup.Tag.ToString();
-            if (tag == "Com") 
+
+            /////kiem tra item co openitem hay khong
+            if (tag == "Com")
             {
                 LoadItemOfGroup();
+            }
+                ///neu khong co openitem thi add vao order
+            else
+            {
+
+                /////////
+                Order.Item item = new Order.Item();
+                if (seat > 0)
+                    item.Seat = seat;
+                item.ItemName = ucGroup.Tag.ToString();
+                item.SubTotal = 4;
+                OrderMain.addItemToList(item);
+                addOrderToFlp(item);
+                lblSubtotal.Text = OrderMain.SubTotal().ToString();
+
+                
             }
 
 
@@ -296,10 +340,16 @@ namespace POSEZ2U
                 seat = frm.NumberSeat;
                 UCSeat ucSeat = new UCSeat();
                 ucSeat.lblSeat.Text = "Seat " + seat;
+                lblSeat.Text = seat.ToString();
                 flpOrder.Controls.Add(ucSeat);
                 
             }
             //frm.ShowDialog();
+        }
+
+        private void flpOrder_Scroll(object sender, ScrollEventArgs e)
+        {
+            flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
         }
     }
 }
