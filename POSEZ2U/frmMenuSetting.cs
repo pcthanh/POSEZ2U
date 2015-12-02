@@ -298,7 +298,6 @@ namespace POSEZ2U
 
         private void addPriceList(int i)
         {
-            
             string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
             if (i == 5)
             {
