@@ -45,7 +45,7 @@ namespace POSEZ2U.UC
                     for (int i = 0; i < productlist.Count; i++)
                     {
                         ucProductIncl[i] = new UCProductIncl();
-                        ucProductIncl[i].lblNameGroupIncl.Text = productlist[i].ProductName;
+                        ucProductIncl[i].lblNameGroupIncl.Text = productlist[i].ProductNameDesc;
                         ucProductIncl[i].Tag = productlist[i];
                         ucProductIncl[i].Click += UCGroupList_Click;
                         flpGroup.Controls.AddRange(ucProductIncl);

@@ -28,7 +28,8 @@ namespace ServicePOS
                 .Where(x => x.product.Status == 1 && x.product_price.Status == 1).Select(x => new ProductionModel
             {
                 ProductID = x.product.ProductID,
-                ProductName = x.product.ProductName,
+                ProductNameDesc = x.product.ProductNameDesc,
+                ProductNameSort = x.product.ProductNameSort,
                 Color = x.product.Color,
                 CurrentPrice = x.product_price.CurrentPrice
             });
@@ -42,14 +43,15 @@ namespace ServicePOS
 
                 if (data.ProductID == 0)
                 {
-                    var checkdata = _context.PRODUCTs.Where(x => x.ProductName == data.ProductName).ToList();
+                    var checkdata = _context.PRODUCTs.Where(x => x.ProductNameDesc == data.ProductNameDesc).ToList();
                     if (checkdata.Count() > 0)
                     {
                         return -1;
                     }
 
                     var new_data = new PRODUCT();
-                    new_data.ProductName = data.ProductName;
+                    new_data.ProductNameDesc = data.ProductNameDesc;
+                    new_data.ProductNameSort = data.ProductNameSort;
                     new_data.Color = data.Color ?? "";
                     new_data.Status = 1;
                     new_data.CreateBy = data.CreateBy ?? 0;
@@ -74,15 +76,16 @@ namespace ServicePOS
                 }
                 else
                 {
-                    var checkdata = _context.PRODUCTs.Where(x => x.ProductName == data.ProductName && x.ProductID != data.ProductID).ToList();
+                    var checkdata = _context.PRODUCTs.Where(x => x.ProductNameDesc == data.ProductNameDesc && x.ProductID != data.ProductID).ToList();
                     if (checkdata.Count() > 0)
                     {
                         return -1;
                     }
-                    var old_data = _context.MODIFIREs.Find(data.ProductID);
+                    var old_data = _context.PRODUCTs.Find(data.ProductID);
                     if (old_data != null)
                     {
-                        old_data.ModifireName = data.ProductName;
+                        old_data.ProductNameDesc = data.ProductNameDesc;
+                        old_data.ProductNameSort = data.ProductNameSort;
                         old_data.Color = data.Color ?? "";
                         old_data.Status = 1;
                         old_data.UpdateBy = data.UpdateBy ?? 0;
@@ -156,7 +159,7 @@ namespace ServicePOS
 
         public int Delete(ProductionModel data)
         {
-            var checkdata = _context.PRODUCTs.Where(x => x.ProductName == data.ProductName && x.ProductID == data.ProductID).SingleOrDefault();
+            var checkdata = _context.PRODUCTs.Find(data.ProductID);
             if (checkdata != null)
             {
                 checkdata.Status = 0;

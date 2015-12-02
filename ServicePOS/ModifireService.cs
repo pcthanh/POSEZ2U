@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ModelPOS.ModelEntity;
 using ServicePOS.Model;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace ServicePOS
 {
@@ -171,11 +172,26 @@ namespace ServicePOS
             
         }
         #endregion
+        #region
+        public IEnumerable<ModifireModel> GetListModifireToProduct(int productID)
+        {
+            var data = _context.Database.SqlQuery<ModifireModel>("pos_th_GetListModifireToProduct @productID", new SqlParameter("productID", productID));
+            return data;
+        }
+        #endregion
+
+        #region
+        public IEnumerable<ModifireModel> GetModifireAllList(int productID)
+        {
+            var data = _context.Database.SqlQuery<ModifireModel>("pos_th_GetListModifire @productID", new SqlParameter("productID", productID));
+            return data;
+        }
+        #endregion
 
         #region
         public int Delete(ModifireModel data)
         {
-            var checkdata = _context.MODIFIREs.Where(x => x.ModifireName == data.ModifireName && x.ModifireID == data.ModifireID).SingleOrDefault();
+            var checkdata = _context.MODIFIREs.Find(data.ModifireID);
             if (checkdata != null)
             {
                 checkdata.Status = 0;

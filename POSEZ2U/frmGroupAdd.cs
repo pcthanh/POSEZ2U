@@ -45,7 +45,7 @@ namespace POSEZ2U
             for (int i = 0; i < listmap.Count; i++)
             {
                 UCMenuAdd ucMenuAdd = new UCMenuAdd();
-                ucMenuAdd.lblGroupName.Text = listmap[i].ProductName;
+                ucMenuAdd.lblGroupName.Text = listmap[i].ProductNameDesc;
                 ucMenuAdd.Tag = listmap[i];
                 ucMenuAdd.Click += flpThisgroupitems_Click;
                 flpThisgroupitems.Controls.Add(ucMenuAdd);
@@ -57,7 +57,7 @@ namespace POSEZ2U
             foreach (var item in listall)
             {
                     UCMenuAdd ucMenuAddAll = new UCMenuAdd();
-                    ucMenuAddAll.lblGroupName.Text = item.ProductName;
+                    ucMenuAddAll.lblGroupName.Text = item.ProductNameDesc;
                     ucMenuAddAll.Tag = item;
                     ucMenuAddAll.Click += ucMenuAddAll_Click;
                     flpAllitems.Controls.Add(ucMenuAddAll);
@@ -114,7 +114,7 @@ namespace POSEZ2U
                     ProductionModel itemlef = (ProductionModel)(ucMenuGet.Tag);
                     ProductionModel item = new ProductionModel();
                     item.ProductID = itemlef.ProductID;
-                    item.ProductName = itemlef.ProductName;
+                    item.ProductNameDesc = itemlef.ProductNameDesc;
                     listmap.Add(item);
                     var index = -1;
                     for(int i=0;i<listall.Count;i++)
@@ -159,7 +159,7 @@ namespace POSEZ2U
                     ProductionModel itemlef = (ProductionModel)(ucMenuGet.Tag);
                     ProductionModel item = new ProductionModel();
                     item.ProductID = itemlef.ProductID;
-                    item.ProductName = itemlef.ProductName;
+                    item.ProductNameDesc = itemlef.ProductNameDesc;
                     listall.Add(item);
                     var index = -1;
                     for (int i = 0; i < listmap.Count; i++)

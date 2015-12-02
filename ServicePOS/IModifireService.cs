@@ -14,5 +14,9 @@ namespace ServicePOS
         int Created(ModifireModel data);
 
         int Delete(ModifireModel data);
+
+        IEnumerable<ModifireModel> GetModifireAllList(int productID);
+
+        IEnumerable<ModifireModel> GetListModifireToProduct(int productID);
     }
 }

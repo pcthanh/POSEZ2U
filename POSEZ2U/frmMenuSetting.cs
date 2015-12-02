@@ -95,7 +95,6 @@ namespace POSEZ2U
                     ucItemList.btnRemove.Visible = false;
                     ucItemList.btnAddProtions.Visible = false;
                     ucItemList.lwPortions.Visible = false;
-                    ucItemList.lbPortions.Visible = false;
                     pnDetail.Controls.Add(ucItemList);
                     break;
                 case 4:
@@ -281,7 +280,7 @@ namespace POSEZ2U
                 foreach (var data in dataProduct)
                 {
                     UCItem ucItem = new UCItem();
-                    ucItem.lblItem.Text = data.ProductName;
+                    ucItem.lblItem.Text = data.ProductNameDesc;
                     ucItem.Tag = data;
                     ucItem.Click += ucItem_Click;
                     flpMenuList.Controls.Add(ucItem);
@@ -754,9 +753,9 @@ namespace POSEZ2U
             ucItemList.Dock = DockStyle.Fill;
             if (productData.ProductID > 0)
             {
-                ucItemList.lbProductName.Text = productData.ProductName;
-                ucItemList.txtNameDesc.Text = productData.ProductName;
-                ucItemList.txtNameSort.Text = productData.ProductName;
+                ucItemList.lbProductName.Text = productData.ProductNameDesc;
+                ucItemList.txtNameDesc.Text = productData.ProductNameDesc;
+                ucItemList.txtNameSort.Text = productData.ProductNameSort;
                 ucItemList.txtPrice.Text = Convert.ToString(productData.CurrentPrice);
                 ucItemList.btnSave.Tag = productData;
                 ucItemList.btnSave.Click += ucItemList_btnSave_Click;
@@ -764,7 +763,9 @@ namespace POSEZ2U
                 ucItemList.btnRemove.Tag = productData;
                 ucItemList.btnAddProtions.Visible = false;
                 ucItemList.lbPortions.Visible = false;
-                ucItemList.lwPortions.Visible = false;
+                ucItemList.Tag = productData;
+                ucItemList.addUcMenuGroup(productData.ProductID);
+                ucItemList.addButton(productData.ProductID);
                 pnDetail.Controls.Add(ucItemList);
                 ucItemList = (UCItemList)pnDetail.Controls[0];
                 ucItemList.cbProductColor.SelectedItem = productData.Color;
@@ -819,7 +820,7 @@ namespace POSEZ2U
                 }
                 if (messageError == "")
                 {
-                    dataProduct.ProductName = productNameSort;
+                    dataProduct.ProductNameSort = productNameSort;
                     dataProduct.Color = productColor;
                     dataProduct.CurrentPrice = double.Parse(productPrice);
                     var result = ProductService.Created(dataProduct);

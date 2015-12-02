@@ -15,32 +15,39 @@ namespace POSEZ2U.UC
 {
     public partial class UCItemList : UserControl
     {
+        #region Variables & Constructors
+        private IModifireService _modifireService;
+        private IModifireService ModifireService
+        {
+            get { return _modifireService ?? (_modifireService = new ModifireService()); }
+            set { _modifireService = value; }
+        }
+        #endregion
         public UCItemList()
         {
             InitializeComponent();
         }
-        private void addUcMenuGroup()
+        public void addUcMenuGroup(int productID)
         {
 
-            string[] array = { "Coffee", "Smoothie", "Juice" };
-
-            List<string> lst = new List<string>();
-            foreach (string str in array)
+            if (productID > 0)
             {
-                lst.Add(str);
-            }
-            UCItemListButton[] ucItemListButton = new UCItemListButton[lst.Count];
-            for (int i = 0; i < lst.Count; i++)
-            {
-                ucItemListButton[i] = new UCItemListButton();
-                ucItemListButton[i].lblItemListButton.Text = lst[i].ToString();
-                ucItemListButton[i].Tag = lst[i];
-                ucItemListButton[i].Click += UCItemList_Click;
-                flpItemList.Controls.AddRange(ucItemListButton);
-            }
-
+                var modifireList = ModifireService.GetListModifireToProduct(productID).ToList();
+                if (modifireList.Count > 0)
+                {
+                    UCItemListButton[] ucItemListButton = new UCItemListButton[modifireList.Count];
+                    for (int i = 0; i < modifireList.Count; i++)
+                    {
+                        ucItemListButton[i] = new UCItemListButton();
+                        ucItemListButton[i].lblItemListButton.Text = modifireList[i].ModifireName.ToString();
+                        ucItemListButton[i].Tag = modifireList[i];
+                        ucItemListButton[i].Click += UCItemList_Click;
+                        flpItemList.Controls.AddRange(ucItemListButton);
+                    }
+                }
+            }        
         }
-        private void addButton()
+        public void addButton(int productID)
         {
             Button btn = new Button();
             btn.Width = 107;
@@ -53,17 +60,26 @@ namespace POSEZ2U.UC
             btn.Text = "Add";
             btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btn.Click += btn_Click;
+            btn.Tag = productID;
             flpItemList.Controls.Add(btn);
 
         }
         void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("btnAdd");
+            Button addnewGroup = (Button)sender;
+            int tag = Convert.ToInt16(addnewGroup.Tag);
+            frmMenuAddItemList frmMenuAddItemList = new frmMenuAddItemList(tag);
+            if (frmMenuAddItemList.ShowDialog() == DialogResult.OK)
+            {
+                flpItemList.Controls.Clear();
+                addUcMenuGroup(tag);
+                addButton(tag);
+
+            }
         }
         void UCItemList_Click(object sender, EventArgs e)
         {
             UCItemListButton ucItemListButton = (UCItemListButton)sender;
-            MessageBox.Show(ucItemListButton.Tag.ToString());
         }
 
         private void cbProductColor_DrawItem(object sender, DrawItemEventArgs e)
@@ -92,8 +108,6 @@ namespace POSEZ2U.UC
             {
                 this.cbProductColor.Items.Add(c.Name);
             }
-            addUcMenuGroup();
-            addButton();
         }
 
         public void btnSave_Click(object sender, EventArgs e)
