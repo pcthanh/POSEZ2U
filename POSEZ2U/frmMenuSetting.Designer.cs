@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flpProdutcSetting = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -41,13 +42,12 @@
             this.pn2 = new System.Windows.Forms.Panel();
             this.flpMenuList = new System.Windows.Forms.FlowLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.ucPriceListTitle = new POSEZ2U.UC.UCPriceList();
+            this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.ucPriceListTitle = new POSEZ2U.UC.UCPriceList();
-            this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flpProdutcSetting.SuspendLayout();
@@ -67,6 +67,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(945, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // ucInfoTop1
+            // 
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(945, 39);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -118,6 +126,7 @@
             // 
             // pnDetail
             // 
+            this.pnDetail.AutoScroll = true;
             this.pnDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnDetail.Location = new System.Drawing.Point(0, 0);
             this.pnDetail.Name = "pnDetail";
@@ -177,6 +186,7 @@
             // 
             // flpMenuList
             // 
+            this.flpMenuList.AutoScroll = true;
             this.flpMenuList.BackColor = System.Drawing.Color.White;
             this.flpMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMenuList.Location = new System.Drawing.Point(0, 35);
@@ -193,6 +203,25 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(262, 35);
             this.panel11.TabIndex = 9;
+            // 
+            // ucPriceListTitle
+            // 
+            this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
+            this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
+            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.Name = "ucPriceListTitle";
+            this.ucPriceListTitle.Size = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.TabIndex = 1;
+            this.ucPriceListTitle.Visible = false;
+            // 
+            // txtNameMenuList
+            // 
+            this.txtNameMenuList.BackColor = System.Drawing.Color.White;
+            this.txtNameMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNameMenuList.Location = new System.Drawing.Point(0, 0);
+            this.txtNameMenuList.Name = "txtNameMenuList";
+            this.txtNameMenuList.Size = new System.Drawing.Size(262, 35);
+            this.txtNameMenuList.TabIndex = 0;
             // 
             // panel6
             // 
@@ -229,33 +258,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(945, 10);
             this.panel10.TabIndex = 10;
-            // 
-            // ucPriceListTitle
-            // 
-            this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
-            this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
-            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
-            this.ucPriceListTitle.Name = "ucPriceListTitle";
-            this.ucPriceListTitle.Size = new System.Drawing.Size(966, 32);
-            this.ucPriceListTitle.TabIndex = 1;
-            this.ucPriceListTitle.Visible = false;
-            // 
-            // txtNameMenuList
-            // 
-            this.txtNameMenuList.BackColor = System.Drawing.Color.White;
-            this.txtNameMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNameMenuList.Location = new System.Drawing.Point(0, 0);
-            this.txtNameMenuList.Name = "txtNameMenuList";
-            this.txtNameMenuList.Size = new System.Drawing.Size(262, 35);
-            this.txtNameMenuList.TabIndex = 0;
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(945, 39);
-            this.ucInfoTop1.TabIndex = 0;
             // 
             // frmMenuSetting
             // 

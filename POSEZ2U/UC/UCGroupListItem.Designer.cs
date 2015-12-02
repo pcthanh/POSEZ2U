@@ -37,7 +37,7 @@
             this.lblGroupListItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupListItemName.Location = new System.Drawing.Point(0, 0);
             this.lblGroupListItemName.Name = "lblGroupListItemName";
-            this.lblGroupListItemName.Size = new System.Drawing.Size(262, 47);
+            this.lblGroupListItemName.Size = new System.Drawing.Size(245, 37);
             this.lblGroupListItemName.TabIndex = 0;
             this.lblGroupListItemName.Text = "label1";
             this.lblGroupListItemName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -50,7 +50,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblGroupListItemName);
             this.Name = "UCGroupListItem";
-            this.Size = new System.Drawing.Size(262, 47);
+            this.Size = new System.Drawing.Size(245, 37);
             this.ResumeLayout(false);
 
         }
