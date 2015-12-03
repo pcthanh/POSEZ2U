@@ -16,5 +16,10 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+
+        private void UCItemModifierOfMenu_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
     }
 }
