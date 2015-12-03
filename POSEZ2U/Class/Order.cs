@@ -30,6 +30,7 @@ namespace POSEZ2U.Class
            public int Quantity { get; set; }
            public double Price { get; set; }
            public double Suntaol { get; set; }
+           public int KeyItem { get; set; }
        }
        public void addItemToList(Item item)
        {
@@ -43,7 +44,7 @@ namespace POSEZ2U.Class
            
            if (ListItem.Count > 0)
            {
-
+               modifier.KeyItem = ListItem[keyItem - 1].ListModifier.Count + 1;
                ListItem[keyItem-1].ListModifier.Add(modifier);
                
            }

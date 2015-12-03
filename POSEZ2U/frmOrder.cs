@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
 using POSEZ2U.Class;
+using SystemLog;
 namespace POSEZ2U
 {
     public partial class frmOrder : Form
@@ -25,12 +26,14 @@ namespace POSEZ2U
         int keyItemTemp;
         int indexControl;
         int seat = 0;
+        int flagClick = 0;
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadMenuGroup();
             LoadMenuOfGroup();
-            this.AddButtonOpenItem();
             this.SelectGroupMenu();
+            this.lblTable.Text = OrderMain.TableId;
+            //flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
         }
         private void LoadMenuOfGroup()
         {
@@ -44,6 +47,7 @@ namespace POSEZ2U
                 ucMenuOrder.Click += ucMenuOrder_Click;
                 flowLayoutPanel1.Controls.Add(ucMenuOrder);
             }
+            this.AddButtonOpenItem();
         }
         private void AddButtonOpenItem()
         {
@@ -75,6 +79,26 @@ namespace POSEZ2U
             btnBack.Click += btnBack_Click;
             flowLayoutPanel1.Controls.Add(btnBack);
         }
+        private void AddButtonBackSubItem()
+        {
+            Button btnBackSubItem = new Button();
+            btnBackSubItem.Width = 137;
+            btnBackSubItem.Height = 68;
+            btnBackSubItem.Name = "btnOpenItem";
+            btnBackSubItem.Text = "BACK...";
+            btnBackSubItem.BackColor = Color.FromArgb(228, 228, 228);
+            btnBackSubItem.ForeColor = Color.FromArgb(0, 0, 0);
+            btnBackSubItem.FlatAppearance.BorderSize = 0;
+            btnBackSubItem.FlatStyle = FlatStyle.Flat;
+            btnBackSubItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnBackSubItem.Click += btnBackSubItem_Click;
+            flowLayoutPanel1.Controls.Add(btnBackSubItem);
+        }
+
+        void btnBackSubItem_Click(object sender, EventArgs e)
+        {
+            this.LoadItemOfGroup();
+        }
         private void AddButtonOpenItemItem()
         {
             Button btnOpenItemItem = new Button();
@@ -89,6 +113,79 @@ namespace POSEZ2U
             btnOpenItemItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnOpenItemItem.Click += btnOpenItemItem_Click;
             flowLayoutPanel1.Controls.Add(btnOpenItemItem);
+        }
+        private void AddButtonOpenItemSubItem()
+        {
+            Button btnOpenItemSubItem = new Button();
+            btnOpenItemSubItem.Width = 137;
+            btnOpenItemSubItem.Height = 68;
+            btnOpenItemSubItem.Name = "btnOpenItem";
+            btnOpenItemSubItem.Text = "Open Item";
+            btnOpenItemSubItem.BackColor = Color.FromArgb(0, 0, 153);
+            btnOpenItemSubItem.ForeColor = Color.FromArgb(255, 255, 255);
+            btnOpenItemSubItem.FlatAppearance.BorderSize = 0;
+            btnOpenItemSubItem.FlatStyle = FlatStyle.Flat;
+            btnOpenItemSubItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnOpenItemSubItem.Click += btnOpenItemSubItem_Click;
+            flowLayoutPanel1.Controls.Add(btnOpenItemSubItem);
+        }
+
+        void btnOpenItemSubItem_Click(object sender, EventArgs e)
+        {
+            frmOpenItem frm = new frmOpenItem();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Order.Item itemTemp = new Order.Item();
+                itemTemp = frm.items;
+                Order.Modifier modifierTemp = new Order.Modifier();
+                modifierTemp.ModifierName = itemTemp.ItemName;
+                modifierTemp.Price = itemTemp.Price;
+                OrderMain.addModifierToList(modifierTemp, keyItemTemp);
+                UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
+                this.addModifreToOrder(ucItemModifierOfMenu, modifierTemp);
+            }
+        }
+        private void AddButtonBackSubItemPage()
+        {
+            Button btnBackSubItemPage = new Button();
+            btnBackSubItemPage.Width = 137;
+            btnBackSubItemPage.Height = 68;
+            btnBackSubItemPage.Name = "btnOpenItem";
+            btnBackSubItemPage.Text = "BACK";
+            btnBackSubItemPage.BackColor = Color.FromArgb(228, 228, 228);
+            btnBackSubItemPage.ForeColor = Color.FromArgb(13, 13, 13);
+            btnBackSubItemPage.FlatAppearance.BorderSize = 0;
+            btnBackSubItemPage.FlatStyle = FlatStyle.Flat;
+            btnBackSubItemPage.TextAlign = ContentAlignment.TopLeft;
+            btnBackSubItemPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnBackSubItemPage.Click += btnBackSubItemPage_Click;
+            flowLayoutPanel1.Controls.Add(btnBackSubItemPage);
+        }
+
+        void btnBackSubItemPage_Click(object sender, EventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+        private void AddButtonNextSubItemPage()
+        {
+            Button btnNextSubItemPage = new Button();
+            btnNextSubItemPage.Width = 137;
+            btnNextSubItemPage.Height = 68;
+            btnNextSubItemPage.Name = "btnOpenItem";
+            btnNextSubItemPage.Text = "BACK";
+            btnNextSubItemPage.BackColor = Color.FromArgb(228, 228, 228);
+            btnNextSubItemPage.ForeColor = Color.FromArgb(13, 13, 13);
+            btnNextSubItemPage.FlatAppearance.BorderSize = 0;
+            btnNextSubItemPage.FlatStyle = FlatStyle.Flat;
+            btnNextSubItemPage.TextAlign = ContentAlignment.TopLeft;
+            btnNextSubItemPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnNextSubItemPage.Click += btnNextSubItemPage_Click;
+            flowLayoutPanel1.Controls.Add(btnNextSubItemPage);
+        }
+
+        void btnNextSubItemPage_Click(object sender, EventArgs e)
+        {
+           
         }
         private void AddButtonBackItemPage()
         {
@@ -135,18 +232,32 @@ namespace POSEZ2U
 
         void btnOpenItemItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Open Ite Item");
+            frmOpenItem frm = new frmOpenItem();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                OrderMain.addItemToList(frm.items);
+                addOrder(frm.items);
+                lblSubtotal.Text = OrderMain.SubTotal().ToString();
+            }
         }
 
         void btnBack_Click(object sender, EventArgs e)
         {
             this.flowLayoutPanel1.Controls.Clear();
-            this.LoadMenuOfGroup();
+            
+                this.LoadMenuOfGroup();
+            
         }
 
         void btn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Open Item");
+            frmOpenItem frm = new frmOpenItem();
+            if(frm.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+            {
+                OrderMain.addItemToList(frm.items);
+                addOrder(frm.items);
+                lblSubtotal.Text = OrderMain.SubTotal().ToString();
+            }
         }
         private void LoadMenuGroup()
         {
@@ -201,11 +312,11 @@ namespace POSEZ2U
             item.ItemName = ucMenuOfGroup.Tag.ToString();
             item.SubTotal = 4;
             OrderMain.addItemToList(item);
-            addOrderToFlp(item);
+            addOrder(item);
             lblSubtotal.Text = OrderMain.SubTotal().ToString();
 
         }
-        private void addOrderToFlp(Order.Item items)
+        private void addOrder(Order.Item items)
         {
             UCOrder ucOrder = new UCOrder();
             ucOrder.lblNameItem.Text = items.ItemName;
@@ -221,9 +332,11 @@ namespace POSEZ2U
             UCOrder ucOder = (UCOrder)sender;
             Order.Item item = (Order.Item)ucOder.Tag;
             indexControl = flpOrder.Controls.GetChildIndex(ucOder);
+
             if (item.ItemName == "Com Suon")
             {
                 flowLayoutPanel1.Controls.Clear();
+                this.AddButtonBackSubItem();
                 string[] str = { "Khong hanh", "It com", "Khong thit" };
                 keyItemTemp = item.KeyItem;
                 foreach (string Modififer in str)
@@ -234,8 +347,13 @@ namespace POSEZ2U
                     ucModifierOfMenu.Click += ucModifierOfMenu_Click;
                     flowLayoutPanel1.Controls.Add(ucModifierOfMenu);
                 }
+                this.AddButtonOpenItemSubItem();
+                this.AddButtonBackSubItemPage();
+                this.AddButtonNextSubItemPage();
                 //MessageBox.Show(item.ItemName);
             }
+
+            
         }
 
         void ucModifierOfMenu_Click(object sender, EventArgs e)
@@ -246,13 +364,23 @@ namespace POSEZ2U
             modifier.ModifierName = ucModifierOfMenu.Tag.ToString();
             OrderMain.addModifierToList(modifier,keyItemTemp);
             UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
-            ucItemModifierOfMenu.lblNameItenModifierMenu.Text = modifier.ModifierName;
-            flpOrder.Controls.Add(ucItemModifierOfMenu);
-            if(seat>0)
-                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp+1 );
-            else
-                flpOrder.Controls.SetChildIndex(ucItemModifierOfMenu, keyItemTemp);
+            ucItemModifierOfMenu.Tag = modifier;
+            ucItemModifierOfMenu.Click += ucItemModifierOfMenu_Click;
+            addModifreToOrder(ucItemModifierOfMenu,modifier);
 
+        }
+
+        void ucItemModifierOfMenu_Click(object sender, EventArgs e)
+        {
+            flagClick = 1;
+            UCItemModifierOfMenu ucItemModifierOfMenu = (UCItemModifierOfMenu)sender;
+            indexControl = flpOrder.Controls.GetChildIndex(ucItemModifierOfMenu);
+        }
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu,Order.Modifier modifier)
+        {
+            ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifierName;
+            flpOrder.Controls.Add(ucMdifireOfMenu);
+            flpOrder.Controls.SetChildIndex(ucMdifireOfMenu, indexControl + 1);
         }
 
         void AddControlToFlowLayoutPanel(FlowLayoutPanel flowlayoutpanel, Control ctrl)
@@ -266,7 +394,8 @@ namespace POSEZ2U
         void ucGroupMenuOrder_Click(object sender, EventArgs e)
         {
             UCGroupMenuOrder ucGroupMenuOrder = (UCGroupMenuOrder)sender;
-            MessageBox.Show(ucGroupMenuOrder.Tag.ToString());
+            this.flowLayoutPanel1.Controls.Clear();
+            LoadMenuOfGroup();
         }
 
         void ucMenuOrder_Click(object sender, EventArgs e)
@@ -274,9 +403,27 @@ namespace POSEZ2U
             //throw new NotImplementedException();
             UCMenuOrdercs ucGroup = (UCMenuOrdercs)sender;
             string tag = ucGroup.Tag.ToString();
-            if (tag == "Com") 
+
+            /////kiem tra item co openitem hay khong
+            if (tag == "Com")
             {
                 LoadItemOfGroup();
+            }
+                ///neu khong co openitem thi add vao order
+            else
+            {
+
+                /////////
+                Order.Item item = new Order.Item();
+                if (seat > 0)
+                    item.Seat = seat;
+                item.ItemName = ucGroup.Tag.ToString();
+                item.SubTotal = 4;
+                OrderMain.addItemToList(item);
+                addOrder(item);
+                lblSubtotal.Text = OrderMain.SubTotal().ToString();
+
+                
             }
 
 
@@ -296,10 +443,88 @@ namespace POSEZ2U
                 seat = frm.NumberSeat;
                 UCSeat ucSeat = new UCSeat();
                 ucSeat.lblSeat.Text = "Seat " + seat;
+                lblSeat.Text = seat.ToString();
                 flpOrder.Controls.Add(ucSeat);
                 
             }
-            //frm.ShowDialog();
+            
+        }
+
+        private void flpOrder_Scroll(object sender, ScrollEventArgs e)
+        {
+           // flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
+        }
+
+        private void btnVoid_Click(object sender, EventArgs e)
+        {
+            UCOrder ucOrder;
+            UCItemModifierOfMenu ucItemModifireOfMenu;
+            Order.Modifier modifier=null;
+            Order.Item items = null;
+            if (flagClick == 1)
+            {
+               
+                ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
+                modifier = (Order.Modifier)ucItemModifireOfMenu.Tag;
+            }
+            else
+            {
+                ucOrder = (UCOrder)flpOrder.Controls[indexControl];
+                items = (Order.Item)ucOrder.Tag;
+            }
+            if (items != null)
+            {
+                for (int i = 0; i < OrderMain.ListItem.Count; i++)
+                {
+                    if (items.KeyItem == OrderMain.ListItem[i].KeyItem)
+                    {
+                        if (OrderMain.ListItem[i].ListModifier.Count  >0)
+                        {
+                            for (int indexOfModifier = OrderMain.ListItem[i].ListModifier.Count; indexOfModifier >0; indexOfModifier--)
+                            {
+                                flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
+                            }
+                             OrderMain.ListItem[i].ListModifier.Clear();
+                        }
+                        
+                        OrderMain.ListItem.RemoveAt(i);
+                    }
+                    
+                }
+
+                flpOrder.Controls.RemoveAt(indexControl);
+                
+            }
+            if (modifier != null)
+            {
+                for (int i = 0; i < OrderMain.ListItem.Count; i++)
+                {
+                    for (int j = 0; j < OrderMain.ListItem[i].ListModifier.Count; j++)
+                    {
+                        if (modifier.KeyItem == OrderMain.ListItem[i].ListModifier[j].KeyItem)
+                        {
+                            OrderMain.ListItem[i].ListModifier.RemoveAt(j);
+                        }
+                    }
+                }
+                flpOrder.Controls.RemoveAt(indexControl);
+                flagClick = 0;
+            }
+        
+        }
+
+        private void btnVoidAll_Click(object sender, EventArgs e)
+        {
+            flpOrder.Controls.Clear();
+            OrderMain.ListItem.Clear();
+        }
+
+        private void btnSendOrder_Click(object sender, EventArgs e)
+        {
+            if (OrderMain.ListItem.Count == 0)
+            {
+                MessageBox.Show("NULL");
+            }
         }
     }
 }
