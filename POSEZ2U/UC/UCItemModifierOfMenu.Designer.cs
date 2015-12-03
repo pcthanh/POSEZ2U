@@ -62,6 +62,7 @@
             this.lblNameItenModifierMenu.TabIndex = 0;
             this.lblNameItenModifierMenu.Text = "label1";
             this.lblNameItenModifierMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblNameItenModifierMenu.Click += new System.EventHandler(this.UCItemModifierOfMenu_Click);
             // 
             // lblQtyItenModifierMenu
             // 
@@ -72,6 +73,7 @@
             this.lblQtyItenModifierMenu.Size = new System.Drawing.Size(49, 29);
             this.lblQtyItenModifierMenu.TabIndex = 0;
             this.lblQtyItenModifierMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblQtyItenModifierMenu.Click += new System.EventHandler(this.UCItemModifierOfMenu_Click);
             // 
             // lblPriceItenModifierMenu
             // 
@@ -82,6 +84,7 @@
             this.lblPriceItenModifierMenu.Size = new System.Drawing.Size(49, 29);
             this.lblPriceItenModifierMenu.TabIndex = 0;
             this.lblPriceItenModifierMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPriceItenModifierMenu.Click += new System.EventHandler(this.UCItemModifierOfMenu_Click);
             // 
             // UCItemModifierOfMenu
             // 
