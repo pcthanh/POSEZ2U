@@ -60,6 +60,7 @@ namespace POSEZ2U
             {
                 frmMain frm = new frmMain();
                 frm.ShowDialog();
+                this.Hide();
             }
                
         }

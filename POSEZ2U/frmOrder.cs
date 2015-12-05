@@ -29,7 +29,7 @@ namespace POSEZ2U
 
        
         POSPrinter posPrinter = new POSPrinter();
-        MoneyFortmat money = new MoneyFortmat(1);
+        MoneyFortmat money = new MoneyFortmat(MoneyFortmat.AU_TYPE);
         CatalogueModel CatalogueMain;
         int CategoryIDMain;
         private ICatalogueService _catalogeService;
@@ -638,6 +638,9 @@ namespace POSEZ2U
             {
                 posPrinter.printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
                 posPrinter.printDocument.Print();
+                frmFloor frm = new frmFloor();
+                frm.Show();
+                this.Hide();
             }
         }
         void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)

@@ -56,8 +56,8 @@ namespace POSEZ2U
             UCTable ucTable = (UCTable)sender;
             OrderMain.TableId = ucTable.lbTableNo.Text;
             frmOrder frm = new frmOrder(OrderMain);
-            
             frm.ShowDialog();
+            this.Hide();
         }
         
 

@@ -114,7 +114,9 @@ namespace POSEZ2U
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            frmMain frm = new frmMain();
+            frm.ShowDialog();
         }
         private void loadDataProductSetting()
         {
