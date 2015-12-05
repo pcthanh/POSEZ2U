@@ -9,19 +9,21 @@ namespace POSEZ2U.Class
    public class Order
     {
        public string TableId { get; set; }
-       
        public double Total { get; set; }
+       public double GST { get; set; }
+       public int Discount { get; set; }
        public List<Item> ListItem = new List<Item>();
-       
-       
+       public int Seat { get; set; }
        public class Item
        {
+           public int ItemId { get; set; }
            public int Seat { get; set; }
            public string ItemName { get; set; }
            public int Qunatity { get; set; }
            public double Price { get; set; }
            public double SubTotal { get; set; }
            public int KeyItem { get; set; }
+           public double GST { get; set; }
            public List<Modifier> ListModifier = new List<Modifier>();
        }
        public class Modifier
@@ -31,6 +33,7 @@ namespace POSEZ2U.Class
            public double Price { get; set; }
            public double Suntaol { get; set; }
            public int KeyItem { get; set; }
+           public int ModifireId { get; set; }
        }
        public void addItemToList(Item item)
        {
@@ -50,9 +53,9 @@ namespace POSEZ2U.Class
            }
            
        }
-       public void addSeat(string numberSeat)
+       public void addSeat(int numberSeat)
        {
-          
+           Seat=numberSeat; 
        }
        public Double SubTotal()
        {
@@ -60,7 +63,7 @@ namespace POSEZ2U.Class
            for (int i = 0; i <ListItem.Count; i++)
            {
                
-               total += ListItem[i].SubTotal;
+               total += ListItem[i].Price;
            }
            return total;
        }

@@ -819,6 +819,7 @@ namespace POSEZ2U
                 }
                 if (messageError == "")
                 {
+                    dataProduct.ProductNameDesc = productNameDesc;
                     dataProduct.ProductNameSort = productNameSort;
                     dataProduct.Color = productColor;
                     dataProduct.CurrentPrice = double.Parse(productPrice);
