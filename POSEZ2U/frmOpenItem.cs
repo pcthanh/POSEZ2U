@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using POSEZ2U.Class;
+
+using ServicePOS.Model;
 namespace POSEZ2U
 {
     public partial class frmOpenItem : Form
@@ -16,11 +17,12 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
-        public Order.Item items = new Order.Item();
+        
+        public OrderDetail items = new OrderDetail();
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            items.ItemName = txtOpenitemName.Text;
+            items.ProductName = txtOpenitemName.Text;
             items.Price =Convert.ToDouble(txtOpenItemPrice.Text);
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
         }
