@@ -302,7 +302,9 @@ namespace ServicePOS
                     ProductID = x.cate.ProductID,
                     CategoryID = x.cate.CategoryID,
                     ProductNameDesc = x.pro.ProductNameDesc,
+                    ProductNameSort = x.pro.ProductNameSort,
                     Status = x.pro.Status
+                   
                 });
 
             return data;

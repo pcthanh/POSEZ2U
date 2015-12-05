@@ -50,8 +50,9 @@ namespace ServicePOS
 
                 return 1;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                
                 return 0;
             }
 

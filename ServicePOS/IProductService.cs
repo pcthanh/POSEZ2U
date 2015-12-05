@@ -12,5 +12,6 @@ namespace ServicePOS
         IEnumerable<ProductionModel> GetProductsList();
         int Created(ProductionModel product);
         int Delete(ProductionModel product);
+        IEnumerable<ProductionModel> GetProdutcByCategory(int id);
     }
 }
