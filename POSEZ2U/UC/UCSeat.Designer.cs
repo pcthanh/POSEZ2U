@@ -33,7 +33,6 @@
             // 
             // lblSeat
             // 
-            this.lblSeat.BackColor = System.Drawing.Color.Black;
             this.lblSeat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblSeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeat.ForeColor = System.Drawing.Color.White;
@@ -43,14 +42,17 @@
             this.lblSeat.TabIndex = 0;
             this.lblSeat.Text = "label1";
             this.lblSeat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSeat.Click += new System.EventHandler(this.UCSeat_Click);
             // 
             // UCSeat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.lblSeat);
             this.Name = "UCSeat";
             this.Size = new System.Drawing.Size(287, 37);
+            
             this.ResumeLayout(false);
 
         }
@@ -58,5 +60,6 @@
         #endregion
 
         public System.Windows.Forms.Label lblSeat;
+
     }
 }

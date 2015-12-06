@@ -76,6 +76,7 @@
             this.lblQuanityItem.TabIndex = 0;
             this.lblQuanityItem.Text = "1";
             this.lblQuanityItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblQuanityItem.Click += new System.EventHandler(this.UCOrder_Click);
             // 
             // lblPriceItem
             // 
@@ -88,6 +89,7 @@
             this.lblPriceItem.TabIndex = 0;
             this.lblPriceItem.Text = "4.00";
             this.lblPriceItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPriceItem.Click += new System.EventHandler(this.UCOrder_Click);
             // 
             // UCOrder
             // 

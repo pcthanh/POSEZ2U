@@ -16,5 +16,10 @@ namespace POSEZ2U.UC
         {
             InitializeComponent();
         }
+
+        private void UCSeat_Click(object sender, EventArgs e)
+        {
+            this.OnClick(e);
+        }
     }
 }
