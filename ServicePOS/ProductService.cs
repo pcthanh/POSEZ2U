@@ -130,6 +130,7 @@ namespace ServicePOS
                     data.CreateBy = product_price.CreateBy;
                     data.CreateDate = product_price.CreateDate;
                     data.Note = product_price.Note;
+                    data.Portions = "Regular";
                     _context.Entry(data).State = EntityState.Modified;
                     _context.SaveChanges();
                     return 1;
@@ -146,6 +147,7 @@ namespace ServicePOS
                     new_data.CreateBy = product_price.CreateBy;
                     new_data.CreateDate = product_price.CreateDate;
                     new_data.Note = product_price.Note;
+                    new_data.Portions = "Regular";
                     _context.Entry(new_data).State = EntityState.Added;
                     _context.SaveChanges();
                     return 1;

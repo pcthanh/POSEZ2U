@@ -43,8 +43,15 @@ namespace POSEZ2U
             set { _modifireService = value; }
         }
         #endregion
-        
-       
+
+        #region
+        private IProductPriceService _productPriceService;
+        private IProductPriceService ProductPriceService
+        {
+            get { return _productPriceService ?? (_productPriceService = new ProductPriceService()); }
+            set { _productPriceService = value; }
+        }
+        #endregion
 
         public frmMenuSetting()
         {
@@ -298,7 +305,8 @@ namespace POSEZ2U
 
         private void addPriceList(int i)
         {
-            string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
+            btnAdd.Visible = false;
+            var productprice = ProductPriceService.GetListProductPrice().ToList();
             if (i == 5)
             {
                 this.ResizeTopriceList();
@@ -308,14 +316,14 @@ namespace POSEZ2U
                 ucPriceListTitle.BackColor = Color.FromArgb(0, 102, 204);
                 ucPriceListTitle.ForeColor = Color.FromArgb(255, 255, 255);
                 ucPriceListTitle.Dock = DockStyle.Fill;
-                foreach (string strPriceList in str)
+                foreach (var strPriceList in productprice)
                 {
                     UCPriceList ucPriceList = new UCPriceList();
-                    ucPriceList.lblPriceNameProduct.Text = strPriceList;
-                    ucPriceList.lblPriceSizeProduct.Text = "Regular";
-                    ucPriceList.lblPriceProduct.Text= "10.00";
+                    ucPriceList.lblPriceNameProduct.Text = strPriceList.ProductNameDesc;
+                    ucPriceList.lblPriceSizeProduct.Text = strPriceList.Portions;
+                    ucPriceList.lblPriceProduct.Text= Convert.ToString(strPriceList.CurrentPrice);
                     ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
-                    //ucPriceList.Dock = DockStyle.Fill;
+                    ucPriceList.Tag = strPriceList;
                     ucPriceList.Click += ucPriceList_Click;
                     flpMenuList.Controls.Add(ucPriceList);
                 }
@@ -327,7 +335,7 @@ namespace POSEZ2U
         void ucPriceList_Click(object sender, EventArgs e)
         {
             UCPriceList ucPriceList = (UCPriceList)sender;
-            int tag = Convert.ToInt32(ucPriceList.Tag);
+            ProductPriceModel tag = (ProductPriceModel)(ucPriceList.Tag);
             foreach (Control ctr in flpMenuList.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 153, 51))
@@ -338,15 +346,11 @@ namespace POSEZ2U
             }
             ucPriceList.BackColor = Color.FromArgb(0, 153, 51);
             ucPriceList.ForeColor = Color.FromArgb(255, 255, 255);
+            pnDetail.Controls.Clear();
+            addButtonPriceList(tag);
         }
         private void addButtonPriceList()
         {
-            
-
-
-
-            
-            ////////////////////////
             int i = 1;
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
@@ -363,6 +367,33 @@ namespace POSEZ2U
                 btnGoToProduct.Dock = DockStyle.Top;
                 btnGoToProduct.Text = str;
                 btnGoToProduct.Tag = str;
+                btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
+                btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
+                btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btnGoToProduct.Click += btnGoToProduct_Click;
+                i++;
+                flpButtonPriceList.Controls.Add(btnGoToProduct);
+            }
+        }
+
+        private void addButtonPriceList(ProductPriceModel productpricedata)
+        {
+            int i = 1;
+            FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
+            flpButtonPriceList.Dock = DockStyle.Fill;
+            flpButtonPriceList.BackColor = Color.FromArgb(215, 214, 216);
+            pnDetail.Controls.Add(flpButtonPriceList);
+            string[] strlst = { "Search", "Edit", "Go To Product" };
+            foreach (string str in strlst)
+            {
+                Button btnGoToProduct = new Button();
+                btnGoToProduct.Width = 115;
+                btnGoToProduct.Height = 67;
+                btnGoToProduct.FlatStyle = FlatStyle.Flat;
+                btnGoToProduct.FlatAppearance.BorderSize = 0;
+                btnGoToProduct.Dock = DockStyle.Top;
+                btnGoToProduct.Text = str;
+                btnGoToProduct.Tag =  productpricedata;
                 btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
                 btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
                 btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -820,6 +851,7 @@ namespace POSEZ2U
                 if (messageError == "")
                 {
                     dataProduct.ProductNameSort = productNameSort;
+                    dataProduct.ProductNameDesc = productNameDesc;
                     dataProduct.Color = productColor;
                     dataProduct.CurrentPrice = double.Parse(productPrice);
                     var result = ProductService.Created(dataProduct);
