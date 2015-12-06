@@ -33,13 +33,5 @@ namespace POSEZ2U
             frmUserSetting frm = new frmUserSetting();
             frm.ShowDialog();
         }
-
-        private void btnUserSetting_Click(object sender, EventArgs e)
-        {
-            frmUserSetting frm = new frmUserSetting();
-            frm.ShowDialog();
-        }
-
-        
     }
 }

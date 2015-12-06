@@ -1,4 +1,3 @@
-
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +26,7 @@ namespace POSEZ2U
         }
         #endregion
 
-         #region Variables & Constructors Product
+        #region Variables & Constructors Product
         private IProductService _productService;
         private IProductService ProductService
         {
@@ -44,14 +43,7 @@ namespace POSEZ2U
         }
         #endregion
 
-        #region
-        private IProductPriceService _productPriceService;
-        private IProductPriceService ProductPriceService
-        {
-            get { return _productPriceService ?? (_productPriceService = new ProductPriceService()); }
-            set { _productPriceService = value; }
-        }
-        #endregion
+
 
         public frmMenuSetting()
         {
@@ -64,14 +56,14 @@ namespace POSEZ2U
         {
             pn2.MaximumSize = new Size(NewWidthPn2, pn2.Height);
             pn2.Size = new Size(NewWidthPn2, pn2.Height);
-           
+
         }
         private void ResizeToOthder()
         {
             this.ucPriceListTitle.Visible = false;
             pn2.MaximumSize = new Size(OldWidthPn2, pn2.Height);
             pn2.Size = new Size(OldWidthPn2, pn2.Height);
-            
+
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -95,7 +87,7 @@ namespace POSEZ2U
                     ucGroupItem.btnRemove.Hide();
                     pnDetail.Controls.Add(ucGroupItem);
                     break;
-                     case 3 :
+                case 3:
                     UCItemList ucItemList = new UCItemList();
                     ucItemList.Dock = DockStyle.Fill;
                     ucItemList.btnSave.Click += ucItemList_btnSave_Click;
@@ -120,26 +112,18 @@ namespace POSEZ2U
         }
 
         private void btnBack_Click(object sender, EventArgs e)
-<<<<<<< HEAD
         {
-            this.Close();
-            frmMain frm = new frmMain();
-=======
-        {
-            this.Close();
-            frmMain frm = new frmMain();
->>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
-            frm.ShowDialog();
+            Application.Exit();
         }
         private void loadDataProductSetting()
         {
             flpProdutcSetting.Controls.Clear();
             int i = 1;
-            string [] lstProduct= {"Menu List","Group List","Item List","Modifier List","Price List"};
+            string[] lstProduct = { "Menu List", "Group List", "Item List", "Modifier List", "Price List" };
 
             foreach (string str in lstProduct)
             {
-               
+
                 UCProductSetting ucProduct = new UCProductSetting();
                 ucProduct.lblNameProductSetting.Text = str;
                 ucProduct.Tag = i;
@@ -151,20 +135,20 @@ namespace POSEZ2U
 
         void ucProduct_Click(object sender, EventArgs e)
         {
-            
+
             UCProductSetting ucProduct = (UCProductSetting)sender;
             int tag = Convert.ToInt32(ucProduct.Tag);
             foreach (Control ctr in flpProdutcSetting.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 102, 204))
                 {
-                    ctr.BackColor = Color.FromArgb(255,255,255);
+                    ctr.BackColor = Color.FromArgb(255, 255, 255);
                     ctr.ForeColor = Color.FromArgb(51, 51, 51);
                 }
             }
             ucProduct.BackColor = Color.FromArgb(0, 102, 204);
             ucProduct.ForeColor = Color.FromArgb(255, 255, 255);
-          
+
             pnDetail.Controls.Clear();
             switch (tag)
             {
@@ -184,10 +168,10 @@ namespace POSEZ2U
                     addPriceList(tag);
                     break;
             }
-           
-            
+
+
         }
-        private void addMenuList(string lblName,int i)
+        private void addMenuList(string lblName, int i)
         {
             btnAdd.Tag = i;
             ResizeToOthder();
@@ -222,7 +206,7 @@ namespace POSEZ2U
         }
         private void addModifier(string lblName, int i)
         {
-           btnAdd.Tag = i;
+            btnAdd.Tag = i;
             ResizeToOthder();
             int index = 1;
             //string[] str = { "No Sugar", "More Sugar", "More Ice", "Less Ice", "More Milk", "Them Bun", "Them Thit" };
@@ -249,7 +233,7 @@ namespace POSEZ2U
                 flpMenuList.Controls.Clear();
                 pnDetail.Controls.Clear();
             }
-           
+
         }
         private void addGroupList(string lblName, int i)
         {
@@ -313,37 +297,36 @@ namespace POSEZ2U
 
         private void addPriceList(int i)
         {
-            btnAdd.Visible = false;
-            var productprice = ProductPriceService.GetListProductPrice().ToList();
+            string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
             if (i == 5)
             {
                 this.ResizeTopriceList();
                 flpMenuList.Controls.Clear();
-               // txtNameMenuList.Visible = false;
+                // txtNameMenuList.Visible = false;
                 ucPriceListTitle.Visible = true;
                 ucPriceListTitle.BackColor = Color.FromArgb(0, 102, 204);
                 ucPriceListTitle.ForeColor = Color.FromArgb(255, 255, 255);
                 ucPriceListTitle.Dock = DockStyle.Fill;
-                foreach (var strPriceList in productprice)
+                foreach (string strPriceList in str)
                 {
                     UCPriceList ucPriceList = new UCPriceList();
-                    ucPriceList.lblPriceNameProduct.Text = strPriceList.ProductNameDesc;
-                    ucPriceList.lblPriceSizeProduct.Text = strPriceList.Portions;
-                    ucPriceList.lblPriceProduct.Text= Convert.ToString(strPriceList.CurrentPrice);
+                    ucPriceList.lblPriceNameProduct.Text = strPriceList;
+                    ucPriceList.lblPriceSizeProduct.Text = "Regular";
+                    ucPriceList.lblPriceProduct.Text = "10.00";
                     ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
-                    ucPriceList.Tag = strPriceList;
+                    //ucPriceList.Dock = DockStyle.Fill;
                     ucPriceList.Click += ucPriceList_Click;
                     flpMenuList.Controls.Add(ucPriceList);
                 }
                 addButtonPriceList();
             }
-            
+
         }
 
         void ucPriceList_Click(object sender, EventArgs e)
         {
             UCPriceList ucPriceList = (UCPriceList)sender;
-            ProductPriceModel tag = (ProductPriceModel)(ucPriceList.Tag);
+            int tag = Convert.ToInt32(ucPriceList.Tag);
             foreach (Control ctr in flpMenuList.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 153, 51))
@@ -354,17 +337,21 @@ namespace POSEZ2U
             }
             ucPriceList.BackColor = Color.FromArgb(0, 153, 51);
             ucPriceList.ForeColor = Color.FromArgb(255, 255, 255);
-            pnDetail.Controls.Clear();
-            addButtonPriceList(tag);
         }
         private void addButtonPriceList()
         {
+
+
+
+
+
+            ////////////////////////
             int i = 1;
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
             flpButtonPriceList.BackColor = Color.FromArgb(215, 214, 216);
             pnDetail.Controls.Add(flpButtonPriceList);
-            string[] strlst = { "Search","Edit","Go To Product" };
+            string[] strlst = { "Search", "Edit", "Go To Product" };
             foreach (string str in strlst)
             {
                 Button btnGoToProduct = new Button();
@@ -382,33 +369,6 @@ namespace POSEZ2U
                 i++;
                 flpButtonPriceList.Controls.Add(btnGoToProduct);
             }
-        }
-
-        private void addButtonPriceList(ProductPriceModel productpricedata)
-        {
-            int i = 1;
-            FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
-            flpButtonPriceList.Dock = DockStyle.Fill;
-            flpButtonPriceList.BackColor = Color.FromArgb(215, 214, 216);
-            pnDetail.Controls.Add(flpButtonPriceList);
-            string[] strlst = { "Search", "Edit", "Go To Product" };
-            foreach (string str in strlst)
-            {
-                Button btnGoToProduct = new Button();
-                btnGoToProduct.Width = 115;
-                btnGoToProduct.Height = 67;
-                btnGoToProduct.FlatStyle = FlatStyle.Flat;
-                btnGoToProduct.FlatAppearance.BorderSize = 0;
-                btnGoToProduct.Dock = DockStyle.Top;
-                btnGoToProduct.Text = str;
-                btnGoToProduct.Tag =  productpricedata;
-                btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
-                btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
-                btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                btnGoToProduct.Click += btnGoToProduct_Click;
-                i++;
-                flpButtonPriceList.Controls.Add(btnGoToProduct);
-            }
 
         }
 
@@ -418,10 +378,10 @@ namespace POSEZ2U
             MessageBox.Show(btn.Tag.ToString());
         }
 
-        
+
         void ucItem_Click(object sender, EventArgs e)
         {
-           UCItem ucItem = (UCItem)sender;
+            UCItem ucItem = (UCItem)sender;
             ProductionModel dataProduct = (ProductionModel)ucItem.Tag;
             flag = 3;
             foreach (Control ctr in flpMenuList.Controls)
@@ -455,7 +415,7 @@ namespace POSEZ2U
         }
         void ucModifierItem_Click(object sender, EventArgs e)
         {
-              UCModifierItem ucModifierItem = (UCModifierItem)sender;
+            UCModifierItem ucModifierItem = (UCModifierItem)sender;
             ModifireModel dataModifire = (ModifireModel)(ucModifierItem.Tag);
             flag = 4;
             foreach (Control ctr in flpMenuList.Controls)
@@ -540,7 +500,7 @@ namespace POSEZ2U
                 if (result == 1)
                 {
                     addMenuList("Menu List", 1);
-                   
+
                     MessageBox.Show("Save data menu successful", "Messenger");
                 }
                 else
@@ -570,7 +530,7 @@ namespace POSEZ2U
             CatalogueModel tag = (CatalogueModel)(btnRemove.Tag);
             if (tag.CatalogueID > 0)
             {
-                var result = CatalogeService.RemoveCatalogue(tag.CatalogueID,0);
+                var result = CatalogeService.RemoveCatalogue(tag.CatalogueID, 0);
                 if (result == 1)
                 {
                     addMenuList("Menu List", 1);
@@ -583,11 +543,11 @@ namespace POSEZ2U
                 }
             }
 
-         
+
         }
 
-        
-         private void addModifierItemDetail(ModifireModel dataModifire)
+
+        private void addModifierItemDetail(ModifireModel dataModifire)
         {
             pnDetail.Controls.Clear();
             UCModifier ucModifier = new UCModifier();
@@ -610,7 +570,7 @@ namespace POSEZ2U
                 pnDetail.Controls.Clear();
             }
         }
-          private void ucModifier_btnRemove_Click(object sender, EventArgs e)
+        private void ucModifier_btnRemove_Click(object sender, EventArgs e)
         {
             Button modifier = (Button)sender;
             ModifireModel dataModifier = (ModifireModel)(modifier.Tag);
@@ -659,15 +619,15 @@ namespace POSEZ2U
                 if (result == 1)
                 {
                     addModifier("Modifier List", 4);
-                pnDetail.Controls.Clear();
+                    pnDetail.Controls.Clear();
                     MessageBox.Show("Save Modifire Successful", "Messenger");
-            }
+                }
                 else
                 {
                     if (result == -1)
                     {
                         MessageBox.Show("Modifire name already exist. Please change modifire name.", "Messenger");
-        }
+                    }
                     else
                     {
                         MessageBox.Show("Save Modifire Fail", "Messenger");
@@ -677,7 +637,7 @@ namespace POSEZ2U
             }
             else
             {
-                MessageBox.Show(message_error,"Messenger");
+                MessageBox.Show(message_error, "Messenger");
             }
         }
 
@@ -781,10 +741,10 @@ namespace POSEZ2U
                 }
             }
 
-           
+
 
         }
-          private void addItemListDetail(ProductionModel productData)
+        private void addItemListDetail(ProductionModel productData)
         {
             pnDetail.Controls.Clear();
             UCItemList ucItemList = new UCItemList();
@@ -813,90 +773,85 @@ namespace POSEZ2U
                 pnDetail.Controls.Clear();
             }
         }
-            private void ucItemList_btnRemove_Click(object sender, EventArgs e)
+        private void ucItemList_btnRemove_Click(object sender, EventArgs e)
         {
             Button product = (Button)sender;
             ProductionModel dataProduct = (ProductionModel)(product.Tag);
             var result = ProductService.Delete(dataProduct);
             if (result == 1)
-        {
+            {
                 addItemList("Item List", 3);
                 pnDetail.Controls.Clear();
                 MessageBox.Show("Delete product success", "Messenger");
             }
         }
-            private void ucItemList_btnSave_Click(object sender, EventArgs e)
+        private void ucItemList_btnSave_Click(object sender, EventArgs e)
+        {
+            Button product = (Button)sender;
+            ProductionModel dataProduct = (ProductionModel)(product.Tag);
+            string messageError = "";
+            var ucItemList = (UCItemList)pnDetail.Controls[0];
+            var productNameDesc = ucItemList.txtNameDesc.Text;
+            var productNameSort = ucItemList.txtNameSort.Text;
+            var productPrice = ucItemList.txtPrice.Text;
+            var productColor = ucItemList.cbProductColor.Text;
+
+            if (dataProduct == null)
             {
-                Button product = (Button)sender;
-                ProductionModel dataProduct = (ProductionModel)(product.Tag);
-                string messageError = "";
-                var ucItemList = (UCItemList)pnDetail.Controls[0];
-                var productNameDesc = ucItemList.txtNameDesc.Text;
-                var productNameSort = ucItemList.txtNameSort.Text;
-                var productPrice = ucItemList.txtPrice.Text;
-                var productColor = ucItemList.cbProductColor.Text;
-
-                if (dataProduct == null)
+                dataProduct = new ProductionModel();
+            }
+            if (productNameDesc == "")
+            {
+                messageError += "Product name desc isn't empty.";
+            }
+            if (productNameSort == "")
+            {
+                messageError += "Product name sort isn't empty.";
+            }
+            if (productColor == "")
+            {
+                messageError += "Product Color isn't empty";
+            }
+            if (productPrice == "")
+            {
+                messageError += "Product price isn't empty";
+            }
+            if (messageError == "")
+            {
+                dataProduct.ProductNameDesc = productNameDesc;
+                dataProduct.ProductNameSort = productNameSort;
+                dataProduct.Color = productColor;
+                dataProduct.CurrentPrice = double.Parse(productPrice);
+                var result = ProductService.Created(dataProduct);
+                if (result == 1)
                 {
-                    dataProduct = new ProductionModel();
-                }
-                if (productNameDesc == "")
-                {
-                    messageError += "Product name desc isn't empty.";
-                }
-                if (productNameSort == "")
-                {
-                    messageError += "Product name sort isn't empty.";
-                }
-                if (productColor == "")
-                {
-                    messageError += "Product Color isn't empty";
-                }
-                if (productPrice == "")
-                {
-                    messageError += "Product price isn't empty";
-                }
-                if (messageError == "")
-<<<<<<< HEAD
-                {
-=======
-                {
->>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
-                    dataProduct.ProductNameDesc = productNameDesc;
-                    dataProduct.ProductNameSort = productNameSort;
-                    dataProduct.ProductNameDesc = productNameDesc;
-                    dataProduct.Color = productColor;
-                    dataProduct.CurrentPrice = double.Parse(productPrice);
-                    var result = ProductService.Created(dataProduct);
-                    if (result == 1)
-                    {
-                        addItemList("Item List", 3);
-                        pnDetail.Controls.Clear();
-                        MessageBox.Show("Save Product Successful", "Messenger");
-                    }
-                    else
-                    {
-                        if (result == -1)
-                        {
-                            MessageBox.Show("Product name already exist. Please change product name.", "Messenger");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Save Product Fail", "Messenger");
-                        }
-
-                    }
+                    addItemList("Item List", 3);
+                    pnDetail.Controls.Clear();
+                    MessageBox.Show("Save Product Successful", "Messenger");
                 }
                 else
                 {
-                    MessageBox.Show(messageError, "Messenger");
+                    if (result == -1)
+                    {
+                        MessageBox.Show("Product name already exist. Please change product name.", "Messenger");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Save Product Fail", "Messenger");
+                    }
+
                 }
             }
+            else
+            {
+                MessageBox.Show(messageError, "Messenger");
+            }
+        }
         private void frmMenuSetting_Load(object sender, EventArgs e)
         {
             loadDataProductSetting();
         }
 
-        
+
     }
 }

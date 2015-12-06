@@ -16,9 +16,8 @@ namespace POSEZ2U
         {
             InitializeComponent();
             ucKeypadLogin.txtResult = textBox1;
-<<<<<<< HEAD
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -29,7 +28,7 @@ namespace POSEZ2U
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Text = i.ToString();
                 btn.Name = i.ToString();
-                btn.Width=155;
+                btn.Width = 155;
                 btn.Height = 65;
                 btn.Tag = i;
                 btn.BackColor = Color.FromArgb(153, 153, 153);
@@ -57,64 +56,15 @@ namespace POSEZ2U
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if(textBox1.Text=="123456")
+            if (textBox1.Text == "123456")
             {
                 frmMain frm = new frmMain();
                 frm.ShowDialog();
                 this.Hide();
             }
-               
-=======
-        }
-        
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            flowLayoutPanel1.Controls.Clear();
-            for (int i = 1; i <= 8; i++)
-            {
-                Button btn = new Button();
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderSize = 0;
-                btn.Text = i.ToString();
-                btn.Name = i.ToString();
-                btn.Width=155;
-                btn.Height = 65;
-                btn.Tag = i;
-                btn.BackColor = Color.FromArgb(153, 153, 153);
-                btn.ForeColor = Color.White;
-                if (i == 8)
-                {
-                    btn.Text = ">";
-                }
-                btn.Click += btn_Click;
-                flowLayoutPanel1.Controls.Add(btn);
-            }
+
         }
 
-        void btn_Click(object sender, EventArgs e)
-        {
-            Button btn = (Button)sender;
-            MessageBox.Show(btn.Tag.ToString());
-        }
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-            frmMain frm = new frmMain();
-            frm.ShowDialog();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if(textBox1.Text=="123456")
-            {
-                frmMain frm = new frmMain();
-                frm.ShowDialog();
-                this.Hide();
-            }
-               
->>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
-        }
-
-        
     }
 }
