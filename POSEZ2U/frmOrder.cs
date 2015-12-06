@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
-using POSEZ2U.Class;
+
 using SystemLog;
 using ServicePOS;
 using ModelPOS;
 using ServicePOS.Model;
 using Printer;
+
 namespace POSEZ2U
 {
     public partial class frmOrder : Form
@@ -28,7 +29,7 @@ namespace POSEZ2U
 
 
         POSPrinter posPrinter = new POSPrinter();
-        MoneyFortmat money = new MoneyFortmat(1);
+        POSEZ2U.Class.MoneyFortmat money = new POSEZ2U.Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
         CatalogueModel CatalogueMain;
         int CategoryIDMain;
         private ICatalogueService _catalogeService;
@@ -53,8 +54,8 @@ namespace POSEZ2U
             set { _modifireService = value; }
         }
 
-        List<Order.Item> Listitem = new List<Order.Item>();
-        List<Order.Modifier> Listmodifier = new List<Order.Modifier>();
+        List<OrderDetail> ListOrderDetail = new List<OrderDetail>();
+        List<OrderDetailModifire> ListOrderModifire = new List<OrderDetailModifire>();
         int keyItemTemp;
         int indexControl;
         int seat = 0;
@@ -64,7 +65,7 @@ namespace POSEZ2U
             LoadMenuGroup();
             //LoadMenuOfGroup();
             this.SelectGroupMenu();
-            this.lblTable.Text = OrderMain.TableId;
+            this.lblTable.Text = OrderMain.FloorID.ToString();
         }
         private void LoadMenuOfGroup()
         {
@@ -174,10 +175,12 @@ namespace POSEZ2U
             frmOpenItem frm = new frmOpenItem();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Order.Item itemTemp = new Order.Item();
+                //Order.Item itemTemp = new Order.Item();
+                OrderDetail itemTemp = new OrderDetail();
                 itemTemp = frm.items;
-                Order.Modifier modifierTemp = new Order.Modifier();
-                modifierTemp.ModifierName = itemTemp.ItemName;
+                //Order.Modifier modifierTemp = new Order.Modifier();
+                OrderDetailModifire modifierTemp = new OrderDetailModifire();
+                modifierTemp.ModifireName = itemTemp.ProductName;
                 modifierTemp.Price = itemTemp.Price;
                 OrderMain.addModifierToList(modifierTemp, keyItemTemp);
                 UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
@@ -338,14 +341,14 @@ namespace POSEZ2U
             try
             {
                 UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
-                Order.Item item = new Order.Item();
+                OrderDetail item = new OrderDetail();
                 if (seat > 0)
-                    item.Seat = seat;
+                    item.Seat = 0;
                 ProductionModel itemProduct = (ProductionModel)ucMenuOfGroup.Tag;
-                item.ItemName = itemProduct.ProductNameSort;
+                item.ProductName = itemProduct.ProductNameSort;
                 item.Price = Convert.ToDouble(itemProduct.CurrentPrice);
-                item.ItemId = itemProduct.ProductID;
-                item.Qunatity = 1;
+                item.ProductID = itemProduct.ProductID;
+                item.Qty = 1;
                 OrderMain.addItemToList(item);
                 addOrder(item);
                 lblSubtotal.Text = money.Format2(OrderMain.SubTotal().ToString());
@@ -356,16 +359,16 @@ namespace POSEZ2U
             }
 
         }
-        private void addOrder(Order.Item items)
+        private void addOrder(OrderDetail items)
         {
             try
             {
                 UCOrder ucOrder = new UCOrder();
-                ucOrder.lblNameItem.Text = items.ItemName;
+                ucOrder.lblNameItem.Text = items.ProductName;
                 ucOrder.Tag = items;
-                ucOrder.lblPriceItem.Text = money.Format2(items.Price);
+                ucOrder.lblPriceItem.Text = money.Format2(items.Price.ToString());
                 ucOrder.Click += ucOrder_Click;
-                LogPOS.WriteLog("Item::::::" + items.ItemName + ":::::" + items.Price);
+                LogPOS.WriteLog("Item::::::" + items.ProductName + ":::::" + items.Price);
                 flpOrder.Controls.Add(ucOrder);
             }
             catch (Exception ex)
@@ -379,9 +382,9 @@ namespace POSEZ2U
             try
             {
                 UCOrder ucOder = (UCOrder)sender;
-                Order.Item item = (Order.Item)ucOder.Tag;
+                OrderDetail item = (OrderDetail)ucOder.Tag;
                 indexControl = flpOrder.Controls.GetChildIndex(ucOder);
-                var listModifire = ModifireService.GetModifireByProduct(item.ItemId);
+                var listModifire = ModifireService.GetModifireByProduct(item.ProductID);
                 if (listModifire.Count() > 0)
                 {
                     flowLayoutPanel1.Controls.Clear();
@@ -419,11 +422,11 @@ namespace POSEZ2U
             try
             {
                 UCModifierOfMenu ucModifierOfMenu = (UCModifierOfMenu)sender;
-                Order.Modifier modifier = new Order.Modifier();
+                OrderDetailModifire modifier = new OrderDetailModifire();
                 ModifireModel itemsModifre = (ModifireModel)ucModifierOfMenu.Tag;
-                modifier.ModifierName = itemsModifre.ModifireName;
+                modifier.ModifireName = itemsModifre.ModifireName;
                 modifier.Price = Convert.ToDouble(itemsModifre.CurrentPrice);
-                modifier.ModifireId = itemsModifre.ModifireID;
+                modifier.ModifireID = itemsModifre.ModifireID;
                 OrderMain.addModifierToList(modifier, keyItemTemp);
                 UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
                 ucItemModifierOfMenu.Tag = modifier;
@@ -443,10 +446,10 @@ namespace POSEZ2U
             UCItemModifierOfMenu ucItemModifierOfMenu = (UCItemModifierOfMenu)sender;
             indexControl = flpOrder.Controls.GetChildIndex(ucItemModifierOfMenu);
         }
-        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, Order.Modifier modifier)
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifire modifier)
         {
-            ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifierName;
-            ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price);
+            ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
+            ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
             flpOrder.Controls.Add(ucMdifireOfMenu);
             flpOrder.Controls.SetChildIndex(ucMdifireOfMenu, indexControl + 1);
         }
@@ -570,35 +573,35 @@ namespace POSEZ2U
         {
             UCOrder ucOrder;
             UCItemModifierOfMenu ucItemModifireOfMenu;
-            Order.Modifier modifier = null;
-            Order.Item items = null;
+            OrderDetailModifire modifier = null;
+            OrderDetail items = null;
             if (flagClick == 1)
             {
 
                 ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
-                modifier = (Order.Modifier)ucItemModifireOfMenu.Tag;
+                modifier = (OrderDetailModifire)ucItemModifireOfMenu.Tag;
             }
             else
             {
                 ucOrder = (UCOrder)flpOrder.Controls[indexControl];
-                items = (Order.Item)ucOrder.Tag;
+                items = (OrderDetail)ucOrder.Tag;
             }
             if (items != null)
             {
-                for (int i = 0; i < OrderMain.ListItem.Count; i++)
+                for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                 {
-                    if (items.KeyItem == OrderMain.ListItem[i].KeyItem)
+                    if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
                     {
-                        if (OrderMain.ListItem[i].ListModifier.Count > 0)
+                        if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
                         {
-                            for (int indexOfModifier = OrderMain.ListItem[i].ListModifier.Count; indexOfModifier > 0; indexOfModifier--)
+                            for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
                             {
                                 flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
                             }
-                            OrderMain.ListItem[i].ListModifier.Clear();
+                            OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
                         }
 
-                        OrderMain.ListItem.RemoveAt(i);
+                        OrderMain.ListOrderDetail.RemoveAt(i);
                     }
 
                 }
@@ -608,13 +611,13 @@ namespace POSEZ2U
             }
             if (modifier != null)
             {
-                for (int i = 0; i < OrderMain.ListItem.Count; i++)
+                for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                 {
-                    for (int j = 0; j < OrderMain.ListItem[i].ListModifier.Count; j++)
+                    for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
                     {
-                        if (modifier.KeyItem == OrderMain.ListItem[i].ListModifier[j].KeyItem)
+                        if (modifier.KeyItem == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyItem)
                         {
-                            OrderMain.ListItem[i].ListModifier.RemoveAt(j);
+                            OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
                         }
                     }
                 }
@@ -628,15 +631,18 @@ namespace POSEZ2U
         private void btnVoidAll_Click(object sender, EventArgs e)
         {
             flpOrder.Controls.Clear();
-            OrderMain.ListItem.Clear();
+            OrderMain.ListOrderDetail.Clear();
         }
 
         private void btnSendOrder_Click(object sender, EventArgs e)
         {
-            if (OrderMain.ListItem.Count >= 0)
+            if (OrderMain.ListOrderDetail.Count >= 0)
             {
                 posPrinter.printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
                 posPrinter.printDocument.Print();
+                frmFloor frm = new frmFloor(OrderMain);
+                frm.ShowDialog();
+                this.Hide();
             }
         }
         void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -649,24 +655,24 @@ namespace POSEZ2U
         private float PrintOrder(System.Drawing.Printing.PrintPageEventArgs e, float l_y)
         {
             l_y = posPrinter.DrawString("Date :" + DateTime.Now.ToShortDateString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
-            l_y = posPrinter.DrawString("Table:" + OrderMain.TableId, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+            l_y = posPrinter.DrawString("Table:" + OrderMain.FloorID, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
             l_y = posPrinter.DrawString("No # Seat:" + OrderMain.Seat, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
 
             l_y += posPrinter.GetHeightPrinterLine() / 10;
 
-            for (int i = 0; i < OrderMain.ListItem.Count; i++)
+            for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
             {
                 float yStart = l_y;
-                posPrinter.DrawString(OrderMain.ListItem[i].ItemName, e, new Font("Arial", 10), l_y, 1);
-                l_y = posPrinter.DrawString(OrderMain.ListItem[i].Qunatity.ToString(), e, new Font("Arial", 10), l_y, 2);
-                posPrinter.DrawString("$" + money.Format2(OrderMain.ListItem[i].Price.ToString()), e, new Font("Arial", 10), yStart, 3);
+                posPrinter.DrawString(OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 10), l_y, 1);
+                l_y = posPrinter.DrawString(OrderMain.ListOrderDetail[i].Qty.ToString(), e, new Font("Arial", 10), l_y, 2);
+                posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].Price.ToString()), e, new Font("Arial", 10), yStart, 3);
 
-                if (OrderMain.ListItem[i].ListModifier.Count > 0)
+                if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
                 {
-                    for (int j = 0; j < OrderMain.ListItem[i].ListModifier.Count; j++)
+                    for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
                     {
-                        posPrinter.DrawString(OrderMain.ListItem[i].ListModifier[j].ModifierName, e, new Font("Arial", 10), l_y, 1);
-                        l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListItem[i].ListModifier[j].Price.ToString()), e, new Font("Arial", 10), l_y, 3);
+                        posPrinter.DrawString(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
+                        l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 10), l_y, 3);
 
                     }
                 }
