@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ModelPOS.ModelEntity;
 using ServicePOS.Model;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace ServicePOS
 {
@@ -109,7 +110,7 @@ namespace ServicePOS
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return 0;
             }
@@ -176,6 +177,7 @@ namespace ServicePOS
                 return 0;
             }
         }
+        
         #region Dispose
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)
@@ -197,5 +199,13 @@ namespace ServicePOS
             GC.SuppressFinalize(this);
         }
         #endregion
+
+        public IEnumerable<ProductionModel> GetProdutcByCategory(int id)
+        {
+            var data = _context.Database.SqlQuery<ProductionModel>("getProductByCategory @categoryid",
+              new SqlParameter("categoryid", id)
+            ).ToList();
+            return data;
+        }
     }
 }

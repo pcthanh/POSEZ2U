@@ -45,8 +45,23 @@
   <ItemGroup>
     <Compile Include="CatalogueService.cs" />
     <Compile Include="ICatalogueService.cs" />
+    <Compile Include="IMapModifireToProduct.cs" />
+    <Compile Include="IModifireService.cs" />
+    <Compile Include="IProductPriceService.cs" />
+    <Compile Include="IProductService.cs" />
+    <Compile Include="MapModifireToProductService.cs" />
     <Compile Include="Model\CatalogueModel.cs" />
+    <Compile Include="Model\CategoryModel.cs" />
+    <Compile Include="Model\DepartmentModel.cs" />
+    <Compile Include="Model\MapModifreToProductModel.cs" />
+    <Compile Include="Model\ModifireModel.cs" />
+    <Compile Include="Model\ModifirePriceModel.cs" />
     <Compile Include="Model\ProductionModel.cs" />
+    <Compile Include="Model\ProductPriceModel.cs" />
+    <Compile Include="Model\StaffModel.cs" />
+    <Compile Include="ModifireService.cs" />
+    <Compile Include="ProductPriceService.cs" />
+    <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

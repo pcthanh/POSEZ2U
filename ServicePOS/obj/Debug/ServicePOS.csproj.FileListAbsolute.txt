@@ -1,0 +1,9 @@
+E:\git\POSEZ2U\ServicePOS\obj\Debug\ServicePOS.csprojResolveAssemblyReference.cache
+E:\git\POSEZ2U\ServicePOS\bin\Debug\ServicePOS.dll
+E:\git\POSEZ2U\ServicePOS\bin\Debug\ServicePOS.pdb
+E:\git\POSEZ2U\ServicePOS\bin\Debug\EntityFramework.dll
+E:\git\POSEZ2U\ServicePOS\bin\Debug\ModelPOS.dll
+E:\git\POSEZ2U\ServicePOS\bin\Debug\ModelPOS.pdb
+E:\git\POSEZ2U\ServicePOS\bin\Debug\EntityFramework.xml
+E:\git\POSEZ2U\ServicePOS\obj\Debug\ServicePOS.dll
+E:\git\POSEZ2U\ServicePOS\obj\Debug\ServicePOS.pdb

@@ -228,5 +228,14 @@ namespace ServicePOS
             GC.SuppressFinalize(this);
         }
         #endregion
+
+
+        public IEnumerable<ModifireModel> GetModifireByProduct(int productID)
+        {
+            var data = _context.Database.SqlQuery<ModifireModel>("getModifireByProduct @productID",
+             new SqlParameter("productID", productID)
+           ).ToList();
+            return data;
+        }
     }
 }
