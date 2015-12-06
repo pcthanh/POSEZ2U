@@ -22,9 +22,12 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            items.ProductName = txtOpenitemName.Text;
-            items.Price = Convert.ToDouble(txtOpenItemPrice.Text);
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            if (txtOpenitemName.Text != string.Empty & txtOpenItemPrice.Text != string.Empty)
+            {
+                items.ProductName = txtOpenitemName.Text;
+                items.Price = Convert.ToDouble(txtOpenItemPrice.Text);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

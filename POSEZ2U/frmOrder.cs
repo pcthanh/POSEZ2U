@@ -66,24 +66,10 @@ namespace POSEZ2U
         private void frmOrder_Load(object sender, EventArgs e)
         {
             LoadMenuGroup();
-            //LoadMenuOfGroup();
             this.SelectGroupMenu();
             this.lblTable.Text = OrderMain.FloorID.ToString();
         }
-        private void LoadMenuOfGroup()
-        {
-            string[] str = { "Com", "Pho", "Mi", "Bun", "Hu Tieu", "Chao", "Xao", "Salad", "Lau", "Bun Nuoc", "Them", "Tre em" };
-            foreach(string strGroup in str)
-            {
-                UCMenuOrdercs ucMenuOrder = new UCMenuOrdercs();
-                ucMenuOrder.lblNameGroup.Text = strGroup;
-                ucMenuOrder.lblCount.Text = "11";
-                ucMenuOrder.Tag = strGroup;
-                ucMenuOrder.Click += ucMenuOrder_Click;
-                flowLayoutPanel1.Controls.Add(ucMenuOrder);
-            }
-           
-        }
+        
         private void AddButtonOpenItem()
         {
             Button btn = new Button();
