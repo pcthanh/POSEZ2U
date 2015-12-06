@@ -50,5 +50,17 @@ namespace ServicePOS.Model
        {
            Seat=numberSeat; 
        }
+       public int CountIteminSeat(int numSeat)
+       {
+           int count=0;
+           for (int i = 0; i < ListOrderDetail.Count; i++)
+           {
+               if (ListOrderDetail[i].Seat == numSeat)
+               {
+                   count++;
+               }
+           }
+           return count;
+       }
     }
 }
