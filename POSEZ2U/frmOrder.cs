@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
-
 using SystemLog;
 using ServicePOS;
 using ModelPOS;
@@ -27,26 +27,29 @@ namespace POSEZ2U
             posPrinter.printDocument.PrintPage += printDocument_PrintPage;
         }
 
-
+       
         POSPrinter posPrinter = new POSPrinter();
         POSEZ2U.Class.MoneyFortmat money = new POSEZ2U.Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
         CatalogueModel CatalogueMain;
         int CategoryIDMain;
+        int indexOfUcSeat;
+        int countItemOfSeat;
+        int flagUcSeatClick;
         private ICatalogueService _catalogeService;
         private ICatalogueService CatalogeService
         {
             get { return _catalogeService ?? (_catalogeService = new CatalogueService()); }
             set { _catalogeService = value; }
         }
-
+       
         private IProductService _productService;
         private IProductService ProductService
         {
             get { return _productService ?? (_productService = new ProductService()); }
             set { _productService = value; }
         }
-
-
+        
+       
         private IModifireService _modifireService;
         private IModifireService ModifireService
         {
@@ -70,7 +73,7 @@ namespace POSEZ2U
         private void LoadMenuOfGroup()
         {
             string[] str = { "Com", "Pho", "Mi", "Bun", "Hu Tieu", "Chao", "Xao", "Salad", "Lau", "Bun Nuoc", "Them", "Tre em" };
-            foreach (string strGroup in str)
+            foreach(string strGroup in str)
             {
                 UCMenuOrdercs ucMenuOrder = new UCMenuOrdercs();
                 ucMenuOrder.lblNameGroup.Text = strGroup;
@@ -79,7 +82,7 @@ namespace POSEZ2U
                 ucMenuOrder.Click += ucMenuOrder_Click;
                 flowLayoutPanel1.Controls.Add(ucMenuOrder);
             }
-
+           
         }
         private void AddButtonOpenItem()
         {
@@ -129,7 +132,7 @@ namespace POSEZ2U
 
         void btnBackSubItem_Click(object sender, EventArgs e)
         {
-            // this.LoadItemOfGroup();
+           // this.LoadItemOfGroup();
             try
             {
                 LoadItemOfGroup(CategoryIDMain);
@@ -172,19 +175,26 @@ namespace POSEZ2U
 
         void btnOpenItemSubItem_Click(object sender, EventArgs e)
         {
-            frmOpenItem frm = new frmOpenItem();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                //Order.Item itemTemp = new Order.Item();
-                OrderDetail itemTemp = new OrderDetail();
-                itemTemp = frm.items;
-                //Order.Modifier modifierTemp = new Order.Modifier();
-                OrderDetailModifire modifierTemp = new OrderDetailModifire();
-                modifierTemp.ModifireName = itemTemp.ProductName;
-                modifierTemp.Price = itemTemp.Price;
-                OrderMain.addModifierToList(modifierTemp, keyItemTemp);
-                UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
-                this.addModifreToOrder(ucItemModifierOfMenu, modifierTemp);
+                frmOpenItem frm = new frmOpenItem();
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    //Order.Item itemTemp = new Order.Item();
+                    OrderDetail itemTemp = new OrderDetail();
+                    itemTemp = frm.items;
+                    //Order.Modifier modifierTemp = new Order.Modifier();
+                    OrderDetailModifire modifierTemp = new OrderDetailModifire();
+                    modifierTemp.ModifireName = itemTemp.ProductName;
+                    modifierTemp.Price = itemTemp.Price;
+                    OrderMain.addModifierToList(modifierTemp, keyItemTemp);
+                    UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
+                    this.addModifreToOrder(ucItemModifierOfMenu, modifierTemp);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btnOpenItemSubItem_Click::::::::::::::::::::::::::" + ex.Message);
             }
         }
         private void AddButtonBackSubItemPage()
@@ -199,7 +209,7 @@ namespace POSEZ2U
             btnBackSubItemPage.ForeColor = Color.FromArgb(13, 13, 13);
             btnBackSubItemPage.FlatAppearance.BorderSize = 0;
             btnBackSubItemPage.FlatStyle = FlatStyle.Flat;
-
+            
             btnBackSubItemPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnBackSubItemPage.Click += btnBackSubItemPage_Click;
             flowLayoutPanel1.Controls.Add(btnBackSubItemPage);
@@ -221,7 +231,7 @@ namespace POSEZ2U
             btnNextSubItemPage.ForeColor = Color.FromArgb(13, 13, 13);
             btnNextSubItemPage.FlatAppearance.BorderSize = 0;
             btnNextSubItemPage.FlatStyle = FlatStyle.Flat;
-
+            
             btnNextSubItemPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnNextSubItemPage.Click += btnNextSubItemPage_Click;
             flowLayoutPanel1.Controls.Add(btnNextSubItemPage);
@@ -229,7 +239,7 @@ namespace POSEZ2U
 
         void btnNextSubItemPage_Click(object sender, EventArgs e)
         {
-
+           
         }
         private void AddButtonBackItemPage()
         {
@@ -242,7 +252,7 @@ namespace POSEZ2U
             btnBackItem.ForeColor = Color.FromArgb(13, 13, 13);
             btnBackItem.FlatAppearance.BorderSize = 0;
             btnBackItem.FlatStyle = FlatStyle.Flat;
-
+            
             btnBackItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnBackItem.Click += btnBackItem_Click;
             flowLayoutPanel1.Controls.Add(btnBackItem);
@@ -258,7 +268,7 @@ namespace POSEZ2U
             btnNextItem.ForeColor = Color.FromArgb(13, 13, 13);
             btnNextItem.FlatAppearance.BorderSize = 0;
             btnNextItem.FlatStyle = FlatStyle.Flat;
-
+           
             btnNextItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnNextItem.Click += btnNextItem_Click;
             flowLayoutPanel1.Controls.Add(btnNextItem);
@@ -281,7 +291,7 @@ namespace POSEZ2U
             {
                 OrderMain.addItemToList(frm.items);
                 addOrder(frm.items);
-                lblSubtotal.Text = money.Format2(OrderMain.SubTotal().ToString());
+                lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
             }
         }
 
@@ -289,32 +299,52 @@ namespace POSEZ2U
         {
 
             //Work Here 
-            this.flowLayoutPanel1.Controls.Clear();
-            loadCategoryOfCatalogue(CatalogueMain.CatalogueID);
-
+            try
+            {
+                this.flowLayoutPanel1.Controls.Clear();
+                loadCategoryOfCatalogue(CatalogueMain.CatalogueID);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btnBack_Click:::::::::::::::::::::::::::" + ex.Message);
+            }
+            
         }
 
         void btn_Click(object sender, EventArgs e)
         {
-            frmOpenItem frm = new frmOpenItem();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                OrderMain.addItemToList(frm.items);
-                addOrder(frm.items);
-                lblSubtotal.Text = money.Format2(OrderMain.SubTotal().ToString());
+                frmOpenItem frm = new frmOpenItem();
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    OrderMain.addItemToList(frm.items);
+                    addOrder(frm.items);
+                    lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btn_Click:::::::::::::::::::::::::::::" + ex.Message);
             }
         }
         private void LoadMenuGroup()
         {
-
-            var listCatalogue = CatalogeService.GetCatalogueList();
-            foreach (CatalogueModel item in listCatalogue)
+            try
             {
-                UCGroupMenuOrder ucGroupMenuOrder = new UCGroupMenuOrder();
-                ucGroupMenuOrder.lblGroupNameMenuOrder.Text = item.CatalogueName;
-                ucGroupMenuOrder.Tag = item;
-                ucGroupMenuOrder.Click += ucGroupMenuOrder_Click; ;
-                flpGroupMenu.Controls.Add(ucGroupMenuOrder);
+                var listCatalogue = CatalogeService.GetCatalogueList();
+                foreach (CatalogueModel item in listCatalogue)
+                {
+                    UCGroupMenuOrder ucGroupMenuOrder = new UCGroupMenuOrder();
+                    ucGroupMenuOrder.lblGroupNameMenuOrder.Text = item.CatalogueName;
+                    ucGroupMenuOrder.Tag = item;
+                    ucGroupMenuOrder.Click += ucGroupMenuOrder_Click; ;
+                    flpGroupMenu.Controls.Add(ucGroupMenuOrder);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("LoadMenuGroup::::::::::::::::::::::::::::::::::::" + ex.Message);
             }
         }
         private void SelectGroupMenu()
@@ -334,7 +364,7 @@ namespace POSEZ2U
                 LogPOS.WriteLog("SelectGroupMenu::::::::::::::::::::::::::::::" + ex.Message);
             }
         }
-
+        
 
         void ucMenuOfGroup_Click(object sender, EventArgs e)
         {
@@ -343,7 +373,7 @@ namespace POSEZ2U
                 UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
                 OrderDetail item = new OrderDetail();
                 if (seat > 0)
-                    item.Seat = 0;
+                    item.Seat = seat;
                 ProductionModel itemProduct = (ProductionModel)ucMenuOfGroup.Tag;
                 item.ProductName = itemProduct.ProductNameSort;
                 item.Price = Convert.ToDouble(itemProduct.CurrentPrice);
@@ -351,7 +381,7 @@ namespace POSEZ2U
                 item.Qty = 1;
                 OrderMain.addItemToList(item);
                 addOrder(item);
-                lblSubtotal.Text = money.Format2(OrderMain.SubTotal().ToString());
+                lblSubtotal.Text = "$"+money.Format2(OrderMain.SubTotal().ToString());
             }
             catch (Exception ex)
             {
@@ -363,13 +393,18 @@ namespace POSEZ2U
         {
             try
             {
+                
                 UCOrder ucOrder = new UCOrder();
                 ucOrder.lblNameItem.Text = items.ProductName;
                 ucOrder.Tag = items;
                 ucOrder.lblPriceItem.Text = money.Format2(items.Price.ToString());
                 ucOrder.Click += ucOrder_Click;
-                LogPOS.WriteLog("Item::::::" + items.ProductName + ":::::" + items.Price);
+                LogPOS.WriteLog("addOrder::::::::::Item::::::" + items.ProductName + ":::::" + items.Price);
                 flpOrder.Controls.Add(ucOrder);
+                if (flagUcSeatClick > 0)
+                {
+                    flpOrder.Controls.SetChildIndex(ucOrder,indexOfUcSeat+countItemOfSeat);
+                }
             }
             catch (Exception ex)
             {
@@ -384,7 +419,22 @@ namespace POSEZ2U
                 UCOrder ucOder = (UCOrder)sender;
                 OrderDetail item = (OrderDetail)ucOder.Tag;
                 indexControl = flpOrder.Controls.GetChildIndex(ucOder);
+                foreach (Control ctr in flpOrder.Controls)
+                {
+                    if (ctr is UCOrder || ctr is UCItemModifierOfMenu)
+                    {
+                        if (ctr.BackColor == Color.FromArgb(0, 102, 204) || ctr.BackColor == Color.FromArgb(27, 162, 97))
+                        {
+                            ctr.BackColor = Color.FromArgb(215, 214, 216);
+                            ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                        }
+                    }
+                }
+                ucOder.BackColor = Color.FromArgb(0, 102, 204);
+                ucOder.ForeColor = Color.FromArgb(255, 255, 255);
                 var listModifire = ModifireService.GetModifireByProduct(item.ProductID);
+                
+                
                 if (listModifire.Count() > 0)
                 {
                     flowLayoutPanel1.Controls.Clear();
@@ -414,7 +464,7 @@ namespace POSEZ2U
                 LogPOS.WriteLog("ucOrder_Click:::::::::::::::::::::::::::" + ex.Message);
             }
 
-
+            
         }
 
         void ucModifierOfMenu_Click(object sender, EventArgs e)
@@ -425,7 +475,7 @@ namespace POSEZ2U
                 OrderDetailModifire modifier = new OrderDetailModifire();
                 ModifireModel itemsModifre = (ModifireModel)ucModifierOfMenu.Tag;
                 modifier.ModifireName = itemsModifre.ModifireName;
-                modifier.Price = Convert.ToDouble(itemsModifre.CurrentPrice);
+                modifier.Price =Convert.ToDouble(itemsModifre.CurrentPrice);
                 modifier.ModifireID = itemsModifre.ModifireID;
                 OrderMain.addModifierToList(modifier, keyItemTemp);
                 UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
@@ -435,36 +485,72 @@ namespace POSEZ2U
             }
             catch (Exception ex)
             {
-                LogPOS.WriteLog("ucModifierOfMenu_Click:::::::::::::::::::::::::" + ex.Message);
+                LogPOS.WriteLog("ucModifierOfMenu_Click:::::::::::::::::::::::::"+ ex.Message);
             }
 
         }
 
         void ucItemModifierOfMenu_Click(object sender, EventArgs e)
         {
-            flagClick = 1;
-            UCItemModifierOfMenu ucItemModifierOfMenu = (UCItemModifierOfMenu)sender;
-            indexControl = flpOrder.Controls.GetChildIndex(ucItemModifierOfMenu);
+            try
+            {
+                flagClick = 1;
+                UCItemModifierOfMenu ucItemModifierOfMenu = (UCItemModifierOfMenu)sender;
+                indexControl = flpOrder.Controls.GetChildIndex(ucItemModifierOfMenu);
+                foreach (Control ctrl in flpOrder.Controls)
+                {
+                    if (ctrl is UCItemModifierOfMenu || ctrl is UCOrder)
+                    {
+                        if (ctrl.BackColor == Color.FromArgb(27, 162, 97) || ctrl.BackColor == Color.FromArgb(0, 102, 204))
+                        {
+                            ctrl.BackColor = Color.FromArgb(215, 214, 216);
+                            ctrl.ForeColor = Color.FromArgb(51, 51, 51);
+                        }
+                    }
+                }
+                ucItemModifierOfMenu.BackColor = Color.FromArgb(27, 162, 97);
+                ucItemModifierOfMenu.ForeColor = Color.FromArgb(255, 255, 255);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("ucItemModifierOfMenu_Click:::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+
         }
-        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifire modifier)
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu,OrderDetailModifire modifier)
         {
-            ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
-            ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
-            flpOrder.Controls.Add(ucMdifireOfMenu);
-            flpOrder.Controls.SetChildIndex(ucMdifireOfMenu, indexControl + 1);
+            try
+            {
+
+                ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
+                ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
+                flpOrder.Controls.Add(ucMdifireOfMenu);
+                flpOrder.Controls.SetChildIndex(ucMdifireOfMenu, indexControl + 1);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("addModifreToOrder:::::::::::::::::::::::::::::::::" + ex.Message);
+            }
         }
 
         void AddControlToFlowLayoutPanel(FlowLayoutPanel flowlayoutpanel, Control ctrl)
         {
-            flowlayoutpanel.Controls.Add(ctrl);
+            try
+            {
+                flowlayoutpanel.Controls.Add(ctrl);
 
-            // SetChildIndex does the trick
-            if (flowlayoutpanel.Controls.Count > 2)
-                flowlayoutpanel.Controls.SetChildIndex(ctrl, flowlayoutpanel.Controls.Count - 2);
+                // SetChildIndex does the trick
+                if (flowlayoutpanel.Controls.Count > 2)
+                    flowlayoutpanel.Controls.SetChildIndex(ctrl, flowlayoutpanel.Controls.Count - 2);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("AddControlToFlowLayoutPanel::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
         }
         void ucGroupMenuOrder_Click(object sender, EventArgs e)
         {
-
+            
             try
             {
 
@@ -491,44 +577,58 @@ namespace POSEZ2U
         }
         private void loadCategoryOfCatalogue(int CatalogueId)
         {
-            var dataGroupMenu = CatalogeService.GetCategoryByCatalogueID(CatalogueId);
-            foreach (CategoryModel itemsCategory in dataGroupMenu)
+            try
             {
-                UCMenuOrdercs ucMenuOrder = new UCMenuOrdercs();
-                ucMenuOrder.lblNameGroup.Text = itemsCategory.CategoryName;
-                var count = CatalogeService.GetProductByCategoryID(itemsCategory.CategoryID);
-                ucMenuOrder.lblCount.Text = count.Count().ToString();
-                ucMenuOrder.Tag = itemsCategory;
-                ucMenuOrder.Click += ucMenuOrder_Click;
-                flowLayoutPanel1.Controls.Add(ucMenuOrder);
+                var dataGroupMenu = CatalogeService.GetCategoryByCatalogueID(CatalogueId);
+                foreach (CategoryModel itemsCategory in dataGroupMenu)
+                {
+                    UCMenuOrdercs ucMenuOrder = new UCMenuOrdercs();
+                    ucMenuOrder.lblNameGroup.Text = itemsCategory.CategoryName;
+                    var count = CatalogeService.GetProductByCategoryID(itemsCategory.CategoryID);
+                    ucMenuOrder.lblCount.Text = count.Count().ToString();
+                    ucMenuOrder.Tag = itemsCategory;
+                    ucMenuOrder.Click += ucMenuOrder_Click;
+                    flowLayoutPanel1.Controls.Add(ucMenuOrder);
+                }
+                this.AddButtonOpenItem();
             }
-            this.AddButtonOpenItem();
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("loadCategoryOfCatalogue:::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
         }
 
         private void LoadItemOfGroup(int CategoryId)
         {
-            this.flowLayoutPanel1.Controls.Clear();
-            this.AddButtonBackItem();
-            int keyItem = 1;
-            var dataPrduct = ProductService.GetProdutcByCategory(CategoryId);
-            foreach (ProductionModel itemProductionModel in dataPrduct)
+            try
             {
-                keyItem++;
-                UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
-                ucMenuOfGroup.lblNameMenuOfGroup.Text = itemProductionModel.ProductNameSort;
-                ucMenuOfGroup.Tag = itemProductionModel;
-                ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(itemProductionModel.Color);
-                ucMenuOfGroup.Click += ucMenuOfGroup_Click;
-                flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
+                this.flowLayoutPanel1.Controls.Clear();
+                this.AddButtonBackItem();
+                int keyItem = 1;
+                var dataPrduct = ProductService.GetProdutcByCategory(CategoryId);
+                foreach (ProductionModel itemProductionModel in dataPrduct)
+                {
+                    keyItem++;
+                    UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
+                    ucMenuOfGroup.lblNameMenuOfGroup.Text = itemProductionModel.ProductNameSort;
+                    ucMenuOfGroup.Tag = itemProductionModel;
+                    ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(itemProductionModel.Color);
+                    ucMenuOfGroup.Click += ucMenuOfGroup_Click;
+                    flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
 
+                }
+                this.AddButtonOpenItemItem();
+                this.AddButtonBackItemPage();
+                this.AddButtonMextItemPage();
             }
-            this.AddButtonOpenItemItem();
-            this.AddButtonBackItemPage();
-            this.AddButtonMextItemPage();
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("LoadItemOfGroup:::::::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
         }
         void ucMenuOrder_Click(object sender, EventArgs e)
         {
-
+            
             try
             {
                 UCMenuOrdercs ucGroup = (UCMenuOrdercs)sender;
@@ -544,105 +644,185 @@ namespace POSEZ2U
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            frmFloor frm = new frmFloor();
+            frm.ShowDialog();
+            this.Visible = false;
         }
 
+        private void ClearBackColorSeat()
+        {
+            foreach (Control ctr in flpOrder.Controls)
+            {
+                if (ctr is UCSeat)
+                {
+                    if (ctr.BackColor == Color.FromArgb(29, 211, 0))
+                    {
+                        ctr.BackColor = Color.FromArgb(0, 0, 0);
+                        ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                    }
+                }
+            }
+        }
         private void btnAddSeat_Click(object sender, EventArgs e)
         {
-            frmAddSeat frm = new frmAddSeat();
-
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                seat = frm.NumberSeat;
-                OrderMain.addSeat(seat);
-                UCSeat ucSeat = new UCSeat();
-                ucSeat.lblSeat.Text = "Seat " + seat;
-                lblSeat.Text = seat.ToString();
-                flpOrder.Controls.Add(ucSeat);
+                frmAddSeat frm = new frmAddSeat();
 
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    seat = frm.NumberSeat;
+                    OrderMain.addSeat(seat);
+                    UCSeat ucSeat = new UCSeat();
+                    ucSeat.lblSeat.Text = "Seat " + seat;
+                    ucSeat.Click += ucSeat_Click;
+                    lblSeat.Text = seat.ToString();
+                    flpOrder.Controls.Add(ucSeat);
+                    flagUcSeatClick = 0;
+                    ClearBackColorSeat();
+                }
             }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btnAddSeat_Click::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+            
+        }
 
+        void ucSeat_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                UCSeat ucSeat = (UCSeat)sender;
+                flagUcSeatClick = 1;
+                indexOfUcSeat = flpOrder.Controls.GetChildIndex(ucSeat);
+                foreach (Control ctrl in flpOrder.Controls)
+                {
+                    if (ctrl is UCSeat)
+                    {
+                        if (ctrl.BackColor == Color.FromArgb(29, 211, 0))
+                        {
+                            ctrl.BackColor = Color.FromArgb(0, 0, 0);
+                            ctrl.ForeColor = Color.FromArgb(51, 51, 51);
+                        }
+                    }
+                }
+                ucSeat.BackColor = Color.FromArgb(29, 211, 0);
+                ucSeat.ForeColor = Color.FromArgb(51, 51, 51);
+                string textSeat = ucSeat.lblSeat.Text;
+                string []splitStr = textSeat.Split(' ');
+                int numSeat =Convert.ToInt32(splitStr[1]);
+                countItemOfSeat = OrderMain.CountIteminSeat(numSeat);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("ucSeat_Click:::::::::::::::::::::::::::" + ex.Message);
+            }
         }
 
         private void flpOrder_Scroll(object sender, ScrollEventArgs e)
         {
-            // flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
+           // flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
         }
 
         private void btnVoid_Click(object sender, EventArgs e)
         {
-            UCOrder ucOrder;
-            UCItemModifierOfMenu ucItemModifireOfMenu;
-            OrderDetailModifire modifier = null;
-            OrderDetail items = null;
-            if (flagClick == 1)
+            try
             {
-
-                ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
-                modifier = (OrderDetailModifire)ucItemModifireOfMenu.Tag;
-            }
-            else
-            {
-                ucOrder = (UCOrder)flpOrder.Controls[indexControl];
-                items = (OrderDetail)ucOrder.Tag;
-            }
-            if (items != null)
-            {
-                for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                UCOrder ucOrder;
+                UCItemModifierOfMenu ucItemModifireOfMenu;
+                OrderDetailModifire modifier = null;
+                OrderDetail items = null;
+                if (flagClick == 1)
                 {
-                    if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
+
+                    ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
+                    modifier = (OrderDetailModifire)ucItemModifireOfMenu.Tag;
+                }
+                else
+                {
+                    ucOrder = (UCOrder)flpOrder.Controls[indexControl];
+                    items = (OrderDetail)ucOrder.Tag;
+                }
+                if (items != null)
+                {
+                    for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                     {
-                        if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                        if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
                         {
-                            for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
+                            if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
                             {
-                                flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
+                                for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
+                                {
+                                    flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
+                                }
+                                OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
                             }
-                            OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
+
+                            OrderMain.ListOrderDetail.RemoveAt(i);
                         }
 
-                        OrderMain.ListOrderDetail.RemoveAt(i);
                     }
 
+                    flpOrder.Controls.RemoveAt(indexControl);
+
                 }
-
-                flpOrder.Controls.RemoveAt(indexControl);
-
-            }
-            if (modifier != null)
-            {
-                for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                if (modifier != null)
                 {
-                    for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                    for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                     {
-                        if (modifier.KeyItem == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyItem)
+                        for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
                         {
-                            OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
+                            if (modifier.KeyItem == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyItem)
+                            {
+                                OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
+                            }
                         }
                     }
+                    flpOrder.Controls.RemoveAt(indexControl);
+                    flagClick = 0;
                 }
-                flpOrder.Controls.RemoveAt(indexControl);
-                flagClick = 0;
+                lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
             }
-            lblSubtotal.Text = money.Format2(OrderMain.SubTotal());
-
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btnVoid_Click::::e:::::::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+        
         }
 
         private void btnVoidAll_Click(object sender, EventArgs e)
         {
-            flpOrder.Controls.Clear();
-            OrderMain.ListOrderDetail.Clear();
+            try
+            {
+                flpOrder.Controls.Clear();
+                OrderMain.ListOrderDetail.Clear();
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btnVoidAll_Click::::::::::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
         }
 
         private void btnSendOrder_Click(object sender, EventArgs e)
         {
-            if (OrderMain.ListOrderDetail.Count >= 0)
+            try
             {
-                posPrinter.printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
-                posPrinter.printDocument.Print();
-                frmFloor frm = new frmFloor(OrderMain);
-                frm.ShowDialog();
-                this.Hide();
+                if (OrderMain.ListOrderDetail.Count >= 0)
+                {
+                    posPrinter.printDocument.PrinterSettings.PrinterName = "EPSON TM-T81 Receipt";
+                    posPrinter.printDocument.Print();
+                    //OrderCallback(OrderMain);
+                    frmFloor frm = new frmFloor(OrderMain);
+                    frm.ShowDialog();
+                    this.Hide();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("btnSendOrder_Click::::::::::::::::::::::::::::::::::::::::::" + ex.Message);
             }
         }
         void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -657,9 +837,9 @@ namespace POSEZ2U
             l_y = posPrinter.DrawString("Date :" + DateTime.Now.ToShortDateString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
             l_y = posPrinter.DrawString("Table:" + OrderMain.FloorID, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
             l_y = posPrinter.DrawString("No # Seat:" + OrderMain.Seat, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
-
-            l_y += posPrinter.GetHeightPrinterLine() / 10;
-
+            
+            l_y += posPrinter.GetHeightPrinterLine()/10;
+            
             for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
             {
                 float yStart = l_y;
@@ -673,16 +853,16 @@ namespace POSEZ2U
                     {
                         posPrinter.DrawString(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
                         l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 10), l_y, 3);
-
+                       
                     }
                 }
             }
             posPrinter.DrawLine("", new Font("Arial", 10), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
-            l_y = posPrinter.DrawString("", e, new Font("Arial", 10), l_y, 1);
-            l_y += posPrinter.GetHeightPrinterLine() / 10;
-            posPrinter.DrawString("Total:", e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
-            l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 10, FontStyle.Bold), l_y, 3);
-
+            l_y=posPrinter.DrawString("", e, new Font("Arial", 10), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine()/10;
+            posPrinter.DrawString("Total:",e, new Font("Arial", 10,FontStyle.Bold), l_y, 1);
+            l_y=posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 10,FontStyle.Bold), l_y, 3);
+           
             return l_y;
         }
     }
