@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -199,7 +199,7 @@ namespace ServicePOS
             GC.SuppressFinalize(this);
         }
         #endregion
-
+        #region
         public IEnumerable<ProductionModel> GetProdutcByCategory(int id)
         {
             var data = _context.Database.SqlQuery<ProductionModel>("getProductByCategory @categoryid",
@@ -207,5 +207,6 @@ namespace ServicePOS
             ).ToList();
             return data;
         }
+        #endregion
     }
 }

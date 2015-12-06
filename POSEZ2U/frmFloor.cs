@@ -9,13 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using Microsoft.Win32;
+<<<<<<< HEAD
 using System.Runtime.InteropServices;
+=======
+using System.Runtime.InteropServices;
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
 using ServicePOS.Model;
 using POSEZ2U.UC;
 
 namespace POSEZ2U
 {
     public partial class frmFloor : Form
+<<<<<<< HEAD
     {
         Order orderMain;
         public frmFloor(Order _orderMain)
@@ -27,6 +32,19 @@ namespace POSEZ2U
         {
             InitializeComponent();
            
+=======
+    {
+        Order orderMain;
+        public frmFloor(Order _orderMain)
+        {
+            InitializeComponent();
+            orderMain = _orderMain;
+        }
+        public frmFloor()
+        {
+            InitializeComponent();
+           
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
         }
         Order OrderMain = new Order();
         const int AW_HOR_POSITIVE = 1;
@@ -63,7 +81,11 @@ namespace POSEZ2U
             UCTable ucTable = (UCTable)sender;
             OrderMain.FloorID =Convert.ToInt32(ucTable.lbTableNo.Text);
             frmOrder frm = new frmOrder(OrderMain);
+<<<<<<< HEAD
             frm.ShowDialog();
+=======
+            frm.ShowDialog();
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
             this.Hide();
         }
         
@@ -81,6 +103,12 @@ namespace POSEZ2U
             this.Hide();
             frmMain frm = new frmMain();
             frm.ShowDialog();
+        }
+
+        private void frmFloor_Shown(object sender, EventArgs e)
+        {
+            
+
         }
 
         private void frmFloor_Shown(object sender, EventArgs e)

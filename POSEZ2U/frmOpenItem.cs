@@ -17,7 +17,11 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
         
+=======
+        
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
         public OrderDetail items = new OrderDetail();
 
         private void btnOK_Click(object sender, EventArgs e)

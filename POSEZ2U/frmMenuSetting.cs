@@ -120,9 +120,15 @@ namespace POSEZ2U
         }
 
         private void btnBack_Click(object sender, EventArgs e)
+<<<<<<< HEAD
         {
             this.Close();
             frmMain frm = new frmMain();
+=======
+        {
+            this.Close();
+            frmMain frm = new frmMain();
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
             frm.ShowDialog();
         }
         private void loadDataProductSetting()
@@ -851,7 +857,11 @@ namespace POSEZ2U
                     messageError += "Product price isn't empty";
                 }
                 if (messageError == "")
+<<<<<<< HEAD
                 {
+=======
+                {
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
                     dataProduct.ProductNameDesc = productNameDesc;
                     dataProduct.ProductNameSort = productNameSort;
                     dataProduct.ProductNameDesc = productNameDesc;

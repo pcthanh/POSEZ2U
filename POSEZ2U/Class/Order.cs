@@ -9,6 +9,7 @@ namespace POSEZ2U.Class
    public class Order
     {
        public string TableId { get; set; }
+<<<<<<< HEAD
        public double Total { get; set; }
        public double GST { get; set; }
        public int Discount { get; set; }
@@ -16,13 +17,26 @@ namespace POSEZ2U.Class
        public int Seat { get; set; }
        public class Item
        {
+=======
+       public double Total { get; set; }
+       public double GST { get; set; }
+       public int Discount { get; set; }
+       public List<Item> ListItem = new List<Item>();
+       public int Seat { get; set; }
+       public class Item
+       {
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
            public int ItemId { get; set; }
            public int Seat { get; set; }
            public string ItemName { get; set; }
            public int Qunatity { get; set; }
            public double Price { get; set; }
            public double SubTotal { get; set; }
+<<<<<<< HEAD
            public int KeyItem { get; set; }
+=======
+           public int KeyItem { get; set; }
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
            public double GST { get; set; }
            public List<Modifier> ListModifier = new List<Modifier>();
        }
@@ -31,8 +45,13 @@ namespace POSEZ2U.Class
            public string ModifierName { get; set; }
            public int Quantity { get; set; }
            public double Price { get; set; }
+<<<<<<< HEAD
            public double Suntaol { get; set; }
            public int KeyItem { get; set; }
+=======
+           public double Suntaol { get; set; }
+           public int KeyItem { get; set; }
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
            public int ModifireId { get; set; }
        }
        public void addItemToList(Item item)
@@ -54,7 +73,11 @@ namespace POSEZ2U.Class
            
        }
        public void addSeat(int numberSeat)
+<<<<<<< HEAD
        {
+=======
+       {
+>>>>>>> ca072d9b0c967eedec923c621bf3841aa66f558c
            Seat=numberSeat; 
        }
        public Double SubTotal()

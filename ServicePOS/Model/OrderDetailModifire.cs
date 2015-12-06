@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServicePOS.Model
 {
-   public class OrderDetailModifire
+    public class OrderDetailModifire
     {
         public int OrderModifireID { get; set; }
         public int OrderDetailID { get; set; }

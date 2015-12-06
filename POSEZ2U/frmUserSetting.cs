@@ -58,5 +58,12 @@ namespace POSEZ2U
             frmMain frm = new frmMain();
             frm.ShowDialog();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmMain frm = new frmMain();
+            frm.ShowDialog();
+        }
     }
 }

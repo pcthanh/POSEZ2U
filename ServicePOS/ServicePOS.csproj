@@ -56,6 +56,9 @@
     <Compile Include="Model\MapModifreToProductModel.cs" />
     <Compile Include="Model\ModifireModel.cs" />
     <Compile Include="Model\ModifirePriceModel.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrderDetail.cs" />
+    <Compile Include="Model\OrderDetailModifire.cs" />
     <Compile Include="Model\ProductionModel.cs" />
     <Compile Include="Model\ProductPriceModel.cs" />
     <Compile Include="Model\StaffModel.cs" />

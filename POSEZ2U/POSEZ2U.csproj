@@ -84,7 +84,9 @@
     <Compile Include="frmAddSeat.Designer.cs">
       <DependentUpon>frmAddSeat.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConfirm.cs" />
+    <Compile Include="frmConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmConfirm.Designer.cs">
       <DependentUpon>frmConfirm.cs</DependentUpon>
     </Compile>
@@ -142,7 +144,9 @@
     <Compile Include="frmMenuSetting.Designer.cs">
       <DependentUpon>frmMenuSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMessager .cs" />
+    <Compile Include="frmMessager .cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMessager .Designer.cs">
       <DependentUpon>frmMessager .cs</DependentUpon>
     </Compile>
@@ -402,6 +406,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfirm.resx">
       <DependentUpon>frmConfirm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFloor.resx">
       <DependentUpon>frmFloor.cs</DependentUpon>
@@ -429,6 +434,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMessager .resx">
       <DependentUpon>frmMessager .cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOpenItem.resx">
       <DependentUpon>frmOpenItem.cs</DependentUpon>
