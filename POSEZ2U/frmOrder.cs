@@ -797,7 +797,7 @@ namespace POSEZ2U
             {
                 if (OrderMain.ListOrderDetail.Count >= 0)
                 {
-                    posPrinter.printDocument.PrinterSettings.PrinterName = "EPSON TM-T81 Receipt";
+                    posPrinter.printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
                     posPrinter.printDocument.Print();
                     //OrderCallback(OrderMain);
                     frmFloor frm = new frmFloor(OrderMain);
