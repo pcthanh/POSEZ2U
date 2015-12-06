@@ -133,6 +133,7 @@
             // 
             // flpAllitems
             // 
+            this.flpAllitems.AutoScroll = true;
             this.flpAllitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.flpAllitems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpAllitems.Location = new System.Drawing.Point(0, 0);

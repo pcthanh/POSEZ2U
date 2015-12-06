@@ -32,13 +32,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ucTextBoxKeyBoard1 = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
             this.cbColor = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.ucTextBoxKeyBoard1 = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +100,18 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Category Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // ucTextBoxKeyBoard1
+            // 
+            this.ucTextBoxKeyBoard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.ucTextBoxKeyBoard1, 3);
+            this.ucTextBoxKeyBoard1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTextBoxKeyBoard1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucTextBoxKeyBoard1.Location = new System.Drawing.Point(3, 62);
+            this.ucTextBoxKeyBoard1.Multiline = true;
+            this.ucTextBoxKeyBoard1.Name = "ucTextBoxKeyBoard1";
+            this.ucTextBoxKeyBoard1.Size = new System.Drawing.Size(440, 48);
+            this.ucTextBoxKeyBoard1.TabIndex = 2;
             // 
             // label3
             // 
@@ -180,18 +192,6 @@
             this.btnRemove.TabIndex = 0;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
-            // 
-            // ucTextBoxKeyBoard1
-            // 
-            this.ucTextBoxKeyBoard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.ucTextBoxKeyBoard1, 3);
-            this.ucTextBoxKeyBoard1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTextBoxKeyBoard1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucTextBoxKeyBoard1.Location = new System.Drawing.Point(3, 62);
-            this.ucTextBoxKeyBoard1.Multiline = true;
-            this.ucTextBoxKeyBoard1.Name = "ucTextBoxKeyBoard1";
-            this.ucTextBoxKeyBoard1.Size = new System.Drawing.Size(440, 48);
-            this.ucTextBoxKeyBoard1.TabIndex = 2;
             // 
             // frmMenu
             // 

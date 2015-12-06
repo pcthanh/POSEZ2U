@@ -121,7 +121,9 @@ namespace POSEZ2U
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            frmMain frm = new frmMain();
+            frm.ShowDialog();
         }
         private void loadDataProductSetting()
         {
@@ -850,6 +852,7 @@ namespace POSEZ2U
                 }
                 if (messageError == "")
                 {
+                    dataProduct.ProductNameDesc = productNameDesc;
                     dataProduct.ProductNameSort = productNameSort;
                     dataProduct.ProductNameDesc = productNameDesc;
                     dataProduct.Color = productColor;

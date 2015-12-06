@@ -10,16 +10,23 @@ using System.Windows.Forms;
 
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
-using POSEZ2U.Class;
+using ServicePOS.Model;
 using POSEZ2U.UC;
 
 namespace POSEZ2U
 {
     public partial class frmFloor : Form
     {
+        Order orderMain;
+        public frmFloor(Order _orderMain)
+        {
+            InitializeComponent();
+            orderMain = _orderMain;
+        }
         public frmFloor()
         {
             InitializeComponent();
+           
         }
         Order OrderMain = new Order();
         const int AW_HOR_POSITIVE = 1;
@@ -54,10 +61,10 @@ namespace POSEZ2U
         void ucTable_Click(object sender, EventArgs e)
         {
             UCTable ucTable = (UCTable)sender;
-            OrderMain.TableId = ucTable.lbTableNo.Text;
+            OrderMain.FloorID =Convert.ToInt32(ucTable.lbTableNo.Text);
             frmOrder frm = new frmOrder(OrderMain);
-            
             frm.ShowDialog();
+            this.Hide();
         }
         
 
@@ -74,6 +81,12 @@ namespace POSEZ2U
             this.Hide();
             frmMain frm = new frmMain();
             frm.ShowDialog();
+        }
+
+        private void frmFloor_Shown(object sender, EventArgs e)
+        {
+            
+
         }
 
     }

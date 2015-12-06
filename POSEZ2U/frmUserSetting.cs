@@ -51,5 +51,12 @@ namespace POSEZ2U
         {
             this.AddUserSetting();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            frmMain frm = new frmMain();
+            frm.ShowDialog();
+        }
     }
 }

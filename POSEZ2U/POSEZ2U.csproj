@@ -68,18 +68,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\IniFile.cs" />
+    <Compile Include="Class\MenuGroup.cs" />
     <Compile Include="Class\MoneyFortmat.cs" />
+    <Compile Include="Class\Order.cs" />
+    <Compile Include="Class\WinAPI.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddSeat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddSeat.Designer.cs">
+      <DependentUpon>frmAddSeat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfirm.cs" />
+    <Compile Include="frmConfirm.Designer.cs">
+      <DependentUpon>frmConfirm.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFloor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFloor.Designer.cs">
       <DependentUpon>frmFloor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGroupAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGroupAdd.Designer.cs">
+      <DependentUpon>frmGroupAdd.cs</DependentUpon>
     </Compile>
     <Compile Include="frmKeyBoard.cs">
       <SubType>Form</SubType>
@@ -105,17 +124,45 @@
     <Compile Include="frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMenuAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuAdd.Designer.cs">
+      <DependentUpon>frmMenuAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuAddItemList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuAddItemList.designer.cs">
+      <DependentUpon>frmMenuAddItemList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMenuSetting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMenuSetting.Designer.cs">
       <DependentUpon>frmMenuSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMessager .cs" />
+    <Compile Include="frmMessager .Designer.cs">
+      <DependentUpon>frmMessager .cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOpenItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpenItem.designer.cs">
+      <DependentUpon>frmOpenItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmOrder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmOrder.Designer.cs">
       <DependentUpon>frmOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPayMent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPayMent.Designer.cs">
+      <DependentUpon>frmPayMent.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPaymentCard.cs">
       <SubType>Form</SubType>
@@ -134,6 +181,12 @@
     </Compile>
     <Compile Include="frmSettingAll.Designer.cs">
       <DependentUpon>frmSettingAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserSetting.designer.cs">
+      <DependentUpon>frmUserSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,6 +214,12 @@
     <Compile Include="UC\UCGroupListItem.Designer.cs">
       <DependentUpon>UCGroupListItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCGroupMenuOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCGroupMenuOrder.Designer.cs">
+      <DependentUpon>UCGroupMenuOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCInfoTop.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -185,6 +244,12 @@
     <Compile Include="UC\UCItemListButton.Designer.cs">
       <DependentUpon>UCItemListButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCItemModifierOfMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCItemModifierOfMenu.Designer.cs">
+      <DependentUpon>UCItemModifierOfMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCKeypad.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -203,11 +268,23 @@
     <Compile Include="UC\UCMenu.Designer.cs">
       <DependentUpon>UCMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCMenuAdd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCMenuAdd.Designer.cs">
+      <DependentUpon>UCMenuAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCMenuList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UC\UCMenuList.Designer.cs">
       <DependentUpon>UCMenuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCMenuOfGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCMenuOfGroup.Designer.cs">
+      <DependentUpon>UCMenuOfGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\UCMenuOrdercs.cs">
       <SubType>UserControl</SubType>
@@ -226,6 +303,18 @@
     </Compile>
     <Compile Include="UC\UCModifierItem.Designer.cs">
       <DependentUpon>UCModifierItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCModifierOfMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCModifierOfMenu.Designer.cs">
+      <DependentUpon>UCModifierOfMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCOrder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCOrder.Designer.cs">
+      <DependentUpon>UCOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\UCPayment.cs">
       <SubType>UserControl</SubType>
@@ -257,6 +346,18 @@
     <Compile Include="UC\UCProductSetting.Designer.cs">
       <DependentUpon>UCProductSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCSeat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCSeat.Designer.cs">
+      <DependentUpon>UCSeat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCSettingAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCSettingAll.Designer.cs">
+      <DependentUpon>UCSettingAll.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -275,11 +376,38 @@
     <Compile Include="UC\UCTextBoxKeyPad.Designer.cs">
       <DependentUpon>UCTextBoxKeyPad.cs</DependentUpon>
     </Compile>
+    <Compile Include="UC\UCUserList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCUserList.Designer.cs">
+      <DependentUpon>UCUserList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCUserListDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCUserListDetail.Designer.cs">
+      <DependentUpon>UCUserListDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\UCUserSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC\UCUserSetting.Designer.cs">
+      <DependentUpon>UCUserSetting.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddSeat.resx">
+      <DependentUpon>frmAddSeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfirm.resx">
+      <DependentUpon>frmConfirm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFloor.resx">
       <DependentUpon>frmFloor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGroupAdd.resx">
+      <DependentUpon>frmGroupAdd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKeyBoard.resx">
       <DependentUpon>frmKeyBoard.cs</DependentUpon>
@@ -290,11 +418,26 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuAdd.resx">
+      <DependentUpon>frmMenuAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuAddItemList.resx">
+      <DependentUpon>frmMenuAddItemList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMenuSetting.resx">
       <DependentUpon>frmMenuSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMessager .resx">
+      <DependentUpon>frmMessager .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpenItem.resx">
+      <DependentUpon>frmOpenItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmOrder.resx">
       <DependentUpon>frmOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPayMent.resx">
+      <DependentUpon>frmPayMent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaymentCard.resx">
       <DependentUpon>frmPaymentCard.cs</DependentUpon>
@@ -304,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettingAll.resx">
       <DependentUpon>frmSettingAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserSetting.resx">
+      <DependentUpon>frmUserSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -319,9 +465,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UCGroupList.resx">
       <DependentUpon>UCGroupList.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UCGroupListItem.resx">
       <DependentUpon>UCGroupListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCGroupMenuOrder.resx">
+      <DependentUpon>UCGroupMenuOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UCInfoTop.resx">
       <DependentUpon>UCInfoTop.cs</DependentUpon>
@@ -335,17 +485,38 @@
     <EmbeddedResource Include="UC\UCItemListButton.resx">
       <DependentUpon>UCItemListButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCItemModifierOfMenu.resx">
+      <DependentUpon>UCItemModifierOfMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UCKeypad.resx">
       <DependentUpon>UCKeypad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UCKeyPadOrder.resx">
       <DependentUpon>UCKeyPadOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCMenu.resx">
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCMenuAdd.resx">
+      <DependentUpon>UCMenuAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCMenuOfGroup.resx">
+      <DependentUpon>UCMenuOfGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UCMenuOrdercs.resx">
       <DependentUpon>UCMenuOrdercs.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCModifier.resx">
+      <DependentUpon>UCModifier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UCModifierItem.resx">
       <DependentUpon>UCModifierItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCModifierOfMenu.resx">
+      <DependentUpon>UCModifierOfMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCOrder.resx">
+      <DependentUpon>UCOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UC\UCPayment.resx">
       <DependentUpon>UCPayment.cs</DependentUpon>
@@ -359,8 +530,23 @@
     <EmbeddedResource Include="UC\UCProductIncl.resx">
       <DependentUpon>UCProductIncl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCSeat.resx">
+      <DependentUpon>UCSeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCSettingAll.resx">
+      <DependentUpon>UCSettingAll.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC\UCTable.resx">
       <DependentUpon>UCTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCUserList.resx">
+      <DependentUpon>UCUserList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCUserListDetail.resx">
+      <DependentUpon>UCUserListDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC\UCUserSetting.resx">
+      <DependentUpon>UCUserSetting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

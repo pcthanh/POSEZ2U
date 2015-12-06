@@ -36,8 +36,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnProduct = new System.Windows.Forms.Button();
+            this.btnUserSetting = new System.Windows.Forms.Button();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.btnProduct, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnUserSetting, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -114,6 +114,20 @@
             this.btnProduct.UseVisualStyleBackColor = true;
             this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
+            // btnUserSetting
+            // 
+            this.btnUserSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUserSetting.FlatAppearance.BorderSize = 0;
+            this.btnUserSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUserSetting.Location = new System.Drawing.Point(3, 102);
+            this.btnUserSetting.Name = "btnUserSetting";
+            this.btnUserSetting.Size = new System.Drawing.Size(173, 93);
+            this.btnUserSetting.TabIndex = 1;
+            this.btnUserSetting.Text = "UserSetting";
+            this.btnUserSetting.UseVisualStyleBackColor = true;
+            this.btnUserSetting.Click += new System.EventHandler(this.btnUserSetting_Click);
+            // 
             // ucInfoTop1
             // 
             this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -121,15 +135,6 @@
             this.ucInfoTop1.Name = "ucInfoTop1";
             this.ucInfoTop1.Size = new System.Drawing.Size(742, 41);
             this.ucInfoTop1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 102);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmSettingAll
             // 
@@ -164,6 +169,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnProduct;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUserSetting;
     }
 }
