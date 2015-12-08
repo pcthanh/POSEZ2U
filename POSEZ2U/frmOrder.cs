@@ -26,8 +26,7 @@ namespace POSEZ2U
             OrderMain = _orderMain;
             posPrinter.printDocument.PrintPage += printDocument_PrintPage;
         }
-
-       
+        public POSEZ2U.frmFloor.CallBackStatusOrder CallBackStatusOrder;
         POSPrinter posPrinter = new POSPrinter();
         POSEZ2U.Class.MoneyFortmat money = new POSEZ2U.Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
         CatalogueModel CatalogueMain;
@@ -799,10 +798,9 @@ namespace POSEZ2U
                 {
                     posPrinter.printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
                     posPrinter.printDocument.Print();
-                    //OrderCallback(OrderMain);
-                    frmFloor frm = new frmFloor(OrderMain);
-                    frm.ShowDialog();
-                    this.Hide();
+                    CallBackStatusOrder(OrderMain);
+
+                    this.Close();
 
                 }
             }

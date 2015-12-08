@@ -12,13 +12,13 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using ServicePOS.Model;
 using POSEZ2U.UC;
-
+using POSEZ2U.Class;
 namespace POSEZ2U
 {
     public partial class frmFloor : Form
     {
-        Order orderMain;
-        public frmFloor(Order _orderMain)
+        ServicePOS.Model.Order orderMain;
+        public frmFloor(ServicePOS.Model.Order _orderMain)
         {
             InitializeComponent();
             orderMain = _orderMain;
@@ -28,7 +28,10 @@ namespace POSEZ2U
             InitializeComponent();
 
         }
-        Order OrderMain = new Order();
+        MoneyFortmat monetFormat = new MoneyFortmat(MoneyFortmat.AU_TYPE);
+        ServicePOS.Model.Order OrderMain = new ServicePOS.Model.Order();
+        public delegate void CallBackStatusOrder(ServicePOS.Model.Order orderMain);
+        private delegate void ChangeTextCallback(string text, Control control);
         const int AW_HOR_POSITIVE = 1;
         const int AW_HOR_NEGATIVE = 2;
         const int AW_VER_POSITIVE = 4;
@@ -46,14 +49,9 @@ namespace POSEZ2U
             {
                 UC.UCTable ucTable = new UC.UCTable();
                 ucTable.lbTableNo.Text = i.ToString();
-                ucTable.lbTime.Text = "03/11/2015";
-                ucTable.lbSubTotal.Text = "20,000";
+                
                 ucTable.Click += ucTable_Click;
                 //ftpEatIn.Controls.Add(ucTable);
-                if (i == 7 || i == 15 || i == 28)
-                {
-                    ucTable.BackColor = Color.Green;
-                }
                 flowLayoutPanel1.Controls.Add(ucTable);
             }
         }
@@ -62,12 +60,40 @@ namespace POSEZ2U
         {
             UCTable ucTable = (UCTable)sender;
             OrderMain.FloorID = Convert.ToInt32(ucTable.lbTableNo.Text);
+           
             frmOrder frm = new frmOrder(OrderMain);
-            frm.ShowDialog();
-            this.Hide();
+            frm.CallBackStatusOrder = new CallBackStatusOrder(this.CallBackOrder);
+            frm.ShowDialog();    
+           
         }
+        public void SetText(string text, Control control)
+        {
+            if (control.InvokeRequired)
+            {
+                ChangeTextCallback method = new ChangeTextCallback(this.SetText);
+                control.Invoke(method, new object[] { text, control });
+            }
+            else
+            {
+                control.Text = text;
+            }
+        }
+        private void CallBackOrder(ServicePOS.Model.Order orderCallBack)
+        {
+            OrderMain = orderCallBack;
+            for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
+            {
+                UCTable ucTable = (UCTable)flowLayoutPanel1.Controls[i];
+                if (ucTable.lbTableNo.Text == OrderMain.FloorID.ToString())
+                {
+                    ucTable.BackColor = Color.Green;
+                    ucTable.ForeColor = Color.White;
+                    SetText("$"+monetFormat.Format(OrderMain.SubTotal()), ucTable.lbSubTotal);
+                }
 
-
+            }
+            
+        }
         private void frmFloor_Load(object sender, EventArgs e)
         {
 
@@ -78,9 +104,9 @@ namespace POSEZ2U
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             frmMain frm = new frmMain();
-            frm.ShowDialog();
+            frm.Show();
         }
 
         private void frmFloor_Shown(object sender, EventArgs e)

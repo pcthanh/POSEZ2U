@@ -93,7 +93,7 @@ namespace POSEZ2U
                     ucItemList.btnSave.Click += ucItemList_btnSave_Click;
                     ucItemList.btnRemove.Visible = false;
                     ucItemList.btnAddProtions.Visible = false;
-                    ucItemList.lwPortions.Visible = false;
+                   
                     pnDetail.Controls.Add(ucItemList);
                     break;
                 case 4:
