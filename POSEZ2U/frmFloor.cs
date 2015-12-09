@@ -17,8 +17,8 @@ namespace POSEZ2U
 {
     public partial class frmFloor : Form
     {
-        ServicePOS.Model.Order orderMain;
-        public frmFloor(ServicePOS.Model.Order _orderMain)
+        ServicePOS.Model.OrderModel orderMain;
+        public frmFloor(ServicePOS.Model.OrderModel _orderMain)
         {
             InitializeComponent();
             orderMain = _orderMain;
@@ -29,8 +29,8 @@ namespace POSEZ2U
 
         }
         MoneyFortmat monetFormat = new MoneyFortmat(MoneyFortmat.AU_TYPE);
-        ServicePOS.Model.Order OrderMain = new ServicePOS.Model.Order();
-        public delegate void CallBackStatusOrder(ServicePOS.Model.Order orderMain);
+        ServicePOS.Model.OrderModel OrderMain = new ServicePOS.Model.OrderModel();
+        public delegate void CallBackStatusOrder(ServicePOS.Model.OrderModel orderMain);
         private delegate void ChangeTextCallback(string text, Control control);
         const int AW_HOR_POSITIVE = 1;
         const int AW_HOR_NEGATIVE = 2;
@@ -78,7 +78,7 @@ namespace POSEZ2U
                 control.Text = text;
             }
         }
-        private void CallBackOrder(ServicePOS.Model.Order orderCallBack)
+        private void CallBackOrder(ServicePOS.Model.OrderModel orderCallBack)
         {
             OrderMain = orderCallBack;
             for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)

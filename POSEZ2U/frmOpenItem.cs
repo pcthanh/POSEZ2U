@@ -18,7 +18,7 @@ namespace POSEZ2U
             InitializeComponent();
         }
 
-        public OrderDetail items = new OrderDetail();
+        public OrderDetailModel items = new OrderDetailModel();
 
         private void btnOK_Click(object sender, EventArgs e)
         {

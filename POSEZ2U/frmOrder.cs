@@ -19,8 +19,8 @@ namespace POSEZ2U
 {
     public partial class frmOrder : Form
     {
-        Order OrderMain;
-        public frmOrder(Order _orderMain)
+        OrderModel OrderMain;
+        public frmOrder(OrderModel _orderMain)
         {
             InitializeComponent();
             OrderMain = _orderMain;
@@ -34,6 +34,7 @@ namespace POSEZ2U
         int indexOfUcSeat;
         int countItemOfSeat;
         int flagUcSeatClick;
+
         private ICatalogueService _catalogeService;
         private ICatalogueService CatalogeService
         {
@@ -56,8 +57,15 @@ namespace POSEZ2U
             set { _modifireService = value; }
         }
 
-        List<OrderDetail> ListOrderDetail = new List<OrderDetail>();
-        List<OrderDetailModifire> ListOrderModifire = new List<OrderDetailModifire>();
+        private IOrderService _orderService;
+        private IOrderService OrderService
+        {
+            get { return _orderService ?? (_orderService = new OrderService()); }
+            set { _orderService = value; }
+        }
+
+        List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
+        List<OrderDetailModifireModel> ListOrderModifire = new List<OrderDetailModifireModel>();
         int keyItemTemp;
         int indexControl;
         int seat = 0;
@@ -166,10 +174,10 @@ namespace POSEZ2U
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     //Order.Item itemTemp = new Order.Item();
-                    OrderDetail itemTemp = new OrderDetail();
+                    OrderDetailModel itemTemp = new OrderDetailModel();
                     itemTemp = frm.items;
                     //Order.Modifier modifierTemp = new Order.Modifier();
-                    OrderDetailModifire modifierTemp = new OrderDetailModifire();
+                    OrderDetailModifireModel modifierTemp = new OrderDetailModifireModel();
                     modifierTemp.ModifireName = itemTemp.ProductName;
                     modifierTemp.Price = itemTemp.Price;
                     OrderMain.addModifierToList(modifierTemp, keyItemTemp);
@@ -356,7 +364,7 @@ namespace POSEZ2U
             try
             {
                 UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
-                OrderDetail item = new OrderDetail();
+                OrderDetailModel item = new OrderDetailModel();
                 if (seat > 0)
                     item.Seat = seat;
                 ProductionModel itemProduct = (ProductionModel)ucMenuOfGroup.Tag;
@@ -374,7 +382,7 @@ namespace POSEZ2U
             }
 
         }
-        private void addOrder(OrderDetail items)
+        private void addOrder(OrderDetailModel items)
         {
             try
             {
@@ -402,7 +410,7 @@ namespace POSEZ2U
             try
             {
                 UCOrder ucOder = (UCOrder)sender;
-                OrderDetail item = (OrderDetail)ucOder.Tag;
+                OrderDetailModel item = (OrderDetailModel)ucOder.Tag;
                 indexControl = flpOrder.Controls.GetChildIndex(ucOder);
                 foreach (Control ctr in flpOrder.Controls)
                 {
@@ -457,7 +465,7 @@ namespace POSEZ2U
             try
             {
                 UCModifierOfMenu ucModifierOfMenu = (UCModifierOfMenu)sender;
-                OrderDetailModifire modifier = new OrderDetailModifire();
+                OrderDetailModifireModel modifier = new OrderDetailModifireModel();
                 ModifireModel itemsModifre = (ModifireModel)ucModifierOfMenu.Tag;
                 modifier.ModifireName = itemsModifre.ModifireName;
                 modifier.Price =Convert.ToDouble(itemsModifre.CurrentPrice);
@@ -502,7 +510,7 @@ namespace POSEZ2U
             }
 
         }
-        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu,OrderDetailModifire modifier)
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu,OrderDetailModifireModel modifier)
         {
             try
             {
@@ -717,18 +725,18 @@ namespace POSEZ2U
             {
                 UCOrder ucOrder;
                 UCItemModifierOfMenu ucItemModifireOfMenu;
-                OrderDetailModifire modifier = null;
-                OrderDetail items = null;
+                OrderDetailModifireModel modifier = null;
+                OrderDetailModel items = null;
                 if (flagClick == 1)
                 {
 
                     ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
-                    modifier = (OrderDetailModifire)ucItemModifireOfMenu.Tag;
+                    modifier = (OrderDetailModifireModel)ucItemModifireOfMenu.Tag;
                 }
                 else
                 {
                     ucOrder = (UCOrder)flpOrder.Controls[indexControl];
-                    items = (OrderDetail)ucOrder.Tag;
+                    items = (OrderDetailModel)ucOrder.Tag;
                 }
                 if (items != null)
                 {
@@ -796,10 +804,11 @@ namespace POSEZ2U
             {
                 if (OrderMain.ListOrderDetail.Count >= 0)
                 {
+                    int result = 0;
+                    result= OrderService.InsertOrder(OrderMain);
                     posPrinter.printDocument.PrinterSettings.PrinterName = "Microsoft XPS Document Writer";
                     posPrinter.printDocument.Print();
                     CallBackStatusOrder(OrderMain);
-
                     this.Close();
 
                 }
