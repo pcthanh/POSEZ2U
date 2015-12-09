@@ -24,6 +24,7 @@ namespace ServicePOS.Model
         
         public void addItemToList(OrderDetailModel item)
         {
+           
             item.KeyItem = ListOrderDetail.Count + 1;
             ListOrderDetail.Add(item);
         }

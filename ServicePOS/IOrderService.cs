@@ -9,11 +9,12 @@ namespace ServicePOS
 {
    public interface IOrderService:IDisposable
     {
-       int InsertOrder(OrderModel itemOrder);
-       int InsertOrderDetail(OrderDetailModel itemOrderDetail);
-       int CheckOrderComplete(OrderModel idOrder);
-       IEnumerable<OrderModel> LoadOrder(OrderModel idOrder);
-       int UpdateOrder(OrderModel idOrder);
-       IEnumerable<OrderModel> GetOrderByTable(int idTable,int idOrder);
+       int InsertOrder(OrderDateModel itemOrder);
+       int CheckOrderComplete(OrderDateModel idOrder);
+       IEnumerable<OrderDateModel> LoadOrder(OrderDateModel idOrder);
+       int UpdateOrder(OrderDateModel idOrder);
+       IEnumerable<OrderDateModel> GetOrderByTable(int idTable, int idOrder);
+       int CountOrder();
+        IEnumerable< StatusTable> GetStatusTable(string TableID);
     }
 }

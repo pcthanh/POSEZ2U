@@ -20,20 +20,49 @@ namespace ServicePOS.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
         public int Seat { get; set; }
-        public OrderDateModel CopyOrder(OrderModel itemOrder)
+        public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
+
+        public void addItemToList(OrderDetailModel item)
         {
-            OrderDateModel orderDate = new OrderDateModel();
-            orderDate.FloorID = itemOrder.FloorID;
-            orderDate.OrderNumber = itemOrder.OrderNumber??"";
-            orderDate.TotalAmount = itemOrder.TotalAmount??0;
-            orderDate.Status = itemOrder.Status;
-            orderDate.ClientID = itemOrder.ClientID ?? 0;
-            orderDate.CreateBy = itemOrder.CreateBy ?? 0;
-            orderDate.CreateDate = DateTime.Now;
-            orderDate.UpdateBy = itemOrder.UpdateBy ?? 0;
-            orderDate.UpdateDate = DateTime.Now;
-            orderDate.Note = itemOrder.Note ?? "";
-            return orderDate;
+            item.KeyItem = ListOrderDetail.Count + 1;
+            ListOrderDetail.Add(item);
+        }
+        public void addModifierToList(OrderDetailModifireModel modifire, int keyItem)
+        {
+            if (ListOrderDetail.Count > 0)
+            {
+                modifire.KeyItem = ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Count + 1;
+                modifire.ProductID = ListOrderDetail[keyItem - 1].ProductID;
+                ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Add(modifire);
+
+            }
+        }
+        public Double SubTotal()
+        {
+            Double total = 0;
+            for (int i = 0; i < ListOrderDetail.Count; i++)
+            {
+
+                total += Convert.ToDouble(ListOrderDetail[i].Price);
+            }
+            TotalAmount = total;
+            return total;
+        }
+        public void addSeat(int numberSeat)
+        {
+            Seat = numberSeat;
+        }
+        public int CountIteminSeat(int numSeat)
+        {
+            int count = 0;
+            for (int i = 0; i < ListOrderDetail.Count; i++)
+            {
+                if (ListOrderDetail[i].Seat == numSeat)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 }

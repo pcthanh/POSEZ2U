@@ -22,5 +22,7 @@ namespace ServicePOS.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
         public int KeyItem { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
     }
 }
