@@ -12,7 +12,8 @@ namespace ServicePOS
    public class OrderService:IOrderService
     {
 
-       private POSEZ2UEntities _context;
+        private POSEZ2UEntities _context;
+        ORDER_DATE orderDate = new ORDER_DATE();
         public OrderService()
         {
             _context = new POSEZ2UEntities();
@@ -27,24 +28,35 @@ namespace ServicePOS
         {
             _context.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
-        public void Dispose()
+        private ORDER_DATE CopyOrder(OrderModel itemOrder)
         {
-            //throw new NotImplementedException();
+            ORDER_DATE orderDate = new ORDER_DATE();
+           
+            orderDate.FloorID = itemOrder.FloorID;
+            orderDate.OrderNumber = itemOrder.OrderNumber ?? "";
+            orderDate.TotalAmount = itemOrder.TotalAmount ?? 0;
+            orderDate.Status = itemOrder.Status;
+            orderDate.ClientID = itemOrder.ClientID ?? 0;
+            orderDate.CreateBy = itemOrder.CreateBy ?? 0;
+            orderDate.CreateDate = DateTime.Now;
+            orderDate.UpdateBy = itemOrder.UpdateBy ?? 0;
+            orderDate.UpdateDate = DateTime.Now;
+            orderDate.Note = itemOrder.Note ?? "";
+            return orderDate;
         }
 
-        public int InsertOrder(Model.Order itemOrder)
+        public int InsertOrder(Model.OrderModel itemOrder)
         {
             int flag = 0;
             try
             {
-                Order itemInsert = new Order();
-                itemInsert.FloorID = itemOrder.FloorID;
-                itemInsert.OrderID = itemOrder.OrderID;
-                itemInsert.OrderNumber = itemOrder.OrderNumber;
-                itemInsert.TotalAmount = itemOrder.TotalAmount;
-                itemInsert.Status = itemOrder.Status;
-                itemInsert.Seat = itemOrder.Seat;
-                
+                ORDER_DATE tempDate = new ORDER_DATE();
+                tempDate = CopyOrder(itemOrder);
+                //_context.ORDER_DATE.Add(tempDate);
+                _context.Entry(tempDate).State = System.Data.Entity.EntityState.Added;
+               
+                _context.SaveChanges();
+
             }
             catch (Exception ex)
             {
@@ -53,29 +65,50 @@ namespace ServicePOS
             return flag;
         }
 
-        public int InsertOrderDetail(Model.OrderDetail itemOrderDetail)
+        public int InsertOrderDetail(Model.OrderDetailModel itemOrderDetail)
         {
             throw new NotImplementedException();
         }
 
-        public int CheckOrderComplete(Model.Order idOrder)
+        public int CheckOrderComplete(Model.OrderModel idOrder)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Order> LoadOrder(Model.Order idOrder)
+        public IEnumerable<Model.OrderModel> LoadOrder(Model.OrderModel idOrder)
         {
             throw new NotImplementedException();
         }
 
-        public int UpdateOrder(Model.Order idOrder)
+        public int UpdateOrder(Model.OrderModel idOrder)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Model.Order> GetOrderByTable(int idTable, int idOrder)
+        public IEnumerable<Model.OrderModel> GetOrderByTable(int idTable, int idOrder)
         {
             throw new NotImplementedException();
         }
+        #region Dispose
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    // code is here
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }
