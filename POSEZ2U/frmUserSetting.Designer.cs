@@ -207,6 +207,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel10
             // 
@@ -220,13 +221,13 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(204, 35);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "label2";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel12
@@ -315,11 +316,11 @@
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.FlowLayoutPanel flpUserSetting;
-        private System.Windows.Forms.FlowLayoutPanel flpUserList;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Panel pDetail;
+        public System.Windows.Forms.FlowLayoutPanel flpUserSetting;
+        public System.Windows.Forms.Button btnBack;
+        public System.Windows.Forms.Button btnAdd;
+        public System.Windows.Forms.FlowLayoutPanel flpUserList;
+        public System.Windows.Forms.Panel pDetail;
+        public System.Windows.Forms.Label lblTitle;
     }
 }
