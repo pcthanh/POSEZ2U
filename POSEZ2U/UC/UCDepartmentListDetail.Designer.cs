@@ -32,11 +32,11 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.flpPermission = new System.Windows.Forms.FlowLayoutPanel();
+            this.lbPermisstion = new System.Windows.Forms.Label();
             this.lbTilte = new System.Windows.Forms.Label();
             this.lbRoleName = new System.Windows.Forms.Label();
             this.txtRoleName = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.lbPermisstion = new System.Windows.Forms.Label();
-            this.flpPermission = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,26 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(553, 310);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
+            // flpPermission
+            // 
+            this.flpPermission.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpPermission.Location = new System.Drawing.Point(3, 159);
+            this.flpPermission.Name = "flpPermission";
+            this.flpPermission.Size = new System.Drawing.Size(547, 148);
+            this.flpPermission.TabIndex = 10;
+            // 
+            // lbPermisstion
+            // 
+            this.lbPermisstion.AutoSize = true;
+            this.lbPermisstion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPermisstion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPermisstion.Location = new System.Drawing.Point(3, 117);
+            this.lbPermisstion.Name = "lbPermisstion";
+            this.lbPermisstion.Size = new System.Drawing.Size(547, 39);
+            this.lbPermisstion.TabIndex = 9;
+            this.lbPermisstion.Text = "Permission";
+            this.lbPermisstion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lbTilte
             // 
             this.lbTilte.AutoSize = true;
@@ -138,26 +158,6 @@
             this.txtRoleName.Size = new System.Drawing.Size(547, 33);
             this.txtRoleName.TabIndex = 3;
             // 
-            // lbPermisstion
-            // 
-            this.lbPermisstion.AutoSize = true;
-            this.lbPermisstion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbPermisstion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPermisstion.Location = new System.Drawing.Point(3, 117);
-            this.lbPermisstion.Name = "lbPermisstion";
-            this.lbPermisstion.Size = new System.Drawing.Size(547, 39);
-            this.lbPermisstion.TabIndex = 9;
-            this.lbPermisstion.Text = "Permission";
-            this.lbPermisstion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // flpPermission
-            // 
-            this.flpPermission.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpPermission.Location = new System.Drawing.Point(3, 159);
-            this.flpPermission.Name = "flpPermission";
-            this.flpPermission.Size = new System.Drawing.Size(547, 148);
-            this.flpPermission.TabIndex = 10;
-            // 
             // UCDepartmentListDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,6 +185,6 @@
         public UCTextBoxKeyBoard txtRoleName;
         public System.Windows.Forms.Label lbRoleName;
         private System.Windows.Forms.Label lbPermisstion;
-        private System.Windows.Forms.FlowLayoutPanel flpPermission;
+        public System.Windows.Forms.FlowLayoutPanel flpPermission;
     }
 }
