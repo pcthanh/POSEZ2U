@@ -466,6 +466,17 @@ namespace POSEZ2U
 
         private void frmUserSetting_Load(object sender, EventArgs e)
         {
+            userid = UserLoginModel.UserLoginInfo.StaffID;
+
+            //MessageBox.Show("userid", userid.ToString());
+            if (userid == 0)
+            {
+                frmConfirm frm = new frmConfirm("Messenger", "Please login application.");
+                frm.btnOk.Hide();
+                frm.btnCancel.Text = "OK";
+                frm.ShowDialog();
+            }
+
             this.AddUserSetting();
         }
 
