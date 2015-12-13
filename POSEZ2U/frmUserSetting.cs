@@ -161,18 +161,29 @@ namespace POSEZ2U
 
         void addDepartmentDetail(DepartmentModel data)
         {
-            pDetail.Controls.Clear();
+            //pDetail.Controls.Clear();
 
             if (data.DepartmentID > 0)
             {
-                UCDepartmentListDetail ucDepartmentDetail = new UCDepartmentListDetail();
 
-                ucDepartmentDetail.Dock = DockStyle.Fill;
+                 UCDepartmentListDetail ucDepartmentDetail=new UCDepartmentListDetail();
+
+                if (pDetail.Controls.Count > 0)
+                {
+                    ucDepartmentDetail = (UCDepartmentListDetail) pDetail.Controls[0];
+                }
+                else
+                {
+                    ucDepartmentDetail.Dock = DockStyle.Fill;
+                    pDetail.Controls.Add(ucDepartmentDetail);
+                }
 
                 ucDepartmentDetail.lbTilte.Text = data.DepartmentName;
 
                 ucDepartmentDetail.txtRoleName.Text = data.DepartmentName;
 
+                ucDepartmentDetail.flpPermission.Controls.Clear();
+                ucDepartmentDetail.addUcPermission(data.DepartmentID);
                 ucDepartmentDetail.addButton(data.DepartmentID);
 
                 ucDepartmentDetail.btnSave.Tag = data;
@@ -181,16 +192,16 @@ namespace POSEZ2U
                 ucDepartmentDetail.btnDelete.Tag = data;
                 ucDepartmentDetail.btnDelete.Click += btnDeleteDepartment_Click;
 
-                pDetail.Controls.Add(ucDepartmentDetail);
+              
             }
         }
 
         void btnSaveDepartment_Click(object sender, EventArgs e)
         {
-            frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info role ?");
-            frmcon.ShowDialog();
-            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
+            //frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info role ?");
+            //frmcon.ShowDialog();
+            //if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
+            //{
                 Button btnSave = (Button)sender;
                 DepartmentModel data = (DepartmentModel)(btnSave.Tag);
 
@@ -228,7 +239,7 @@ namespace POSEZ2U
                     frm.btnCancel.Text = "OK";
                     frm.ShowDialog();
                 }
-            }
+            //}
 
 
         }
@@ -281,13 +292,24 @@ namespace POSEZ2U
 
         void addStaffDetail(StaffModel data)
         {
-            pDetail.Controls.Clear();
+           // pDetail.Controls.Clear();
 
             if (data.StaffID > 0)
             {
                 UCUserListDetail ucUserDetail = new UCUserListDetail();
 
-                ucUserDetail.Dock = DockStyle.Fill;
+                if (pDetail.Controls.Count > 0)
+                {
+                    ucUserDetail = (UCUserListDetail)pDetail.Controls[0];
+                }
+                else
+                {
+                    ucUserDetail.Dock = DockStyle.Fill;
+                    pDetail.Controls.Add(ucUserDetail);
+                }
+
+
+               // ucUserDetail.Dock = DockStyle.Fill;
 
                 ucUserDetail.lbTitle.Text = data.Fname + " " + data.Lname;
 
@@ -338,17 +360,17 @@ namespace POSEZ2U
                 ucUserDetail.btnDelete.Tag = data;
                 ucUserDetail.btnDelete.Click += btnDeleteUser_Click;
 
-                pDetail.Controls.Add(ucUserDetail);
+                
             }
         }
 
 
         void btnSaveUser_Click(object sender, EventArgs e)
         {
-            frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info user ?");
-            frmcon.ShowDialog();
-            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
+            //frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info user ?");
+            //frmcon.ShowDialog();
+            //if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
+            //{
 
                 Button btnSave = (Button)sender;
                 StaffModel data = (StaffModel)(btnSave.Tag);
@@ -408,7 +430,7 @@ namespace POSEZ2U
                 }
 
 
-            }
+            //}
 
         }
 
