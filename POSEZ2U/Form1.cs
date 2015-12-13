@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using POSEZ2U.Class;
 using ServicePOS;
 using ServicePOS.Model;
 
@@ -99,6 +100,7 @@ namespace POSEZ2U
                 {
                     if (passinput == passcheck)
                     {
+                        UserLoginModel.UserLoginInfo = usermodel;
                         frmMain frm = new frmMain();
                         frm.ShowDialog();
                         this.Hide();
