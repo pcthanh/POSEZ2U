@@ -69,11 +69,11 @@
             this.btnPrintBill = new System.Windows.Forms.Button();
             this.btnDisCount = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -588,6 +588,15 @@
             this.panel8.Size = new System.Drawing.Size(10, 193);
             this.panel8.TabIndex = 0;
             // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
+            // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
@@ -625,15 +634,6 @@
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
             // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
             // ucInfoTop1
             // 
             this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -661,6 +661,7 @@
             this.Controls.Add(this.ucInfoTop1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmOrder";
+            this.ShowInTaskbar = false;
             this.Text = "frmOrder";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmOrder_Load);
