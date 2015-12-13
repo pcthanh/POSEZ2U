@@ -24,5 +24,6 @@ namespace ServicePOS.Model
         public List<OrderDetailModifireModel> ListOrderDetailModifire = new List<OrderDetailModifireModel>();
         public int KeyItem { get; set; }
         public int Seat { get; set; }
+        public int ChangeStatus { get; set; }
     }
 }

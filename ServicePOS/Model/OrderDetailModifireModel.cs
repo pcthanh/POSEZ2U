@@ -24,5 +24,8 @@ namespace ServicePOS.Model
         public int KeyItem { get; set; }
         public int OrderID { get; set; }
         public int ProductID { get; set; }
+        public int KeyModi { get; set; }
+        public int Seat { get; set; }
+        public int ChangeStatus { get; set; }
     }
 }

@@ -13,8 +13,9 @@ namespace ServicePOS
        int CheckOrderComplete(OrderDateModel idOrder);
        IEnumerable<OrderDateModel> LoadOrder(OrderDateModel idOrder);
        int UpdateOrder(OrderDateModel idOrder);
-       IEnumerable<OrderDateModel> GetOrderByTable(int idTable, int idOrder);
+       OrderDateModel GetOrderByTable(string idTable, int idOrder);
        int CountOrder();
-        IEnumerable< StatusTable> GetStatusTable(string TableID);
+       int CountOrderModifire();
+       StatusTable GetStatusTable(string TableID);
     }
 }

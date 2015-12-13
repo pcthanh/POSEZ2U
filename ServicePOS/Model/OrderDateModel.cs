@@ -11,7 +11,7 @@ namespace ServicePOS.Model
         public int OrderID { get; set; }
         public string OrderNumber { get; set; }
         public Nullable<int> ClientID { get; set; }
-        public Nullable<int> FloorID { get; set; }
+        public string FloorID { get; set; }
         public int Status { get; set; }
         public Nullable<double> TotalAmount { get; set; }
         public Nullable<int> CreateBy { get; set; }
@@ -21,10 +21,17 @@ namespace ServicePOS.Model
         public string Note { get; set; }
         public int Seat { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
-
+        private IOrderService _orderService;
+        private IOrderService OrderService
+        {
+            get { return _orderService ?? (_orderService = new OrderService()); }
+            set { _orderService = value; }
+        }
+        
         public void addItemToList(OrderDetailModel item)
         {
             item.KeyItem = ListOrderDetail.Count + 1;
+            
             ListOrderDetail.Add(item);
         }
         public void addModifierToList(OrderDetailModifireModel modifire, int keyItem)
@@ -32,7 +39,9 @@ namespace ServicePOS.Model
             if (ListOrderDetail.Count > 0)
             {
                 modifire.KeyItem = ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Count + 1;
+                modifire.KeyModi = ListOrderDetail[keyItem - 1].KeyItem;
                 modifire.ProductID = ListOrderDetail[keyItem - 1].ProductID;
+                modifire.Seat = ListOrderDetail[keyItem - 1].Seat;
                 ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Add(modifire);
 
             }

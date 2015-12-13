@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using ModelPOS.ModelEntity;
 using SystemLog;
 using ServicePOS.Model;
+
 namespace ServicePOS
 {
    public class OrderService:IOrderService
@@ -14,9 +15,12 @@ namespace ServicePOS
 
         private POSEZ2UEntities _context;
         ORDER_DATE orderDate = new ORDER_DATE();
+        
+       
         public OrderService()
         {
             _context = new POSEZ2UEntities();
+          
         }
 
         public OrderService(POSEZ2UEntities context)
@@ -28,11 +32,13 @@ namespace ServicePOS
         {
             _context.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
         }
+        
         private ORDER_DATE CopyOrder(OrderDateModel itemOrder)
         {
             ORDER_DATE orderDate = new ORDER_DATE();
-            orderDate.FloorID = itemOrder.FloorID;
+            orderDate.FloorID = itemOrder.FloorID.ToString();
             orderDate.OrderNumber = itemOrder.OrderID.ToString()??"";
+            orderDate.OrderID = itemOrder.OrderID;
             orderDate.TotalAmount = itemOrder.TotalAmount ?? 0;
             orderDate.Status = itemOrder.Status;
             orderDate.ClientID = itemOrder.ClientID ?? 0;
@@ -41,6 +47,7 @@ namespace ServicePOS
             orderDate.UpdateBy = itemOrder.UpdateBy ?? 0;
             orderDate.UpdateDate = DateTime.Now;
             orderDate.Note = itemOrder.Note ?? "";
+            orderDate.Seat = itemOrder.Seat;
             return orderDate;
         }
         private List<ORDER_DETAIL_DATE> CopyOrderDetailDate(OrderDateModel itemOrder)
@@ -52,19 +59,25 @@ namespace ServicePOS
                
                 for (int i = 0; i < itemOrder.ListOrderDetail.Count; i++)
                 {
-                    ORDER_DETAIL_DATE orderDetaiDate = new ORDER_DETAIL_DATE();
-                    orderDetaiDate.OrderID = itemOrder.ListOrderDetail[i].OrderID;
-                    orderDetaiDate.ProductID = itemOrder.ListOrderDetail[i].ProductID;
-                    orderDetaiDate.Qty = itemOrder.ListOrderDetail[i].Qty;
-                    orderDetaiDate.Total = itemOrder.ListOrderDetail[i].Total;
-                    orderDetaiDate.Price = itemOrder.ListOrderDetail[i].Price;
-                    orderDetaiDate.Satust = itemOrder.ListOrderDetail[i].Satust;
-                    orderDetaiDate.Note = itemOrder.ListOrderDetail[i].Note;
-                    orderDetaiDate.CreateBy = itemOrder.ListOrderDetail[i].CreateBy ?? 0;
-                    orderDetaiDate.CreateDate = itemOrder.ListOrderDetail[i].CreateDate ?? DateTime.Now;
-                    orderDetaiDate.UpdateBy = itemOrder.ListOrderDetail[i].UpdateBy ?? 0;
-                    orderDetaiDate.UpdateDate = itemOrder.ListOrderDetail[i].UpdateDate ?? DateTime.Now;
-                    lstorderDetailDate.Add(orderDetaiDate);
+                    if (itemOrder.ListOrderDetail[i].ChangeStatus != 2)
+                    {
+                        ORDER_DETAIL_DATE orderDetaiDate = new ORDER_DETAIL_DATE();
+                        orderDetaiDate.OrderID = itemOrder.ListOrderDetail[i].OrderID;
+                        orderDetaiDate.OrderDetailID = itemOrder.ListOrderDetail[i].OrderDetailID;
+                        orderDetaiDate.ProductID = itemOrder.ListOrderDetail[i].ProductID;
+                        orderDetaiDate.KeyItem = itemOrder.ListOrderDetail[i].KeyItem;
+                        orderDetaiDate.Qty = itemOrder.ListOrderDetail[i].Qty;
+                        orderDetaiDate.Total = itemOrder.ListOrderDetail[i].Total;
+                        orderDetaiDate.Price = itemOrder.ListOrderDetail[i].Price;
+                        orderDetaiDate.Satust = itemOrder.ListOrderDetail[i].Satust;
+                        orderDetaiDate.Note = itemOrder.ListOrderDetail[i].Note;
+                        orderDetaiDate.Seat = itemOrder.ListOrderDetail[i].Seat;
+                        orderDetaiDate.CreateBy = itemOrder.ListOrderDetail[i].CreateBy ?? 0;
+                        orderDetaiDate.CreateDate = itemOrder.ListOrderDetail[i].CreateDate ?? DateTime.Now;
+                        orderDetaiDate.UpdateBy = itemOrder.ListOrderDetail[i].UpdateBy ?? 0;
+                        orderDetaiDate.UpdateDate = itemOrder.ListOrderDetail[i].UpdateDate ?? DateTime.Now;
+                        lstorderDetailDate.Add(orderDetaiDate);
+                    }
                 }
             }
             catch (Exception ex)
@@ -83,20 +96,26 @@ namespace ServicePOS
                 { 
                     for (int j = 0; j < itemOrder.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
                     {
-                        ORDER_DETAIL_MODIFIRE_DATE orderDetailModifire = new ORDER_DETAIL_MODIFIRE_DATE();
-                        orderDetailModifire.ModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID;
-                        orderDetailModifire.OrderDetailID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderDetailID;
-                        orderDetailModifire.OrderID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderID;
-                        orderDetailModifire.ProductID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ProductID;
-                        orderDetailModifire.Price = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Price;
-                        orderDetailModifire.Qty = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Qty;
-                        orderDetailModifire.Total = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Total;
-                        orderDetailModifire.Satust = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
-                        orderDetailModifire.CreateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateBy ?? 0;
-                        orderDetailModifire.CreateDate = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateDate ?? DateTime.Now;
-                        orderDetailModifire.UpdateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].UpdateBy ?? 0;
-                        orderDetailModifire.UpdateDate = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].UpdateDate ?? DateTime.Now;
-                        lstOrderModifreDate.Add(orderDetailModifire);
+                        if (itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus != 2)
+                        {
+                            ORDER_DETAIL_MODIFIRE_DATE orderDetailModifire = new ORDER_DETAIL_MODIFIRE_DATE();
+                            orderDetailModifire.ModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID;
+                            orderDetailModifire.OrderDetailID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderDetailID;
+                            orderDetailModifire.OrderModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderModifireID;
+                            orderDetailModifire.OrderID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderID;
+                            orderDetailModifire.ProductID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ProductID;
+                            orderDetailModifire.KeyModi = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi;
+                            orderDetailModifire.Price = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Price;
+                            orderDetailModifire.Qty = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Qty;
+                            orderDetailModifire.Total = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Total;
+                            orderDetailModifire.Satust = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
+                            orderDetailModifire.Seat = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Seat;
+                            orderDetailModifire.CreateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateBy ?? 0;
+                            orderDetailModifire.CreateDate = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateDate ?? DateTime.Now;
+                            orderDetailModifire.UpdateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].UpdateBy ?? 0;
+                            orderDetailModifire.UpdateDate = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].UpdateDate ?? DateTime.Now;
+                            lstOrderModifreDate.Add(orderDetailModifire);
+                        }
                     }
 
                 }
@@ -116,23 +135,74 @@ namespace ServicePOS
                 ORDER_DATE orderDateTemp = new ORDER_DATE();
                 List<ORDER_DETAIL_DATE> lstOrderDetaiDate = new List<ORDER_DETAIL_DATE>();
                 List<ORDER_DETAIL_MODIFIRE_DATE> lstOrderDetailModifire = new List<ORDER_DETAIL_MODIFIRE_DATE>();
-                ORDER_DETAIL_DATE orderDetailTemp = new ORDER_DETAIL_DATE();
-                ORDER_DETAIL_MODIFIRE_DATE orderDetailModofireDate = new ORDER_DETAIL_MODIFIRE_DATE();
-                orderDateTemp = CopyOrder(itemOrder);
-                _context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Added;
-                lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
-                foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+               // ORDER_DETAIL_DATE orderDetailTemp = new ORDER_DETAIL_DATE();
+                //ORDER_DETAIL_MODIFIRE_DATE orderDetailModofireDate = new ORDER_DETAIL_MODIFIRE_DATE();
+                OrderDateModel orderDateMoldeTemp = new OrderDateModel();
+                orderDateMoldeTemp= GetOrderByTable(itemOrder.FloorID,0);
+               
+                if (orderDateMoldeTemp.ListOrderDetail.Count > 0)
                 {
-                    _context.Entry(item).State = System.Data.Entity.EntityState.Added;
-                }
+                    using (var transaciton = _context.Database.BeginTransaction())
+                    {
+                        orderDateTemp = CopyOrder(itemOrder);
+                        //_context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Modified;
+                        _context.Database.ExecuteSqlCommand("update ORDER_DATE set TotalAmount='" + orderDateTemp.TotalAmount + "' where OrderID='"+ orderDateTemp.OrderID+"'");
+                        lstOrderDetaiDate = CopyOrderDetailDate(orderDateMoldeTemp);
+                        foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+                        {
 
-                lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
-                foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
-                {
-                    _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+                            _context.Database.ExecuteSqlCommand("delete from ORDER_DETAIL_DATE where OrderDetailID='" + item.OrderDetailID + "'");
+
+                        }
+                        lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
+                        foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+                        {
+                            // _context.Entry(item).State = System.Data.Entity.EntityState.Added;;
+                            
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,ProductID,KeyItem,Satust,Price,Qty,Total,Seat)values" +
+                                "('" + item.OrderID + "','" + item.ProductID + "','" + item.KeyItem + "','" + item.Satust + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "')");
+
+                        }
+                        lstOrderDetailModifire = CopyOrderMidifireDate(orderDateMoldeTemp);
+                        foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
+                        {
+                            //_context.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                            // _context.ORDER_DETAIL_MODIFIRE_DATE.Remove(item);
+                            _context.Database.ExecuteSqlCommand("delete ORDER_DETAIL_MODIFIRE_DATE where OrderModifireID='" + item.OrderModifireID + "'");
+                        }
+                        lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
+                        foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
+                        {
+                            // _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_MODIFIRE_DATE (OrderDetailID,OrderID,ProductID,KeyModi,ModifireID,Satust,Price,Qty,Total,Seat)values" +
+                                "('" + item.OrderDetailID + "','" + item.OrderID + "','" + item.ProductID + "','" + item.KeyModi + "','" + item.ModifireID + "','" + item.Satust + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "')");
+
+                        }
+                        transaciton.Commit();
+                        flag = 1;
+                    }
+                    
                 }
-                _context.SaveChanges();
-                flag = 1;
+                else
+                {
+                    orderDateTemp = CopyOrder(itemOrder);
+                    _context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Added;
+                    lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
+                    foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+                    {
+                        _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+
+                    }
+
+                    lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
+                    foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
+                    {
+                        _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+
+                    }
+                    _context.SaveChanges();
+                    flag = 1;
+                }
             }
             catch (Exception ex)
             {
@@ -188,22 +258,87 @@ namespace ServicePOS
             throw new NotImplementedException();
         }
 
-        IEnumerable<OrderDateModel> IOrderService.GetOrderByTable(int idTable, int idOrder)
+       
+
+        StatusTable IOrderService.GetStatusTable(string TableID)
         {
-            throw new NotImplementedException();
+            StatusTable st = new StatusTable();
+            st.Complete = -1;
+            var status =_context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status!=1).SingleOrDefault();
+            if (status != null)
+            {
+                st.Complete = status.Status;
+                st.OrderID = status.OrderID;
+                st.TableID = status.FloorID.ToString();
+                st.SubTotal = status.TotalAmount.ToString();
+                st.Time = status.CreateDate.ToString();
+            }
+            return st;
         }
 
-       public IEnumerable<StatusTable> IOrderService.GetStatusTable(string TableID)
+        public OrderDateModel GetOrderByTable(string idTable, int idOrder)
         {
-            var status = _context.ORDER_DATE.Where(x => x.Status != 1 && x.FloorID == Convert.ToInt32(TableID)).Select(x => new StatusTable
+            OrderDateModel OrderMain = new OrderDateModel();
+            var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == idTable && x.Status!=1).SingleOrDefault();
+            
+          
+            if (dataOrder != null)
             {
-                OrderID = x.OrderID,
-                Complete = x.Status,
-                SubTotal = x.TotalAmount.ToString(),
-                TableID = x.FloorID.ToString()
+                OrderMain.Seat = dataOrder.Seat ?? 0;
+                OrderMain.FloorID = dataOrder.FloorID;
+                OrderMain.OrderID = dataOrder.OrderID;
+                OrderMain.TotalAmount = dataOrder.TotalAmount;
+                var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
+                 item => item.OrderID, (order, item) => new { order, item })
+                 .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
+                 .Where(x => x.pro.order.FloorID == dataOrder.FloorID && x.pro.order.OrderID == x.pro.item.OrderID && x.pro.order.OrderID == dataOrder.OrderID && x.pro.item.OrderID == dataOrder.OrderID && x.pro.item.ProductID==x.c.ProductID)
+                 .Select(x => new OrderDetailModel()
+                 {
+                     ProductID = x.pro.item.ProductID,
+                     Price = x.pro.item.Price,
+                     Qty = x.pro.item.Qty,
+                     Total = x.pro.item.Qty * x.pro.item.Price,
+                     OrderID = x.pro.item.OrderID,
+                     Satust = x.pro.item.Satust,
+                     ProductName = x.c.ProductNameSort,
+                     KeyItem =x.pro.item.KeyItem??0,
+                     Seat=x.pro.item.Seat??0,
+                     OrderDetailID =x.pro.item.OrderDetailID
+                     
 
-            });
-            return status;
+                 });
+                foreach(OrderDetailModel item in data)
+                {
+                    var dataOrderModifire = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_DETAIL_MODIFIRE_DATE, pro => pro.ProductID,
+                        modifire => modifire.ProductID, (pro, modifire) => new { pro, modifire })
+                        .Join(_context.MODIFIREs, modi => modi.modifire.ModifireID, c => c.ModifireID, (modi, c) => new { modi, c })
+                        .Where(x => x.modi.pro.OrderID == item.OrderID && x.modi.modifire.OrderID == item.OrderID && x.modi.pro.ProductID == item.ProductID && x.modi.modifire.ProductID==item.ProductID && x.modi.modifire.ModifireID == x.c.ModifireID && x.modi.modifire.KeyModi==item.KeyItem && x.modi.pro.KeyItem==item.KeyItem)
+                        .Select(x => new OrderDetailModifireModel()
+                        {
+                            ModifireID = x.modi.modifire.ModifireID,
+                            Price= x.modi.modifire.Price,
+                            Qty =x.modi.modifire.Qty,
+                            ModifireName = x.c.ModifireName,
+                            Total = x.modi.modifire.Price*x.modi.modifire.Qty,
+                            Seat = x.modi.modifire.Seat??0,
+                            OrderModifireID = x.modi.modifire.OrderModifireID,
+                            OrderID = x.modi.pro.OrderID
+                        });
+                    OrderMain.addItemToList(item);
+                    foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
+                    {
+                        OrderMain.addModifierToList(itemmodifire, item.KeyItem);
+                    }
+                }
+            }
+            return OrderMain;
+        }
+
+
+        public int CountOrderModifire()
+        {
+            int OrderModifireID = _context.ORDER_DETAIL_DATE.Count();
+            return OrderModifireID;
         }
     }
 }
