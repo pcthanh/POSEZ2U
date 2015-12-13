@@ -4,39 +4,62 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ServicePOS;
+using ServicePOS.Model;
 
 namespace POSEZ2U
 {
     public partial class Form1 : Form
     {
+
+        #region Variables & Constructors
+
+        private IUserService _userService;
+        private IUserService UserService
+        {
+            get { return _userService ?? (_userService = new UserService()); }
+            set { _userService = value; }
+        }
+
+
+        #endregion
+
+        private StaffModel usermodel = new StaffModel();    
         public Form1()
         {
             InitializeComponent();
             ucKeypadLogin.txtResult = textBox1;
         }
 
+      
         private void Form1_Load(object sender, EventArgs e)
         {
+           //textBox1.Visible=false;
             flowLayoutPanel1.Controls.Clear();
-            for (int i = 1; i <= 8; i++)
+
+            var listUser = UserService.GetListStaff().ToList();
+
+            for (int i = 0; i < listUser.Count; i++)
             {
                 Button btn = new Button();
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
-                btn.Text = i.ToString();
-                btn.Name = i.ToString();
+                btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                btn.Text = listUser[i].UserName;
+                btn.Name = listUser[i].UserName;
                 btn.Width = 155;
                 btn.Height = 65;
-                btn.Tag = i;
+                btn.Tag = listUser[i];
                 btn.BackColor = Color.FromArgb(153, 153, 153);
                 btn.ForeColor = Color.White;
-                if (i == 8)
-                {
-                    btn.Text = ">";
-                }
+                //if (i == 8)
+                //{
+                //    btn.Text = ">";
+                //}
                 btn.Click += btn_Click;
                 flowLayoutPanel1.Controls.Add(btn);
             }
@@ -44,8 +67,20 @@ namespace POSEZ2U
 
         void btn_Click(object sender, EventArgs e)
         {
-            Button btn = (Button)sender;
-            MessageBox.Show(btn.Tag.ToString());
+            Button btnUserName = (Button)sender;
+            foreach (Button ctr in flowLayoutPanel1.Controls)
+            {
+                if (ctr.BackColor == Color.FromArgb(12, 120, 120))
+                {
+                    ctr.ForeColor = Color.White;
+                    ctr.BackColor = Color.FromArgb(153, 153, 153);
+                }
+            }
+            btnUserName.BackColor = Color.FromArgb(12, 120, 120);
+            btnUserName.ForeColor = Color.White;
+
+            usermodel = (StaffModel) (btnUserName.Tag);
+
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -56,11 +91,36 @@ namespace POSEZ2U
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "123456")
+            if (usermodel.StaffID > 0)
             {
-                frmMain frm = new frmMain();
+                var passcheck = StaffModel.Decrypt(usermodel.Password);
+                var passinput = textBox1.Text;
+                if (passinput.Count() == 4)
+                {
+                    if (passinput == passcheck)
+                    {
+                        frmMain frm = new frmMain();
+                        frm.ShowDialog();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        textBox1.Text = "";
+                        frmConfirm frm = new frmConfirm("Messenger", "Pin code isn't correct.");
+                        frm.btnOk.Hide();
+                        frm.btnCancel.Text = "OK";
+                        frm.ShowDialog();
+                    }    
+                }
+               
+            }
+            else
+            {
+                frmConfirm frm = new frmConfirm("Messenger", "Please chose user name");
+                frm.btnOk.Hide();
+                frm.btnCancel.Text = "OK";
                 frm.ShowDialog();
-                this.Hide();
+
             }
 
         }
