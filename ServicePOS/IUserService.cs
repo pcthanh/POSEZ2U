@@ -13,6 +13,10 @@ namespace ServicePOS
         int SaveDataDeparment(DepartmentModel data);
         int RemoveDepartment(int departmentid, int userid);
 
+        IEnumerable<SubMenuModel> GetSubMenuByDepartment(int departmentid);
+        IEnumerable<SubMenuModel> GetAllListSubMenuByDepartment(int departmentid);
+        int SaveMapPermission(List<SubMenuModel> data, int departmentid, int userid);
+
         IEnumerable<StaffModel> GetListStaff();
         int SaveDataStaff(StaffModel data);
         int RemoveStaff(int staffid, int userid);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -118,6 +120,63 @@ namespace ServicePOS
             {
                 return 0;
             }
+        }
+
+        public IEnumerable<SubMenuModel> GetSubMenuByDepartment(int departmentid)
+        {
+
+            var data = _context.PERMISSIONs.Join(_context.SUB_MENU, pe => pe.SubMenuID,
+                sb => sb.SubMenuID, (pe, sb) => new { pe, sb })
+                .Where(x => x.pe.DepartmentID == departmentid && x.pe.Status == 1)
+                .Select(x => new SubMenuModel()
+                {
+                    SubMenuID = x.sb.SubMenuID,
+                    SubMenuName = x.sb.SubMenuName,
+                    Status = x.sb.Status
+                });
+
+            return data;
+        }
+
+
+        public IEnumerable<SubMenuModel> GetAllListSubMenuByDepartment(int departmentid)
+        {
+            var data = _context.Database.SqlQuery<SubMenuModel>("pos_th_GetAllListPermissionByDepartmentID @departmentid",
+              new SqlParameter("departmentid", departmentid)
+            ).ToList();
+            return data;
+        }
+
+        public int SaveMapPermission(List<SubMenuModel> data, int departmentid, int userid)
+        {
+            try
+            {
+                var tabletemp = new DataTable();
+                tabletemp.Columns.Add("Value");
+
+                foreach (var item in data)
+                {
+                    tabletemp.Rows.Add(item.SubMenuID);
+                }
+
+                var tableSubMenutemp = new SqlParameter("tablesubmenu", SqlDbType.Structured);
+                tableSubMenutemp.Value = tabletemp;
+                tableSubMenutemp.TypeName = "dbo.TableTemp";
+
+                var result = _context.Database.ExecuteSqlCommand("pos_th_SaveDataPermissionByDepartmet @departmentid,@userid,@tablesubmenu",
+                  new SqlParameter("departmentid", departmentid),
+                  new SqlParameter("userid", userid),
+                  tableSubMenutemp
+               );
+
+
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
         }
 
         #endregion
