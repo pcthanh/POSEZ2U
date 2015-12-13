@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.lblMessger = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.CheckPass1 = new System.Windows.Forms.PictureBox();
+            this.CheckPass2 = new System.Windows.Forms.PictureBox();
+            this.CheckPass3 = new System.Windows.Forms.PictureBox();
+            this.CheckPass4 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -47,10 +47,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ucKeypadLogin = new POSEZ2U.UC.UCKeypad();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass4)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,41 +65,41 @@
             this.lblMessger.Text = "Try again!";
             this.lblMessger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox1
+            // CheckPass1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(404, 117);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(26, 28);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
+            this.CheckPass1.Image = ((System.Drawing.Image)(resources.GetObject("CheckPass1.Image")));
+            this.CheckPass1.Location = new System.Drawing.Point(404, 117);
+            this.CheckPass1.Name = "CheckPass1";
+            this.CheckPass1.Size = new System.Drawing.Size(26, 28);
+            this.CheckPass1.TabIndex = 5;
+            this.CheckPass1.TabStop = false;
             // 
-            // pictureBox2
+            // CheckPass2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(436, 117);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(27, 28);
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
+            this.CheckPass2.Image = ((System.Drawing.Image)(resources.GetObject("CheckPass2.Image")));
+            this.CheckPass2.Location = new System.Drawing.Point(436, 117);
+            this.CheckPass2.Name = "CheckPass2";
+            this.CheckPass2.Size = new System.Drawing.Size(27, 28);
+            this.CheckPass2.TabIndex = 5;
+            this.CheckPass2.TabStop = false;
             // 
-            // pictureBox3
+            // CheckPass3
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(469, 117);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox3.TabIndex = 5;
-            this.pictureBox3.TabStop = false;
+            this.CheckPass3.Image = ((System.Drawing.Image)(resources.GetObject("CheckPass3.Image")));
+            this.CheckPass3.Location = new System.Drawing.Point(469, 117);
+            this.CheckPass3.Name = "CheckPass3";
+            this.CheckPass3.Size = new System.Drawing.Size(28, 28);
+            this.CheckPass3.TabIndex = 5;
+            this.CheckPass3.TabStop = false;
             // 
-            // pictureBox4
+            // CheckPass4
             // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(503, 117);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(26, 28);
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
+            this.CheckPass4.Image = ((System.Drawing.Image)(resources.GetObject("CheckPass4.Image")));
+            this.CheckPass4.Location = new System.Drawing.Point(503, 117);
+            this.CheckPass4.Name = "CheckPass4";
+            this.CheckPass4.Size = new System.Drawing.Size(26, 28);
+            this.CheckPass4.TabIndex = 5;
+            this.CheckPass4.TabStop = false;
             // 
             // panel1
             // 
@@ -275,10 +275,10 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.CheckPass4);
+            this.Controls.Add(this.CheckPass3);
+            this.Controls.Add(this.CheckPass2);
+            this.Controls.Add(this.CheckPass1);
             this.Controls.Add(this.ucKeypadLogin);
             this.Controls.Add(this.lblMessger);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -287,10 +287,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckPass4)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -301,10 +301,6 @@
 
         private System.Windows.Forms.Label lblMessger;
         private UC.UCKeypad ucKeypadLogin;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -317,6 +313,10 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.PictureBox CheckPass1;
+        public System.Windows.Forms.PictureBox CheckPass2;
+        public System.Windows.Forms.PictureBox CheckPass3;
+        public System.Windows.Forms.PictureBox CheckPass4;
     }
 }
 

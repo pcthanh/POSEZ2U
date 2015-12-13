@@ -68,6 +68,7 @@ namespace POSEZ2U
 
         void btn_Click(object sender, EventArgs e)
         {
+            //textBox1.Text = "";
             Button btnUserName = (Button)sender;
             foreach (Button ctr in flowLayoutPanel1.Controls)
             {
@@ -96,6 +97,7 @@ namespace POSEZ2U
             {
                 var passcheck = StaffModel.Decrypt(usermodel.Password);
                 var passinput = textBox1.Text;
+                SetImgLogin(passinput);
                 if (passinput.Count() == 4)
                 {
                     if (passinput == passcheck)
@@ -118,6 +120,7 @@ namespace POSEZ2U
             }
             else
             {
+                textBox1.Text = "";
                 frmConfirm frm = new frmConfirm("Messenger", "Please chose user name");
                 frm.btnOk.Hide();
                 frm.btnCancel.Text = "OK";
@@ -125,6 +128,42 @@ namespace POSEZ2U
 
             }
 
+        }
+
+        void SetImgLogin(string pass)
+        {
+            if (pass != "")
+            {
+                var i = pass.Count();
+
+                Image image = Image.FromFile("E:/Project POS LOC/trunk/POSEZ2U/Resources/CheckedPass.png");
+
+
+                switch (i)
+                {
+                    case  1:
+                        CheckPass1.Image = image;
+                        break;
+                    case 2:
+                        CheckPass2.Image = image;
+                        break;
+                    case 3:
+                        CheckPass3.Image = image;
+                        break;
+                    case 4:
+                        CheckPass4.Image = image;
+                        break;
+                }
+            }
+            if (pass == "" || pass.Count() > 4 || pass.Count()<0)
+            {
+                Image image = Image.FromFile("E:/Project POS LOC/trunk/POSEZ2U/Resources/u68.png");
+                CheckPass1.Image = image;
+                CheckPass2.Image = image;
+                CheckPass3.Image = image;
+                CheckPass4.Image = image;
+            }
+            
         }
 
 
