@@ -4,14 +4,15 @@ using System.Text;
 using System.Drawing.Printing;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+
 namespace Printer
 {
-   public class POSPrinter:PrintDocument
+   public class Printer
     {
        public PrintDocument printDocument;
        
         public object Tag { get; set; }
-        public POSPrinter()
+        public Printer()
         {
             printDocument = new PrintDocument();
             printDocument.PrintController = new StandardPrintController();
