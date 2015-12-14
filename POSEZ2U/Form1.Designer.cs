@@ -248,10 +248,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(330, 442);
+            this.textBox1.Location = new System.Drawing.Point(333, 395);
             this.textBox1.Name = "textBox1";
             this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(78, 20);
             this.textBox1.TabIndex = 8;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -271,7 +271,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(618, 488);
             this.ControlBox = false;
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -281,6 +280,7 @@
             this.Controls.Add(this.CheckPass1);
             this.Controls.Add(this.ucKeypadLogin);
             this.Controls.Add(this.lblMessger);
+            this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
