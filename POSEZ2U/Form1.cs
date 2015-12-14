@@ -112,11 +112,12 @@ namespace POSEZ2U
                         var passshow = textBox1.Text;
                         if (passshow.Count() > 0)
                         {
+                            this.lblMessger.Visible = true;
+                            //frmMessager frm = new frmMessager("Messenger", "Pin code isn't correct.");
+                            //frm.ShowDialog();
                             textBox1.Text = "";
                         }
-                        textBox1.Text = "";
-                        frmMessager frm = new frmMessager("Messenger", "Pin code isn't correct.");
-                        frm.ShowDialog();
+                       
                     }    
                 }
                
@@ -167,7 +168,7 @@ namespace POSEZ2U
                 CheckPass3.Image = image;
                 CheckPass4.Image = image;
             }
-            
+
         }
 
 

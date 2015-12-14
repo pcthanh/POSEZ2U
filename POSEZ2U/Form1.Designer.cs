@@ -64,6 +64,7 @@
             this.lblMessger.TabIndex = 1;
             this.lblMessger.Text = "Try again!";
             this.lblMessger.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMessger.Visible = false;
             // 
             // CheckPass1
             // 
@@ -299,7 +300,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblMessger;
         private UC.UCKeypad ucKeypadLogin;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -317,6 +317,7 @@
         public System.Windows.Forms.PictureBox CheckPass2;
         public System.Windows.Forms.PictureBox CheckPass3;
         public System.Windows.Forms.PictureBox CheckPass4;
+        public System.Windows.Forms.Label lblMessger;
     }
 }
 
