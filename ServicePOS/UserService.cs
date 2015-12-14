@@ -268,6 +268,7 @@ namespace ServicePOS
                 var data = _context.STAFFs.Find(staffid);
                 if (data != null)
                 {
+                    data.UserName = "zzz" + data.UserName;
                     data.Status = 0;
                     data.UpdateBy = userid;
                     data.UpdateDate = DateTime.Now;
