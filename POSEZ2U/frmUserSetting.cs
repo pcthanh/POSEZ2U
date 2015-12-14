@@ -198,10 +198,10 @@ namespace POSEZ2U
 
         void btnSaveDepartment_Click(object sender, EventArgs e)
         {
-            //frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info role ?");
-            //frmcon.ShowDialog();
-            //if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
-            //{
+            frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info role ?");
+            frmcon.ShowDialog();
+            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
                 Button btnSave = (Button)sender;
                 DepartmentModel data = (DepartmentModel)(btnSave.Tag);
 
@@ -226,20 +226,16 @@ namespace POSEZ2U
                     {
                         messenger = "Role name is exist. Please change role name.";
                     }
-                    frmConfirm frm = new frmConfirm("Messenger", messenger);
-                    frm.btnOk.Hide();
-                    frm.btnCancel.Text = "OK";
+                    frmMessager frm = new frmMessager("Messenger", messenger);
                     frm.ShowDialog();
 
                 }
                 else
                 {
-                    frmConfirm frm = new frmConfirm("Messenger", "Role name is't empty.Please input data.");
-                    frm.btnOk.Hide();
-                    frm.btnCancel.Text = "OK";
+                    frmMessager frm = new frmMessager("Messenger", "Role name is't empty.Please input data.");
                     frm.ShowDialog();
                 }
-            //}
+            }
 
 
         }
@@ -280,9 +276,7 @@ namespace POSEZ2U
                         pDetail.Controls.Clear();
                         messenger = "Delete role successful.";
                     }
-                    frmConfirm frm = new frmConfirm("Messenger", messenger);
-                    frm.btnOk.Hide();
-                    frm.btnCancel.Text = "OK";
+                    frmMessager frm = new frmMessager("Messenger", messenger);
                     frm.ShowDialog();
                 }
             }
@@ -367,10 +361,10 @@ namespace POSEZ2U
 
         void btnSaveUser_Click(object sender, EventArgs e)
         {
-            //frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info user ?");
-            //frmcon.ShowDialog();
-            //if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
-            //{
+            frmConfirm frmcon = new frmConfirm("Messenger", "Do you want save info user ?");
+            frmcon.ShowDialog();
+            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
 
                 Button btnSave = (Button)sender;
                 StaffModel data = (StaffModel)(btnSave.Tag);
@@ -416,21 +410,17 @@ namespace POSEZ2U
                     {
                         messenger = "User name is exist. Please change user name.";
                     }
-                    frmConfirm frm = new frmConfirm("Messenger", messenger);
-                    frm.btnOk.Hide();
-                    frm.btnCancel.Text = "OK";
+                    frmMessager frm = new frmMessager("Messenger", messenger);
                     frm.ShowDialog();
                 }
                 else
                 {
-                    frmConfirm frm = new frmConfirm("Messenger", messenger + "Please input data.");
-                    frm.btnOk.Hide();
-                    frm.btnCancel.Text = "OK";
+                    frmMessager frm = new frmMessager("Messenger", messenger + "Please input data.");
                     frm.ShowDialog();
                 }
 
 
-            //}
+            }
 
         }
 
@@ -454,9 +444,7 @@ namespace POSEZ2U
                         pDetail.Controls.Clear();
                         messenger = "Delete user successful.";
                     }
-                    frmConfirm frm = new frmConfirm("Messenger", messenger);
-                    frm.btnOk.Hide();
-                    frm.btnCancel.Text = "OK";
+                    frmMessager frm = new frmMessager("Messenger", messenger);
                     frm.ShowDialog();
                 }
             }
@@ -471,9 +459,7 @@ namespace POSEZ2U
             //MessageBox.Show("userid", userid.ToString());
             if (userid == 0)
             {
-                frmConfirm frm = new frmConfirm("Messenger", "Please login application.");
-                frm.btnOk.Hide();
-                frm.btnCancel.Text = "OK";
+                frmMessager frm = new frmMessager("Messenger", "Please login application.");
                 frm.ShowDialog();
             }
 

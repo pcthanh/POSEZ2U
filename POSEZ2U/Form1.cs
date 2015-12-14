@@ -109,10 +109,13 @@ namespace POSEZ2U
                     }
                     else
                     {
+                        var passshow = textBox1.Text;
+                        if (passshow.Count() > 0)
+                        {
+                            textBox1.Text = "";
+                        }
                         textBox1.Text = "";
-                        frmConfirm frm = new frmConfirm("Messenger", "Pin code isn't correct.");
-                        frm.btnOk.Hide();
-                        frm.btnCancel.Text = "OK";
+                        frmMessager frm = new frmMessager("Messenger", "Pin code isn't correct.");
                         frm.ShowDialog();
                     }    
                 }
@@ -120,11 +123,14 @@ namespace POSEZ2U
             }
             else
             {
-                textBox1.Text = "";
-                frmConfirm frm = new frmConfirm("Messenger", "Please chose user name");
-                frm.btnOk.Hide();
-                frm.btnCancel.Text = "OK";
-                frm.ShowDialog();
+                var passshow = textBox1.Text;
+                if (passshow.Count() > 0)
+                {
+                    frmMessager frm = new frmMessager("Messenger", "Please chose user name");
+                    frm.ShowDialog();
+                    textBox1.Text = "";
+                }
+                
 
             }
 
