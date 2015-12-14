@@ -20,6 +20,7 @@ namespace ServicePOS.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
         public int Seat { get; set; }
+        public bool IsLoadFromData { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         private IOrderService _orderService;
         private IOrderService OrderService
