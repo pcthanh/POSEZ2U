@@ -108,6 +108,8 @@ namespace POSEZ2U.UC
             {
                 this.cbProductColor.Items.Add(c.Name);
             }
+            ucPortion2.Size = new Size(panel1.Width, ucPortion2.Height);
+            
         }
 
         public void btnSave_Click(object sender, EventArgs e)

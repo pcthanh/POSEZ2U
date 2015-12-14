@@ -49,7 +49,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(478, 47);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(490, 47);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblPriceSizeProduct
@@ -57,9 +57,9 @@
             this.lblPriceSizeProduct.AutoSize = true;
             this.lblPriceSizeProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPriceSizeProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPriceSizeProduct.Location = new System.Drawing.Point(220, 0);
+            this.lblPriceSizeProduct.Location = new System.Drawing.Point(225, 0);
             this.lblPriceSizeProduct.Name = "lblPriceSizeProduct";
-            this.lblPriceSizeProduct.Size = new System.Drawing.Size(167, 47);
+            this.lblPriceSizeProduct.Size = new System.Drawing.Size(172, 47);
             this.lblPriceSizeProduct.TabIndex = 0;
             this.lblPriceSizeProduct.Text = "Portions";
             this.lblPriceSizeProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -72,7 +72,7 @@
             this.lblPriceNameProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPriceNameProduct.Location = new System.Drawing.Point(3, 0);
             this.lblPriceNameProduct.Name = "lblPriceNameProduct";
-            this.lblPriceNameProduct.Size = new System.Drawing.Size(211, 47);
+            this.lblPriceNameProduct.Size = new System.Drawing.Size(216, 47);
             this.lblPriceNameProduct.TabIndex = 0;
             this.lblPriceNameProduct.Text = "Product";
             this.lblPriceNameProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,9 +83,9 @@
             this.lblPriceProduct.AutoSize = true;
             this.lblPriceProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPriceProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPriceProduct.Location = new System.Drawing.Point(393, 0);
+            this.lblPriceProduct.Location = new System.Drawing.Point(403, 0);
             this.lblPriceProduct.Name = "lblPriceProduct";
-            this.lblPriceProduct.Size = new System.Drawing.Size(82, 47);
+            this.lblPriceProduct.Size = new System.Drawing.Size(84, 47);
             this.lblPriceProduct.TabIndex = 0;
             this.lblPriceProduct.Text = "Price";
             this.lblPriceProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -98,7 +98,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UCPriceList";
-            this.Size = new System.Drawing.Size(478, 47);
+            this.Size = new System.Drawing.Size(490, 47);
             this.Load += new System.EventHandler(this.UCPriceList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

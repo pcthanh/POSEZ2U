@@ -36,14 +36,14 @@ namespace POSEZ2U.UC
                 var submenulist = UserService.GetSubMenuByDepartment(departmentid).ToList();
                 if (submenulist.Count > 0)
                 {
-                    UCProductIncl[] subMenuList = new UCProductIncl[submenulist.Count];
+                    
                     for (int i = 0; i < submenulist.Count; i++)
                     {
-                        subMenuList[i] = new UCProductIncl();
-                        subMenuList[i].lblNameGroupIncl.Text = submenulist[i].SubMenuName;
-                        subMenuList[i].Tag = submenulist[i];
-                       // ucProductIncl[i].Click += UCGroupList_Click;
-                        flpPermission.Controls.AddRange(subMenuList);
+                        UCProductIncl subMenuList = new UCProductIncl();
+                        subMenuList.lblNameGroupIncl.Text = submenulist[i].SubMenuName;
+                        subMenuList.Tag = submenulist[i];
+                       // ucProductIncl[i].Click += UCGroupList_Click
+                        flpPermission.Controls.Add(subMenuList);
                     }
                 }
             }

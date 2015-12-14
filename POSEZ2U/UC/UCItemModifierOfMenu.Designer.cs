@@ -49,7 +49,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(220, 29);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(287, 29);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // lblNameItenModifierMenu
@@ -58,7 +58,7 @@
             this.lblNameItenModifierMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameItenModifierMenu.Location = new System.Drawing.Point(3, 0);
             this.lblNameItenModifierMenu.Name = "lblNameItenModifierMenu";
-            this.lblNameItenModifierMenu.Size = new System.Drawing.Size(104, 29);
+            this.lblNameItenModifierMenu.Size = new System.Drawing.Size(137, 29);
             this.lblNameItenModifierMenu.TabIndex = 0;
             this.lblNameItenModifierMenu.Text = "label1";
             this.lblNameItenModifierMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -68,9 +68,9 @@
             // 
             this.lblQtyItenModifierMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblQtyItenModifierMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtyItenModifierMenu.Location = new System.Drawing.Point(113, 0);
+            this.lblQtyItenModifierMenu.Location = new System.Drawing.Point(146, 0);
             this.lblQtyItenModifierMenu.Name = "lblQtyItenModifierMenu";
-            this.lblQtyItenModifierMenu.Size = new System.Drawing.Size(49, 29);
+            this.lblQtyItenModifierMenu.Size = new System.Drawing.Size(65, 29);
             this.lblQtyItenModifierMenu.TabIndex = 0;
             this.lblQtyItenModifierMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblQtyItenModifierMenu.Click += new System.EventHandler(this.UCItemModifierOfMenu_Click);
@@ -79,9 +79,9 @@
             // 
             this.lblPriceItenModifierMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPriceItenModifierMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPriceItenModifierMenu.Location = new System.Drawing.Point(168, 0);
+            this.lblPriceItenModifierMenu.Location = new System.Drawing.Point(217, 0);
             this.lblPriceItenModifierMenu.Name = "lblPriceItenModifierMenu";
-            this.lblPriceItenModifierMenu.Size = new System.Drawing.Size(49, 29);
+            this.lblPriceItenModifierMenu.Size = new System.Drawing.Size(67, 29);
             this.lblPriceItenModifierMenu.TabIndex = 0;
             this.lblPriceItenModifierMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblPriceItenModifierMenu.Click += new System.EventHandler(this.UCItemModifierOfMenu_Click);
@@ -93,7 +93,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.Name = "UCItemModifierOfMenu";
-            this.Size = new System.Drawing.Size(220, 29);
+            this.Size = new System.Drawing.Size(287, 29);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

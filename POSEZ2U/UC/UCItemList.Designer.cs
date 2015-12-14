@@ -40,7 +40,10 @@
             this.txtPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.lbPortions = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lwPortions = new System.Windows.Forms.ListView();
+            this.flpPortion = new System.Windows.Forms.FlowLayoutPanel();
+            this.ucPortion2 = new POSEZ2U.UC.UCPortion();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.ucPortion1 = new POSEZ2U.UC.UCPortion();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAddProtions = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,6 +52,8 @@
             this.flpItemList = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flpPortion.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -101,9 +106,10 @@
             this.lbProductName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbProductName.ForeColor = System.Drawing.Color.White;
-            this.lbProductName.Location = new System.Drawing.Point(3, 0);
+            this.lbProductName.Location = new System.Drawing.Point(0, 0);
+            this.lbProductName.Margin = new System.Windows.Forms.Padding(0);
             this.lbProductName.Name = "lbProductName";
-            this.lbProductName.Size = new System.Drawing.Size(546, 30);
+            this.lbProductName.Size = new System.Drawing.Size(552, 30);
             this.lbProductName.TabIndex = 0;
             this.lbProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -113,10 +119,11 @@
             this.txtNameDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNameDesc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNameDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameDesc.Location = new System.Drawing.Point(3, 61);
+            this.txtNameDesc.Location = new System.Drawing.Point(0, 58);
+            this.txtNameDesc.Margin = new System.Windows.Forms.Padding(0);
             this.txtNameDesc.Multiline = true;
             this.txtNameDesc.Name = "txtNameDesc";
-            this.txtNameDesc.Size = new System.Drawing.Size(546, 31);
+            this.txtNameDesc.Size = new System.Drawing.Size(552, 37);
             this.txtNameDesc.TabIndex = 1;
             // 
             // label3
@@ -136,10 +143,11 @@
             this.txtNameSort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNameSort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNameSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameSort.Location = new System.Drawing.Point(3, 117);
+            this.txtNameSort.Location = new System.Drawing.Point(0, 114);
+            this.txtNameSort.Margin = new System.Windows.Forms.Padding(0);
             this.txtNameSort.Multiline = true;
             this.txtNameSort.Name = "txtNameSort";
-            this.txtNameSort.Size = new System.Drawing.Size(546, 30);
+            this.txtNameSort.Size = new System.Drawing.Size(552, 36);
             this.txtNameSort.TabIndex = 3;
             // 
             // label4
@@ -159,9 +167,10 @@
             this.cbProductColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cbProductColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbProductColor.FormattingEnabled = true;
-            this.cbProductColor.Location = new System.Drawing.Point(3, 175);
+            this.cbProductColor.Location = new System.Drawing.Point(0, 172);
+            this.cbProductColor.Margin = new System.Windows.Forms.Padding(0);
             this.cbProductColor.Name = "cbProductColor";
-            this.cbProductColor.Size = new System.Drawing.Size(546, 27);
+            this.cbProductColor.Size = new System.Drawing.Size(552, 27);
             this.cbProductColor.TabIndex = 5;
             this.cbProductColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbProductColor_DrawItem);
             // 
@@ -182,10 +191,11 @@
             this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(3, 229);
+            this.txtPrice.Location = new System.Drawing.Point(0, 226);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(0);
             this.txtPrice.Multiline = true;
             this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(546, 31);
+            this.txtPrice.Size = new System.Drawing.Size(552, 37);
             this.txtPrice.TabIndex = 7;
             // 
             // lbPortions
@@ -201,28 +211,56 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lwPortions);
+            this.panel1.Controls.Add(this.flpPortion);
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 316);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(552, 74);
+            this.panel1.Size = new System.Drawing.Size(552, 68);
             this.panel1.TabIndex = 1;
             // 
-            // lwPortions
+            // flpPortion
             // 
-            this.lwPortions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lwPortions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lwPortions.Location = new System.Drawing.Point(0, 0);
-            this.lwPortions.Name = "lwPortions";
-            this.lwPortions.Size = new System.Drawing.Size(552, 74);
-            this.lwPortions.TabIndex = 0;
-            this.lwPortions.UseCompatibleStateImageBehavior = false;
+            this.flpPortion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.flpPortion.Controls.Add(this.ucPortion2);
+            this.flpPortion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpPortion.Location = new System.Drawing.Point(0, 31);
+            this.flpPortion.Name = "flpPortion";
+            this.flpPortion.Size = new System.Drawing.Size(552, 37);
+            this.flpPortion.TabIndex = 1;
+            // 
+            // ucPortion2
+            // 
+            this.ucPortion2.Location = new System.Drawing.Point(3, 3);
+            this.ucPortion2.Name = "ucPortion2";
+            this.ucPortion2.Size = new System.Drawing.Size(548, 31);
+            this.ucPortion2.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.ucPortion1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(552, 31);
+            this.panel3.TabIndex = 0;
+            // 
+            // ucPortion1
+            // 
+            this.ucPortion1.AutoSize = true;
+            this.ucPortion1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.ucPortion1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPortion1.ForeColor = System.Drawing.Color.White;
+            this.ucPortion1.Location = new System.Drawing.Point(0, 0);
+            this.ucPortion1.Name = "ucPortion1";
+            this.ucPortion1.Size = new System.Drawing.Size(552, 31);
+            this.ucPortion1.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnAddProtions);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 390);
+            this.panel2.Location = new System.Drawing.Point(0, 384);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(552, 45);
             this.panel2.TabIndex = 2;
@@ -290,9 +328,9 @@
             // flpItemList
             // 
             this.flpItemList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpItemList.Location = new System.Drawing.Point(0, 435);
+            this.flpItemList.Location = new System.Drawing.Point(0, 429);
             this.flpItemList.Name = "flpItemList";
-            this.flpItemList.Size = new System.Drawing.Size(552, 159);
+            this.flpItemList.Size = new System.Drawing.Size(552, 165);
             this.flpItemList.TabIndex = 4;
             // 
             // UCItemList
@@ -311,6 +349,9 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.flpPortion.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -331,12 +372,15 @@
         public UCTextBoxKeyPad txtPrice;
         public System.Windows.Forms.Label lbPortions;
         public System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.ListView lwPortions;
         public System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Button btnAddProtions;
         public System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Button btnRemove;
         public System.Windows.Forms.FlowLayoutPanel flpItemList;
+        private System.Windows.Forms.Panel panel3;
+        private UCPortion ucPortion1;
+        private System.Windows.Forms.FlowLayoutPanel flpPortion;
+        private UCPortion ucPortion2;
     }
 }
