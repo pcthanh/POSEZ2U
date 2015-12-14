@@ -380,6 +380,8 @@ namespace POSEZ2U
                 item.OrderID = OrderMain.OrderID;
                 if (flagUcSeatClick == 1)
                     item.Seat = numSeat;
+                if (OrderMain.IsLoadFromData)
+                    item.ChangeStatus = 1;
                 OrderMain.addItemToList(item);
                 addOrder(item);
                 lblSubtotal.Text = "$"+money.Format2(OrderMain.SubTotal().ToString());
@@ -801,8 +803,16 @@ namespace POSEZ2U
         {
             try
             {
-                flpOrder.Controls.Clear();
-                OrderMain.ListOrderDetail.Clear();
+                
+                if (OrderMain.IsLoadFromData)
+                {
+                    MessageBox.Show("Can not delete Order");
+                }
+                else
+                {
+                    flpOrder.Controls.Clear();
+                    OrderMain.ListOrderDetail.Clear();
+                }
             }
             catch (Exception ex)
             {
@@ -819,6 +829,7 @@ namespace POSEZ2U
                 lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
                 if (OrderMain.Seat > 0)
                 {
+                    OrderMain.IsLoadFromData = true;
                     lblSeat.Text = OrderMain.Seat.ToString();
                     for (int seat = 1; seat <= OrderMain.Seat; seat++)
                     {
@@ -857,6 +868,7 @@ namespace POSEZ2U
                 {
                     if (OrderMain.ListOrderDetail.Count > 0)
                     {
+                        OrderMain.IsLoadFromData = true;
                         for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                         {
                             addOrder(OrderMain.ListOrderDetail[i]);
