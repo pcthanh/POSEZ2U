@@ -191,6 +191,7 @@ namespace POSEZ2U
 
                 ucDepartmentDetail.btnDelete.Tag = data;
                 ucDepartmentDetail.btnDelete.Click += btnDeleteDepartment_Click;
+                ucDepartmentDetail.btnDelete.Show();
 
               
             }
@@ -353,8 +354,9 @@ namespace POSEZ2U
 
                 ucUserDetail.btnDelete.Tag = data;
                 ucUserDetail.btnDelete.Click += btnDeleteUser_Click;
+                ucUserDetail.btnDelete.Show();
 
-                
+
             }
         }
 
