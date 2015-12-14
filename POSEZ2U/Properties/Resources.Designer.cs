@@ -73,6 +73,26 @@ namespace POSEZ2U.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CheckedPass {
+            get {
+                object obj = ResourceManager.GetObject("CheckedPass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CheckedPass1 {
+            get {
+                object obj = ResourceManager.GetObject("CheckedPass1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap u1294 {
             get {
                 object obj = ResourceManager.GetObject("u1294", resourceCulture);
@@ -86,6 +106,16 @@ namespace POSEZ2U.Properties {
         internal static System.Drawing.Bitmap u12941 {
             get {
                 object obj = ResourceManager.GetObject("u12941", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap u68 {
+            get {
+                object obj = ResourceManager.GetObject("u68", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

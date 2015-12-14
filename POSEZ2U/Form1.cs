@@ -135,9 +135,7 @@ namespace POSEZ2U
             if (pass != "")
             {
                 var i = pass.Count();
-
-                Image image = Image.FromFile("E:/Project POS LOC/trunk/POSEZ2U/Resources/CheckedPass.png");
-
+                Image image = Properties.Resources.CheckedPass;
 
                 switch (i)
                 {
@@ -157,7 +155,7 @@ namespace POSEZ2U
             }
             if (pass == "" || pass.Count() > 4 || pass.Count()<0)
             {
-                Image image = Image.FromFile("E:/Project POS LOC/trunk/POSEZ2U/Resources/u68.png");
+                Image image = Properties.Resources.u68;
                 CheckPass1.Image = image;
                 CheckPass2.Image = image;
                 CheckPass3.Image = image;
