@@ -67,7 +67,7 @@ namespace POSEZ2U
             }
             else
             {
-                this.lblNameUser.Text = UserLoginModel.UserLoginInfo.UserName;
+                this.lblNameUser.Text =UserLoginModel.UserLoginInfo.UserName;
             }
 
         }

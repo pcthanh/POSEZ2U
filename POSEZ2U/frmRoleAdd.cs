@@ -16,7 +16,7 @@ namespace POSEZ2U
 {
     public partial class frmRoleAdd : Form
     {
-
+        private int userid = 0;
         #region Variables & Constructors
         private IUserService _userService;
         private IUserService UserService
@@ -100,8 +100,22 @@ namespace POSEZ2U
 
         private void frmMenuAdd_Load(object sender, EventArgs e)
         {
-            LoadThisGroupItems();
-            LoadAllItem();
+            userid = UserLoginModel.UserLoginInfo.StaffID;
+
+            //MessageBox.Show("userid", userid.ToString());
+            if (userid == 0)
+            {
+                Form1 frm = new Form1();
+                this.Hide();
+                frm.ShowDialog();
+            }
+            else
+            {
+                LoadThisGroupItems();
+                LoadAllItem();
+            }
+
+          
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -141,7 +155,7 @@ namespace POSEZ2U
             if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 var messenger = "";
-                var result = UserService.SaveMapPermission(listmap, department, 0);
+                var result = UserService.SaveMapPermission(listmap, department, userid);
                 if (result == 1)
                 {
                     messenger = "Save permission successful.";

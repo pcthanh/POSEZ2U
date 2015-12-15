@@ -461,13 +461,16 @@ namespace POSEZ2U
             //MessageBox.Show("userid", userid.ToString());
             if (userid == 0)
             {
-               
                 Form1 frm = new Form1();
                 this.Hide();
                 frm.ShowDialog();
             }
+            else
+            {
+                this.AddUserSetting();
+            }
 
-            this.AddUserSetting();
+            
         }
 
         private void btnBack_Click(object sender, EventArgs e)
