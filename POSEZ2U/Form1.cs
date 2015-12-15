@@ -29,40 +29,133 @@ namespace POSEZ2U
 
         #endregion
 
-        private StaffModel usermodel = new StaffModel();    
+        private StaffModel usermodel = new StaffModel();
+        private List<StaffModel> listUser = new List<StaffModel>();
+        private int Page = 0;
         public Form1()
         {
             InitializeComponent();
             ucKeypadLogin.txtResult = textBox1;
         }
 
-      
+
         private void Form1_Load(object sender, EventArgs e)
         {
-           //textBox1.Visible=false;
+            //textBox1.Visible=false;
             flowLayoutPanel1.Controls.Clear();
 
-            var listUser = UserService.GetListStaff().ToList();
+            listUser = UserService.GetListStaff().ToList();
 
-            for (int i = 0; i < listUser.Count; i++)
+            var ord = 1;
+            for (int i = Page; i < listUser.Count; i++)
             {
-                Button btn = new Button();
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderSize = 0;
-                btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                btn.Text = listUser[i].UserName;
-                btn.Name = listUser[i].UserName;
-                btn.Width = 155;
-                btn.Height = 65;
-                btn.Tag = listUser[i];
-                btn.BackColor = Color.FromArgb(153, 153, 153);
-                btn.ForeColor = Color.White;
-                //if (i == 8)
-                //{
-                //    btn.Text = ">";
-                //}
-                btn.Click += btn_Click;
-                flowLayoutPanel1.Controls.Add(btn);
+                if (ord < 8)
+                {
+                    Button btn = new Button();
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.FlatAppearance.BorderSize = 0;
+                    btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    btn.Text = listUser[i].UserName;
+                    btn.Name = listUser[i].UserName;
+                    btn.Width = 155;
+                    btn.Height = 65;
+                    btn.Tag = listUser[i];
+                    btn.BackColor = Color.FromArgb(153, 153, 153);
+                    btn.ForeColor = Color.White;
+                    btn.Click += btn_Click;
+                    flowLayoutPanel1.Controls.Add(btn);
+                }
+                if (ord == 8 && Page <= listUser.Count)
+                {
+                    Button btnpage = new Button();
+                    btnpage.FlatStyle = FlatStyle.Flat;
+                    btnpage.FlatAppearance.BorderSize = 0;
+                    btnpage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    btnpage.Text = ">>";
+                    btnpage.Name = Page.ToString();
+                    btnpage.Width = 155;
+                    btnpage.Height = 65;
+                    btnpage.BackColor = Color.FromArgb(153, 153, 153);
+                    btnpage.ForeColor = Color.White;
+                    btnpage.Click += btnPage_Click;
+                    flowLayoutPanel1.Controls.Add(btnpage);
+                    Page = Page + 6;
+                    if (Page >= listUser.Count)
+                    {
+                        Page = 0;
+                    }
+                }
+                ord = ord + 1;
+
+            }
+        }
+
+
+        void btnPage_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            var ord = 1;
+            for (int i = Page; i < listUser.Count; i++)
+            {
+                if (ord < 8)
+                {
+                    if (i == listUser.Count - 1)
+                    {
+                        Button btnpage = new Button();
+                        btnpage.FlatStyle = FlatStyle.Flat;
+                        btnpage.FlatAppearance.BorderSize = 0;
+                        btnpage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        btnpage.Text = ">>";
+                        btnpage.Name = Page.ToString();
+                        btnpage.Width = 155;
+                        btnpage.Height = 65;
+                        btnpage.BackColor = Color.FromArgb(153, 153, 153);
+                        btnpage.ForeColor = Color.White;
+                        btnpage.Click += btnPage_Click;
+                        flowLayoutPanel1.Controls.Add(btnpage);
+                        Page = 0;
+                    }
+                    else
+                    {
+                        Button btn = new Button();
+                        btn.FlatStyle = FlatStyle.Flat;
+                        btn.FlatAppearance.BorderSize = 0;
+                        btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        btn.Text = listUser[i].UserName;
+                        btn.Name = listUser[i].UserName;
+                        btn.Width = 155;
+                        btn.Height = 65;
+                        btn.Tag = listUser[i];
+                        btn.BackColor = Color.FromArgb(153, 153, 153);
+                        btn.ForeColor = Color.White;
+                        btn.Click += btn_Click;
+                        flowLayoutPanel1.Controls.Add(btn);
+                    }
+
+                 
+                }
+                if (ord == 8 && Page <= listUser.Count)
+                {
+                    Button btnpage = new Button();
+                    btnpage.FlatStyle = FlatStyle.Flat;
+                    btnpage.FlatAppearance.BorderSize = 0;
+                    btnpage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    btnpage.Text = ">>";
+                    btnpage.Name = Page.ToString();
+                    btnpage.Width = 155;
+                    btnpage.Height = 65;
+                    btnpage.BackColor = Color.FromArgb(153, 153, 153);
+                    btnpage.ForeColor = Color.White;
+                    btnpage.Click += btnPage_Click;
+                    flowLayoutPanel1.Controls.Add(btnpage);
+                    Page = Page + 6;
+                    if (Page >= listUser.Count)
+                    {
+                        Page = 0;
+                    }
+                }
+                ord = ord + 1;
+
             }
         }
 
@@ -81,7 +174,7 @@ namespace POSEZ2U
             btnUserName.BackColor = Color.FromArgb(12, 120, 120);
             btnUserName.ForeColor = Color.White;
 
-            usermodel = (StaffModel) (btnUserName.Tag);
+            usermodel = (StaffModel)(btnUserName.Tag);
 
         }
 
@@ -117,10 +210,10 @@ namespace POSEZ2U
                             //frm.ShowDialog();
                             textBox1.Text = "";
                         }
-                       
-                    }    
+
+                    }
                 }
-               
+
             }
             else
             {
@@ -131,7 +224,7 @@ namespace POSEZ2U
                     frm.ShowDialog();
                     textBox1.Text = "";
                 }
-                
+
 
             }
 
@@ -146,7 +239,7 @@ namespace POSEZ2U
 
                 switch (i)
                 {
-                    case  1:
+                    case 1:
                         CheckPass1.Image = image;
                         break;
                     case 2:
@@ -160,7 +253,7 @@ namespace POSEZ2U
                         break;
                 }
             }
-            if (pass == "" || pass.Count() > 4 || pass.Count()<0)
+            if (pass == "" || pass.Count() > 4 || pass.Count() < 0)
             {
                 Image image = Properties.Resources.u68;
                 CheckPass1.Image = image;
