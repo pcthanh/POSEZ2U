@@ -139,6 +139,7 @@
             this.txtPinCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPinCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.txtPinCode.Location = new System.Drawing.Point(3, 323);
+            this.txtPinCode.MaxLength = 4;
             this.txtPinCode.Multiline = true;
             this.txtPinCode.Name = "txtPinCode";
             this.txtPinCode.Size = new System.Drawing.Size(547, 34);
