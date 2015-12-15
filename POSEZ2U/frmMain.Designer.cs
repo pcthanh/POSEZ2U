@@ -38,11 +38,11 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnTakeAway = new System.Windows.Forms.Button();
+            this.btnStore = new System.Windows.Forms.Button();
+            this.btnWorkingPeriod = new System.Windows.Forms.Button();
             this.btnEatIn = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnReport = new System.Windows.Forms.Button();
             this.btnSettingAll = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
@@ -97,7 +97,8 @@
             // 
             this.lblNameUser.AutoSize = true;
             this.lblNameUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNameUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameUser.ForeColor = System.Drawing.Color.Blue;
             this.lblNameUser.Location = new System.Drawing.Point(50, 0);
             this.lblNameUser.Name = "lblNameUser";
             this.lblNameUser.Size = new System.Drawing.Size(117, 55);
@@ -157,12 +158,12 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.10532F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.73186F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.16282F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 312F));
-            this.tableLayoutPanel3.Controls.Add(this.button4, 2, 2);
-            this.tableLayoutPanel3.Controls.Add(this.button5, 3, 2);
-            this.tableLayoutPanel3.Controls.Add(this.button2, 1, 3);
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
+            this.tableLayoutPanel3.Controls.Add(this.btnTakeAway, 2, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnStore, 3, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnWorkingPeriod, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.btnEatIn, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.button3, 2, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnReport, 2, 3);
             this.tableLayoutPanel3.Controls.Add(this.btnSettingAll, 3, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
@@ -177,41 +178,43 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(944, 420);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // button4
+            // btnTakeAway
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(448, 169);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(93, 72);
-            this.button4.TabIndex = 0;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnTakeAway.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTakeAway.FlatAppearance.BorderSize = 0;
+            this.btnTakeAway.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTakeAway.Image = ((System.Drawing.Image)(resources.GetObject("btnTakeAway.Image")));
+            this.btnTakeAway.Location = new System.Drawing.Point(445, 169);
+            this.btnTakeAway.Name = "btnTakeAway";
+            this.btnTakeAway.Size = new System.Drawing.Size(90, 72);
+            this.btnTakeAway.TabIndex = 0;
+            this.btnTakeAway.UseVisualStyleBackColor = true;
+            this.btnTakeAway.Click += new System.EventHandler(this.btnTakeAway_Click_1);
             // 
-            // button5
+            // btnStore
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(547, 169);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 72);
-            this.button5.TabIndex = 0;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnStore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStore.FlatAppearance.BorderSize = 0;
+            this.btnStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStore.Image = ((System.Drawing.Image)(resources.GetObject("btnStore.Image")));
+            this.btnStore.Location = new System.Drawing.Point(541, 169);
+            this.btnStore.Name = "btnStore";
+            this.btnStore.Size = new System.Drawing.Size(78, 72);
+            this.btnStore.TabIndex = 0;
+            this.btnStore.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnWorkingPeriod
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(348, 247);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 72);
-            this.button2.TabIndex = 0;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnWorkingPeriod.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnWorkingPeriod.FlatAppearance.BorderSize = 0;
+            this.btnWorkingPeriod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWorkingPeriod.Image = ((System.Drawing.Image)(resources.GetObject("btnWorkingPeriod.Image")));
+            this.btnWorkingPeriod.Location = new System.Drawing.Point(348, 247);
+            this.btnWorkingPeriod.Name = "btnWorkingPeriod";
+            this.btnWorkingPeriod.Size = new System.Drawing.Size(91, 72);
+            this.btnWorkingPeriod.TabIndex = 0;
+            this.btnWorkingPeriod.UseVisualStyleBackColor = true;
+            this.btnWorkingPeriod.Click += new System.EventHandler(this.btnWorkingPeriod_Click);
             // 
             // btnEatIn
             // 
@@ -221,22 +224,23 @@
             this.btnEatIn.Image = ((System.Drawing.Image)(resources.GetObject("btnEatIn.Image")));
             this.btnEatIn.Location = new System.Drawing.Point(348, 169);
             this.btnEatIn.Name = "btnEatIn";
-            this.btnEatIn.Size = new System.Drawing.Size(94, 72);
+            this.btnEatIn.Size = new System.Drawing.Size(91, 72);
             this.btnEatIn.TabIndex = 0;
             this.btnEatIn.UseVisualStyleBackColor = true;
             this.btnEatIn.Click += new System.EventHandler(this.btnEatIn_Click);
             // 
-            // button3
+            // btnReport
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(448, 247);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 72);
-            this.button3.TabIndex = 0;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReport.FlatAppearance.BorderSize = 0;
+            this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReport.Image = ((System.Drawing.Image)(resources.GetObject("btnReport.Image")));
+            this.btnReport.Location = new System.Drawing.Point(445, 247);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(90, 72);
+            this.btnReport.TabIndex = 0;
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // btnSettingAll
             // 
@@ -244,9 +248,9 @@
             this.btnSettingAll.FlatAppearance.BorderSize = 0;
             this.btnSettingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettingAll.Image = ((System.Drawing.Image)(resources.GetObject("btnSettingAll.Image")));
-            this.btnSettingAll.Location = new System.Drawing.Point(547, 247);
+            this.btnSettingAll.Location = new System.Drawing.Point(541, 247);
             this.btnSettingAll.Name = "btnSettingAll";
-            this.btnSettingAll.Size = new System.Drawing.Size(80, 72);
+            this.btnSettingAll.Size = new System.Drawing.Size(78, 72);
             this.btnSettingAll.TabIndex = 0;
             this.btnSettingAll.UseVisualStyleBackColor = true;
             this.btnSettingAll.Click += new System.EventHandler(this.btnSettingAll_Click);
@@ -285,6 +289,7 @@
             this.Name = "frmMain";
             this.Text = "frmMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -305,17 +310,17 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label lblNameUser;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnWorkingPeriod;
+        private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.Button btnTakeAway;
+        private System.Windows.Forms.Button btnStore;
         private System.Windows.Forms.Button btnSettingAll;
         private System.Windows.Forms.Button btnEatIn;
         private System.Windows.Forms.Panel panel1;
         private UC.UCInfoTop ucInfoTop1;
+        public System.Windows.Forms.Label lblNameUser;
 
     }
 }

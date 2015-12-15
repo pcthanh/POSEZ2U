@@ -461,7 +461,9 @@ namespace POSEZ2U
             //MessageBox.Show("userid", userid.ToString());
             if (userid == 0)
             {
-                frmMessager frm = new frmMessager("Messenger", "Please login application.");
+               
+                Form1 frm = new Form1();
+                this.Hide();
                 frm.ShowDialog();
             }
 
