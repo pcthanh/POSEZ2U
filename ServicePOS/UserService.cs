@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SystemLog;
 using ModelPOS.ModelEntity;
 using ServicePOS.Model;
 
@@ -92,8 +93,9 @@ namespace ServicePOS
                     return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogPOS.WriteLog("SaveDataDeparment :::::::::::::::::::::::::" + ex.Message);
                 return 0;
             }
         }
@@ -116,8 +118,9 @@ namespace ServicePOS
                 }
                 return 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogPOS.WriteLog("RemoveDepartment :::::::::::::::::::::::::" + ex.Message);
                 return 0;
             }
         }
@@ -172,8 +175,9 @@ namespace ServicePOS
 
                 return 1;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                LogPOS.WriteLog("SaveMapPermission :::::::::::::::::::::::::" + ex.Message);
                 return 0;
             }
 
@@ -255,8 +259,9 @@ namespace ServicePOS
                     return 0;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogPOS.WriteLog("SaveDataStaff :::::::::::::::::::::::::" + ex.Message);
                 return 0;
             }
         }
@@ -268,7 +273,7 @@ namespace ServicePOS
                 var data = _context.STAFFs.Find(staffid);
                 if (data != null)
                 {
-                    data.UserName = "zzz" + data.UserName;
+                    data.UserName = data.UserName+DateTime.Now.ToShortDateString();
                     data.Status = 0;
                     data.UpdateBy = userid;
                     data.UpdateDate = DateTime.Now;
@@ -280,8 +285,9 @@ namespace ServicePOS
                 }
                 return 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogPOS.WriteLog("RemoveStaff :::::::::::::::::::::::::" + ex.Message);
                 return 0;
             }
         }
