@@ -79,7 +79,7 @@ namespace POSEZ2U
                     btnpage.ForeColor = Color.White;
                     btnpage.Click += btnPage_Click;
                     flowLayoutPanel1.Controls.Add(btnpage);
-                    Page = Page + 6;
+                    Page = Page + 7;
                     if (Page >= listUser.Count)
                     {
                         Page = 0;
@@ -101,6 +101,22 @@ namespace POSEZ2U
                 {
                     if (i == listUser.Count - 1)
                     {
+
+                        Button btn = new Button();
+                        btn.FlatStyle = FlatStyle.Flat;
+                        btn.FlatAppearance.BorderSize = 0;
+                        btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        btn.Text = listUser[i].UserName;
+                        btn.Name = listUser[i].UserName;
+                        btn.Width = 155;
+                        btn.Height = 65;
+                        btn.Tag = listUser[i];
+                        btn.BackColor = Color.FromArgb(153, 153, 153);
+                        btn.ForeColor = Color.White;
+                        btn.Click += btn_Click;
+                        flowLayoutPanel1.Controls.Add(btn);
+
+
                         Button btnpage = new Button();
                         btnpage.FlatStyle = FlatStyle.Flat;
                         btnpage.FlatAppearance.BorderSize = 0;
@@ -148,7 +164,7 @@ namespace POSEZ2U
                     btnpage.ForeColor = Color.White;
                     btnpage.Click += btnPage_Click;
                     flowLayoutPanel1.Controls.Add(btnpage);
-                    Page = Page + 6;
+                    Page = Page + 7;
                     if (Page >= listUser.Count)
                     {
                         Page = 0;

@@ -158,7 +158,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.10532F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.73186F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.16282F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 322F));
             this.tableLayoutPanel3.Controls.Add(this.btnTakeAway, 2, 2);
             this.tableLayoutPanel3.Controls.Add(this.btnStore, 3, 2);
             this.tableLayoutPanel3.Controls.Add(this.btnWorkingPeriod, 1, 3);
@@ -199,7 +199,7 @@
             this.btnStore.Image = ((System.Drawing.Image)(resources.GetObject("btnStore.Image")));
             this.btnStore.Location = new System.Drawing.Point(541, 169);
             this.btnStore.Name = "btnStore";
-            this.btnStore.Size = new System.Drawing.Size(78, 72);
+            this.btnStore.Size = new System.Drawing.Size(77, 72);
             this.btnStore.TabIndex = 0;
             this.btnStore.UseVisualStyleBackColor = true;
             // 
@@ -250,7 +250,7 @@
             this.btnSettingAll.Image = ((System.Drawing.Image)(resources.GetObject("btnSettingAll.Image")));
             this.btnSettingAll.Location = new System.Drawing.Point(541, 247);
             this.btnSettingAll.Name = "btnSettingAll";
-            this.btnSettingAll.Size = new System.Drawing.Size(78, 72);
+            this.btnSettingAll.Size = new System.Drawing.Size(77, 72);
             this.btnSettingAll.TabIndex = 0;
             this.btnSettingAll.UseVisualStyleBackColor = true;
             this.btnSettingAll.Click += new System.EventHandler(this.btnSettingAll_Click);
