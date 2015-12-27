@@ -8,6 +8,7 @@ namespace ServicePOS.Model
 {
    public class OrderDateModel
     {
+        public int InvoiceID { get; set; }
         public int OrderID { get; set; }
         public string OrderNumber { get; set; }
         public Nullable<int> ClientID { get; set; }
@@ -21,7 +22,16 @@ namespace ServicePOS.Model
         public string Note { get; set; }
         public int Seat { get; set; }
         public bool IsLoadFromData { get; set; }
+        public int DiscountType { get; set; }
+        public int Discount { get; set; }
+        public int Payment { get; set; }
+        public int Change { get; set; }
+        public int isTKA { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
+        public List<CardModel> ListCard = new List<CardModel>();
+        public List<CashModel> ListCash = new List<CashModel>();
+        public List<PayMentModel> ListPayment = new List<PayMentModel>();
+        public List<InvoiceByCardModel> ListInvoiceByCard = new List<InvoiceByCardModel>();
         private IOrderService _orderService;
         private IOrderService OrderService
         {
@@ -32,7 +42,7 @@ namespace ServicePOS.Model
         public void addItemToList(OrderDetailModel item)
         {
             item.KeyItem = ListOrderDetail.Count + 1;
-            
+            item.Total = item.Price * item.Qty;
             ListOrderDetail.Add(item);
         }
         public void addModifierToList(OrderDetailModifireModel modifire, int keyItem)
@@ -43,6 +53,7 @@ namespace ServicePOS.Model
                 modifire.KeyModi = ListOrderDetail[keyItem - 1].KeyItem;
                 modifire.ProductID = ListOrderDetail[keyItem - 1].ProductID;
                 modifire.Seat = ListOrderDetail[keyItem - 1].Seat;
+                modifire.Total = ListOrderDetail[keyItem - 1].Price * ListOrderDetail[keyItem - 1].Qty;
                 ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Add(modifire);
 
             }
@@ -53,7 +64,7 @@ namespace ServicePOS.Model
             for (int i = 0; i < ListOrderDetail.Count; i++)
             {
 
-                total += Convert.ToDouble(ListOrderDetail[i].Price);
+                total += Convert.ToDouble(ListOrderDetail[i].Price * ListOrderDetail[i].Qty);
             }
             TotalAmount = total;
             return total;
@@ -67,9 +78,11 @@ namespace ServicePOS.Model
             int count = 0;
             for (int i = 0; i < ListOrderDetail.Count; i++)
             {
+                
                 if (ListOrderDetail[i].Seat == numSeat)
                 {
                     count++;
+                    count =count+ ListOrderDetail[i].ListOrderDetailModifire.Count;
                 }
             }
             return count;

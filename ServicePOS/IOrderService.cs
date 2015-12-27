@@ -17,5 +17,10 @@ namespace ServicePOS
        int CountOrder();
        int CountOrderModifire();
        StatusTable GetStatusTable(string TableID);
+       IEnumerable<CardModel> LoadCard();
+       int InsertOpenItem(OrderOpenItemModel OpenItem);
+       int GetIDLastInsertOpenItem();
+       OrderDateModel GetOrderByTKA(string tkaID, string ClientID);
+       List< OrderTKAModel> GetStatusOrderTKA();
     }
 }

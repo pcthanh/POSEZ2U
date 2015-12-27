@@ -8,6 +8,8 @@ namespace ServicePOS.Model
 {
    public class OrderDetailModifireModel
     {
+        public int InvoiceID { get; set; }
+        public int InvoiceDetialID { get; set; }
         public int OrderModifireID { get; set; }
         public int OrderDetailID { get; set; }
         public int ModifireID { get; set; }
@@ -27,5 +29,6 @@ namespace ServicePOS.Model
         public int KeyModi { get; set; }
         public int Seat { get; set; }
         public int ChangeStatus { get; set; }
+        public int DynID { get; set; }
     }
 }

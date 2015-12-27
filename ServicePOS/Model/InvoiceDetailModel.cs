@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ServicePOS.Model
 {
-   public class OrderDetailModel
+   public class InvoiceDetailModel
     {
-        public int InvoiceID { get; set; }
-        public int InvoiceDetialID { get; set; }
+        public int InvoiceID { get;set ;}
+        public int InvoiceDetailID { get; set; }
         public int OrderDetailID { get; set; }
         public int OrderID { get; set; }
         public int ProductID { get; set; }
@@ -23,11 +23,9 @@ namespace ServicePOS.Model
         public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
-        public List<OrderDetailModifireModel> ListOrderDetailModifire = new List<OrderDetailModifireModel>();
+        public List<InvoiceDetailModifire> ListOrderDetailModifire = new List<InvoiceDetailModifire>();
         public int KeyItem { get; set; }
         public int Seat { get; set; }
         public int ChangeStatus { get; set; }
-        public int OpenItem { get; set; }
-        public int DynID { get; set; }
     }
 }
