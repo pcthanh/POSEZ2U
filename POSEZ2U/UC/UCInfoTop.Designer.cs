@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCInfoTop));
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -39,6 +40,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -67,7 +69,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.tableLayoutPanel1.Controls.Add(this.pictureBox3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox4, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblDevice, 1, 0);
@@ -86,7 +88,7 @@
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(77, 3);
+            this.pictureBox3.Location = new System.Drawing.Point(76, 3);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(32, 36);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -97,7 +99,7 @@
             // 
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(172, 3);
+            this.pictureBox4.Location = new System.Drawing.Point(171, 3);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(28, 36);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -112,7 +114,7 @@
             this.lblDevice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(200)))), ((int)(((byte)(56)))));
             this.lblDevice.Location = new System.Drawing.Point(45, 0);
             this.lblDevice.Name = "lblDevice";
-            this.lblDevice.Size = new System.Drawing.Size(26, 42);
+            this.lblDevice.Size = new System.Drawing.Size(25, 42);
             this.lblDevice.TabIndex = 1;
             this.lblDevice.Text = "2";
             this.lblDevice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,7 +125,7 @@
             this.blStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.blStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(200)))), ((int)(((byte)(56)))));
-            this.blStatus.Location = new System.Drawing.Point(115, 0);
+            this.blStatus.Location = new System.Drawing.Point(114, 0);
             this.blStatus.Name = "blStatus";
             this.blStatus.Size = new System.Drawing.Size(51, 42);
             this.blStatus.TabIndex = 1;
@@ -136,9 +138,9 @@
             this.lblDb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDb.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(200)))), ((int)(((byte)(56)))));
-            this.lblDb.Location = new System.Drawing.Point(206, 0);
+            this.lblDb.Location = new System.Drawing.Point(205, 0);
             this.lblDb.Name = "lblDb";
-            this.lblDb.Size = new System.Drawing.Size(55, 42);
+            this.lblDb.Size = new System.Drawing.Size(56, 42);
             this.lblDb.TabIndex = 1;
             this.lblDb.Text = "Good";
             this.lblDb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,7 +162,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(63, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 23);
+            this.label1.Size = new System.Drawing.Size(265, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "12:03:02 - 14th Oct 2015";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -174,6 +176,11 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // UCInfoTop
             // 
@@ -205,5 +212,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
