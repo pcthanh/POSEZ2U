@@ -214,7 +214,7 @@ namespace POSEZ2U
                         UserLoginModel.UserLoginInfo = usermodel;
                         frmMain frm = new frmMain();
                         frm.ShowDialog();
-                        this.Hide();
+                        this.Close();
                     }
                     else
                     {

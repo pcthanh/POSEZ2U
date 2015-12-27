@@ -113,6 +113,14 @@ namespace POSEZ2U
                         ucTable.lbTime.Text = statusTable.Time;
                         ucTable.Tag = statusTable;
                         SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
+                    } 
+                    if (statusTable.Complete == -1)
+                    {
+                        ucTable.BackColor = Color.FromArgb(242, 242, 242);
+                        ucTable.ForeColor = Color.Black;
+                        ucTable.Tag = null;
+                        SetText("", ucTable.lbTime);
+                       SetText("", ucTable.lbSubTotal);
                     }
                 }
             }

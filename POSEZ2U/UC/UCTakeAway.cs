@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace POSEZ2U.UC
 {
-    public partial class UCAllPayMent : UserControl
+    public partial class UCTakeAway : UserControl
     {
-        public UCAllPayMent()
+        public UCTakeAway()
         {
             InitializeComponent();
         }
 
-        private void UCAllPayMent_Click(object sender, EventArgs e)
+        private void UCTakeAway_Click(object sender, EventArgs e)
         {
             this.OnClick(e);
         }

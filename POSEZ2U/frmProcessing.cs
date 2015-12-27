@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace POSEZ2U.UC
+namespace POSEZ2U
 {
-    public partial class UCAllPayMent : UserControl
+    public partial class frmProcessing : Form
     {
-        public UCAllPayMent()
+        public frmProcessing()
         {
             InitializeComponent();
-        }
-
-        private void UCAllPayMent_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
         }
     }
 }

@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrder));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -69,11 +70,11 @@
             this.btnPrintBill = new System.Windows.Forms.Button();
             this.btnDisCount = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -126,7 +127,7 @@
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(97, 40);
             this.btnLogOut.TabIndex = 0;
-            this.btnLogOut.Text = "LOG OUT";
+            this.btnLogOut.Text = "BACK";
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
@@ -406,10 +407,11 @@
             this.btnSendOrder.FlatAppearance.BorderSize = 0;
             this.btnSendOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendOrder.Location = new System.Drawing.Point(3, 3);
+            this.btnSendOrder.Location = new System.Drawing.Point(0, 0);
+            this.btnSendOrder.Margin = new System.Windows.Forms.Padding(0);
             this.btnSendOrder.Name = "btnSendOrder";
             this.tableLayoutPanel1.SetRowSpan(this.btnSendOrder, 2);
-            this.btnSendOrder.Size = new System.Drawing.Size(68, 122);
+            this.btnSendOrder.Size = new System.Drawing.Size(74, 128);
             this.btnSendOrder.TabIndex = 0;
             this.btnSendOrder.Text = "SEND ORDER";
             this.btnSendOrder.UseVisualStyleBackColor = false;
@@ -422,9 +424,10 @@
             this.btnReprint.FlatAppearance.BorderSize = 0;
             this.btnReprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReprint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReprint.Location = new System.Drawing.Point(3, 131);
+            this.btnReprint.Location = new System.Drawing.Point(0, 128);
+            this.btnReprint.Margin = new System.Windows.Forms.Padding(0);
             this.btnReprint.Name = "btnReprint";
-            this.btnReprint.Size = new System.Drawing.Size(68, 59);
+            this.btnReprint.Size = new System.Drawing.Size(74, 65);
             this.btnReprint.TabIndex = 1;
             this.btnReprint.Text = "RePrint DOCKET\r\n\r\n";
             this.btnReprint.UseVisualStyleBackColor = false;
@@ -436,9 +439,10 @@
             this.btnJoinTable.FlatAppearance.BorderSize = 0;
             this.btnJoinTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoinTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJoinTable.Location = new System.Drawing.Point(77, 3);
+            this.btnJoinTable.Location = new System.Drawing.Point(74, 0);
+            this.btnJoinTable.Margin = new System.Windows.Forms.Padding(0);
             this.btnJoinTable.Name = "btnJoinTable";
-            this.btnJoinTable.Size = new System.Drawing.Size(68, 58);
+            this.btnJoinTable.Size = new System.Drawing.Size(74, 64);
             this.btnJoinTable.TabIndex = 1;
             this.btnJoinTable.Text = "Join Table";
             this.btnJoinTable.UseVisualStyleBackColor = false;
@@ -450,9 +454,10 @@
             this.btnTransferTable.FlatAppearance.BorderSize = 0;
             this.btnTransferTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransferTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransferTable.Location = new System.Drawing.Point(151, 3);
+            this.btnTransferTable.Location = new System.Drawing.Point(148, 0);
+            this.btnTransferTable.Margin = new System.Windows.Forms.Padding(0);
             this.btnTransferTable.Name = "btnTransferTable";
-            this.btnTransferTable.Size = new System.Drawing.Size(68, 58);
+            this.btnTransferTable.Size = new System.Drawing.Size(74, 64);
             this.btnTransferTable.TabIndex = 1;
             this.btnTransferTable.Text = "Transfer Table";
             this.btnTransferTable.UseVisualStyleBackColor = false;
@@ -465,9 +470,10 @@
             this.btnVoid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoid.ForeColor = System.Drawing.Color.White;
-            this.btnVoid.Location = new System.Drawing.Point(77, 67);
+            this.btnVoid.Location = new System.Drawing.Point(74, 64);
+            this.btnVoid.Margin = new System.Windows.Forms.Padding(0);
             this.btnVoid.Name = "btnVoid";
-            this.btnVoid.Size = new System.Drawing.Size(68, 58);
+            this.btnVoid.Size = new System.Drawing.Size(74, 64);
             this.btnVoid.TabIndex = 1;
             this.btnVoid.Text = "VOID";
             this.btnVoid.UseVisualStyleBackColor = false;
@@ -481,9 +487,10 @@
             this.btnVoidAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoidAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoidAll.ForeColor = System.Drawing.Color.White;
-            this.btnVoidAll.Location = new System.Drawing.Point(151, 67);
+            this.btnVoidAll.Location = new System.Drawing.Point(148, 64);
+            this.btnVoidAll.Margin = new System.Windows.Forms.Padding(0);
             this.btnVoidAll.Name = "btnVoidAll";
-            this.btnVoidAll.Size = new System.Drawing.Size(68, 58);
+            this.btnVoidAll.Size = new System.Drawing.Size(74, 64);
             this.btnVoidAll.TabIndex = 1;
             this.btnVoidAll.Text = "VOID ALL";
             this.btnVoidAll.UseVisualStyleBackColor = false;
@@ -497,9 +504,10 @@
             this.btnAddSeat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddSeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddSeat.ForeColor = System.Drawing.Color.White;
-            this.btnAddSeat.Location = new System.Drawing.Point(225, 3);
+            this.btnAddSeat.Location = new System.Drawing.Point(222, 0);
+            this.btnAddSeat.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddSeat.Name = "btnAddSeat";
-            this.btnAddSeat.Size = new System.Drawing.Size(68, 58);
+            this.btnAddSeat.Size = new System.Drawing.Size(74, 64);
             this.btnAddSeat.TabIndex = 1;
             this.btnAddSeat.Text = "Add Seat";
             this.btnAddSeat.UseVisualStyleBackColor = false;
@@ -513,9 +521,10 @@
             this.btnNewItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewItem.ForeColor = System.Drawing.Color.White;
-            this.btnNewItem.Location = new System.Drawing.Point(225, 67);
+            this.btnNewItem.Location = new System.Drawing.Point(223, 65);
+            this.btnNewItem.Margin = new System.Windows.Forms.Padding(1);
             this.btnNewItem.Name = "btnNewItem";
-            this.btnNewItem.Size = new System.Drawing.Size(68, 58);
+            this.btnNewItem.Size = new System.Drawing.Size(72, 62);
             this.btnNewItem.TabIndex = 1;
             this.btnNewItem.Text = "New Item";
             this.btnNewItem.UseVisualStyleBackColor = false;
@@ -528,9 +537,10 @@
             this.btnNote.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNote.ForeColor = System.Drawing.Color.White;
-            this.btnNote.Location = new System.Drawing.Point(225, 131);
+            this.btnNote.Location = new System.Drawing.Point(222, 128);
+            this.btnNote.Margin = new System.Windows.Forms.Padding(0);
             this.btnNote.Name = "btnNote";
-            this.btnNote.Size = new System.Drawing.Size(68, 59);
+            this.btnNote.Size = new System.Drawing.Size(74, 65);
             this.btnNote.TabIndex = 1;
             this.btnNote.Text = "NOTE";
             this.btnNote.UseVisualStyleBackColor = false;
@@ -544,12 +554,14 @@
             this.btnPayMent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayMent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayMent.ForeColor = System.Drawing.Color.White;
-            this.btnPayMent.Location = new System.Drawing.Point(299, 131);
+            this.btnPayMent.Location = new System.Drawing.Point(296, 128);
+            this.btnPayMent.Margin = new System.Windows.Forms.Padding(0);
             this.btnPayMent.Name = "btnPayMent";
-            this.btnPayMent.Size = new System.Drawing.Size(146, 59);
+            this.btnPayMent.Size = new System.Drawing.Size(152, 65);
             this.btnPayMent.TabIndex = 1;
             this.btnPayMent.Text = "PAYMENT";
             this.btnPayMent.UseVisualStyleBackColor = false;
+            this.btnPayMent.Click += new System.EventHandler(this.btnPayMent_Click);
             // 
             // btnPrintBill
             // 
@@ -559,9 +571,10 @@
             this.btnPrintBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintBill.ForeColor = System.Drawing.Color.White;
-            this.btnPrintBill.Location = new System.Drawing.Point(373, 67);
+            this.btnPrintBill.Location = new System.Drawing.Point(370, 64);
+            this.btnPrintBill.Margin = new System.Windows.Forms.Padding(0);
             this.btnPrintBill.Name = "btnPrintBill";
-            this.btnPrintBill.Size = new System.Drawing.Size(72, 58);
+            this.btnPrintBill.Size = new System.Drawing.Size(78, 64);
             this.btnPrintBill.TabIndex = 1;
             this.btnPrintBill.Text = "Print Bill";
             this.btnPrintBill.UseVisualStyleBackColor = false;
@@ -573,9 +586,10 @@
             this.btnDisCount.FlatAppearance.BorderSize = 0;
             this.btnDisCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisCount.Location = new System.Drawing.Point(373, 3);
+            this.btnDisCount.Location = new System.Drawing.Point(371, 1);
+            this.btnDisCount.Margin = new System.Windows.Forms.Padding(1);
             this.btnDisCount.Name = "btnDisCount";
-            this.btnDisCount.Size = new System.Drawing.Size(72, 58);
+            this.btnDisCount.Size = new System.Drawing.Size(76, 62);
             this.btnDisCount.TabIndex = 1;
             this.btnDisCount.Text = "DIS - COUNT";
             this.btnDisCount.UseVisualStyleBackColor = false;
@@ -587,15 +601,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(10, 193);
             this.panel8.TabIndex = 0;
-            // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
             // 
             // panel11
             // 
@@ -634,6 +639,15 @@
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
             // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
+            // 
             // ucInfoTop1
             // 
             this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -660,6 +674,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ucInfoTop1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmOrder";
             this.ShowInTaskbar = false;
             this.Text = "frmOrder";

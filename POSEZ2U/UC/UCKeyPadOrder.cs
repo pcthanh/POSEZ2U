@@ -120,14 +120,19 @@ namespace POSEZ2U.UC
 
         private void btndot_Click(object sender, EventArgs e)
         {
-            if (this.txtResult.Text.Length == 0)
+            if (this.txtResult != null)
             {
-                this.txtResult.Text = this.txtResult.Text + "0.";
-            }
-            else if (!this.txtResult.Text.Contains<char>('.'))
-            {
-                this.txtResult.Text = this.txtResult.Text + ".";
-            }
+                this.txtResult.Focus();
+                if (this.txtResult.Text.Length == 0)
+                {
+                    SendKeys.Send("0");
+                    SendKeys.Send(".");
+                }
+                else if (!this.txtResult.Text.Contains<char>('.'))
+                {
+                    SendKeys.Send(".");
+                }
+            }           
         }
 
         private void btndel_Click(object sender, EventArgs e)

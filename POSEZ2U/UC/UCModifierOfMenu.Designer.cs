@@ -50,6 +50,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.lblModifierOfMenu);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "UCModifierOfMenu";
             this.Size = new System.Drawing.Size(137, 68);
             this.ResumeLayout(false);

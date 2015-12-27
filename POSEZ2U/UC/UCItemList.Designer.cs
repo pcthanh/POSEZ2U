@@ -31,28 +31,26 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.lbProductName = new System.Windows.Forms.Label();
-            this.txtNameDesc = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNameSort = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label4 = new System.Windows.Forms.Label();
             this.cbProductColor = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.lbPortions = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flpPortion = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucPortion2 = new POSEZ2U.UC.UCPortion();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.ucPortion1 = new POSEZ2U.UC.UCPortion();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAddProtions = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.flpItemList = new System.Windows.Forms.FlowLayoutPanel();
+            this.ucPortion1 = new POSEZ2U.UC.UCPortion();
+            this.txtNameDesc = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtNameSort = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.flpPortion.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -113,19 +111,6 @@
             this.lbProductName.TabIndex = 0;
             this.lbProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtNameDesc
-            // 
-            this.txtNameDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtNameDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameDesc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNameDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameDesc.Location = new System.Drawing.Point(0, 58);
-            this.txtNameDesc.Margin = new System.Windows.Forms.Padding(0);
-            this.txtNameDesc.Multiline = true;
-            this.txtNameDesc.Name = "txtNameDesc";
-            this.txtNameDesc.Size = new System.Drawing.Size(552, 37);
-            this.txtNameDesc.TabIndex = 1;
-            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -136,19 +121,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Product Name Sort";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtNameSort
-            // 
-            this.txtNameSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtNameSort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameSort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtNameSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNameSort.Location = new System.Drawing.Point(0, 114);
-            this.txtNameSort.Margin = new System.Windows.Forms.Padding(0);
-            this.txtNameSort.Multiline = true;
-            this.txtNameSort.Name = "txtNameSort";
-            this.txtNameSort.Size = new System.Drawing.Size(552, 36);
-            this.txtNameSort.TabIndex = 3;
             // 
             // label4
             // 
@@ -185,19 +157,6 @@
             this.label5.Text = "Price";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtPrice
-            // 
-            this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(0, 226);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(0);
-            this.txtPrice.Multiline = true;
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(552, 37);
-            this.txtPrice.TabIndex = 7;
-            // 
             // lbPortions
             // 
             this.lbPortions.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -222,19 +181,11 @@
             // flpPortion
             // 
             this.flpPortion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.flpPortion.Controls.Add(this.ucPortion2);
             this.flpPortion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpPortion.Location = new System.Drawing.Point(0, 31);
             this.flpPortion.Name = "flpPortion";
             this.flpPortion.Size = new System.Drawing.Size(552, 37);
             this.flpPortion.TabIndex = 1;
-            // 
-            // ucPortion2
-            // 
-            this.ucPortion2.Location = new System.Drawing.Point(3, 3);
-            this.ucPortion2.Name = "ucPortion2";
-            this.ucPortion2.Size = new System.Drawing.Size(548, 31);
-            this.ucPortion2.TabIndex = 0;
             // 
             // panel3
             // 
@@ -244,17 +195,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(552, 31);
             this.panel3.TabIndex = 0;
-            // 
-            // ucPortion1
-            // 
-            this.ucPortion1.AutoSize = true;
-            this.ucPortion1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.ucPortion1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPortion1.ForeColor = System.Drawing.Color.White;
-            this.ucPortion1.Location = new System.Drawing.Point(0, 0);
-            this.ucPortion1.Name = "ucPortion1";
-            this.ucPortion1.Size = new System.Drawing.Size(552, 31);
-            this.ucPortion1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -333,6 +273,56 @@
             this.flpItemList.Size = new System.Drawing.Size(552, 165);
             this.flpItemList.TabIndex = 4;
             // 
+            // ucPortion1
+            // 
+            this.ucPortion1.AutoSize = true;
+            this.ucPortion1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.ucPortion1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPortion1.ForeColor = System.Drawing.Color.White;
+            this.ucPortion1.Location = new System.Drawing.Point(0, 0);
+            this.ucPortion1.Name = "ucPortion1";
+            this.ucPortion1.Size = new System.Drawing.Size(552, 31);
+            this.ucPortion1.TabIndex = 0;
+            // 
+            // txtNameDesc
+            // 
+            this.txtNameDesc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtNameDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNameDesc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNameDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameDesc.Location = new System.Drawing.Point(0, 58);
+            this.txtNameDesc.Margin = new System.Windows.Forms.Padding(0);
+            this.txtNameDesc.Multiline = true;
+            this.txtNameDesc.Name = "txtNameDesc";
+            this.txtNameDesc.Size = new System.Drawing.Size(552, 37);
+            this.txtNameDesc.TabIndex = 1;
+            // 
+            // txtNameSort
+            // 
+            this.txtNameSort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtNameSort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNameSort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNameSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNameSort.Location = new System.Drawing.Point(0, 114);
+            this.txtNameSort.Margin = new System.Windows.Forms.Padding(0);
+            this.txtNameSort.Multiline = true;
+            this.txtNameSort.Name = "txtNameSort";
+            this.txtNameSort.Size = new System.Drawing.Size(552, 36);
+            this.txtNameSort.TabIndex = 3;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(0, 226);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(0);
+            this.txtPrice.Multiline = true;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(552, 37);
+            this.txtPrice.TabIndex = 7;
+            // 
             // UCItemList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,7 +339,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.flpPortion.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -381,6 +370,5 @@
         private System.Windows.Forms.Panel panel3;
         private UCPortion ucPortion1;
         private System.Windows.Forms.FlowLayoutPanel flpPortion;
-        private UCPortion ucPortion2;
     }
 }

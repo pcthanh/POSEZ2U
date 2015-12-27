@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace POSEZ2U.UC
 {
-    public partial class UCAllPayMent : UserControl
+    public partial class UCTkItemTitle : UserControl
     {
-        public UCAllPayMent()
+        public UCTkItemTitle()
         {
             InitializeComponent();
-        }
-
-        private void UCAllPayMent_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
         }
     }
 }

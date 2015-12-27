@@ -51,6 +51,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.Controls.Add(this.lblNameMenuOfGroup);
+            this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "UCMenuOfGroup";
             this.Size = new System.Drawing.Size(137, 68);
             this.ResumeLayout(false);

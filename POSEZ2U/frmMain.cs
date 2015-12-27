@@ -70,16 +70,18 @@ namespace POSEZ2U
             var menuid = Convert.ToInt32(SettingAll.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            if (result > 0)
-            {
-                frmSettingAll frm = new frmSettingAll();
-                frm.ShowDialog();
-            }
-            else
-            {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
-            }
+            frmSettingAll frm = new frmSettingAll();
+            frm.ShowDialog();
+            //if (result > 0)
+            //{
+            //    frmSettingAll frm = new frmSettingAll();
+            //    frm.ShowDialog();
+            //}
+            //else
+            //{
+            //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+            //    frm.ShowDialog();
+            //}
         }
 
         private void btnTakeAway_Click_1(object sender, EventArgs e)
@@ -88,17 +90,19 @@ namespace POSEZ2U
             var menuid = Convert.ToInt32(TakeAway.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            if (result > 0)
-            {
-                frmFloor frm = new frmFloor();
-                this.Hide();
-                frm.ShowDialog();
-            }
-            else
-            {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
-            }
+            frmTakeAway frm = new frmTakeAway();
+            frm.ShowDialog();
+            //if (result > 0)
+            //{
+            //    frmFloor frm = new frmFloor();
+            //    this.Hide();
+            //    frm.ShowDialog();
+            //}
+            //else
+            //{
+            //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+            //    frm.ShowDialog();
+            //}
 
 
         }

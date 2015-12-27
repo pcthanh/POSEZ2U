@@ -25,7 +25,8 @@ namespace POSEZ2U
             if (txtOpenitemName.Text != string.Empty & txtOpenItemPrice.Text != string.Empty)
             {
                 items.ProductName = txtOpenitemName.Text;
-                items.Price = Convert.ToDouble(txtOpenItemPrice.Text);
+                items.Price = Convert.ToDouble(txtOpenItemPrice.Text)*1000;
+                items.OpenItem = 1;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

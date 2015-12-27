@@ -1,6 +1,6 @@
 ﻿namespace POSEZ2U.UC
 {
-    partial class UCAllPayMent
+    partial class UCDiscount
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,26 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblStt = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblMethodType = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblClose = new System.Windows.Forms.Label();
+            this.lblStt = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblStt
+            // lblMethodType
             // 
-            this.lblStt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(51)))));
-            this.lblStt.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStt.ForeColor = System.Drawing.Color.White;
-            this.lblStt.Location = new System.Drawing.Point(0, 0);
-            this.lblStt.Name = "lblStt";
-            this.lblStt.Size = new System.Drawing.Size(43, 42);
-            this.lblStt.TabIndex = 0;
-            this.lblStt.Text = "#1";
-            this.lblStt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMethodType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblMethodType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMethodType.Location = new System.Drawing.Point(0, 0);
+            this.lblMethodType.Margin = new System.Windows.Forms.Padding(0);
+            this.lblMethodType.Name = "lblMethodType";
+            this.lblMethodType.Size = new System.Drawing.Size(76, 42);
+            this.lblMethodType.TabIndex = 0;
+            this.lblMethodType.Text = "label1";
+            this.lblMethodType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
@@ -64,19 +63,7 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(228, 42);
-            this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // lblMethodType
-            // 
-            this.lblMethodType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblMethodType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMethodType.Location = new System.Drawing.Point(0, 0);
-            this.lblMethodType.Margin = new System.Windows.Forms.Padding(0);
-            this.lblMethodType.Name = "lblMethodType";
-            this.lblMethodType.Size = new System.Drawing.Size(76, 42);
-            this.lblMethodType.TabIndex = 0;
-            this.lblMethodType.Text = "label1";
-            this.lblMethodType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // lblTotal
             // 
@@ -101,9 +88,22 @@
             this.lblClose.TabIndex = 0;
             this.lblClose.Text = "X";
             this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblClose.Click += new System.EventHandler(this.UCAllPayMent_Click);
+            this.lblClose.Click += new System.EventHandler(this.UCDiscount_Click);
             // 
-            // UCAllPayMent
+            // lblStt
+            // 
+            this.lblStt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(51)))));
+            this.lblStt.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblStt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStt.ForeColor = System.Drawing.Color.White;
+            this.lblStt.Location = new System.Drawing.Point(0, 0);
+            this.lblStt.Name = "lblStt";
+            this.lblStt.Size = new System.Drawing.Size(43, 42);
+            this.lblStt.TabIndex = 2;
+            this.lblStt.Text = "#1";
+            this.lblStt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // UCDiscount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,7 +111,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.lblStt);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "UCAllPayMent";
+            this.Name = "UCDiscount";
             this.Size = new System.Drawing.Size(271, 42);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -120,10 +120,10 @@
 
         #endregion
 
-        public System.Windows.Forms.Label lblStt;
-        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.Label lblMethodType;
+        public System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.Label lblTotal;
         public System.Windows.Forms.Label lblClose;
+        public System.Windows.Forms.Label lblStt;
     }
 }
