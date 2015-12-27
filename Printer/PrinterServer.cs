@@ -28,7 +28,15 @@ namespace Printer
            OrderMain = _OrderMain;
            if (Function==1)
            {
-               posPrinter.SetPrinterName("Microsoft XPS Document Writer");
+               
+                   //Dataprint 80mm Series Printer
+               posPrinter.SetPrinterName("Dataprint 80mm Series Printer");
+               posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+               posPrinter.Print();
+           }
+           if (Function == 2)
+           {
+               posPrinter.SetPrinterName("Dataprint 80mm Series Printer");
                posPrinter.printDocument.PrintPage += printDocument_PrintPage;
                posPrinter.Print();
            }
@@ -39,6 +47,10 @@ namespace Printer
            if (Function == 1)
            {
                PrintOrderToKitchenOrBar(e);
+           }
+           if (Function == 2)
+           {
+               PrintReceipt(e);
            }
        }
        public float PrintOrderToKitchenOrBar(PrintPageEventArgs e)
@@ -102,9 +114,98 @@ namespace Printer
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            posPrinter.DrawString("Total item: "+countItem, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
            //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 14, FontStyle.Bold), l_y, 3);
-           l_y += posPrinter.GetHeightPrinterLine();
+           l_y += posPrinter.GetHeightPrinterLine()/2;
            return l_y;
+       }
+
+       private void PrintReceipt(PrintPageEventArgs e)
+       {
+           float l_y = 0;
+           l_y = posPrinter.DrawString("BI RESTAURANT", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString("ABN:45 134918497", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString("233A Canley Vale Rd Canley Heights NSW 2166", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString("Tel: 9727 7585", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+           l_y = posPrinter.DrawString("Tranx #", e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+           l_y = posPrinter.DrawString("Table# "+OrderMain.FloorID, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+           l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           l_y = posPrinter.DrawString("TAX INVOICE", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+           {
+               float yStart = l_y;
+               posPrinter.DrawString(OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
+               l_y = posPrinter.DrawString(OrderMain.ListOrderDetail[i].Qty.ToString(), e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+               posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].Price.ToString()), e, new Font("Arial", 10, FontStyle.Bold), yStart, 3);
+               if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+               {
+                   for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                   {
+                       l_y=posPrinter.DrawString("__"+OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
+                   }
+               }
+           }
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+            posPrinter.DrawString("SubTotal:", e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
+            l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.TotalAmount)), e, new Font("Arial", 10), l_y, 3);
+           if (OrderMain.Discount > 0)
+           {
+               posPrinter.DrawString("Discount:", e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
+               l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.Discount), e, new Font("Arial", 10), l_y, 3);
+
+               posPrinter.DrawString("Total:", e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
+               l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal() - OrderMain.Discount), e, new Font("Arial", 10), l_y, 3);
+           }
+           else
+           {
+               posPrinter.DrawString("Total:", e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
+               l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 10), l_y, 3);
+           }
+            posPrinter.DrawString("GST(Include in total):", e, new Font("Arial", 10), l_y, 1);
+            l_y = posPrinter.DrawString("$1.0", e, new Font("Arial", 10), l_y, 3);
+           if (OrderMain.ListPayment.Count > 0)
+           {
+               for (int j = 0; j < OrderMain.ListPayment.Count; j++)
+               {
+                   if (OrderMain.ListPayment[j].PaymentTypeID == 1)
+                   {
+                       posPrinter.DrawString("Cash:", e, new Font("Arial", 10), l_y, 1);
+                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                   }
+                   if (OrderMain.ListPayment[j].PaymentTypeID == 2)
+                   {
+                        posPrinter.DrawString("Card:", e, new Font("Arial", 10), l_y, 1);
+                        l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                        if (OrderMain.ListInvoiceByCard.Count > 0)
+                        {
+                            for (int i = 0; i < OrderMain.ListInvoiceByCard.Count; i++)
+                            {
+                                posPrinter.DrawString("--"+OrderMain.ListInvoiceByCard[i].NameCard, e, new Font("Arial", 10), l_y, 1);
+                                l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.ListInvoiceByCard[i].Total)), e, new Font("Arial", 10), l_y, 3);
+                            }
+                        }
+                   }
+               }
+           }
+           if (OrderMain.Change > 0)
+           {
+               posPrinter.DrawString("Change:", e, new Font("Arial", 10), l_y, 1);
+               l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.Change), e, new Font("Arial", 10), l_y, 3);
+ 
+           }
+           l_y += posPrinter.GetHeightPrinterLine() / 2;
+           l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+
        }
     }
 }
- 
+  
