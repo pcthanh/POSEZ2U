@@ -1055,7 +1055,7 @@ namespace POSEZ2U
                         if (OrderMain.isTKA == 1)
                         {
                             frmTakeAway frm = new frmTakeAway();
-                            CallBackStatusOrderTKA(OrderMain);
+                            //CallBackStatusOrderTKA(OrderMain);
                             frm.Show();
                           
                             this.Close();
@@ -1137,13 +1137,23 @@ namespace POSEZ2U
                     int result = 0;
                     OrderMain = frm.OrderMain;
                     result = InvoiceService.InsertInvoice(OrderMain);
+                   
                     if (result == 1)
                     {
-
                         PrinterServer printServer = new PrinterServer(2);
                         printServer.Print(OrderMain);
-                        CallBackStatusOrder(OrderMain);
-                        this.Close();
+                        if (OrderMain.isTKA == 1)
+                        {
+                            this.Close();
+                            frmTakeAway frmTKA = new frmTakeAway();
+                            frmTKA.Show();
+                            
+                        }
+                        else
+                        {
+                            CallBackStatusOrder(OrderMain);
+                            this.Close();
+                        }
                     }
                 }
             }

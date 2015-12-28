@@ -19,10 +19,20 @@ namespace POSEZ2U
         public frmTakeAway()
         {
             InitializeComponent();
+            this.Activated += frmTakeAway_Activated;
+        }
+
+        void frmTakeAway_Activated(object sender, EventArgs e)
+        {
+            if(isCancel!=1)
+                GetDataTKA();
         }
         public delegate void CallBackStatusOrderTKA(OrderDateModel orderMain);
         MoneyFortmat money = new MoneyFortmat(MoneyFortmat.AU_TYPE);
+        OrderDateModel OrderMain;
+        string TKAID = string.Empty;
         private IOrderService _orderService;
+        public int isCancel = 0;
         private IOrderService OrderService
         {
             get { return _orderService ?? (_orderService = new OrderService()); }
@@ -31,12 +41,11 @@ namespace POSEZ2U
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmTKAOrder frm = new frmTKAOrder();
-           
-            frmOrder frmOrder = new frmOrder();
-            frmOrder.CallBackStatusOrderTKA = new CallBackStatusOrderTKA(this.Test);
-            
-            frm.ShowDialog();
-           
+            isCancel = 0;
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+            {
+                isCancel = 1;
+            }
         }
         private void Test(OrderDateModel or)
         {
@@ -77,7 +86,7 @@ namespace POSEZ2U
         }
         private void frmTakeAway_Load(object sender, EventArgs e)
         {
-            GetDataTKA();
+            //GetDataTKA();
             //for (int i = 0; i < 10; i++)
             //{
             //    UCTakeAway ucTKA = new UCTakeAway();
@@ -87,6 +96,7 @@ namespace POSEZ2U
             //        ucTKA.BackColor = Color.Black;
             //    flpTkAInfor.Controls.Add(ucTKA);
             //}
+            //GetDataTKA();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -95,22 +105,61 @@ namespace POSEZ2U
         }
         private void GetDataTKA()
         {
+            this.flpTkAInfor.Controls.Clear();
+            flpTKAItem.Controls.Clear();
+            lblSubTotal.Text = string.Empty;
             List<OrderTKAModel> ListTKA = new List<OrderTKAModel>();
             ListTKA = OrderService.GetStatusOrderTKA();
-            for (int i = 0; i < ListTKA.Count; i++)
+            int i = 1;
+            foreach (OrderTKAModel item in ListTKA)
             {
                 UCTakeAway ucTKA = new UCTakeAway();
                 ucTKA.lblCusName .Text= "Thanh";
                 ucTKA.lblCusPhone .Text= "0972641947";
-                ucTKA.lblNo.Text = i + 1+"";
-                ucTKA.lblTotal.Text =money.Format2( ListTKA[i].Total);
-                ucTKA.lblWait.Text = ListTKA[i].Waiting.ToString();
+                ucTKA.lblNo.Text = i + "";
+                ucTKA.lblTotal.Text = money.Format2(item.Total);
+                ucTKA.lblWait.Text = item.Waiting.ToString();
                 ucTKA.Width = flpTkAInfor.Width;
-                ucTKA.Tag = ListTKA[i];
+                ucTKA.Tag = item;
+                ucTKA.Click += ucTKA_Click;
                 flpTkAInfor.Controls.Add(ucTKA);
+                i++;
             }
             flpTkAInfor.Refresh();
             this.Refresh();
+        }
+
+        void ucTKA_Click(object sender, EventArgs e)
+        {
+            UCTakeAway ucTKA = (UCTakeAway)sender;
+            OrderTKAModel TKA = (OrderTKAModel)ucTKA.Tag;
+            TKAID = TKA.TKAID;
+            foreach (Control ctr in flpTkAInfor.Controls)
+            {
+                if (ctr.BackColor == Color.FromArgb(0, 153, 51))
+                {
+                    ctr.BackColor = Color.FromArgb(255, 255, 255);
+                    ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                }
+            }
+            ucTKA.BackColor = Color.FromArgb(0, 153, 51);
+            ucTKA.ForeColor = Color.FromArgb(255, 255, 255);
+            OrderMain = OrderService.GetOrderByTKA(TKA.TKAID, "");
+            LoadItemTKA();
+        }
+        private void LoadItemTKA()
+        {
+            flpTKAItem.Controls.Clear();
+            foreach (OrderDetailModel item in OrderMain.ListOrderDetail)
+            {
+                UCTKADetail ucTKADetail = new UCTKADetail();
+                ucTKADetail.lblItemName .Text= item.ProductName;
+                ucTKADetail.lblItemPrice .Text=money.Format2(item.Price??0);
+                ucTKADetail.lblItemQty.Text = item.Qty + "";
+                ucTKADetail.Width = flpTKAItem.Width;
+                flpTKAItem.Controls.Add(ucTKADetail);
+            }
+            lblSubTotal.Text = "$" + money.Format2(OrderMain.SubTotal());
         }
         private void frmTakeAway_Shown(object sender, EventArgs e)
         {
@@ -123,8 +172,8 @@ namespace POSEZ2U
         }
         protected override void OnShown(EventArgs e)
         {
-            //GetDataTKA();
-            base.OnShown(e);
+            
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -144,6 +193,21 @@ namespace POSEZ2U
             catch (Exception ex)
             {
                 LogPOS.WriteLog("timer1_Tick:::::::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+
+        private void btnDetail_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                frmOrder frm = new frmOrder();
+                frm.LoadOrderTKA(TKAID,"");
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmTakeAway:::::::::::::::::::::::::::btnDetail_Click:::::::::::::::" + ex.Message);
             }
         }
     }

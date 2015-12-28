@@ -224,6 +224,7 @@
             this.btnDetail.TabIndex = 0;
             this.btnDetail.Text = "Detail";
             this.btnDetail.UseVisualStyleBackColor = false;
+            this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // panel12
             // 

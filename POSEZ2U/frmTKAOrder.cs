@@ -16,7 +16,7 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
-
+        frmTakeAway.CallBackStatusOrderTKA CallTKA;
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -25,8 +25,10 @@ namespace POSEZ2U
         private void btnCreateOrder_Click(object sender, EventArgs e)
         {
             this.Close();
+            
             frmOrder frm = new frmOrder();
             frm.LoadOrderTKA("TKA-", "");
+            
             frm.ShowDialog();
            
         }
