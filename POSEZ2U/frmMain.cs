@@ -131,16 +131,20 @@ namespace POSEZ2U
             var menuid = Convert.ToInt32(SettingAll.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            if (result > 0)
-            {
-                frmMessager frm = new frmMessager("Messenger", "Ban co quyen truy cap");
-                frm.ShowDialog();
-            }
-            else
-            {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
-            }
+            frmReportAll frm = new frmReportAll();
+            this.Close();
+            frm.ShowDialog();
+            //if (result > 0)
+            //{
+            //    frmReportAll frm = new frmReportAll();
+            //    this.Close();
+            //    frm.ShowDialog();
+            //}
+            //else
+            //{
+            //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+            //    frm.ShowDialog();
+            //}
         }
 
         private void frmMain_Load(object sender, EventArgs e)
