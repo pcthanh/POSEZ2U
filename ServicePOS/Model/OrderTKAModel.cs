@@ -12,5 +12,6 @@ namespace ServicePOS.Model
        public string CusPhone { get; set; }
        public double Total { get; set; }
        public DateTime Waiting { get; set; }
+       public string TKAID { get; set; }
     }
 }

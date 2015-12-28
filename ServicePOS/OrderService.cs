@@ -187,23 +187,27 @@ namespace ServicePOS
                 }
                 else
                 {
-                    orderDateTemp = CopyOrder(itemOrder);
-                    _context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Added;
-                    lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
-                    foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+                    using (var Tranx = _context.Database.BeginTransaction())
                     {
-                        _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+                        orderDateTemp = CopyOrder(itemOrder);
+                        _context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Added;
+                        lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
+                        foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+                        {
+                            _context.Entry(item).State = System.Data.Entity.EntityState.Added;
 
+                        }
+
+                        lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
+                        foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
+                        {
+                            _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+
+                        }
+                        _context.SaveChanges();
+                        flag = 1;
+                        Tranx.Commit();
                     }
-
-                    lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
-                    foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
-                    {
-                        _context.Entry(item).State = System.Data.Entity.EntityState.Added;
-
-                    }
-                    _context.SaveChanges();
-                    flag = 1;
                 }
             }
             catch (Exception ex)
@@ -451,7 +455,7 @@ namespace ServicePOS
             OrderDateModel OrderTKA = new OrderDateModel();
             try
             {
-                var dataOrder = _context.ORDER_DATE.Where(x => x.OrderNumber == tkaID && x.Status != 1).SingleOrDefault();
+                var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == tkaID && x.Status != 1).SingleOrDefault();
 
 
                 if (dataOrder != null)
@@ -570,6 +574,7 @@ namespace ServicePOS
                     items.CusPhone = string.Empty;
                     items.Total = item.TotalAmount??0;
                     items.Waiting = item.CreateDate??DateTime.Now;
+                    items.TKAID = item.FloorID;
                     lst.Add(items);
                 }
             }
