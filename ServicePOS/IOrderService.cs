@@ -22,5 +22,7 @@ namespace ServicePOS
        int GetIDLastInsertOpenItem();
        OrderDateModel GetOrderByTKA(string tkaID, string ClientID);
        List< OrderTKAModel> GetStatusOrderTKA();
+       int CountTotalEaIn();
+       int CountTotalTKA();
     }
 }

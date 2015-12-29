@@ -584,5 +584,16 @@ namespace ServicePOS
             }
             return lst;
         }
+
+
+        public int CountTotalEaIn()
+        {
+            return _context.ORDER_DATE.Where(x => x.Status != 1 &&!x.FloorID.Contains("TKA-")).Count();
+        }
+
+        public int CountTotalTKA()
+        {
+            return _context.ORDER_DATE.Where(x => x.Status != 1 && x.FloorID.Contains("TKA-")).Count();
+        }
     }
 }
