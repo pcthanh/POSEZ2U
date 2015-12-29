@@ -39,5 +39,10 @@ namespace POSEZ2U
             frmPrinterSetting frm = new frmPrinterSetting();
             frm.ShowDialog();
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

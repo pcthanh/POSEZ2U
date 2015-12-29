@@ -476,8 +476,7 @@ namespace POSEZ2U
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmMain frm = new frmMain();
-            frm.ShowDialog();
+            
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
