@@ -82,6 +82,7 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -200,6 +201,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "UCPrinter";
             this.Size = new System.Drawing.Size(523, 527);
+            this.Load += new System.EventHandler(this.UCPrinter_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -211,14 +213,14 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblTitle;
+        public System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label2;
-        private UCTextBoxKeyBoard txtPrintName;
+        public UCTextBoxKeyBoard txtPrintName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbSharePrint;
+        public System.Windows.Forms.ComboBox cbSharePrint;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbPrintType;
-        private System.Windows.Forms.Button btnRemove;
+        public System.Windows.Forms.ComboBox cbPrintType;
+        public System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnSave;
     }
 }

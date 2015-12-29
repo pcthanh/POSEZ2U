@@ -35,7 +35,12 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
-
+        private IOrderService _orderService;
+        private IOrderService OrderService
+        {
+            get { return _orderService ?? (_orderService = new OrderService()); }
+            set { _orderService = value; }
+        }
         private void btnEatIn_Click(object sender, EventArgs e)
         {
             Button EatIn = (Button)sender;
@@ -178,6 +183,28 @@ namespace POSEZ2U
 
         }
 
-       
+        private void btnEatIn_Paint(object sender, PaintEventArgs e)
+        {
+           
+            Font drawFont = new Font("Arial", 20);
+            SolidBrush drawBrush = new SolidBrush(Color.White);
+            PointF drawPoint = new PointF(185.0F, 12.0F);
+            String drawString = OrderService.CountTotalEaIn() + "";
+            e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+        }
+
+        private void btnTakeAway_Paint(object sender, PaintEventArgs e)
+        {
+            Font drawFont = new Font("Arial", 20);
+            SolidBrush drawBrush = new SolidBrush(Color.White);
+            PointF drawPoint = new PointF(185.0F, 12.0F);
+            String drawString = OrderService.CountTotalTKA() + "";
+            e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+        }
+
+        private void btnStore_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

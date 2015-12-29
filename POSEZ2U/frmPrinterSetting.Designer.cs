@@ -64,7 +64,7 @@
             this.pDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pDetail.Location = new System.Drawing.Point(0, 0);
             this.pDetail.Name = "pDetail";
-            this.pDetail.Size = new System.Drawing.Size(264, 381);
+            this.pDetail.Size = new System.Drawing.Size(254, 381);
             this.pDetail.TabIndex = 0;
             // 
             // panel12
@@ -80,6 +80,7 @@
             this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(204, 35);
@@ -109,6 +110,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // flpPrintList
             // 
@@ -132,9 +134,9 @@
             // 
             this.panel13.Controls.Add(this.pDetail);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(424, 52);
+            this.panel13.Location = new System.Drawing.Point(434, 52);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(264, 381);
+            this.panel13.Size = new System.Drawing.Size(254, 381);
             this.panel13.TabIndex = 21;
             // 
             // panel7
@@ -236,6 +238,7 @@
             this.btnBack.TabIndex = 0;
             this.btnBack.Text = "BACK";
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // panel2
             // 
@@ -269,8 +272,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
             this.ClientSize = new System.Drawing.Size(698, 484);
             this.ControlBox = false;
-            this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel13);
+            this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel8);

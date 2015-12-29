@@ -56,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblPrintList;
+        public System.Windows.Forms.Label lblPrintList;
     }
 }
