@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFloor));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -43,7 +44,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -60,6 +60,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(863, 42);
             this.panel1.TabIndex = 0;
+            // 
+            // ucInfoTop1
+            // 
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(863, 42);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -118,7 +126,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.46236F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.53764F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 2, 0);
@@ -155,7 +163,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(40, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 41);
+            this.button2.Size = new System.Drawing.Size(31, 41);
             this.button2.TabIndex = 0;
             this.button2.Text = "4";
             this.button2.UseVisualStyleBackColor = false;
@@ -167,7 +175,7 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(78, 3);
+            this.button3.Location = new System.Drawing.Point(77, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(43, 41);
             this.button3.TabIndex = 0;
@@ -180,9 +188,9 @@
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(127, 3);
+            this.comboBox1.Location = new System.Drawing.Point(126, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 41);
+            this.comboBox1.Size = new System.Drawing.Size(195, 41);
             this.comboBox1.TabIndex = 1;
             // 
             // btnBack
@@ -204,14 +212,6 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(863, 42);
-            this.ucInfoTop1.TabIndex = 0;
-            // 
             // frmFloor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +225,7 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmFloor";
+            this.ShowInTaskbar = false;
             this.Text = "frmFloor ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmFloor_Load);

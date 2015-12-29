@@ -63,10 +63,12 @@ namespace POSEZ2U
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            UserLoginModel.UserLoginInfo= new StaffModel();
-            Form1 frm = new Form1();
-            this.Hide();
-            frm.ShowDialog();
+            //UserLoginModel.UserLoginInfo= new StaffModel();
+            //Form1 frm = new Form1();
+            //this.Hide();
+            //frm.ShowDialog();
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
         }
 
         private void btnSettingAll_Click(object sender, EventArgs e)
