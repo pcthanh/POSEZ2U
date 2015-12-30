@@ -195,7 +195,7 @@ namespace ServicePOS
                 PAYMENT_INVOICE_HISTORY item = new PAYMENT_INVOICE_HISTORY();
                 item.PaymentTypeID = Order.ListPayment[i].PaymentTypeID;
                 item.InvoiceNumber = Convert.ToString(CountInvoie() + 1);
-                item.Satust = Order.ListPayment[i].Satust;
+                item.Satust = 1;
                 item.Total = Order.ListPayment[i].Total;
                 item.CreateBy = Order.ListPayment[i].CreateBy ?? 0;
                 item.CreateDate = DateTime.Now;
