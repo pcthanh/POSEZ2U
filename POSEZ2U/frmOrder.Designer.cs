@@ -431,6 +431,7 @@
             this.btnReprint.TabIndex = 1;
             this.btnReprint.Text = "RePrint DOCKET\r\n\r\n";
             this.btnReprint.UseVisualStyleBackColor = false;
+            this.btnReprint.Click += new System.EventHandler(this.btnReprint_Click);
             // 
             // btnJoinTable
             // 
@@ -528,6 +529,7 @@
             this.btnNewItem.TabIndex = 1;
             this.btnNewItem.Text = "New Item";
             this.btnNewItem.UseVisualStyleBackColor = false;
+            this.btnNewItem.Click += new System.EventHandler(this.btnNewItem_Click);
             // 
             // btnNote
             // 
@@ -578,6 +580,7 @@
             this.btnPrintBill.TabIndex = 1;
             this.btnPrintBill.Text = "Print Bill";
             this.btnPrintBill.UseVisualStyleBackColor = false;
+            this.btnPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
             // 
             // btnDisCount
             // 

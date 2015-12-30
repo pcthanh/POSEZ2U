@@ -14,7 +14,7 @@ using ServicePOS;
 using ModelPOS;
 using ServicePOS.Model;
 using Printer;
-
+using POSEZ2U.Class;
 namespace POSEZ2U
 {
     public partial class frmOrder : Form
@@ -38,7 +38,7 @@ namespace POSEZ2U
         int flagUcSeatClick;
         int numSeat;
         OrderDateModel OrderMain;
-        
+        private int flags;
         private ICatalogueService _catalogeService;
         private ICatalogueService CatalogeService
         {
@@ -1129,9 +1129,10 @@ namespace POSEZ2U
 
         private void btnPayMent_Click(object sender, EventArgs e)
         {
+            //flags = WinAPI.AW_ACTIVATE | WinAPI.AW_HOR_POSITIVE;
             if (OrderMain.ListOrderDetail.Count > 0)
             {
-                frmPayMent frm = new frmPayMent(OrderMain);
+                frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     int result = 0;
@@ -1160,6 +1161,40 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("PayMent", "Order empty");
+                frm.ShowDialog();
+            }
+        }
+
+        private void btnNewItem_Click(object sender, EventArgs e)
+        {
+            btnOpenItemItem_Click(sender,e);
+        }
+
+        private void btnPrintBill_Click(object sender, EventArgs e)
+        {
+
+            if (OrderMain.ListOrderDetail.Count > 0)
+            {
+                PrinterServer print = new PrinterServer(3);
+                print.Print(OrderMain);
+            }
+            else
+            {
+                frmMessager frm = new frmMessager("Print Bill", "Order is empty");
+                frm.ShowDialog();
+            }
+        }
+
+        private void btnReprint_Click(object sender, EventArgs e)
+        {
+            if (OrderMain.ListOrderDetail.Count > 0)
+            {
+                PrinterServer print = new PrinterServer(1);
+                print.Print(OrderMain);
+            }
+            else
+            {
+                frmMessager frm = new frmMessager("Print Bill", "Order is empty");
                 frm.ShowDialog();
             }
         }

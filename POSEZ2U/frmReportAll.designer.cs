@@ -245,6 +245,7 @@
             this.Controls.Add(this.ucInfoTop1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmReportAll";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmUserSetting";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

@@ -31,6 +31,7 @@ namespace POSEZ2U
         MoneyFortmat money = new MoneyFortmat(MoneyFortmat.AU_TYPE);
         OrderDateModel OrderMain;
         string TKAID = string.Empty;
+        int indexControl;
         private IOrderService _orderService;
         public int isCancel = 0;
         private IOrderService OrderService
@@ -145,37 +146,133 @@ namespace POSEZ2U
             ucTKA.BackColor = Color.FromArgb(0, 153, 51);
             ucTKA.ForeColor = Color.FromArgb(255, 255, 255);
             OrderMain = OrderService.GetOrderByTKA(TKA.TKAID, "");
-            LoadItemTKA();
+            LoadOrderTKA(TKAID,"");
         }
-        private void LoadItemTKA()
+        
+        private void addOrder(OrderDetailModel items)
         {
-            flpTKAItem.Controls.Clear();
-            foreach (OrderDetailModel item in OrderMain.ListOrderDetail)
+            try
             {
-                UCTKADetail ucTKADetail = new UCTKADetail();
-                ucTKADetail.lblItemName .Text= item.ProductName;
-                ucTKADetail.lblItemPrice .Text=money.Format2(item.Price??0);
-                ucTKADetail.lblItemQty.Text = item.Qty + "";
-                ucTKADetail.Width = flpTKAItem.Width;
-                flpTKAItem.Controls.Add(ucTKADetail);
+
+                UCOrder ucOrder = new UCOrder();
+                ucOrder.lblNameItem.Text = items.ProductName;
+                ucOrder.Tag = items;
+                ucOrder.lblPriceItem.Text = money.Format2(items.Price.ToString());
+                ucOrder.Width = flpTKAItem.Width;
+                LogPOS.WriteLog("addOrder::::::::::Item::::::" + items.ProductName + ":::::" + items.Price);
+                flpTKAItem.Controls.Add(ucOrder);
+                
             }
-            lblSubTotal.Text = "$" + money.Format2(OrderMain.SubTotal());
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("addOrder:::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+        public void LoadOrderTKA(string TableID, string ClientID)
+        {
+            indexControl = 1;
+            flpTKAItem.Controls.Clear();
+            try
+            {
+                OrderMain = new OrderDateModel();
+                OrderMain = OrderService.GetOrderByTKA(TableID, "");
+                OrderMain.isTKA = 1;
+                lblSubTotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
+                if (OrderMain.Seat > 0)
+                {
+                    OrderMain.IsLoadFromData = true;
+                    //lblSeat.Text = OrderMain.Seat.ToString();
+                    for (int seat = 1; seat <= OrderMain.Seat; seat++)
+                    {
+                        UCSeat ucSeat = new UCSeat();
+                        ucSeat.lblSeat.Text = "Seat " + seat.ToString();
+                       
+                        if (OrderMain.ListOrderDetail.Count > 0)
+                        {
+                            for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                            {
+                                if (OrderMain.ListOrderDetail[i].Seat == seat)
+                                {
+                                    addOrder(OrderMain.ListOrderDetail[i]);
+                                    indexControl++;
+                                    for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                                    {
+                                        UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
+                                        uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
+                                       
+                                        addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                        indexControl++;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
+
+                            int OrderID = OrderService.CountOrder() + 1;
+                            OrderMain.OrderID = OrderID;
+                        }
+                    }
+                }
+                else
+                {
+                    if (OrderMain.ListOrderDetail.Count > 0)
+                    {
+                        OrderMain.IsLoadFromData = true;
+                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                        {
+                            addOrder(OrderMain.ListOrderDetail[i]);
+                            indexControl++;
+                            for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                            {
+                                UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
+                                uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
+                                
+                                addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                indexControl++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
+                        int OrderID = OrderService.CountOrder() + 1;
+                        OrderMain.OrderID = OrderID;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("LoadOrder:::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifireModel modifier)
+        {
+            try
+            {
+
+                ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
+                ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
+                ucMdifireOfMenu.lblQtyItenModifierMenu.Text = "1";
+                ucMdifireOfMenu.Width = flpTKAItem.Width;
+                flpTKAItem.Controls.Add(ucMdifireOfMenu);
+                flpTKAItem.Controls.SetChildIndex(ucMdifireOfMenu, indexControl + 1);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("addModifreToOrder:::::::::::::::::::::::::::::::::" + ex.Message);
+            }
         }
         private void frmTakeAway_Shown(object sender, EventArgs e)
         {
             
-            //System.Threading.Thread.Sleep(3000);
-           // GetDataTKA();
-           
-           
-
         }
         protected override void OnShown(EventArgs e)
         {
-            
-            
+           
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             try

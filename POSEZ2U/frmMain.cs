@@ -50,8 +50,9 @@ namespace POSEZ2U
             if (result > 0)
             {
                 frmFloor frm = new frmFloor();
-                this.Hide();
-                frm.ShowDialog();
+                frm.Show();
+               
+                
             }
             else
             {
@@ -120,16 +121,16 @@ namespace POSEZ2U
             var menuid = Convert.ToInt32(SettingAll.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            if (result > 0)
-            {
-                frmMessager frm = new frmMessager("Messenger", "Ban co quyen truy cap");
+            //if (result  0)
+            //{
+                frmShift frm = new frmShift();
                 frm.ShowDialog();
-            }
-            else
-            {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
-            }
+            //}
+            //else
+            //{
+            //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+            //    frm.ShowDialog();
+            //}
         }
 
         private void btnReport_Click(object sender, EventArgs e)

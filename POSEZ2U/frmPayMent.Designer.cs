@@ -39,6 +39,8 @@
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
@@ -46,10 +48,13 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lblChange = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.txtBalance = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtBalancetemp = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblTender = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,24 +71,19 @@
             this.btnGiftCard = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpPaymentType = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtBalance = new System.Windows.Forms.Label();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
-            this.txtBalancetemp = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -268,6 +268,24 @@
             this.panel2.Size = new System.Drawing.Size(281, 400);
             this.panel2.TabIndex = 1;
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.ucKeyPadOrder1);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(0, 156);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(196, 244);
+            this.panel8.TabIndex = 0;
+            // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
+            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
@@ -371,15 +389,6 @@
             this.button5.Text = "$100.00";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.ucKeyPadOrder1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(0, 156);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(196, 244);
-            this.panel8.TabIndex = 0;
-            // 
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -414,6 +423,46 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "CHANGE";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.txtBalance);
+            this.panel10.Controls.Add(this.label2);
+            this.panel10.Controls.Add(this.txtBalancetemp);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 89);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(281, 34);
+            this.panel10.TabIndex = 0;
+            // 
+            // txtBalance
+            // 
+            this.txtBalance.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBalance.Location = new System.Drawing.Point(125, 0);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(156, 34);
+            this.txtBalance.TabIndex = 0;
+            this.txtBalance.Text = "$0.00";
+            this.txtBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 34);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "BALANCE";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtBalancetemp
+            // 
+            this.txtBalancetemp.Location = new System.Drawing.Point(0, 6);
+            this.txtBalancetemp.Name = "txtBalancetemp";
+            this.txtBalancetemp.Size = new System.Drawing.Size(100, 20);
+            this.txtBalancetemp.TabIndex = 1;
             // 
             // panel6
             // 
@@ -620,55 +669,6 @@
             this.flpPaymentType.Size = new System.Drawing.Size(271, 400);
             this.flpPaymentType.TabIndex = 0;
             // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.txtBalance);
-            this.panel10.Controls.Add(this.label2);
-            this.panel10.Controls.Add(this.txtBalancetemp);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 89);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(281, 34);
-            this.panel10.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 34);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "BALANCE";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtBalance
-            // 
-            this.txtBalance.Dock = System.Windows.Forms.DockStyle.Right;
-            this.txtBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBalance.Location = new System.Drawing.Point(125, 0);
-            this.txtBalance.Name = "txtBalance";
-            this.txtBalance.Size = new System.Drawing.Size(156, 34);
-            this.txtBalance.TabIndex = 0;
-            this.txtBalance.Text = "$0.00";
-            this.txtBalance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
-            // txtBalancetemp
-            // 
-            this.txtBalancetemp.Location = new System.Drawing.Point(0, 6);
-            this.txtBalancetemp.Name = "txtBalancetemp";
-            this.txtBalancetemp.Size = new System.Drawing.Size(100, 20);
-            this.txtBalancetemp.TabIndex = 1;
-            // 
             // frmPayMent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -688,17 +688,17 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

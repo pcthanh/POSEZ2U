@@ -211,10 +211,12 @@ namespace POSEZ2U
                 {
                     if (passinput == passcheck)
                     {
+                       
                         UserLoginModel.UserLoginInfo = usermodel;
                         frmMain frm = new frmMain();
                         frm.ShowDialog();
                         this.Close();
+                        
                     }
                     else
                     {

@@ -28,30 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.components = new System.ComponentModel.Container();
+            this.pbAboutBar = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // progressBar1
+            // pbAboutBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(83, 31);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
-            this.progressBar1.TabIndex = 0;
+            this.pbAboutBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbAboutBar.Location = new System.Drawing.Point(0, 0);
+            this.pbAboutBar.Name = "pbAboutBar";
+            this.pbAboutBar.Size = new System.Drawing.Size(381, 19);
+            this.pbAboutBar.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 10;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmProcessing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(381, 101);
-            this.Controls.Add(this.progressBar1);
+            this.ClientSize = new System.Drawing.Size(381, 19);
+            this.ControlBox = false;
+            this.Controls.Add(this.pbAboutBar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmProcessing";
-            this.Text = "frmProcessing";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmProcessing_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar pbAboutBar;
+        private System.Windows.Forms.Timer timer1;
     }
 }

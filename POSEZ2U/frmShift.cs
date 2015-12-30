@@ -16,5 +16,14 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// su dung control UCShiftItem de add chi tiet cho tung shift
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

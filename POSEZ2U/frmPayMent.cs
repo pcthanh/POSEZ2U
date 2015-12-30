@@ -33,6 +33,7 @@ namespace POSEZ2U
         DiscountModel Discount = new DiscountModel();
         bool lockTextChange = false;
         bool RemoveUc = false;
+       
         private IInvoiceService _invoiceService;
         private IInvoiceService InvoiceService
         {
@@ -40,14 +41,18 @@ namespace POSEZ2U
             set { _invoiceService = value; }
         }
 
-        public frmPayMent(OrderDateModel _OrderMain)
+        public frmPayMent(OrderDateModel _OrderMain, int AnimationTime, int Flags)
         {
             //animationTime = AnimationTime;
             //flags = Flags;
+            animationTime = AnimationTime;
+            flags = Flags;
+           
             InitializeComponent();
             OrderMain = _OrderMain;
             txtTender.Focus();
             ucKeyPadOrder1.txtResult = txtTender;
+            this.Location = new Point(0, 100);
         }
         private void EnableButton()
         {
@@ -65,10 +70,11 @@ namespace POSEZ2U
             ////this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height);
             //this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height);
             //WinAPI.AnimateWindow(this.Handle, animationTime, flags);
+           
             lblTotalDue.Text = "$" + money.Format2(Convert.ToDouble(OrderMain.SubTotal()));
             txtBalance.Text = "$" + money.Format2(Convert.ToDouble(OrderMain.SubTotal()));
             txtBalancetemp.Text = OrderMain.SubTotal().ToString();
-
+            
         }
 
         private void btnHide_Click(object sender, EventArgs e)

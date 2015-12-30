@@ -131,18 +131,23 @@ namespace POSEZ2U
         }
         private void frmFloor_Load(object sender, EventArgs e)
         {
-
+            this.Visible = false;
+            frmProcessing frmpro = new frmProcessing(this);
+            frmpro.Show();
+            frmpro.ShowInTaskbar = false;
             this.paintFloor();
-            AnimateWindow(Handle, 10000, AW_BLEND | AW_ACTIVATE);
+            //AnimateWindow(Handle, 10000, AW_BLEND | AW_ACTIVATE);
             CheckStatusTable();
+            frmpro.IsStoped = true;
 
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            frmMain frm = new frmMain();
-            frm.Show();
+            this.Close();
+            //frmMain frm = new frmMain();
+            //frm.Visible = true;
+            
         }
         private string GetLongTime(string time)
         {
@@ -181,7 +186,7 @@ namespace POSEZ2U
 
         private void frmFloor_Shown(object sender, EventArgs e)
         {
-
+            //System.Threading.Thread.Sleep(1000);
 
         }
 

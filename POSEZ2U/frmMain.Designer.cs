@@ -158,7 +158,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33072F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33516F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33413F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 321F));
             this.tableLayoutPanel3.Controls.Add(this.btnTakeAway, 2, 2);
             this.tableLayoutPanel3.Controls.Add(this.btnStore, 3, 2);
             this.tableLayoutPanel3.Controls.Add(this.btnWorkingPeriod, 1, 3);
@@ -184,9 +184,9 @@
             this.btnTakeAway.FlatAppearance.BorderSize = 0;
             this.btnTakeAway.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTakeAway.Image = ((System.Drawing.Image)(resources.GetObject("btnTakeAway.Image")));
-            this.btnTakeAway.Location = new System.Drawing.Point(441, 169);
+            this.btnTakeAway.Location = new System.Drawing.Point(440, 169);
             this.btnTakeAway.Name = "btnTakeAway";
-            this.btnTakeAway.Size = new System.Drawing.Size(87, 72);
+            this.btnTakeAway.Size = new System.Drawing.Size(86, 72);
             this.btnTakeAway.TabIndex = 0;
             this.btnTakeAway.UseVisualStyleBackColor = true;
             this.btnTakeAway.Click += new System.EventHandler(this.btnTakeAway_Click_1);
@@ -198,9 +198,9 @@
             this.btnStore.FlatAppearance.BorderSize = 0;
             this.btnStore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStore.Image = ((System.Drawing.Image)(resources.GetObject("btnStore.Image")));
-            this.btnStore.Location = new System.Drawing.Point(534, 169);
+            this.btnStore.Location = new System.Drawing.Point(532, 169);
             this.btnStore.Name = "btnStore";
-            this.btnStore.Size = new System.Drawing.Size(87, 72);
+            this.btnStore.Size = new System.Drawing.Size(86, 72);
             this.btnStore.TabIndex = 0;
             this.btnStore.UseVisualStyleBackColor = true;
             this.btnStore.Click += new System.EventHandler(this.btnStore_Click);
@@ -213,7 +213,7 @@
             this.btnWorkingPeriod.Image = ((System.Drawing.Image)(resources.GetObject("btnWorkingPeriod.Image")));
             this.btnWorkingPeriod.Location = new System.Drawing.Point(348, 247);
             this.btnWorkingPeriod.Name = "btnWorkingPeriod";
-            this.btnWorkingPeriod.Size = new System.Drawing.Size(87, 72);
+            this.btnWorkingPeriod.Size = new System.Drawing.Size(86, 72);
             this.btnWorkingPeriod.TabIndex = 0;
             this.btnWorkingPeriod.UseVisualStyleBackColor = true;
             this.btnWorkingPeriod.Click += new System.EventHandler(this.btnWorkingPeriod_Click);
@@ -226,7 +226,7 @@
             this.btnEatIn.Image = ((System.Drawing.Image)(resources.GetObject("btnEatIn.Image")));
             this.btnEatIn.Location = new System.Drawing.Point(348, 169);
             this.btnEatIn.Name = "btnEatIn";
-            this.btnEatIn.Size = new System.Drawing.Size(87, 72);
+            this.btnEatIn.Size = new System.Drawing.Size(86, 72);
             this.btnEatIn.TabIndex = 0;
             this.btnEatIn.UseVisualStyleBackColor = true;
             this.btnEatIn.Click += new System.EventHandler(this.btnEatIn_Click);
@@ -238,9 +238,9 @@
             this.btnReport.FlatAppearance.BorderSize = 0;
             this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReport.Image = ((System.Drawing.Image)(resources.GetObject("btnReport.Image")));
-            this.btnReport.Location = new System.Drawing.Point(441, 247);
+            this.btnReport.Location = new System.Drawing.Point(440, 247);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(87, 72);
+            this.btnReport.Size = new System.Drawing.Size(86, 72);
             this.btnReport.TabIndex = 0;
             this.btnReport.UseVisualStyleBackColor = true;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
@@ -251,9 +251,9 @@
             this.btnSettingAll.FlatAppearance.BorderSize = 0;
             this.btnSettingAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSettingAll.Image = ((System.Drawing.Image)(resources.GetObject("btnSettingAll.Image")));
-            this.btnSettingAll.Location = new System.Drawing.Point(534, 247);
+            this.btnSettingAll.Location = new System.Drawing.Point(532, 247);
             this.btnSettingAll.Name = "btnSettingAll";
-            this.btnSettingAll.Size = new System.Drawing.Size(87, 72);
+            this.btnSettingAll.Size = new System.Drawing.Size(86, 72);
             this.btnSettingAll.TabIndex = 0;
             this.btnSettingAll.UseVisualStyleBackColor = true;
             this.btnSettingAll.Click += new System.EventHandler(this.btnSettingAll_Click);
