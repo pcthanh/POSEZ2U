@@ -53,7 +53,7 @@
             this.txtEndTime = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.txtCashStart = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.txtCashEnd = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.txtSafeDrop = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtSafeDrop = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -105,8 +105,8 @@
             this.tableLayoutPanel1.Controls.Add(this.txtEndTime, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.txtCashStart, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.txtCashEnd, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.txtSafeDrop, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.btnDropAll, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.txtSafeDrop, 1, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -316,7 +316,7 @@
             this.txtShiftName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtShiftName, 2);
             this.txtShiftName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtShiftName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtShiftName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtShiftName.Location = new System.Drawing.Point(145, 48);
             this.txtShiftName.Multiline = true;
             this.txtShiftName.Name = "txtShiftName";
@@ -328,7 +328,7 @@
             this.txtStaffName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtStaffName, 2);
             this.txtStaffName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStaffName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtStaffName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffName.Location = new System.Drawing.Point(145, 93);
             this.txtStaffName.Multiline = true;
             this.txtStaffName.Name = "txtStaffName";
@@ -340,7 +340,7 @@
             this.txtStartTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtStartTime, 2);
             this.txtStartTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStartTime.Location = new System.Drawing.Point(145, 138);
             this.txtStartTime.Multiline = true;
             this.txtStartTime.Name = "txtStartTime";
@@ -352,7 +352,7 @@
             this.txtEndTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtEndTime, 2);
             this.txtEndTime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEndTime.Location = new System.Drawing.Point(145, 183);
             this.txtEndTime.Multiline = true;
             this.txtEndTime.Name = "txtEndTime";
@@ -364,7 +364,7 @@
             this.txtCashStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtCashStart, 2);
             this.txtCashStart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCashStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtCashStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashStart.Location = new System.Drawing.Point(145, 228);
             this.txtCashStart.Multiline = true;
             this.txtCashStart.Name = "txtCashStart";
@@ -376,7 +376,7 @@
             this.txtCashEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtCashEnd, 2);
             this.txtCashEnd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCashEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtCashEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashEnd.Location = new System.Drawing.Point(145, 273);
             this.txtCashEnd.Multiline = true;
             this.txtCashEnd.Name = "txtCashEnd";
@@ -387,12 +387,12 @@
             // 
             this.txtSafeDrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtSafeDrop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSafeDrop.Location = new System.Drawing.Point(145, 318);
             this.txtSafeDrop.Multiline = true;
             this.txtSafeDrop.Name = "txtSafeDrop";
             this.txtSafeDrop.Size = new System.Drawing.Size(136, 40);
-            this.txtSafeDrop.TabIndex = 3;
+            this.txtSafeDrop.TabIndex = 5;
             // 
             // frmEndShift
             // 
@@ -433,7 +433,6 @@
         private UC.UCTextBoxKeyBoard txtEndTime;
         private UC.UCTextBoxKeyBoard txtCashStart;
         private UC.UCTextBoxKeyBoard txtCashEnd;
-        private UC.UCTextBoxKeyBoard txtSafeDrop;
         private System.Windows.Forms.Button btnDropAll;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
@@ -442,5 +441,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
+        private UC.UCTextBoxKeyPad txtSafeDrop;
     }
 }

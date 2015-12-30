@@ -252,6 +252,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add new shift";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel15
             // 

@@ -31,5 +31,11 @@ namespace POSEZ2U
             frmEndShift frm = new frmEndShift();
             frm.ShowDialog();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmNewShift frm = new frmNewShift();
+            frm.ShowDialog();
+        }
     }
 }
