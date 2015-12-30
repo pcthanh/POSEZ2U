@@ -283,6 +283,7 @@
             this.btnEnd.TabIndex = 2;
             this.btnEnd.Text = "End Shift";
             this.btnEnd.UseVisualStyleBackColor = false;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
             // panel17
             // 

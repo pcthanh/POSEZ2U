@@ -25,5 +25,11 @@ namespace POSEZ2U
         {
             this.Close();
         }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+            frmEndShift frm = new frmEndShift();
+            frm.ShowDialog();
+        }
     }
 }
