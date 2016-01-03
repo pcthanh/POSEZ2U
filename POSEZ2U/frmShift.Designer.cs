@@ -30,45 +30,45 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.panel19 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.flpShift = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.lblTotalSafeDrop = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.flpShift = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel14 = new System.Windows.Forms.Panel();
             this.flpShiftDetail = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
             this.btnEnd = new System.Windows.Forms.Button();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTotalSafeDrop = new System.Windows.Forms.Label();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.btnBack = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.ucShiftTitle1 = new POSEZ2U.UC.UCShiftTitle();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,6 +90,46 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(808, 60);
             this.panel2.TabIndex = 2;
+            // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.White;
+            this.btnBack.Location = new System.Drawing.Point(10, 10);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(206, 40);
+            this.btnBack.TabIndex = 2;
+            this.btnBack.Text = "Back to Main Menu";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // panel21
+            // 
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel21.Location = new System.Drawing.Point(10, 50);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(798, 10);
+            this.panel21.TabIndex = 1;
+            // 
+            // panel20
+            // 
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel20.Location = new System.Drawing.Point(10, 0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(798, 10);
+            this.panel20.TabIndex = 1;
+            // 
+            // panel19
+            // 
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel19.Location = new System.Drawing.Point(0, 0);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(10, 60);
+            this.panel19.TabIndex = 0;
             // 
             // panel3
             // 
@@ -117,6 +157,46 @@
             this.panel5.Size = new System.Drawing.Size(206, 398);
             this.panel5.TabIndex = 5;
             // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.flpShift);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel12.Location = new System.Drawing.Point(0, 34);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(206, 364);
+            this.panel12.TabIndex = 1;
+            // 
+            // flpShift
+            // 
+            this.flpShift.BackColor = System.Drawing.Color.White;
+            this.flpShift.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpShift.Location = new System.Drawing.Point(0, 0);
+            this.flpShift.Name = "flpShift";
+            this.flpShift.Size = new System.Drawing.Size(206, 364);
+            this.flpShift.TabIndex = 0;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.label1);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(206, 34);
+            this.panel10.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(206, 34);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Shift Manager";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
@@ -138,6 +218,45 @@
             this.panel7.Size = new System.Drawing.Size(572, 38);
             this.panel7.TabIndex = 7;
             // 
+            // lblTotalSafeDrop
+            // 
+            this.lblTotalSafeDrop.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblTotalSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSafeDrop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.lblTotalSafeDrop.Location = new System.Drawing.Point(280, 0);
+            this.lblTotalSafeDrop.Name = "lblTotalSafeDrop";
+            this.lblTotalSafeDrop.Size = new System.Drawing.Size(282, 38);
+            this.lblTotalSafeDrop.TabIndex = 2;
+            this.lblTotalSafeDrop.Text = "$0.00";
+            this.lblTotalSafeDrop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(10, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 38);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Total Safe Drop";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // panel18
+            // 
+            this.panel18.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel18.Location = new System.Drawing.Point(562, 0);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(10, 38);
+            this.panel18.TabIndex = 0;
+            // 
+            // panel17
+            // 
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel17.Location = new System.Drawing.Point(0, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(10, 38);
+            this.panel17.TabIndex = 0;
+            // 
             // panel8
             // 
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -156,33 +275,6 @@
             this.panel9.Size = new System.Drawing.Size(572, 350);
             this.panel9.TabIndex = 9;
             // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.label1);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(206, 34);
-            this.panel10.TabIndex = 0;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.ucShiftTitle1);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(572, 34);
-            this.panel11.TabIndex = 0;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.flpShift);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel12.Location = new System.Drawing.Point(0, 34);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(206, 364);
-            this.panel12.TabIndex = 1;
-            // 
             // panel13
             // 
             this.panel13.Controls.Add(this.flpShiftDetail);
@@ -193,27 +285,14 @@
             this.panel13.Size = new System.Drawing.Size(572, 316);
             this.panel13.TabIndex = 1;
             // 
-            // flpShift
+            // flpShiftDetail
             // 
-            this.flpShift.BackColor = System.Drawing.Color.White;
-            this.flpShift.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpShift.Location = new System.Drawing.Point(0, 0);
-            this.flpShift.Name = "flpShift";
-            this.flpShift.Size = new System.Drawing.Size(206, 364);
-            this.flpShift.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 34);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Shift Manager";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.flpShiftDetail.BackColor = System.Drawing.Color.White;
+            this.flpShiftDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpShiftDetail.Location = new System.Drawing.Point(0, 0);
+            this.flpShiftDetail.Name = "flpShiftDetail";
+            this.flpShiftDetail.Size = new System.Drawing.Size(572, 271);
+            this.flpShiftDetail.TabIndex = 1;
             // 
             // panel14
             // 
@@ -228,47 +307,6 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(572, 45);
             this.panel14.TabIndex = 0;
-            // 
-            // flpShiftDetail
-            // 
-            this.flpShiftDetail.BackColor = System.Drawing.Color.White;
-            this.flpShiftDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpShiftDetail.Location = new System.Drawing.Point(0, 0);
-            this.flpShiftDetail.Name = "flpShiftDetail";
-            this.flpShiftDetail.Size = new System.Drawing.Size(572, 271);
-            this.flpShiftDetail.TabIndex = 1;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(10, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(136, 35);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "Add new shift";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // panel15
-            // 
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(10, 45);
-            this.panel15.TabIndex = 0;
-            // 
-            // panel16
-            // 
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel16.Location = new System.Drawing.Point(562, 0);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(10, 45);
-            this.panel16.TabIndex = 1;
             // 
             // btnEnd
             // 
@@ -286,84 +324,21 @@
             this.btnEnd.UseVisualStyleBackColor = false;
             this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
-            // panel17
+            // btnAdd
             // 
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel17.Location = new System.Drawing.Point(0, 0);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(10, 38);
-            this.panel17.TabIndex = 0;
-            // 
-            // panel18
-            // 
-            this.panel18.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel18.Location = new System.Drawing.Point(562, 0);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(10, 38);
-            this.panel18.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 38);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Total Safe Drop";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblTotalSafeDrop
-            // 
-            this.lblTotalSafeDrop.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTotalSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalSafeDrop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.lblTotalSafeDrop.Location = new System.Drawing.Point(280, 0);
-            this.lblTotalSafeDrop.Name = "lblTotalSafeDrop";
-            this.lblTotalSafeDrop.Size = new System.Drawing.Size(282, 38);
-            this.lblTotalSafeDrop.TabIndex = 2;
-            this.lblTotalSafeDrop.Text = "$0.00";
-            this.lblTotalSafeDrop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel19
-            // 
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel19.Location = new System.Drawing.Point(0, 0);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(10, 60);
-            this.panel19.TabIndex = 0;
-            // 
-            // panel20
-            // 
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel20.Location = new System.Drawing.Point(10, 0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(798, 10);
-            this.panel20.TabIndex = 1;
-            // 
-            // panel21
-            // 
-            this.panel21.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel21.Location = new System.Drawing.Point(10, 50);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(798, 10);
-            this.panel21.TabIndex = 1;
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(10, 10);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(206, 40);
-            this.btnBack.TabIndex = 2;
-            this.btnBack.Text = "Back to Main Menu";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(10, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(136, 35);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "Add new shift";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel22
             // 
@@ -372,6 +347,31 @@
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(552, 10);
             this.panel22.TabIndex = 2;
+            // 
+            // panel16
+            // 
+            this.panel16.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel16.Location = new System.Drawing.Point(562, 0);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(10, 45);
+            this.panel16.TabIndex = 1;
+            // 
+            // panel15
+            // 
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(10, 45);
+            this.panel15.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.ucShiftTitle1);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(572, 34);
+            this.panel11.TabIndex = 0;
             // 
             // ucShiftTitle1
             // 
@@ -410,15 +410,16 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmShift_Load);
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
