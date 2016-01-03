@@ -46,14 +46,23 @@ namespace POSEZ2U
             Button EndShift = (Button)sender;
             ShiftHistoryModel shiftmodel = (ShiftHistoryModel)(EndShift.Tag);
 
-            frmEndShift frm = new frmEndShift(shiftmodel);
-            frm.ShowDialog();
-
-            if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
+            if (shiftmodel != null)
             {
-                addOnDutyList("On Duty", 1);
-                frm.Close();
+                frmEndShift frm = new frmEndShift(shiftmodel);
+                frm.ShowDialog();
+
+                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    addOnDutyList("On Duty", 1);
+                    frm.Close();
+                }
             }
+            else
+            {
+                frmMessager frm = new frmMessager("Messenger", "Please select row befor end shift.");
+                frm.ShowDialog();
+            }
+          
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -126,6 +135,7 @@ namespace POSEZ2U
            
             if (i == 1)
             {
+                this.btnAdd.Show();
                 this.btnEnd.Show();
                 var data = ShiftService.GetListShiftHistoryByUserid(userid, 0).ToList();
 
@@ -149,6 +159,7 @@ namespace POSEZ2U
                     ucShift.lblCashend.Text = (item.CashEnd ?? 0).ToString("C");
                     ucShift.lblSfaedrop.Text = (item.SafeDrop ?? 0).ToString("C");
 
+                    ucShift.Size = new System.Drawing.Size(flpShiftDetail.Width-5, ucShift.Height);
 
                     ucShift.Tag = item;
                     ucShift.Click += UCShiftItem_Click;
@@ -190,6 +201,7 @@ namespace POSEZ2U
            
             if (i == 2)
             {
+                this.btnAdd.Hide();
                 this.btnEnd.Hide();
                 var data = ShiftService.GetListShiftHistoryByUserid(userid, 1).ToList();
 
@@ -213,8 +225,7 @@ namespace POSEZ2U
                     ucShift.lblCashend.Text = (item.CashEnd ?? 0).ToString("C");
                     ucShift.lblSfaedrop.Text = (item.SafeDrop ?? 0).ToString("C");
 
-                    ucShift.Tag = item;
-                    ucShift.Click += UCShiftItem_Click;
+                    ucShift.Size = new System.Drawing.Size(flpShiftDetail.Width-5, ucShift.Height);
 
                     flpShiftDetail.Controls.Add(ucShift);
                 }
