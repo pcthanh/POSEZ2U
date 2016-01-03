@@ -41,6 +41,7 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 7;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.496083F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.28149F));
@@ -68,7 +69,7 @@
             // lblNo
             // 
             this.lblNo.AutoSize = true;
-            this.lblNo.BackColor = System.Drawing.SystemColors.Control;
+            this.lblNo.BackColor = System.Drawing.Color.White;
             this.lblNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNo.ForeColor = System.Drawing.Color.Black;
@@ -84,7 +85,7 @@
             // lblStaff
             // 
             this.lblStaff.AutoSize = true;
-            this.lblStaff.BackColor = System.Drawing.SystemColors.Control;
+            this.lblStaff.BackColor = System.Drawing.Color.White;
             this.lblStaff.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStaff.ForeColor = System.Drawing.Color.Black;
@@ -100,7 +101,7 @@
             // lblStart
             // 
             this.lblStart.AutoSize = true;
-            this.lblStart.BackColor = System.Drawing.SystemColors.Control;
+            this.lblStart.BackColor = System.Drawing.Color.White;
             this.lblStart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStart.ForeColor = System.Drawing.Color.Black;
@@ -116,7 +117,7 @@
             // lblEnd
             // 
             this.lblEnd.AutoSize = true;
-            this.lblEnd.BackColor = System.Drawing.SystemColors.Control;
+            this.lblEnd.BackColor = System.Drawing.Color.White;
             this.lblEnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEnd.ForeColor = System.Drawing.Color.Black;
@@ -132,7 +133,7 @@
             // lblCashstart
             // 
             this.lblCashstart.AutoSize = true;
-            this.lblCashstart.BackColor = System.Drawing.SystemColors.Control;
+            this.lblCashstart.BackColor = System.Drawing.Color.White;
             this.lblCashstart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCashstart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCashstart.ForeColor = System.Drawing.Color.Black;
@@ -148,7 +149,7 @@
             // lblCashend
             // 
             this.lblCashend.AutoSize = true;
-            this.lblCashend.BackColor = System.Drawing.SystemColors.Control;
+            this.lblCashend.BackColor = System.Drawing.Color.White;
             this.lblCashend.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCashend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCashend.ForeColor = System.Drawing.Color.Black;
@@ -164,7 +165,7 @@
             // lblSfaedrop
             // 
             this.lblSfaedrop.AutoSize = true;
-            this.lblSfaedrop.BackColor = System.Drawing.SystemColors.Control;
+            this.lblSfaedrop.BackColor = System.Drawing.Color.White;
             this.lblSfaedrop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblSfaedrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSfaedrop.ForeColor = System.Drawing.Color.Black;
@@ -181,10 +182,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UCShiftItem";
             this.Size = new System.Drawing.Size(673, 39);
-            this.Click += new System.EventHandler(this.UCShiftItem_Click);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
