@@ -57,16 +57,6 @@ namespace POSEZ2U
             }
             else
             {
-                if (modelShift == null)
-                {
-                    
-                    modelShift= new ShiftHistoryModel();
-                    modelShift.ShiftHistoryID = 6;
-                    modelShift.ShiftName = "6";
-                    modelShift.UserName = "Thien";
-                    modelShift.CashStart = 900;
-                }
-
                 if (modelShift != null)
                 {
                     this.txtShiftName.Text = modelShift.ShiftName ?? "";
