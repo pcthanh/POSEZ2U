@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,24 +46,18 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnDropAll = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSubmit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.txtShiftName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.txtStaffName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.txtStartTime = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.txtEndTime = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.txtCashStart = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.txtCashEnd = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtCashStart = new POSEZ2U.UC.UCTextBoxKeyPad();
+            this.txtCashEnd = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.txtSafeDrop = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.panel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,6 +72,77 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(466, 85);
             this.panel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.23077F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.76923F));
+            this.tableLayoutPanel2.Controls.Add(this.btnSubmit, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnCancel, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(429, 45);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.btnSubmit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSubmit.FlatAppearance.BorderSize = 0;
+            this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.ForeColor = System.Drawing.Color.White;
+            this.btnSubmit.Location = new System.Drawing.Point(299, 3);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(127, 39);
+            this.btnSubmit.TabIndex = 0;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(0)))));
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(167, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(126, 39);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(429, 24);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(37, 45);
+            this.panel6.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 69);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(466, 16);
+            this.panel4.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(466, 24);
+            this.panel3.TabIndex = 0;
             // 
             // panel2
             // 
@@ -129,7 +200,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 45);
+            this.label1.Size = new System.Drawing.Size(137, 45);
             this.label1.TabIndex = 0;
             this.label1.Text = "End Shift";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,7 +212,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 45);
+            this.label2.Size = new System.Drawing.Size(137, 45);
             this.label2.TabIndex = 0;
             this.label2.Text = "Shift Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,7 +224,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 90);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 45);
+            this.label3.Size = new System.Drawing.Size(137, 45);
             this.label3.TabIndex = 0;
             this.label3.Text = "Staff Name";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,7 +236,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 135);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 45);
+            this.label4.Size = new System.Drawing.Size(137, 45);
             this.label4.TabIndex = 0;
             this.label4.Text = "Start Time";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,7 +248,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(3, 180);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 45);
+            this.label5.Size = new System.Drawing.Size(137, 45);
             this.label5.TabIndex = 0;
             this.label5.Text = "End Time";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -189,7 +260,7 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(3, 225);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(136, 45);
+            this.label6.Size = new System.Drawing.Size(137, 45);
             this.label6.TabIndex = 0;
             this.label6.Text = "Cash Start";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -201,7 +272,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(3, 270);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(136, 45);
+            this.label7.Size = new System.Drawing.Size(137, 45);
             this.label7.TabIndex = 0;
             this.label7.Text = "Cash End";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,7 +284,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(3, 315);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(136, 46);
+            this.label8.Size = new System.Drawing.Size(137, 46);
             this.label8.TabIndex = 0;
             this.label8.Text = "Safe Drop";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -226,28 +297,13 @@
             this.btnDropAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDropAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDropAll.ForeColor = System.Drawing.Color.White;
-            this.btnDropAll.Location = new System.Drawing.Point(287, 318);
+            this.btnDropAll.Location = new System.Drawing.Point(289, 318);
             this.btnDropAll.Name = "btnDropAll";
-            this.btnDropAll.Size = new System.Drawing.Size(139, 40);
+            this.btnDropAll.Size = new System.Drawing.Size(137, 40);
             this.btnDropAll.TabIndex = 4;
             this.btnDropAll.Text = "Drop all";
             this.btnDropAll.UseVisualStyleBackColor = false;
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(466, 24);
-            this.panel3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 69);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(466, 16);
-            this.panel4.TabIndex = 1;
+            this.btnDropAll.Click += new System.EventHandler(this.btnDropAll_Click);
             // 
             // panel5
             // 
@@ -257,70 +313,17 @@
             this.panel5.Size = new System.Drawing.Size(37, 361);
             this.panel5.TabIndex = 2;
             // 
-            // panel6
-            // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(429, 24);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(37, 45);
-            this.panel6.TabIndex = 2;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.23077F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.76923F));
-            this.tableLayoutPanel2.Controls.Add(this.btnSubmit, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnCancel, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(429, 45);
-            this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.btnSubmit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSubmit.FlatAppearance.BorderSize = 0;
-            this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(299, 3);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(127, 39);
-            this.btnSubmit.TabIndex = 0;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = false;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(0)))));
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(167, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(126, 39);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // txtShiftName
             // 
             this.txtShiftName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtShiftName, 2);
             this.txtShiftName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtShiftName.Enabled = false;
             this.txtShiftName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShiftName.Location = new System.Drawing.Point(145, 48);
+            this.txtShiftName.Location = new System.Drawing.Point(146, 48);
             this.txtShiftName.Multiline = true;
             this.txtShiftName.Name = "txtShiftName";
-            this.txtShiftName.Size = new System.Drawing.Size(281, 39);
+            this.txtShiftName.Size = new System.Drawing.Size(280, 39);
             this.txtShiftName.TabIndex = 1;
             // 
             // txtStaffName
@@ -328,11 +331,12 @@
             this.txtStaffName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtStaffName, 2);
             this.txtStaffName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtStaffName.Enabled = false;
             this.txtStaffName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStaffName.Location = new System.Drawing.Point(145, 93);
+            this.txtStaffName.Location = new System.Drawing.Point(146, 93);
             this.txtStaffName.Multiline = true;
             this.txtStaffName.Name = "txtStaffName";
-            this.txtStaffName.Size = new System.Drawing.Size(281, 39);
+            this.txtStaffName.Size = new System.Drawing.Size(280, 39);
             this.txtStaffName.TabIndex = 2;
             // 
             // txtStartTime
@@ -340,11 +344,12 @@
             this.txtStartTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtStartTime, 2);
             this.txtStartTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtStartTime.Enabled = false;
             this.txtStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStartTime.Location = new System.Drawing.Point(145, 138);
+            this.txtStartTime.Location = new System.Drawing.Point(146, 138);
             this.txtStartTime.Multiline = true;
             this.txtStartTime.Name = "txtStartTime";
-            this.txtStartTime.Size = new System.Drawing.Size(281, 39);
+            this.txtStartTime.Size = new System.Drawing.Size(280, 39);
             this.txtStartTime.TabIndex = 2;
             // 
             // txtEndTime
@@ -352,11 +357,12 @@
             this.txtEndTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtEndTime, 2);
             this.txtEndTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEndTime.Enabled = false;
             this.txtEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndTime.Location = new System.Drawing.Point(145, 183);
+            this.txtEndTime.Location = new System.Drawing.Point(146, 183);
             this.txtEndTime.Multiline = true;
             this.txtEndTime.Name = "txtEndTime";
-            this.txtEndTime.Size = new System.Drawing.Size(281, 39);
+            this.txtEndTime.Size = new System.Drawing.Size(280, 39);
             this.txtEndTime.TabIndex = 2;
             // 
             // txtCashStart
@@ -364,11 +370,13 @@
             this.txtCashStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.tableLayoutPanel1.SetColumnSpan(this.txtCashStart, 2);
             this.txtCashStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCashStart.Enabled = false;
             this.txtCashStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashStart.Location = new System.Drawing.Point(145, 228);
+            this.txtCashStart.Location = new System.Drawing.Point(146, 228);
             this.txtCashStart.Multiline = true;
             this.txtCashStart.Name = "txtCashStart";
-            this.txtCashStart.Size = new System.Drawing.Size(281, 39);
+            this.txtCashStart.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCashStart.Size = new System.Drawing.Size(280, 39);
             this.txtCashStart.TabIndex = 2;
             // 
             // txtCashEnd
@@ -377,10 +385,11 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtCashEnd, 2);
             this.txtCashEnd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCashEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCashEnd.Location = new System.Drawing.Point(145, 273);
+            this.txtCashEnd.Location = new System.Drawing.Point(146, 273);
             this.txtCashEnd.Multiline = true;
             this.txtCashEnd.Name = "txtCashEnd";
-            this.txtCashEnd.Size = new System.Drawing.Size(281, 39);
+            this.txtCashEnd.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtCashEnd.Size = new System.Drawing.Size(280, 39);
             this.txtCashEnd.TabIndex = 2;
             // 
             // txtSafeDrop
@@ -388,10 +397,11 @@
             this.txtSafeDrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtSafeDrop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSafeDrop.Location = new System.Drawing.Point(145, 318);
+            this.txtSafeDrop.Location = new System.Drawing.Point(146, 318);
             this.txtSafeDrop.Multiline = true;
             this.txtSafeDrop.Name = "txtSafeDrop";
-            this.txtSafeDrop.Size = new System.Drawing.Size(136, 40);
+            this.txtSafeDrop.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtSafeDrop.Size = new System.Drawing.Size(137, 40);
             this.txtSafeDrop.TabIndex = 5;
             // 
             // frmEndShift
@@ -405,11 +415,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmEndShift";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmEndShift_Load);
             this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -431,8 +442,8 @@
         private UC.UCTextBoxKeyBoard txtStaffName;
         private UC.UCTextBoxKeyBoard txtStartTime;
         private UC.UCTextBoxKeyBoard txtEndTime;
-        private UC.UCTextBoxKeyBoard txtCashStart;
-        private UC.UCTextBoxKeyBoard txtCashEnd;
+        private UC.UCTextBoxKeyPad txtCashStart;
+        private UC.UCTextBoxKeyPad txtCashEnd;
         private System.Windows.Forms.Button btnDropAll;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
