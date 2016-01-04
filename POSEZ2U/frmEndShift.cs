@@ -88,16 +88,25 @@ namespace POSEZ2U
             var safeDrop = this.txtSafeDrop.Text.Replace("$", "");
             modelShift.SafeDrop = double.Parse(safeDrop);
 
-            var result = ShiftService.UpdateDataShiftHistory(modelShift);
-            var messenger = "Save data end shift fail.";
-            if (result == 1)
+            if (modelShift.CashEnd < modelShift.CashStart)
             {
-                messenger = "Save data end shift successful.";
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                frmMessager frm = new frmMessager("Messenger", "Cash end isn't less than cash start. ");
+                frm.ShowDialog();
             }
+            else
+            {
+                var result = ShiftService.UpdateDataShiftHistory(modelShift);
+                var messenger = "Save data end shift fail.";
+                if (result == 1)
+                {
+                    messenger = "Save data end shift successful.";
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
 
-            frmMessager frm = new frmMessager("Messenger", messenger);
-            frm.ShowDialog();
+                frmMessager frm = new frmMessager("Messenger", messenger);
+                frm.ShowDialog();
+            }
+            
 
 
         }
