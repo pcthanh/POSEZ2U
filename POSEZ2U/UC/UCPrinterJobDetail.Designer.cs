@@ -218,6 +218,7 @@
             this.btnMap.TabIndex = 0;
             this.btnMap.Text = "Map another printer";
             this.btnMap.UseVisualStyleBackColor = false;
+            this.btnMap.Click += new System.EventHandler(this.btnMap_Click);
             // 
             // ucPrinterMappingTitle1
             // 
@@ -252,6 +253,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "UCPrinterJobDetail";
             this.Size = new System.Drawing.Size(475, 535);
+            this.Load += new System.EventHandler(this.UCPrinterJobDetail_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

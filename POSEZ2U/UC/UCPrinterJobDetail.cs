@@ -16,5 +16,21 @@ namespace POSEZ2U.UC
         {
             InitializeComponent();
         }
+        public void LoadPriterMapp()
+        {
+            UCPrinterMapping map = new UCPrinterMapping();
+            map.Width = flpPriterMap.Width;
+            flpPriterMap.Controls.Add(map);
+        }
+
+        private void UCPrinterJobDetail_Load(object sender, EventArgs e)
+        {
+            //LoadPriterMapp();
+        }
+
+        private void btnMap_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(flpPriterMap.Width + "");
+        }
     }
 }

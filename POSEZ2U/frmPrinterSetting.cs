@@ -78,6 +78,23 @@ namespace POSEZ2U
             }
            
         }
+        private void LoadPriterJob()
+        {
+            flpPrintList.Controls.Clear();
+            UCPrinterList ucPListJob = new UCPrinterList();
+            ucPListJob.lblPrintList.Text = "Print Receipt";
+            ucPListJob.Click += ucPListJob_Click;
+            flpPrintList.Controls.Add(ucPListJob);
+        }
+
+        void ucPListJob_Click(object sender, EventArgs e)
+        {
+            pDetail.Controls.Clear();
+            UCPrinterJobDetail ucJob = new UCPrinterJobDetail();
+            ucJob.Dock = DockStyle.Fill;
+            pDetail.Controls.Add(ucJob);
+            ucJob.LoadPriterMapp();
+        }
         void ucPSetting_Click(object sender, EventArgs e)
         {
             UCPrintSetting ucP = (UCPrintSetting)sender;
@@ -99,7 +116,8 @@ namespace POSEZ2U
             }
             else
             {
-                lblTitle.Text = "Print Jobs"; 
+                lblTitle.Text = "Print Jobs";
+                LoadPriterJob();
             }
 
         }
