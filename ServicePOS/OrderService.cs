@@ -557,24 +557,21 @@ namespace ServicePOS
             return OrderTKA;
         }
 
-
-
-
-
         public List<OrderTKAModel> GetStatusOrderTKA()
         {
             List<OrderTKAModel> lst = new List<OrderTKAModel>();
             try
             {
-                var ListTKA = _context.ORDER_DATE.Where(x => x.FloorID.Contains("TKA-") && x.Status != 1).ToList();
+                var ListTKA = _context.ORDER_DATE.Join(_context.CLIENTs, order => order.ClientID, client => client.ClientID, (order, client) => new { order, client })
+                    .Where(x => x.order.FloorID.Contains("TKA-") && x.order.Status != 1 && x.order.ClientID == x.client.ClientID).ToList();
                 foreach (var item in ListTKA)
                 {
                     OrderTKAModel items= new OrderTKAModel();
-                    items.CusName = string.Empty;
-                    items.CusPhone = string.Empty;
-                    items.Total = item.TotalAmount??0;
-                    items.Waiting = item.CreateDate??DateTime.Now;
-                    items.TKAID = item.FloorID;
+                    items.CusName = item.client.Fname + " " + item.client.Lname;
+                    items.CusPhone = item.client.Phone;
+                    items.Total = item.order.TotalAmount??0;
+                    items.Waiting = item.order.CreateDate ?? DateTime.Now;
+                    items.TKAID = item.order.FloorID;
                     lst.Add(items);
                 }
             }
