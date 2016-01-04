@@ -34,12 +34,20 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblTittel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtPrintJobName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label1 = new System.Windows.Forms.Label();
             this.cbPrintContent = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.flpPriterMap = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnMap = new System.Windows.Forms.Button();
+            this.ucPrinterMappingTitle1 = new POSEZ2U.UC.UCPrinterMappingTitle();
+            this.txtPrintJobName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -129,17 +137,6 @@
             this.label2.Text = "Print job name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtPrintJobName
-            // 
-            this.txtPrintJobName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtPrintJobName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPrintJobName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtPrintJobName.Location = new System.Drawing.Point(3, 73);
-            this.txtPrintJobName.Multiline = true;
-            this.txtPrintJobName.Name = "txtPrintJobName";
-            this.txtPrintJobName.Size = new System.Drawing.Size(469, 29);
-            this.txtPrintJobName.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -173,11 +170,84 @@
             this.label3.Text = "Print Mapping";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.ucPrinterMappingTitle1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 211);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(475, 27);
+            this.panel2.TabIndex = 2;
+            // 
+            // flpPriterMap
+            // 
+            this.flpPriterMap.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpPriterMap.Location = new System.Drawing.Point(0, 238);
+            this.flpPriterMap.Name = "flpPriterMap";
+            this.flpPriterMap.Size = new System.Drawing.Size(475, 135);
+            this.flpPriterMap.TabIndex = 3;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 373);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(475, 10);
+            this.panel3.TabIndex = 4;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnMap);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 383);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(475, 35);
+            this.panel4.TabIndex = 5;
+            // 
+            // btnMap
+            // 
+            this.btnMap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.btnMap.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnMap.FlatAppearance.BorderSize = 0;
+            this.btnMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMap.ForeColor = System.Drawing.Color.White;
+            this.btnMap.Location = new System.Drawing.Point(0, 0);
+            this.btnMap.Name = "btnMap";
+            this.btnMap.Size = new System.Drawing.Size(162, 35);
+            this.btnMap.TabIndex = 0;
+            this.btnMap.Text = "Map another printer";
+            this.btnMap.UseVisualStyleBackColor = false;
+            // 
+            // ucPrinterMappingTitle1
+            // 
+            this.ucPrinterMappingTitle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.ucPrinterMappingTitle1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPrinterMappingTitle1.Location = new System.Drawing.Point(0, 0);
+            this.ucPrinterMappingTitle1.Name = "ucPrinterMappingTitle1";
+            this.ucPrinterMappingTitle1.Size = new System.Drawing.Size(475, 27);
+            this.ucPrinterMappingTitle1.TabIndex = 0;
+            // 
+            // txtPrintJobName
+            // 
+            this.txtPrintJobName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPrintJobName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPrintJobName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtPrintJobName.Location = new System.Drawing.Point(3, 73);
+            this.txtPrintJobName.Multiline = true;
+            this.txtPrintJobName.Name = "txtPrintJobName";
+            this.txtPrintJobName.Size = new System.Drawing.Size(469, 29);
+            this.txtPrintJobName.TabIndex = 1;
+            // 
             // UCPrinterJobDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.flpPriterMap);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "UCPrinterJobDetail";
@@ -185,6 +255,8 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,5 +273,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Panel panel2;
+        private UCPrinterMappingTitle ucPrinterMappingTitle1;
+        private System.Windows.Forms.FlowLayoutPanel flpPriterMap;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnMap;
     }
 }
