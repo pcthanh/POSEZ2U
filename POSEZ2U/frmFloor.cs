@@ -26,6 +26,7 @@ namespace POSEZ2U
             InitializeComponent();
             orderMain = _orderMain;
         }
+        public static int chk = 0;
         public frmFloor()
         {
             InitializeComponent();
@@ -54,7 +55,7 @@ namespace POSEZ2U
         private static extern int AnimateWindow(IntPtr hwnd, int dwTime, int dwFlags);
         private void paintFloor()
         {
-            for (int i = 1; i < 40; i++)
+            for (int i = 1; i < 41; i++)
             {
                 UC.UCTable ucTable = new UC.UCTable();
                 ucTable.lbTableNo.Text = i.ToString();
@@ -67,6 +68,9 @@ namespace POSEZ2U
         {
             try
             {
+                System.Windows.Forms.Form f1 = System.Windows.Forms.Application.OpenForms["frmTool"];
+                if (f1 != null)
+                    f1.Close();
                 UCTable ucTable = (UCTable)sender;
                 frmOrder frm = new frmOrder();
                 frm.LoadOrder(ucTable.lbTableNo.Text, 0);
@@ -210,5 +214,26 @@ namespace POSEZ2U
             }
         }
 
+        private void btnTool_Click(object sender, EventArgs e)
+        {
+
+            frmTool frm = new frmTool(btnTool);
+            System.Windows.Forms.Form f1 = System.Windows.Forms.Application.OpenForms["frmTool"];
+            if (f1 == null)
+                frm.Show();
+            else
+                f1.Close();
+        }
+        private void CloseFormTool()
+        {
+            System.Windows.Forms.Form f1 = System.Windows.Forms.Application.OpenForms["frmTool"];
+            if (f1 != null)
+                f1.Close();
+        }
+        private void flowLayoutPanel1_Click(object sender, EventArgs e)
+        {
+            CloseFormTool();
+        }
+        
     }
 }

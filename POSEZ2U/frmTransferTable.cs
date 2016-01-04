@@ -10,27 +10,16 @@ using System.Windows.Forms;
 
 namespace POSEZ2U
 {
-    public partial class frmTKAOrder : Form
+    public partial class frmTransferTable : Form
     {
-        public frmTKAOrder()
+        public frmTransferTable()
         {
             InitializeComponent();
         }
-        frmTakeAway.CallBackStatusOrderTKA CallTKA;
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-        }
-
-        private void btnCreateOrder_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            
-            frmOrder frm = new frmOrder();
-            //frm.LoadOrderTKA("TKA-", "");
-            
-            frm.ShowDialog();
-           
         }
     }
 }

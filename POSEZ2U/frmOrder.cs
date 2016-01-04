@@ -958,7 +958,7 @@ namespace POSEZ2U
             }
         }
 
-        public void LoadOrderTKA(string TableID, string ClientID)
+        public void LoadOrderTKA(string TableID, int ClientID)
         {
             indexControl = 1;
             try
@@ -1000,7 +1000,7 @@ namespace POSEZ2U
                         else
                         {
                             OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
-                            
+                            OrderMain.ClientID = ClientID;
                             int OrderID = OrderService.CountOrder() + 1;
                             OrderMain.OrderID = OrderID;
                         }
@@ -1028,6 +1028,7 @@ namespace POSEZ2U
                     else
                     {
                         OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
+                        OrderMain.ClientID = ClientID;
                         int OrderID = OrderService.CountOrder() + 1;
                         OrderMain.OrderID = OrderID;
                     }

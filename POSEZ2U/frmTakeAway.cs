@@ -115,8 +115,8 @@ namespace POSEZ2U
             foreach (OrderTKAModel item in ListTKA)
             {
                 UCTakeAway ucTKA = new UCTakeAway();
-                ucTKA.lblCusName .Text= "Thanh";
-                ucTKA.lblCusPhone .Text= "0972641947";
+                ucTKA.lblCusName.Text = item.CusName;
+                ucTKA.lblCusPhone .Text= item.CusPhone;
                 ucTKA.lblNo.Text = i + "";
                 ucTKA.lblTotal.Text = money.Format2(item.Total);
                 ucTKA.lblWait.Text = item.Waiting.ToString();
@@ -299,13 +299,19 @@ namespace POSEZ2U
             try
             {
                 frmOrder frm = new frmOrder();
-                frm.LoadOrderTKA(TKAID,"");
+                frm.LoadOrderTKA(TKAID,0);
                 frm.ShowDialog();
             }
             catch (Exception ex)
             {
                 LogPOS.WriteLog("frmTakeAway:::::::::::::::::::::::::::btnDetail_Click:::::::::::::::" + ex.Message);
             }
+        }
+
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            frmCustomer frm = new frmCustomer();
+            frm.ShowDialog();
         }
     }
 }
