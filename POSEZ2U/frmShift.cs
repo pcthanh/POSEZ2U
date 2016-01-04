@@ -87,6 +87,7 @@ namespace POSEZ2U
                 ucUserSetting.lblUserSetting.Text = strList;
                 ucUserSetting.Tag = i;
                 ucUserSetting.Click += ucShiftSetting_Click;
+                ucUserSetting.Width = flpShift.Width;
                 flpShift.Controls.Add(ucUserSetting);
                 i = i + 1;
             }

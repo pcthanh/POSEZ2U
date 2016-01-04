@@ -79,9 +79,9 @@
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Location = new System.Drawing.Point(10, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(110, 38);
+            this.btnBack.Size = new System.Drawing.Size(200, 38);
             this.btnBack.TabIndex = 0;
-            this.btnBack.Text = "BACK";
+            this.btnBack.Text = "Back to Main Menu";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
