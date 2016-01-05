@@ -259,6 +259,7 @@
             this.tableLayoutPanel1.Controls.Add(this.lblTotalNetSalse, 1, 9);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 10;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -277,10 +278,11 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 33);
+            this.label2.Size = new System.Drawing.Size(267, 33);
             this.label2.TabIndex = 0;
             this.label2.Text = "Shift No";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -290,9 +292,10 @@
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 33);
+            this.label3.Location = new System.Drawing.Point(0, 33);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(261, 33);
+            this.label3.Size = new System.Drawing.Size(267, 33);
             this.label3.TabIndex = 0;
             this.label3.Text = "Staff";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -301,9 +304,10 @@
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 66);
+            this.label4.Location = new System.Drawing.Point(0, 66);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(261, 33);
+            this.label4.Size = new System.Drawing.Size(267, 33);
             this.label4.TabIndex = 0;
             this.label4.Text = "Start Time";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,9 +317,10 @@
             this.label5.BackColor = System.Drawing.SystemColors.Control;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 99);
+            this.label5.Location = new System.Drawing.Point(0, 99);
+            this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(261, 33);
+            this.label5.Size = new System.Drawing.Size(267, 33);
             this.label5.TabIndex = 0;
             this.label5.Text = "End Time";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -324,9 +329,10 @@
             // 
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 132);
+            this.label6.Location = new System.Drawing.Point(0, 132);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(261, 33);
+            this.label6.Size = new System.Drawing.Size(267, 33);
             this.label6.TabIndex = 0;
             this.label6.Text = "Start Cash(Cash float in)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -336,9 +342,10 @@
             this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 165);
+            this.label7.Location = new System.Drawing.Point(0, 165);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(261, 33);
+            this.label7.Size = new System.Drawing.Size(267, 33);
             this.label7.TabIndex = 0;
             this.label7.Text = "End Cash(Counted by Staff)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -347,9 +354,10 @@
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 198);
+            this.label8.Location = new System.Drawing.Point(0, 198);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(261, 33);
+            this.label8.Size = new System.Drawing.Size(267, 33);
             this.label8.TabIndex = 0;
             this.label8.Text = "Total Cash by Report";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -359,9 +367,10 @@
             this.label9.BackColor = System.Drawing.SystemColors.Control;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(3, 231);
+            this.label9.Location = new System.Drawing.Point(0, 231);
+            this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(261, 33);
+            this.label9.Size = new System.Drawing.Size(267, 33);
             this.label9.TabIndex = 0;
             this.label9.Text = "Variation";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -370,9 +379,10 @@
             // 
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 264);
+            this.label10.Location = new System.Drawing.Point(0, 264);
+            this.label10.Margin = new System.Windows.Forms.Padding(0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(261, 33);
+            this.label10.Size = new System.Drawing.Size(267, 33);
             this.label10.TabIndex = 0;
             this.label10.Text = "Safe drop";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -382,9 +392,10 @@
             this.label11.BackColor = System.Drawing.SystemColors.Control;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(3, 297);
+            this.label11.Location = new System.Drawing.Point(0, 297);
+            this.label11.Margin = new System.Windows.Forms.Padding(0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(261, 33);
+            this.label11.Size = new System.Drawing.Size(267, 33);
             this.label11.TabIndex = 0;
             this.label11.Text = "Total Net Sale by Shift";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -393,9 +404,10 @@
             // 
             this.lblShiftNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblShiftNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShiftNo.Location = new System.Drawing.Point(270, 0);
+            this.lblShiftNo.Location = new System.Drawing.Point(267, 0);
+            this.lblShiftNo.Margin = new System.Windows.Forms.Padding(0);
             this.lblShiftNo.Name = "lblShiftNo";
-            this.lblShiftNo.Size = new System.Drawing.Size(261, 33);
+            this.lblShiftNo.Size = new System.Drawing.Size(267, 33);
             this.lblShiftNo.TabIndex = 1;
             this.lblShiftNo.Text = "1";
             this.lblShiftNo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -405,9 +417,10 @@
             this.lblStaff.BackColor = System.Drawing.SystemColors.Control;
             this.lblStaff.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaff.Location = new System.Drawing.Point(270, 33);
+            this.lblStaff.Location = new System.Drawing.Point(267, 33);
+            this.lblStaff.Margin = new System.Windows.Forms.Padding(0);
             this.lblStaff.Name = "lblStaff";
-            this.lblStaff.Size = new System.Drawing.Size(261, 33);
+            this.lblStaff.Size = new System.Drawing.Size(267, 33);
             this.lblStaff.TabIndex = 1;
             this.lblStaff.Text = "Thanh";
             this.lblStaff.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -416,9 +429,10 @@
             // 
             this.lblStartTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartTime.Location = new System.Drawing.Point(270, 66);
+            this.lblStartTime.Location = new System.Drawing.Point(267, 66);
+            this.lblStartTime.Margin = new System.Windows.Forms.Padding(0);
             this.lblStartTime.Name = "lblStartTime";
-            this.lblStartTime.Size = new System.Drawing.Size(261, 33);
+            this.lblStartTime.Size = new System.Drawing.Size(267, 33);
             this.lblStartTime.TabIndex = 1;
             this.lblStartTime.Text = "04/01/2016";
             this.lblStartTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -428,9 +442,10 @@
             this.lblEndTime.BackColor = System.Drawing.SystemColors.Control;
             this.lblEndTime.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndTime.Location = new System.Drawing.Point(270, 99);
+            this.lblEndTime.Location = new System.Drawing.Point(267, 99);
+            this.lblEndTime.Margin = new System.Windows.Forms.Padding(0);
             this.lblEndTime.Name = "lblEndTime";
-            this.lblEndTime.Size = new System.Drawing.Size(261, 33);
+            this.lblEndTime.Size = new System.Drawing.Size(267, 33);
             this.lblEndTime.TabIndex = 1;
             this.lblEndTime.Text = "04/01/2016";
             this.lblEndTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -439,9 +454,10 @@
             // 
             this.lblStartCash.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblStartCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartCash.Location = new System.Drawing.Point(270, 132);
+            this.lblStartCash.Location = new System.Drawing.Point(267, 132);
+            this.lblStartCash.Margin = new System.Windows.Forms.Padding(0);
             this.lblStartCash.Name = "lblStartCash";
-            this.lblStartCash.Size = new System.Drawing.Size(261, 33);
+            this.lblStartCash.Size = new System.Drawing.Size(267, 33);
             this.lblStartCash.TabIndex = 1;
             this.lblStartCash.Text = "500.00";
             this.lblStartCash.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -451,9 +467,10 @@
             this.lblEndCash.BackColor = System.Drawing.SystemColors.Control;
             this.lblEndCash.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblEndCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEndCash.Location = new System.Drawing.Point(270, 165);
+            this.lblEndCash.Location = new System.Drawing.Point(267, 165);
+            this.lblEndCash.Margin = new System.Windows.Forms.Padding(0);
             this.lblEndCash.Name = "lblEndCash";
-            this.lblEndCash.Size = new System.Drawing.Size(261, 33);
+            this.lblEndCash.Size = new System.Drawing.Size(267, 33);
             this.lblEndCash.TabIndex = 1;
             this.lblEndCash.Text = "600.00";
             this.lblEndCash.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -462,9 +479,10 @@
             // 
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(270, 198);
+            this.lblTotal.Location = new System.Drawing.Point(267, 198);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(261, 33);
+            this.lblTotal.Size = new System.Drawing.Size(267, 33);
             this.lblTotal.TabIndex = 1;
             this.lblTotal.Text = "700.00";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -474,9 +492,10 @@
             this.lblVariation.BackColor = System.Drawing.SystemColors.Control;
             this.lblVariation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblVariation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVariation.Location = new System.Drawing.Point(270, 231);
+            this.lblVariation.Location = new System.Drawing.Point(267, 231);
+            this.lblVariation.Margin = new System.Windows.Forms.Padding(0);
             this.lblVariation.Name = "lblVariation";
-            this.lblVariation.Size = new System.Drawing.Size(261, 33);
+            this.lblVariation.Size = new System.Drawing.Size(267, 33);
             this.lblVariation.TabIndex = 1;
             this.lblVariation.Text = "100.00";
             this.lblVariation.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -485,9 +504,10 @@
             // 
             this.lblSafeDrop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSafeDrop.Location = new System.Drawing.Point(270, 264);
+            this.lblSafeDrop.Location = new System.Drawing.Point(267, 264);
+            this.lblSafeDrop.Margin = new System.Windows.Forms.Padding(0);
             this.lblSafeDrop.Name = "lblSafeDrop";
-            this.lblSafeDrop.Size = new System.Drawing.Size(261, 33);
+            this.lblSafeDrop.Size = new System.Drawing.Size(267, 33);
             this.lblSafeDrop.TabIndex = 1;
             this.lblSafeDrop.Text = "300.00";
             this.lblSafeDrop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -497,9 +517,10 @@
             this.lblTotalNetSalse.BackColor = System.Drawing.SystemColors.Control;
             this.lblTotalNetSalse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTotalNetSalse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalNetSalse.Location = new System.Drawing.Point(270, 297);
+            this.lblTotalNetSalse.Location = new System.Drawing.Point(267, 297);
+            this.lblTotalNetSalse.Margin = new System.Windows.Forms.Padding(0);
             this.lblTotalNetSalse.Name = "lblTotalNetSalse";
-            this.lblTotalNetSalse.Size = new System.Drawing.Size(261, 33);
+            this.lblTotalNetSalse.Size = new System.Drawing.Size(267, 33);
             this.lblTotalNetSalse.TabIndex = 1;
             this.lblTotalNetSalse.Text = "1000.00";
             this.lblTotalNetSalse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

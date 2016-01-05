@@ -466,17 +466,22 @@
             // btnVoid
             // 
             this.btnVoid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnVoid.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVoid.BackgroundImage")));
+            this.btnVoid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoid.FlatAppearance.BorderSize = 0;
             this.btnVoid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoid.ForeColor = System.Drawing.Color.White;
+            this.btnVoid.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVoid.Location = new System.Drawing.Point(74, 64);
             this.btnVoid.Margin = new System.Windows.Forms.Padding(0);
             this.btnVoid.Name = "btnVoid";
             this.btnVoid.Size = new System.Drawing.Size(74, 64);
             this.btnVoid.TabIndex = 1;
             this.btnVoid.Text = "VOID";
+            this.btnVoid.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnVoid.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnVoid.UseVisualStyleBackColor = false;
             this.btnVoid.Click += new System.EventHandler(this.btnVoid_Click);
             // 

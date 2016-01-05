@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
+using System.IO;
+using POSEZ2U.Class;
 
 namespace POSEZ2U.UC
 {
@@ -15,6 +18,8 @@ namespace POSEZ2U.UC
         public UCShiftReport()
         {
             InitializeComponent();
+           
         }
+        
     }
 }

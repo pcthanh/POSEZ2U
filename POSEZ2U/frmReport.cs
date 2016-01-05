@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using POSEZ2U.UC;
 using SystemLog;
+using POSEZ2U.Class;
 
 namespace POSEZ2U
 {
@@ -17,6 +18,7 @@ namespace POSEZ2U
         public frmReport()
         {
             InitializeComponent();
+           
         }
         
         private void LoadTitleReport()
@@ -64,8 +66,7 @@ namespace POSEZ2U
                 flpReportList.Controls.Clear();
             if (tag == 1)
                 LoadShiftReport();
-            else
-                flpReportList.Controls.Clear();
+            
         }
 
         private void LoadReportDaiLy()
@@ -117,7 +118,7 @@ namespace POSEZ2U
             ucReportItem.BackColor = Color.FromArgb(0, 153, 0);
             ucReportItem.ForeColor = Color.FromArgb(255, 255, 255);
             if (tag == 1)
-                LoadReportDetail();
+                LoadShiftReportDetail();
             else
                 pDetail.Controls.Clear();
         }
@@ -137,12 +138,13 @@ namespace POSEZ2U
             ucReportItem.BackColor = Color.FromArgb(0, 153, 0);
             ucReportItem.ForeColor = Color.FromArgb(255, 255, 255);
             if (tag == 1)
-                LoadShiftReportDetail();
+                LoadReportDetail();
             else
                 pDetail.Controls.Clear();
         }
         private void LoadShiftReportDetail()
         {
+            pDetail.Controls.Clear();
             UCShiftReport shift = new UCShiftReport();
             shift.Dock = DockStyle.Fill;
             pDetail.Controls.Add(shift);
@@ -150,6 +152,7 @@ namespace POSEZ2U
         }
         private void LoadReportDetail()
         {
+            pDetail.Controls.Clear();
             UCDailySaleSumaryReport ucDailyReport = new UCDailySaleSumaryReport();
             ucDailyReport.Dock = DockStyle.Fill;
             pDetail.Controls.Add(ucDailyReport);
