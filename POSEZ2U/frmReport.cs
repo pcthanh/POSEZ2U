@@ -62,6 +62,10 @@ namespace POSEZ2U
                 LoadReportDaiLy();
             else
                 flpReportList.Controls.Clear();
+            if (tag == 1)
+                LoadShiftReport();
+            else
+                flpReportList.Controls.Clear();
         }
 
         private void LoadReportDaiLy()
@@ -81,7 +85,24 @@ namespace POSEZ2U
             }
         }
 
-        void ucReportItem_Click(object sender, EventArgs e)
+        private void LoadShiftReport()
+        {
+            flpReportList.Controls.Clear();
+            string[] str = { "Shift 1", "Shift 2", "Shift All" };
+            int i = 1;
+            foreach (string shift in str)
+            {
+                UCReportItem ucReportItemShift = new UCReportItem();
+                ucReportItemShift.lblTitelReportItem.Text = shift;
+                ucReportItemShift.Tag = i;
+                i++;
+                ucReportItemShift.Width = flpReportList.Width;
+                ucReportItemShift.Click += ucReportItemShift_Click;
+                flpReportList.Controls.Add(ucReportItemShift);
+            }
+        }
+
+        void ucReportItemShift_Click(object sender, EventArgs e)
         {
             UCReportItem ucReportItem = (UCReportItem)sender;
             int tag = Convert.ToInt32(ucReportItem.Tag);
@@ -99,6 +120,33 @@ namespace POSEZ2U
                 LoadReportDetail();
             else
                 pDetail.Controls.Clear();
+        }
+
+        void ucReportItem_Click(object sender, EventArgs e)
+        {
+            UCReportItem ucReportItem = (UCReportItem)sender;
+            int tag = Convert.ToInt32(ucReportItem.Tag);
+            foreach (Control ctr in flpReportList.Controls)
+            {
+                if (ctr.BackColor == Color.FromArgb(0, 153, 0))
+                {
+                    ctr.BackColor = Color.FromArgb(255, 255, 255);
+                    ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                }
+            }
+            ucReportItem.BackColor = Color.FromArgb(0, 153, 0);
+            ucReportItem.ForeColor = Color.FromArgb(255, 255, 255);
+            if (tag == 1)
+                LoadShiftReportDetail();
+            else
+                pDetail.Controls.Clear();
+        }
+        private void LoadShiftReportDetail()
+        {
+            UCShiftReport shift = new UCShiftReport();
+            shift.Dock = DockStyle.Fill;
+            pDetail.Controls.Add(shift);
+
         }
         private void LoadReportDetail()
         {
