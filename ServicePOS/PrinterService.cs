@@ -115,19 +115,22 @@ namespace ServicePOS
             {
                 if (Printer != null)
                 {
-                    var item = new PRINTER();
-                    item.ID = Printer.ID;
-                    item.PrinterName = Printer.PrinterName;
-                    item.PrintName = Printer.PrintName;
-                    item.PrinterType = Printer.PrinterType;
-                    item.Status = Printer.Status;
-                    item.CreateBy = Printer.CreateBy ?? 0;
-                    item.CreateDate = DateTime.Now;
-                    item.UpdateBy = Printer.UpdateBy ?? 0;
-                    item.UpdateDate = DateTime.Now;
-                    _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
-                    _context.SaveChanges();
-                    result = 1;
+                    var item = _context.PRINTERs.Find(Printer.ID);
+                    if (item != null)
+                    {
+                        item.ID = Printer.ID;
+                        item.PrinterName = Printer.PrinterName;
+                        item.PrintName = Printer.PrintName;
+                        item.PrinterType = Printer.PrinterType;
+                        item.Status = Printer.Status;
+                        //item.CreateBy = Printer.CreateBy ?? 0;
+                        //item.CreateDate = DateTime.Now;
+                        item.UpdateBy = Printer.UpdateBy ?? 0;
+                        item.UpdateDate = DateTime.Now;
+                        _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                        _context.SaveChanges();
+                        result = 1;
+                    }
                 }
             }
             catch (Exception ex) 
