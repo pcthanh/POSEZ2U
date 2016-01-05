@@ -82,7 +82,6 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -221,6 +220,6 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.ComboBox cbPrintType;
         public System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.Button btnSave;
     }
 }
