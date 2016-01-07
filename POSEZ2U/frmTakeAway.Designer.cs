@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTakeAway));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
@@ -55,14 +56,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
+            this.ucTkItemTitle1 = new POSEZ2U.UC.UCTkItemTitle();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.flpTkAInfor = new System.Windows.Forms.FlowLayoutPanel();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ucTakeAwayTitle1 = new POSEZ2U.UC.UcTakeAwayTitle();
-            this.ucTkItemTitle1 = new POSEZ2U.UC.UCTkItemTitle();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel14.SuspendLayout();
@@ -85,6 +85,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(808, 45);
             this.panel1.TabIndex = 0;
+            // 
+            // ucInfoTop1
+            // 
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(808, 45);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -155,9 +163,9 @@
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(109, 40);
+            this.btnBack.Size = new System.Drawing.Size(161, 40);
             this.btnBack.TabIndex = 0;
-            this.btnBack.Text = "BACK";
+            this.btnBack.Text = "Back to Main Menu";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -347,6 +355,15 @@
             this.panel19.Size = new System.Drawing.Size(327, 36);
             this.panel19.TabIndex = 0;
             // 
+            // ucTkItemTitle1
+            // 
+            this.ucTkItemTitle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
+            this.ucTkItemTitle1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucTkItemTitle1.Location = new System.Drawing.Point(0, 0);
+            this.ucTkItemTitle1.Name = "ucTkItemTitle1";
+            this.ucTkItemTitle1.Size = new System.Drawing.Size(327, 36);
+            this.ucTkItemTitle1.TabIndex = 0;
+            // 
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
@@ -383,11 +400,6 @@
             this.panel18.Size = new System.Drawing.Size(451, 36);
             this.panel18.TabIndex = 0;
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // ucTakeAwayTitle1
             // 
             this.ucTakeAwayTitle1.BackColor = System.Drawing.Color.Black;
@@ -397,22 +409,10 @@
             this.ucTakeAwayTitle1.Size = new System.Drawing.Size(451, 36);
             this.ucTakeAwayTitle1.TabIndex = 0;
             // 
-            // ucTkItemTitle1
+            // timer1
             // 
-            this.ucTkItemTitle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(0)))));
-            this.ucTkItemTitle1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucTkItemTitle1.Location = new System.Drawing.Point(0, 0);
-            this.ucTkItemTitle1.Name = "ucTkItemTitle1";
-            this.ucTkItemTitle1.Size = new System.Drawing.Size(327, 36);
-            this.ucTkItemTitle1.TabIndex = 0;
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(808, 45);
-            this.ucInfoTop1.TabIndex = 0;
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmTakeAway
             // 
