@@ -139,7 +139,7 @@ namespace POSEZ2U
             var menuid = Convert.ToInt32(SettingAll.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            frmReport frm = new frmReport();
+            frmReportAll frm = new frmReportAll();
            // this.Close();
             frm.ShowDialog();
             //if (result > 0)

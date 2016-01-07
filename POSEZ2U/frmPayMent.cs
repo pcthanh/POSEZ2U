@@ -532,5 +532,53 @@ namespace POSEZ2U
             return result;
         }
 
+        private void btnExact_Click(object sender, EventArgs e)
+        {
+            double exact = OrderMain.SubTotal() / 1000.0;
+            txtTender.Text = exact.ToString();
+        }
+
+        private void btn5_Click(object sender, EventArgs e)
+        {
+            txtTender.Text = "5";
+        }
+
+        private void btn10_Click(object sender, EventArgs e)
+        {
+            txtTender.Text = "10";
+        }
+
+        private void btn20_Click(object sender, EventArgs e)
+        {
+            txtTender.Text = "20";
+        }
+
+        private void btn50_Click(object sender, EventArgs e)
+        {
+            txtTender.Text = "50";
+        }
+
+        private void btn100_Click(object sender, EventArgs e)
+        {
+            txtTender.Text = "100";
+        }
+
+        private void btnPrintnoBill_Click(object sender, EventArgs e)
+        {
+            if (CheckTotal() == 1)
+            {
+                OrderMain.ListPayment = lstPayment;
+                OrderMain.ListInvoiceByCard = lstInvoiceByCard;
+                OrderMain.isNoPrintBill = 1;
+                this.Close();
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            else
+            {
+                frmMessager frm = new frmMessager("Payment", "money not enought");
+                frm.ShowDialog();
+            }
+
+        }
     }
 }

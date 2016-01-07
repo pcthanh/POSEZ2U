@@ -21,8 +21,13 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            e.Graphics.FillRectangle(Brushes.LimeGreen, e.ClipRectangle);
+        }
         MoneyFortmat monetFormat = new MoneyFortmat(MoneyFortmat.AU_TYPE);
         private delegate void ChangeTextCallback(string text, Control control);
+        List<OrderJoinTableModel> lstJoinTable = new List<OrderJoinTableModel>();
         private IOrderService _orderService;
         private IOrderService OrderService
         {
@@ -35,8 +40,27 @@ namespace POSEZ2U
             {
                 UC.UCTable ucTable = new UC.UCTable();
                 ucTable.lbTableNo.Text = i.ToString();
-                
+                ucTable.Click += ucTable_Click;
                 flpJoinTable.Controls.Add(ucTable);
+            }
+        }
+
+        void ucTable_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UCTable ucTable = (UCTable)sender;
+                if (ucTable.BackColor == Color.FromArgb(0, 204, 15))
+                {
+                    ucTable.BackColor = Color.FromArgb(242, 242, 242);
+                }
+                else
+                    ucTable.BackColor = Color.FromArgb(0, 204, 15);
+
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmJoinTable:::::::::::::::::::::ucTable_Click::::::::::::::::" + ex.Message);
             }
         }
 
@@ -143,6 +167,41 @@ namespace POSEZ2U
             catch (Exception ex)
             {
                 LogPOS.WriteLog("timer1_Tick:::::::::::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+
+        private void btnJoin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmChooseeTableJoin frm = new frmChooseeTableJoin();
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    foreach (Control ctr in flpJoinTable.Controls)
+                    {
+                        UCTable ucTableJoin = (UCTable)ctr;
+                        if (ucTableJoin.BackColor == Color.FromArgb(0, 204, 15))
+                        {
+                            StatusTable st = (StatusTable)ucTableJoin.Tag;
+                            OrderJoinTableModel JoinTable = new OrderJoinTableModel();
+                            JoinTable.OrderID = st.OrderID;
+                            JoinTable.TableID =Convert.ToInt32(st.TableID);
+                            JoinTable.SubTotalTable =Convert.ToDouble(st.SubTotal);
+                            JoinTable.TableIDNew = frm.TableNo;
+                            lstJoinTable.Add(JoinTable);
+                        }
+                    }
+                    if (lstJoinTable.Count > 0)
+                    {
+                        int result = OrderService.JoinTable(lstJoinTable);
+                        if (result == 1)
+                            this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmJoinTable:::::::::::::::::btnJoin_Click::::::::::::::::;;" + ex.Message);
             }
         }
     }

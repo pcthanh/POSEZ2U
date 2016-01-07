@@ -1131,38 +1131,63 @@ namespace POSEZ2U
         private void btnPayMent_Click(object sender, EventArgs e)
         {
             //flags = WinAPI.AW_ACTIVATE | WinAPI.AW_HOR_POSITIVE;
-            if (OrderMain.ListOrderDetail.Count > 0)
+            try
             {
-                frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
-                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (OrderMain.ListOrderDetail.Count > 0)
                 {
-                    int result = 0;
-                    OrderMain = frm.OrderMain;
-                    result = InvoiceService.InsertInvoice(OrderMain);
-                   
-                    if (result == 1)
+                    frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        PrinterServer printServer = new PrinterServer(2);
-                        printServer.Print(OrderMain);
-                        if (OrderMain.isTKA == 1)
+                        int result = 0;
+                        OrderMain = frm.OrderMain;
+                        result = InvoiceService.InsertInvoice(OrderMain);
+
+                        if (result == 1)
                         {
-                            this.Close();
-                            frmTakeAway frmTKA = new frmTakeAway();
-                            frmTKA.Show();
-                            
-                        }
-                        else
-                        {
-                            CallBackStatusOrder(OrderMain);
-                            this.Close();
+                            if (OrderMain.isNoPrintBill == 1)
+                            {
+                                if (OrderMain.isTKA == 1)
+                                {
+                                    this.Close();
+                                    frmTakeAway frmTKA = new frmTakeAway();
+                                    frmTKA.Show();
+
+                                }
+                                else
+                                {
+                                    CallBackStatusOrder(OrderMain);
+                                    this.Close();
+                                }
+                            }
+                            else
+                            {
+                                PrinterServer printServer = new PrinterServer(2);
+                                printServer.Print(OrderMain);
+                                if (OrderMain.isTKA == 1)
+                                {
+                                    this.Close();
+                                    frmTakeAway frmTKA = new frmTakeAway();
+                                    frmTKA.Show();
+
+                                }
+                                else
+                                {
+                                    CallBackStatusOrder(OrderMain);
+                                    this.Close();
+                                }
+                            }
                         }
                     }
                 }
+                else
+                {
+                    frmMessager frm = new frmMessager("PayMent", "Order empty");
+                    frm.ShowDialog();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                frmMessager frm = new frmMessager("PayMent", "Order empty");
-                frm.ShowDialog();
+                LogPOS.WriteLog("frmOrder:::::::::::::::::::::::btnPayMent_Click::::::::::::::::;" + ex.Message);
             }
         }
 

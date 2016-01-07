@@ -32,7 +32,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnHide = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnExact = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.btnDiscount = new System.Windows.Forms.Button();
@@ -40,14 +40,13 @@
             this.button13 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btn5 = new System.Windows.Forms.Button();
+            this.btn10 = new System.Windows.Forms.Button();
+            this.btn20 = new System.Windows.Forms.Button();
+            this.btn50 = new System.Windows.Forms.Button();
+            this.btn100 = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lblChange = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -71,6 +70,8 @@
             this.btnGiftCard = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpPaymentType = new System.Windows.Forms.FlowLayoutPanel();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
+            this.btnPrintnoBill = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,20 +98,22 @@
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 5;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.246088F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.49644F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.35846F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.34993F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.40683F));
+            this.tableLayoutPanel3.ColumnCount = 6;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.79801F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.48791F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.6643F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.06117F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.06117F));
             this.tableLayoutPanel3.Controls.Add(this.btnOK, 4, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnHide, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button8, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnExact, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.button9, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.button10, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnDiscount, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.button12, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.button13, 3, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnPrintnoBill, 5, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -127,13 +130,13 @@
             this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(432, 0);
+            this.btnOK.Location = new System.Drawing.Point(433, 0);
             this.btnOK.Margin = new System.Windows.Forms.Padding(0);
             this.btnOK.Name = "btnOK";
             this.tableLayoutPanel3.SetRowSpan(this.btnOK, 2);
-            this.btnOK.Size = new System.Drawing.Size(271, 138);
+            this.btnOK.Size = new System.Drawing.Size(134, 138);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = false;
@@ -151,27 +154,28 @@
             this.btnHide.Margin = new System.Windows.Forms.Padding(0);
             this.btnHide.Name = "btnHide";
             this.tableLayoutPanel3.SetRowSpan(this.btnHide, 2);
-            this.btnHide.Size = new System.Drawing.Size(65, 138);
+            this.btnHide.Size = new System.Drawing.Size(97, 138);
             this.btnHide.TabIndex = 0;
             this.btnHide.Text = "Hide";
             this.btnHide.UseVisualStyleBackColor = false;
             this.btnHide.Click += new System.EventHandler(this.btnHide_Click);
             // 
-            // button8
+            // btnExact
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(65, 0);
-            this.button8.Margin = new System.Windows.Forms.Padding(0);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(123, 69);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "Exact Amount";
-            this.button8.UseVisualStyleBackColor = false;
+            this.btnExact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.btnExact.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExact.FlatAppearance.BorderSize = 0;
+            this.btnExact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExact.ForeColor = System.Drawing.Color.White;
+            this.btnExact.Location = new System.Drawing.Point(97, 0);
+            this.btnExact.Margin = new System.Windows.Forms.Padding(0);
+            this.btnExact.Name = "btnExact";
+            this.btnExact.Size = new System.Drawing.Size(137, 69);
+            this.btnExact.TabIndex = 1;
+            this.btnExact.Text = "Exact Amount";
+            this.btnExact.UseVisualStyleBackColor = false;
+            this.btnExact.Click += new System.EventHandler(this.btnExact_Click);
             // 
             // button9
             // 
@@ -181,10 +185,10 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(188, 0);
+            this.button9.Location = new System.Drawing.Point(234, 0);
             this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(115, 69);
+            this.button9.Size = new System.Drawing.Size(117, 69);
             this.button9.TabIndex = 1;
             this.button9.Text = "CASHOUT";
             this.button9.UseVisualStyleBackColor = false;
@@ -197,10 +201,10 @@
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(303, 0);
+            this.button10.Location = new System.Drawing.Point(351, 0);
             this.button10.Margin = new System.Windows.Forms.Padding(0);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(129, 69);
+            this.button10.Size = new System.Drawing.Size(82, 69);
             this.button10.TabIndex = 1;
             this.button10.Text = "PRINT";
             this.button10.UseVisualStyleBackColor = false;
@@ -213,10 +217,10 @@
             this.btnDiscount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDiscount.ForeColor = System.Drawing.Color.White;
-            this.btnDiscount.Location = new System.Drawing.Point(65, 69);
+            this.btnDiscount.Location = new System.Drawing.Point(97, 69);
             this.btnDiscount.Margin = new System.Windows.Forms.Padding(0);
             this.btnDiscount.Name = "btnDiscount";
-            this.btnDiscount.Size = new System.Drawing.Size(123, 69);
+            this.btnDiscount.Size = new System.Drawing.Size(137, 69);
             this.btnDiscount.TabIndex = 1;
             this.btnDiscount.Text = "DISCOUNT";
             this.btnDiscount.UseVisualStyleBackColor = false;
@@ -230,10 +234,10 @@
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(188, 69);
+            this.button12.Location = new System.Drawing.Point(234, 69);
             this.button12.Margin = new System.Windows.Forms.Padding(0);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(115, 69);
+            this.button12.Size = new System.Drawing.Size(117, 69);
             this.button12.TabIndex = 1;
             this.button12.Text = "SPLIT BILL";
             this.button12.UseVisualStyleBackColor = false;
@@ -246,10 +250,10 @@
             this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(303, 69);
+            this.button13.Location = new System.Drawing.Point(351, 69);
             this.button13.Margin = new System.Windows.Forms.Padding(0);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(129, 69);
+            this.button13.Size = new System.Drawing.Size(82, 69);
             this.button13.TabIndex = 1;
             this.button13.Text = "SMS";
             this.button13.UseVisualStyleBackColor = false;
@@ -277,15 +281,6 @@
             this.panel8.Size = new System.Drawing.Size(196, 244);
             this.panel8.TabIndex = 0;
             // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
@@ -300,11 +295,11 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button5, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btn5, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btn10, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btn20, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btn50, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btn100, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -319,75 +314,80 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(85, 244);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // button1
+            // btn5
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 48);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "$5.00";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn5.FlatAppearance.BorderSize = 0;
+            this.btn5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn5.ForeColor = System.Drawing.Color.White;
+            this.btn5.Location = new System.Drawing.Point(0, 0);
+            this.btn5.Margin = new System.Windows.Forms.Padding(0);
+            this.btn5.Name = "btn5";
+            this.btn5.Size = new System.Drawing.Size(85, 48);
+            this.btn5.TabIndex = 0;
+            this.btn5.Text = "$5.00";
+            this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.Click += new System.EventHandler(this.btn5_Click);
             // 
-            // button2
+            // btn10
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 48);
-            this.button2.Margin = new System.Windows.Forms.Padding(0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 48);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "$10.00";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn10.FlatAppearance.BorderSize = 0;
+            this.btn10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn10.ForeColor = System.Drawing.Color.White;
+            this.btn10.Location = new System.Drawing.Point(0, 48);
+            this.btn10.Margin = new System.Windows.Forms.Padding(0);
+            this.btn10.Name = "btn10";
+            this.btn10.Size = new System.Drawing.Size(85, 48);
+            this.btn10.TabIndex = 0;
+            this.btn10.Text = "$10.00";
+            this.btn10.UseVisualStyleBackColor = true;
+            this.btn10.Click += new System.EventHandler(this.btn10_Click);
             // 
-            // button3
+            // btn20
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(0, 96);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(85, 48);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "$20.00";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn20.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn20.FlatAppearance.BorderSize = 0;
+            this.btn20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn20.ForeColor = System.Drawing.Color.White;
+            this.btn20.Location = new System.Drawing.Point(0, 96);
+            this.btn20.Margin = new System.Windows.Forms.Padding(0);
+            this.btn20.Name = "btn20";
+            this.btn20.Size = new System.Drawing.Size(85, 48);
+            this.btn20.TabIndex = 0;
+            this.btn20.Text = "$20.00";
+            this.btn20.UseVisualStyleBackColor = true;
+            this.btn20.Click += new System.EventHandler(this.btn20_Click);
             // 
-            // button4
+            // btn50
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(0, 144);
-            this.button4.Margin = new System.Windows.Forms.Padding(0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(85, 48);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "$50.00";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn50.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn50.FlatAppearance.BorderSize = 0;
+            this.btn50.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn50.ForeColor = System.Drawing.Color.White;
+            this.btn50.Location = new System.Drawing.Point(0, 144);
+            this.btn50.Margin = new System.Windows.Forms.Padding(0);
+            this.btn50.Name = "btn50";
+            this.btn50.Size = new System.Drawing.Size(85, 48);
+            this.btn50.TabIndex = 0;
+            this.btn50.Text = "$50.00";
+            this.btn50.UseVisualStyleBackColor = true;
+            this.btn50.Click += new System.EventHandler(this.btn50_Click);
             // 
-            // button5
+            // btn100
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(0, 192);
-            this.button5.Margin = new System.Windows.Forms.Padding(0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(85, 52);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "$100.00";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn100.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn100.FlatAppearance.BorderSize = 0;
+            this.btn100.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn100.ForeColor = System.Drawing.Color.White;
+            this.btn100.Location = new System.Drawing.Point(0, 192);
+            this.btn100.Margin = new System.Windows.Forms.Padding(0);
+            this.btn100.Name = "btn100";
+            this.btn100.Size = new System.Drawing.Size(85, 52);
+            this.btn100.TabIndex = 0;
+            this.btn100.Text = "$100.00";
+            this.btn100.UseVisualStyleBackColor = true;
+            this.btn100.Click += new System.EventHandler(this.btn100_Click);
             // 
             // panel7
             // 
@@ -669,6 +669,34 @@
             this.flpPaymentType.Size = new System.Drawing.Size(271, 400);
             this.flpPaymentType.TabIndex = 0;
             // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
+            // 
+            // btnPrintnoBill
+            // 
+            this.btnPrintnoBill.AccessibleDescription = "";
+            this.btnPrintnoBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.btnPrintnoBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrintnoBill.FlatAppearance.BorderSize = 0;
+            this.btnPrintnoBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintnoBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintnoBill.ForeColor = System.Drawing.Color.White;
+            this.btnPrintnoBill.Location = new System.Drawing.Point(567, 0);
+            this.btnPrintnoBill.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrintnoBill.Name = "btnPrintnoBill";
+            this.tableLayoutPanel3.SetRowSpan(this.btnPrintnoBill, 2);
+            this.btnPrintnoBill.Size = new System.Drawing.Size(136, 138);
+            this.btnPrintnoBill.TabIndex = 2;
+            this.btnPrintnoBill.Text = "OK WITHOUT  BILL";
+            this.btnPrintnoBill.UseVisualStyleBackColor = false;
+            this.btnPrintnoBill.Click += new System.EventHandler(this.btnPrintnoBill_Click);
+            // 
             // frmPayMent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -723,11 +751,11 @@
         private System.Windows.Forms.Label lblChange;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btn5;
+        private System.Windows.Forms.Button btn10;
+        private System.Windows.Forms.Button btn20;
+        private System.Windows.Forms.Button btn50;
+        private System.Windows.Forms.Button btn100;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button btnCash;
         private System.Windows.Forms.Button btnCard;
@@ -737,7 +765,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnHide;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnExact;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btnDiscount;
@@ -749,6 +777,7 @@
         private System.Windows.Forms.Label txtBalance;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBalancetemp;
+        private System.Windows.Forms.Button btnPrintnoBill;
 
     }
 }
