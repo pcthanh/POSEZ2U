@@ -1281,6 +1281,7 @@
             this.Controls.Add(this.btn1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmKeyBoard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmKeyBoard";
             this.ResumeLayout(false);
             this.PerformLayout();
