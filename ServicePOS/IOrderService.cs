@@ -24,5 +24,6 @@ namespace ServicePOS
        List< OrderTKAModel> GetStatusOrderTKA();
        int CountTotalEaIn();
        int CountTotalTKA();
+       int JoinTable(List<OrderJoinTableModel> lstOrderJoin);
     }
 }

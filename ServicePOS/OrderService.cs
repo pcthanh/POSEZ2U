@@ -191,9 +191,12 @@ namespace ServicePOS
                     {
                         orderDateTemp = CopyOrder(itemOrder);
                         _context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Added;
+                        _context.SaveChanges();
+                        int i = orderDateTemp.OrderID;
                         lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
                         foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
                         {
+                            item.OrderID = i;
                             _context.Entry(item).State = System.Data.Entity.EntityState.Added;
 
                         }
@@ -201,6 +204,8 @@ namespace ServicePOS
                         lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
                         foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
                         {
+                            item.OrderID = i;
+                            
                             _context.Entry(item).State = System.Data.Entity.EntityState.Added;
 
                         }
@@ -212,6 +217,7 @@ namespace ServicePOS
             }
             catch (Exception ex)
             {
+                
                 LogPOS.WriteLog("InsertOrder::::::::::::::::::::::::::::::::::" + ex.Message);
             }
             return flag;
@@ -244,7 +250,8 @@ namespace ServicePOS
         public int CountOrder()
         {
             int OrderId = 0;
-            OrderId= _context.ORDER_DATE.Count();
+            OrderId = _context.ORDER_DATE.Count() + 1;
+           // _context.Database.ExecuteSqlCommand()
             return OrderId;
         }
 
@@ -592,5 +599,61 @@ namespace ServicePOS
         {
             return _context.ORDER_DATE.Where(x => x.Status != 1 && x.FloorID.Contains("TKA-")).Count();
         }
+
+
+        public int JoinTable(List<OrderJoinTableModel> OrderJoin)
+        {
+            int result = 0;
+            //update ORDER_DATE set TotalAmount
+            try
+            {
+                int TableNew = OrderJoin[0].TableIDNew;
+                double toal=0;
+                int OrderIDNew;
+                using (var tranJoinTable = _context.Database.BeginTransaction())
+                {
+                     for (int i = 0; i < OrderJoin.Count; i++)
+                     {
+                         toal = toal+ OrderJoin[i].SubTotalTable;
+                     }
+                    ORDER_DATE OrderJoinNew = new ORDER_DATE();
+                    OrderJoinNew.FloorID = TableNew.ToString();
+                    OrderJoinNew.Seat = 0;
+                    OrderJoinNew.TotalAmount = toal;
+                    OrderJoinNew.CreateBy = 0;
+                    OrderJoinNew.CreateDate = DateTime.Now;
+                    OrderJoinNew.UpdateBy = 0;
+                    OrderJoinNew.UpdateDate = DateTime.Now;
+                    OrderJoinNew.OrderNumber = CountOrder().ToString();
+                    OrderJoinNew.ClientID = 0;
+                    _context.Entry(OrderJoinNew).State = System.Data.Entity.EntityState.Added;
+                    _context.SaveChanges();
+                    OrderIDNew = OrderJoinNew.OrderID;
+                    for (int j = 0; j < OrderJoin.Count; j++)
+                    {
+                        _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_DATE set OrderID='" + OrderIDNew + "',Seat=0 where OrderID='" +OrderJoin[j].OrderID+ "'");
+                    }
+                    for (int j = 0; j < OrderJoin.Count; j++)
+                    {
+                        _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_MODIFIRE_DATE set OrderID='" + OrderIDNew + "',Seat=0 where OrderID='" + OrderJoin[j].OrderID + "'");
+                    }
+                    for (int i = 0; i < OrderJoin.Count; i++)
+                    {
+                        
+                            _context.Database.ExecuteSqlCommand("delete  ORDER_DATE where OrderID='" + OrderJoin[i].OrderID + "'");
+                    }
+                    
+                    tranJoinTable.Commit();
+                    result = 1;
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("OrderService::::::::::::::::::::JoinTable::::::::::::::" + ex.Message);
+            }
+            return result;
+        }
+       
     }
 }
