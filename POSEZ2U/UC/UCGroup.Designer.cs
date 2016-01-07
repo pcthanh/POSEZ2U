@@ -49,9 +49,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.lblNameGroup);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCGroup";
             this.Size = new System.Drawing.Size(107, 44);
-            //base.Click += new System.EventHandler(this.UCGroup_Click);
             this.ResumeLayout(false);
 
         }

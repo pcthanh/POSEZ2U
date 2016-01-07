@@ -34,8 +34,13 @@ namespace POSEZ2U
 
         private void frmConfirm_Load(object sender, EventArgs e)
         {
-            groupBox1.Text = Title;
+            lbltitle.Text = Title;
             lblDescsription.Text = Description;
+        }
+
+        private void lblDescsription_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

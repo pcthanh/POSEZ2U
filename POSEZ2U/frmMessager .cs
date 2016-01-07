@@ -28,7 +28,7 @@ namespace POSEZ2U
 
         private void frmMessager_Load(object sender, EventArgs e)
         {
-            this.groupBox1.Text = Title;
+            this.lblTitle.Text = Title;
             this.lblDescsription.Text = Descsription;
         }
     }

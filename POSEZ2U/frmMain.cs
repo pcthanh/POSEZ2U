@@ -68,8 +68,12 @@ namespace POSEZ2U
             //Form1 frm = new Form1();
             //this.Hide();
             //frm.ShowDialog();
-            System.Diagnostics.Process.Start(Application.ExecutablePath);
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            frmDailogExit frm = new frmDailogExit();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
+            }
         }
 
         private void btnSettingAll_Click(object sender, EventArgs e)
