@@ -97,8 +97,9 @@ namespace POSEZ2U
             {
                 var result = ShiftService.UpdateDataShiftHistory(modelShift);
                 var messenger = "Save data end shift fail.";
-                if (result == 1)
+                if (result > 0)
                 {
+                    UserLoginModel.ShiffID = 0;
                     messenger = "Save data end shift successful.";
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
