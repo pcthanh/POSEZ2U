@@ -38,7 +38,9 @@ namespace POSEZ2U
        
         private void btnBack_Click(object sender, EventArgs e)
         {
+            frmMain frm= new frmMain();
             this.Close();
+            frm.ShowDialog();
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
@@ -67,14 +69,31 @@ namespace POSEZ2U
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            frmNewShift frm = new frmNewShift();
-            frm.ShowDialog();
 
-            if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
+            var data = ShiftService.GetListShiftHistoryByUserid(userid, 0).ToList().FirstOrDefault();
+
+            if (data != null)
             {
-                addOnDutyList("On Duty", 1);
-                frm.Close();
+                frmConfirm frm = new frmConfirm("Confirm", "Do you want again shift old ?");
+                frm.ShowDialog();
+                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    UserLoginModel.ShiffID = data.ShiftHistoryID;
+                }
             }
+            else
+            {
+                frmNewShift frm = new frmNewShift();
+                frm.ShowDialog();
+
+                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    addOnDutyList("On Duty", 1);
+                    frm.Close();
+                }
+            }
+        
+          
         }
 
         private void AddShiffSetting()

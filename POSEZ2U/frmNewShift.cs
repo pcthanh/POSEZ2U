@@ -55,6 +55,14 @@ namespace POSEZ2U
             {
                 fname = UserLoginModel.UserLoginInfo.UserName;
 
+                var historyshift = ShiftService.GetListShiftHistoryByUserid(userid, 1).FirstOrDefault();
+
+                double startcash = 0;
+                if (historyshift != null)
+                {
+                    startcash = (historyshift.CashEnd??0) - (historyshift.SafeDrop??0);
+                }
+
                 var data = ShiftService.GetAllStaffActive().ToList();
 
                 this.cbStaff.DisplayMember = "Value";
@@ -69,7 +77,7 @@ namespace POSEZ2U
                 }
 
                 this.cbStaff.Text = fname;
-                this.txtCashStart.Text = "0";
+                this.txtCashStart.Text = startcash.ToString();
             }
         }
 
@@ -109,8 +117,9 @@ namespace POSEZ2U
             {
                 var result = ShiftService.InsertDataShiftHistory(model);
                 messenger = "Save data new shift fail.";
-                if (result == 1)
+                if (result >0)
                 {
+                    UserLoginModel.ShiffID = result;
                     messenger = "Save data new shift successful.";
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
