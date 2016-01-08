@@ -34,10 +34,11 @@
             this.btnHide = new System.Windows.Forms.Button();
             this.btnExact = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnDiscount = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.btnSplitBill = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
+            this.btnPrintnoBill = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -71,7 +72,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpPaymentType = new System.Windows.Forms.FlowLayoutPanel();
             this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
-            this.btnPrintnoBill = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -109,9 +109,9 @@
             this.tableLayoutPanel3.Controls.Add(this.btnHide, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnExact, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.button9, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button10, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnPrint, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnDiscount, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.button12, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.btnSplitBill, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.button13, 3, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnPrintnoBill, 5, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -193,21 +193,22 @@
             this.button9.Text = "CASHOUT";
             this.button9.UseVisualStyleBackColor = false;
             // 
-            // button10
+            // btnPrint
             // 
-            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(351, 0);
-            this.button10.Margin = new System.Windows.Forms.Padding(0);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(82, 69);
-            this.button10.TabIndex = 1;
-            this.button10.Text = "PRINT";
-            this.button10.UseVisualStyleBackColor = false;
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.btnPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrint.FlatAppearance.BorderSize = 0;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(351, 0);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(82, 69);
+            this.btnPrint.TabIndex = 1;
+            this.btnPrint.Text = "PRINT";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnDiscount
             // 
@@ -226,21 +227,22 @@
             this.btnDiscount.UseVisualStyleBackColor = false;
             this.btnDiscount.Click += new System.EventHandler(this.btnDiscount_Click);
             // 
-            // button12
+            // btnSplitBill
             // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button12.FlatAppearance.BorderSize = 0;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(234, 69);
-            this.button12.Margin = new System.Windows.Forms.Padding(0);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(117, 69);
-            this.button12.TabIndex = 1;
-            this.button12.Text = "SPLIT BILL";
-            this.button12.UseVisualStyleBackColor = false;
+            this.btnSplitBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.btnSplitBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSplitBill.FlatAppearance.BorderSize = 0;
+            this.btnSplitBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSplitBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSplitBill.ForeColor = System.Drawing.Color.White;
+            this.btnSplitBill.Location = new System.Drawing.Point(234, 69);
+            this.btnSplitBill.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSplitBill.Name = "btnSplitBill";
+            this.btnSplitBill.Size = new System.Drawing.Size(117, 69);
+            this.btnSplitBill.TabIndex = 1;
+            this.btnSplitBill.Text = "SPLIT BILL";
+            this.btnSplitBill.UseVisualStyleBackColor = false;
+            this.btnSplitBill.Click += new System.EventHandler(this.btnSplitBill_Click);
             // 
             // button13
             // 
@@ -257,6 +259,25 @@
             this.button13.TabIndex = 1;
             this.button13.Text = "SMS";
             this.button13.UseVisualStyleBackColor = false;
+            // 
+            // btnPrintnoBill
+            // 
+            this.btnPrintnoBill.AccessibleDescription = "";
+            this.btnPrintnoBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.btnPrintnoBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrintnoBill.FlatAppearance.BorderSize = 0;
+            this.btnPrintnoBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintnoBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintnoBill.ForeColor = System.Drawing.Color.White;
+            this.btnPrintnoBill.Location = new System.Drawing.Point(567, 0);
+            this.btnPrintnoBill.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrintnoBill.Name = "btnPrintnoBill";
+            this.tableLayoutPanel3.SetRowSpan(this.btnPrintnoBill, 2);
+            this.btnPrintnoBill.Size = new System.Drawing.Size(136, 138);
+            this.btnPrintnoBill.TabIndex = 2;
+            this.btnPrintnoBill.Text = "OK WITHOUT  BILL";
+            this.btnPrintnoBill.UseVisualStyleBackColor = false;
+            this.btnPrintnoBill.Click += new System.EventHandler(this.btnPrintnoBill_Click);
             // 
             // panel2
             // 
@@ -678,25 +699,6 @@
             this.ucKeyPadOrder1.TabIndex = 0;
             this.ucKeyPadOrder1.txtResult = null;
             // 
-            // btnPrintnoBill
-            // 
-            this.btnPrintnoBill.AccessibleDescription = "";
-            this.btnPrintnoBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
-            this.btnPrintnoBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPrintnoBill.FlatAppearance.BorderSize = 0;
-            this.btnPrintnoBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintnoBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintnoBill.ForeColor = System.Drawing.Color.White;
-            this.btnPrintnoBill.Location = new System.Drawing.Point(567, 0);
-            this.btnPrintnoBill.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrintnoBill.Name = "btnPrintnoBill";
-            this.tableLayoutPanel3.SetRowSpan(this.btnPrintnoBill, 2);
-            this.btnPrintnoBill.Size = new System.Drawing.Size(136, 138);
-            this.btnPrintnoBill.TabIndex = 2;
-            this.btnPrintnoBill.Text = "OK WITHOUT  BILL";
-            this.btnPrintnoBill.UseVisualStyleBackColor = false;
-            this.btnPrintnoBill.Click += new System.EventHandler(this.btnPrintnoBill_Click);
-            // 
             // frmPayMent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -767,9 +769,9 @@
         private System.Windows.Forms.Button btnHide;
         private System.Windows.Forms.Button btnExact;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnDiscount;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button btnSplitBill;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.FlowLayoutPanel flpPaymentType;
         private System.Windows.Forms.TextBox txtTender;

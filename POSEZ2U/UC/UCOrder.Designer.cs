@@ -74,7 +74,6 @@
             this.lblQuanityItem.Name = "lblQuanityItem";
             this.lblQuanityItem.Size = new System.Drawing.Size(65, 37);
             this.lblQuanityItem.TabIndex = 0;
-            this.lblQuanityItem.Text = "1";
             this.lblQuanityItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblQuanityItem.Click += new System.EventHandler(this.UCOrder_Click);
             // 

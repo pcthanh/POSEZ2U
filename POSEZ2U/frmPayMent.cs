@@ -12,6 +12,7 @@ using POSEZ2U.UC;
 using ServicePOS.Model;
 using ServicePOS;
 using SystemLog;
+using Printer;
 
 namespace POSEZ2U
 {
@@ -25,10 +26,12 @@ namespace POSEZ2U
         private int animationTime;
         private int flags;
         double balancetemp;
-        MoneyFortmat money = new MoneyFortmat(MoneyFortmat.AU_TYPE);
+        POSEZ2U.Class.MoneyFortmat money = new POSEZ2U.Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
         public OrderDateModel OrderMain;
         List<PayMentModel> lstPayment = new List<PayMentModel>();
+        List<PayMentModel> lstPaymentSplitBill = new List<PayMentModel>();
         List<InvoiceByCardModel> lstInvoiceByCard = new List<InvoiceByCardModel>();
+        List<InvoiceByCardModel> lstInvoiceByCardSplitBill = new List<InvoiceByCardModel>();
         CardModel cardTemp = new CardModel();
         DiscountModel Discount = new DiscountModel();
         bool lockTextChange = false;
@@ -254,6 +257,7 @@ namespace POSEZ2U
                     item.Total = cardTemp.SubTotal * 1000;
                     item.NameCard = cardTemp.CardName;
                     lstInvoiceByCard.Add(item);
+                    lstInvoiceByCardSplitBill.Add(item);
                     CheckTotal();
                     lockTextChange = false;
                 }
@@ -278,6 +282,31 @@ namespace POSEZ2U
                         }
                     }
                 }
+                
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayMent::::::::CheckPayment::::::::::::::::::::CashModel::::::::::::::::" + ex.Message);
+            }
+            return index;
+        }
+
+        private int CheckPaymentSplitBill(CashModel item)
+        {
+            int index = -1;
+            try
+            {
+                if (lstPaymentSplitBill.Count > 0)
+                {
+                    for (int i = 0; i < lstPaymentSplitBill.Count; i++)
+                    {
+                        if (lstPaymentSplitBill[i].PaymentTypeID == item.PaymentID)
+                        {
+                            index = i;
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -290,9 +319,11 @@ namespace POSEZ2U
             try
             {
                 int result = CheckPayment(item);
+                int resulSplit=CheckPaymentSplitBill(item);
                 if (result != -1)
                 {
                     lstPayment[result].Total = lstPayment[result].Total + item.Total;
+                    
                 }
                 else
                 {
@@ -300,6 +331,21 @@ namespace POSEZ2U
                     pay.PaymentTypeID = item.PaymentID;
                     pay.Total = item.Total;
                     lstPayment.Add(pay);
+                   
+                }
+                /////////////
+                if (resulSplit != -1)
+                {
+                    lstPaymentSplitBill[result].Total = lstPaymentSplitBill[result].Total + item.Total;
+
+                }
+                else
+                {
+                    PayMentModel pay = new PayMentModel();
+                    pay.PaymentTypeID = item.PaymentID;
+                    pay.Total = item.Total;
+                    
+                    lstPaymentSplitBill.Add(pay);
                 }
             }
             catch (Exception ex)
@@ -322,6 +368,34 @@ namespace POSEZ2U
                         }
                     }
                 }
+
+               
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayMent:::::::::CheckPayment:::::::::::::::::::::::::" + ex.Message);
+            }
+            return index;
+        }
+
+
+        private int CheckPaymentSplitBill(CardModel item)
+        {
+            int index = -1;
+            try
+            {
+                if (lstPaymentSplitBill.Count > 0)
+                {
+                    for (int i = 0; i < lstPaymentSplitBill.Count; i++)
+                    {
+                        if (lstPaymentSplitBill[i].PaymentTypeID == item.PayMenyID)
+                        {
+                            index = i;
+                        }
+                    }
+                }
+
+
             }
             catch (Exception ex)
             {
@@ -334,9 +408,11 @@ namespace POSEZ2U
             try
             {
                 int result = CheckPayment(item);
+                int resultSplitBill = CheckPaymentSplitBill(item);
                 if (result != -1)
                 {
                     lstPayment[result].Total = lstPayment[result].Total + item.SubTotal;
+                    lstPaymentSplitBill[result].Total = lstPaymentSplitBill[result].Total;
                 }
                 else
                 {
@@ -344,6 +420,22 @@ namespace POSEZ2U
                     pay.PaymentTypeID = item.PayMenyID;
                     pay.Total = item.SubTotal;
                     lstPayment.Add(pay);
+                    
+                }
+
+                //////////////
+                if (resultSplitBill != -1)
+                {
+                    lstPaymentSplitBill[result].Total = lstPaymentSplitBill[result].Total + item.SubTotal;
+                    
+                }
+                else
+                {
+                    PayMentModel pay = new PayMentModel();
+                    pay.PaymentTypeID = item.PayMenyID;
+                    pay.Total = item.SubTotal;
+                   
+                    lstPaymentSplitBill.Add(pay);
                 }
             }
             catch (Exception ex)
@@ -579,6 +671,23 @@ namespace POSEZ2U
                 frm.ShowDialog();
             }
 
+        }
+
+        private void btnSplitBill_Click(object sender, EventArgs e)
+        {
+            UCSplitBill ucSplitBill = new UCSplitBill();
+            ucSplitBill.lblMethodType.Text = "Split Bill";
+            flpPaymentType.Controls.Add(ucSplitBill);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OrderMain.ListPayment = lstPaymentSplitBill;
+            OrderMain.ListInvoiceByCard = lstInvoiceByCardSplitBill;
+            PrinterServer printServer = new PrinterServer(2);
+            printServer.Print(OrderMain);
+            lstInvoiceByCardSplitBill = new List<InvoiceByCardModel>();
+            lstPaymentSplitBill = new List<PayMentModel>();
         }
     }
 }

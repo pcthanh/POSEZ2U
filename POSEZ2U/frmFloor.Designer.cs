@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
@@ -51,7 +52,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -70,6 +70,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(863, 42);
             this.panel1.TabIndex = 0;
+            // 
+            // ucInfoTop1
+            // 
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(863, 42);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -275,14 +283,6 @@
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(843, 10);
             this.panel18.TabIndex = 6;
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(863, 42);
-            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel6
             // 

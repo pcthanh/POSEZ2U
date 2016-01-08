@@ -455,6 +455,7 @@ namespace POSEZ2U
                 
                 UCOrder ucOrder = new UCOrder();
                 ucOrder.lblNameItem.Text = items.ProductName;
+                ucOrder.lblQuanityItem.Text = "1";
                 ucOrder.Tag = items;
                 ucOrder.lblPriceItem.Text = money.Format2(items.Price.ToString());
                 ucOrder.Click += ucOrder_Click;

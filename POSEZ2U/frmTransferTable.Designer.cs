@@ -114,8 +114,9 @@
             this.lblNoTable.Name = "lblNoTable";
             this.lblNoTable.Size = new System.Drawing.Size(63, 53);
             this.lblNoTable.TabIndex = 0;
-            this.lblNoTable.Text = "label2";
+            this.lblNoTable.Text = "#";
             this.lblNoTable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNoTable.Click += new System.EventHandler(this.lblNoTable_Click);
             // 
             // panel5
             // 
@@ -322,8 +323,9 @@
             this.lblNewTable.Name = "lblNewTable";
             this.lblNewTable.Size = new System.Drawing.Size(71, 53);
             this.lblNewTable.TabIndex = 0;
-            this.lblNewTable.Text = "label3";
+            this.lblNewTable.Text = "#";
             this.lblNewTable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNewTable.Click += new System.EventHandler(this.lblNewTable_Click);
             // 
             // panel9
             // 
