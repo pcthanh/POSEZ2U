@@ -13,5 +13,8 @@ namespace POSEZ2U.Class
         {
             get; set;
         }
+
+        public static int ShiffID { get; set; }
+
     }
 }
