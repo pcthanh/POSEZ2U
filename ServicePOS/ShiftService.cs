@@ -88,7 +88,7 @@ namespace ServicePOS
                 _context.SaveChanges();
 
 
-                return 1;
+                return data.ShiftHistoryID;
             }
             catch (Exception ex)
             {
@@ -120,7 +120,9 @@ namespace ServicePOS
 
                         _context.Entry(data).State = EntityState.Modified;
                         _context.SaveChanges();
-                        return 1;
+
+
+                        return data.ShiftHistoryID; 
                     }
                     return 0;
                 }
