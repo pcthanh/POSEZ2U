@@ -1202,8 +1202,14 @@ namespace POSEZ2U
 
             if (OrderMain.ListOrderDetail.Count > 0)
             {
-                PrinterServer print = new PrinterServer(3);
-                print.Print(OrderMain);
+                int result = OrderService.UpdateOrder(OrderMain);
+                if (result == 1)
+                {
+                    PrinterServer print = new PrinterServer(3);
+                    print.Print(OrderMain);
+                    CallBackStatusOrder(OrderMain);
+                    this.Close();
+                }
             }
             else
             {

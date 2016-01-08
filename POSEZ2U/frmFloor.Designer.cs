@@ -146,13 +146,16 @@
             // 
             this.btnTool.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(175)))));
             this.btnTool.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTool.FlatAppearance.BorderSize = 0;
+            this.btnTool.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(124)))), ((int)(((byte)(175)))));
+            this.btnTool.FlatAppearance.BorderSize = 2;
             this.btnTool.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTool.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTool.Location = new System.Drawing.Point(0, 0);
             this.btnTool.Name = "btnTool";
+            this.btnTool.Padding = new System.Windows.Forms.Padding(2);
             this.btnTool.Size = new System.Drawing.Size(187, 42);
             this.btnTool.TabIndex = 0;
+            this.btnTool.TabStop = false;
             this.btnTool.Text = "TOOL";
             this.btnTool.UseVisualStyleBackColor = false;
             this.btnTool.Click += new System.EventHandler(this.btnTool_Click);
