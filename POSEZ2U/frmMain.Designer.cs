@@ -33,10 +33,11 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.lblNameUser = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.lbWarning = new System.Windows.Forms.Label();
+            this.picWarning = new System.Windows.Forms.PictureBox();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnTakeAway = new System.Windows.Forms.Button();
             this.btnStore = new System.Windows.Forms.Button();
             this.btnWorkingPeriod = new System.Windows.Forms.Button();
@@ -45,22 +46,21 @@
             this.btnSettingAll = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWarning)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
             this.panel2.Controls.Add(this.tableLayoutPanel2);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.pictureBox5);
+            this.panel2.Controls.Add(this.lbWarning);
+            this.panel2.Controls.Add(this.picWarning);
             this.panel2.Controls.Add(this.btnLogOut);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 462);
@@ -106,25 +106,25 @@
             this.lblNameUser.Text = "LOC";
             this.lblNameUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // lbWarning
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(157, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(396, 24);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Please end working period before log out!\r\n";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWarning.ForeColor = System.Drawing.Color.Red;
+            this.lbWarning.Location = new System.Drawing.Point(157, 16);
+            this.lbWarning.Name = "lbWarning";
+            this.lbWarning.Size = new System.Drawing.Size(396, 24);
+            this.lbWarning.TabIndex = 2;
+            this.lbWarning.Text = "Please end working period before log out!\r\n";
+            this.lbWarning.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox5
+            // picWarning
             // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(114, 9);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(37, 37);
-            this.pictureBox5.TabIndex = 1;
-            this.pictureBox5.TabStop = false;
+            this.picWarning.Image = ((System.Drawing.Image)(resources.GetObject("picWarning.Image")));
+            this.picWarning.Location = new System.Drawing.Point(114, 9);
+            this.picWarning.Name = "picWarning";
+            this.picWarning.Size = new System.Drawing.Size(37, 37);
+            this.picWarning.TabIndex = 1;
+            this.picWarning.TabStop = false;
             // 
             // btnLogOut
             // 
@@ -149,6 +149,34 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(944, 420);
             this.panel3.TabIndex = 2;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel3.BackgroundImage")));
+            this.tableLayoutPanel3.ColumnCount = 5;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.53247F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.64332F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.64621F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.64554F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.53247F));
+            this.tableLayoutPanel3.Controls.Add(this.btnTakeAway, 2, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnStore, 3, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnWorkingPeriod, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnEatIn, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnReport, 2, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnSettingAll, 3, 3);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 6;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(944, 420);
+            this.tableLayoutPanel3.TabIndex = 3;
             // 
             // btnTakeAway
             // 
@@ -248,34 +276,6 @@
             this.ucInfoTop1.Size = new System.Drawing.Size(944, 39);
             this.ucInfoTop1.TabIndex = 0;
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel3.BackgroundImage")));
-            this.tableLayoutPanel3.ColumnCount = 5;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.53247F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.64332F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.64621F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.64554F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.53247F));
-            this.tableLayoutPanel3.Controls.Add(this.btnTakeAway, 2, 2);
-            this.tableLayoutPanel3.Controls.Add(this.btnStore, 3, 2);
-            this.tableLayoutPanel3.Controls.Add(this.btnWorkingPeriod, 1, 3);
-            this.tableLayoutPanel3.Controls.Add(this.btnEatIn, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.btnReport, 2, 3);
-            this.tableLayoutPanel3.Controls.Add(this.btnSettingAll, 3, 3);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 6;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 132F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(944, 420);
-            this.tableLayoutPanel3.TabIndex = 3;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,10 +298,10 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWarning)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -310,8 +310,6 @@
 
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnLogOut;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Panel panel3;
@@ -325,6 +323,8 @@
         private UC.UCInfoTop ucInfoTop1;
         public System.Windows.Forms.Label lblNameUser;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        public System.Windows.Forms.Label lbWarning;
+        public System.Windows.Forms.PictureBox picWarning;
 
     }
 }

@@ -46,11 +46,20 @@ namespace POSEZ2U
             Button EatIn = (Button)sender;
             var menuid = Convert.ToInt32(EatIn.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
+            var shiftid = UserLoginModel.ShiffID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
             if (result > 0)
             {
-                frmFloor frm = new frmFloor();
-                frm.Show();
+                if (shiftid > 0)
+                {
+                    frmFloor frm = new frmFloor();
+                    frm.Show();
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
+                    frm.ShowDialog();
+                }
                
                 
             }
@@ -71,6 +80,7 @@ namespace POSEZ2U
             frmDailogExit frm = new frmDailogExit();
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                UserLoginModel.UserLoginInfo = new StaffModel();
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
             }
@@ -101,20 +111,30 @@ namespace POSEZ2U
             Button TakeAway = (Button)sender;
             var menuid = Convert.ToInt32(TakeAway.Tag);
             var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
+            var shiftid = UserLoginModel.ShiffID;
             var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            frmTakeAway frm = new frmTakeAway();
-            frm.ShowDialog();
-            //if (result > 0)
-            //{
-            //    frmFloor frm = new frmFloor();
-            //    this.Hide();
-            //    frm.ShowDialog();
-            //}
-            //else
-            //{
-            //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-            //    frm.ShowDialog();
-            //}
+            //frmTakeAway frm = new frmTakeAway();
+            //frm.ShowDialog();
+            if (result > 0)
+            {
+                if (shiftid > 0)
+                {
+                    frmFloor frm = new frmFloor();
+                    this.Hide();
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
+                    frm.ShowDialog();
+                }
+
+            }
+            else
+            {
+                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+                frm.ShowDialog();
+            }
 
 
         }
@@ -170,6 +190,19 @@ namespace POSEZ2U
             }
             else
             {
+
+                var shiftid = UserLoginModel.ShiffID;
+                if (shiftid > 0)
+                {
+                    this.picWarning.Show();
+                    this.lbWarning.Show();
+                }
+                else
+                {
+                    this.picWarning.Hide();
+                    this.lbWarning.Hide();
+                }
+
                 btnEatIn.Tag = 1;
 
 
