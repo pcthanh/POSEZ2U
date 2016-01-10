@@ -920,6 +920,9 @@ namespace POSEZ2U
                         else
                         {
                             OrderMain.FloorID = TableID;
+                            OrderMain.ShiftID = UserLoginModel.ShiffID;
+                            OrderMain.CreateBy = UserLoginModel.UserLoginInfo.StaffID;
+                            OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
                             int OrderID = OrderService.CountOrder() + 1;
                             OrderMain.OrderID = OrderID;
                         }
@@ -947,6 +950,9 @@ namespace POSEZ2U
                     else
                     {
                         OrderMain.FloorID = TableID;
+                        OrderMain.ShiftID = UserLoginModel.ShiffID;
+                        OrderMain.CreateBy = UserLoginModel.UserLoginInfo.StaffID;
+                        OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
                         int OrderID = OrderService.CountOrder() + 1;
                         OrderMain.OrderID = OrderID;
                     }
@@ -1002,6 +1008,9 @@ namespace POSEZ2U
                         {
                             OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
                             OrderMain.ClientID = ClientID;
+                            OrderMain.ShiftID = UserLoginModel.ShiffID;
+                            OrderMain.CreateBy = UserLoginModel.UserLoginInfo.StaffID;
+                            OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
                             int OrderID = OrderService.CountOrder() + 1;
                             OrderMain.OrderID = OrderID;
                         }
@@ -1030,6 +1039,9 @@ namespace POSEZ2U
                     {
                         OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
                         OrderMain.ClientID = ClientID;
+                        OrderMain.ShiftID = UserLoginModel.ShiffID;
+                        OrderMain.CreateBy = UserLoginModel.UserLoginInfo.StaffID;
+                        OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
                         int OrderID = OrderService.CountOrder() + 1;
                         OrderMain.OrderID = OrderID;
                     }

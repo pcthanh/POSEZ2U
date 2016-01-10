@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using POSEZ2U.Class;
 using ServicePOS;
 using ServicePOS.Model;
+using SystemLog;
 
 namespace POSEZ2U
 {
@@ -43,30 +44,39 @@ namespace POSEZ2U
         }
         private void btnEatIn_Click(object sender, EventArgs e)
         {
-            Button EatIn = (Button)sender;
-            var menuid = Convert.ToInt32(EatIn.Tag);
-            var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
-            var shiftid = UserLoginModel.ShiffID;
-            var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            if (result > 0)
+            try
             {
-                if (shiftid > 0)
-                {
-                    frmFloor frm = new frmFloor();
-                    frm.Show();
-                }
-                else
-                {
-                    frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
-                    frm.ShowDialog();
-                }
-               
-                
+                Button EatIn = (Button)sender;
+                var menuid = Convert.ToInt32(EatIn.Tag);
+                var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
+                var shiftid = UserLoginModel.ShiffID;
+                var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
+                frmFloor frm = new frmFloor();
+                frm.Show();
+                //if (result > 0)
+                //{
+                //    if (shiftid > 0)
+                //    {
+                //        frmFloor frm = new frmFloor();
+                //        frm.Show();
+                //    }
+                //    else
+                //    {
+                //        frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
+                //        frm.ShowDialog();
+                //    }
+
+
+                //}
+                //else
+                //{
+                //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+                //    frm.ShowDialog();
+                //}
             }
-            else
+            catch (Exception ex)
             {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
+                LogPOS.WriteLog("frmMmain:::::::::::::::::::::::btnEatIn_Click:::::::::::::::::" + ex.Message);
             }
            
         }
@@ -88,54 +98,67 @@ namespace POSEZ2U
 
         private void btnSettingAll_Click(object sender, EventArgs e)
         {
-            Button SettingAll = (Button)sender;
-            var menuid = Convert.ToInt32(SettingAll.Tag);
-            var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
-            var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            frmSettingAll frm = new frmSettingAll();
-            frm.ShowDialog();
-            //if (result > 0)
-            //{
-            //    frmSettingAll frm = new frmSettingAll();
-            //    frm.ShowDialog();
-            //}
-            //else
-            //{
-            //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-            //    frm.ShowDialog();
-            //}
+            try
+            {
+                Button SettingAll = (Button)sender;
+                var menuid = Convert.ToInt32(SettingAll.Tag);
+                var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
+                var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
+                frmSettingAll frm = new frmSettingAll();
+                frm.ShowDialog();
+                //if (result > 0)
+                //{
+                //    frmSettingAll frm = new frmSettingAll();
+                //    frm.ShowDialog();
+                //}
+                //else
+                //{
+                //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+                //    frm.ShowDialog();
+                //}
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmMain::::::::::::::::::::::::btnSettingAll_Click:::::::::::::::::::" + ex.Message);
+            }
         }
 
         private void btnTakeAway_Click_1(object sender, EventArgs e)
         {
-            Button TakeAway = (Button)sender;
-            var menuid = Convert.ToInt32(TakeAway.Tag);
-            var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
-            var shiftid = UserLoginModel.ShiffID;
-            var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-            //frmTakeAway frm = new frmTakeAway();
-            //frm.ShowDialog();
-            if (result > 0)
+            try
             {
-                if (shiftid > 0)
+                Button TakeAway = (Button)sender;
+                var menuid = Convert.ToInt32(TakeAway.Tag);
+                var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
+                var shiftid = UserLoginModel.ShiffID;
+                var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
+                //frmTakeAway frm = new frmTakeAway();
+                //frm.ShowDialog();
+                if (result > 0)
                 {
-                    frmFloor frm = new frmFloor();
-                    this.Hide();
-                    frm.ShowDialog();
+                    if (shiftid > 0)
+                    {
+                        frmFloor frm = new frmFloor();
+                        this.Hide();
+                        frm.ShowDialog();
+                    }
+                    else
+                    {
+                        frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
+                        frm.ShowDialog();
+                    }
+
                 }
                 else
                 {
-                    frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
+                    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
                     frm.ShowDialog();
                 }
-
             }
-            else
+            catch (Exception ex)
             {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
+                LogPOS.WriteLog("frmMain:::::::::::::::::::::::::::::::btnTakeAway_Click_1::::::::::::::::::::::;" + ex.Message);
             }
-
 
         }
 
