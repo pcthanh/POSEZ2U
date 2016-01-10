@@ -21,6 +21,7 @@ namespace ServicePOS.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
         public int Seat { get; set; }
+        public int ShiftID { get; set; }
         public bool IsLoadFromData { get; set; }
         public List<InvoiceDetailModel> ListOrderDetail = new List<InvoiceDetailModel>();
         public List<CardModel> ListCard = new List<CardModel>();

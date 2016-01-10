@@ -48,6 +48,7 @@ namespace ServicePOS
             orderDate.UpdateDate = DateTime.Now;
             orderDate.Note = itemOrder.Note ?? "";
             orderDate.Seat = itemOrder.Seat;
+            orderDate.ShiftID = itemOrder.ShiftID;
             return orderDate;
         }
         private List<ORDER_DETAIL_DATE> CopyOrderDetailDate(OrderDateModel itemOrder)
@@ -268,7 +269,22 @@ namespace ServicePOS
 
         public int UpdateOrder(OrderDateModel idOrder)
         {
-            throw new NotImplementedException();
+            int result = 0;
+            try
+            {
+                using (var Tranx = _context.Database.BeginTransaction())
+                {
+                    _context.Database.ExecuteSqlCommand("update ORDER_DATE set Status=2 where OrderID='" + idOrder.OrderID + "'");
+                    _context.SaveChanges();
+                    Tranx.Commit();
+                    result = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("OrderService:::::::::::::::::::::::UpdateOrder::::::::::::::::;" + ex.Message);
+            }
+            return result;
         }
 
        
@@ -302,6 +318,9 @@ namespace ServicePOS
                 OrderMain.FloorID = dataOrder.FloorID;
                 OrderMain.OrderID = dataOrder.OrderID;
                 OrderMain.TotalAmount = dataOrder.TotalAmount;
+                OrderMain.ShiftID = dataOrder.ShiftID ?? 0;
+                OrderMain.CreateBy = dataOrder.CreateBy;
+                OrderMain.UpdateBy = dataOrder.UpdateBy;
                 var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
                  item => item.OrderID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
@@ -471,6 +490,9 @@ namespace ServicePOS
                     OrderTKA.FloorID = dataOrder.FloorID;
                     OrderTKA.OrderID = dataOrder.OrderID;
                     OrderTKA.TotalAmount = dataOrder.TotalAmount;
+                    OrderTKA.ShiftID = dataOrder.ShiftID ?? 0;
+                    OrderTKA.CreateBy = dataOrder.CreateBy;
+                    OrderTKA.UpdateBy = dataOrder.UpdateBy;
                     var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
                      item => item.OrderID, (order, item) => new { order, item })
                      .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
@@ -487,9 +509,8 @@ namespace ServicePOS
                          KeyItem = x.pro.item.KeyItem ?? 0,
                          Seat = x.pro.item.Seat ?? 0,
                          DynID = x.pro.item.DynId ?? 0,
-                         OrderDetailID = x.pro.item.OrderDetailID
-
-
+                         OrderDetailID = x.pro.item.OrderDetailID,
+                         
                      });
                     var openitems = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_OPEN_ITEM, x => x.DynId, openitem => openitem.dynID, (x, openitem) => new { x, openitem })
                                 .Where(a => a.x.DynId == a.openitem.dynID && a.x.OrderID == dataOrder.OrderID)

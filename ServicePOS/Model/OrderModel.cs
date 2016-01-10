@@ -20,6 +20,7 @@ namespace ServicePOS.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
         public int Seat { get; set; }
+        public int ShiftID { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         
         public void addItemToList(OrderDetailModel item)
