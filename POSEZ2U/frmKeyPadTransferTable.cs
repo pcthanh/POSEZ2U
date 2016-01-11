@@ -14,10 +14,11 @@ namespace POSEZ2U
 {
     public partial class frmKeyPadTransferTable : Form
     {
-        public frmKeyPadTransferTable(Label lbl)
+        public frmKeyPadTransferTable(Label lbl,int Key)
         {
             InitializeComponent();
             lblMAin = lbl;
+            KeyShowForm = Key;
             Point positionInForm = this.GetPositionInForm(lblMAin);
             if ((positionInForm.X + base.Width) > Screen.PrimaryScreen.Bounds.Width)
             {
@@ -28,10 +29,12 @@ namespace POSEZ2U
             //512,176
             base.Location = p;
         }
+        int KeyShowForm;
         
         Label lblMAin;
         public static int chk = 0;
         public frmTransferTable.SendTableNO SendTable;
+        public frmSeat.SendTableNO SendTableSeat;
         public Point GetPositionInForm(Control ctrl)
         {
 
@@ -57,11 +60,29 @@ namespace POSEZ2U
 
         private void GetText(Button btn)
         {
-            SendTable(Convert.ToInt32(btn.Text));
+            
+
+           
+            if (KeyShowForm == 1)
+            {
+                SendTableSeat(Convert.ToInt32(btn.Text));
+            }
+            else
+            {
+                SendTable(Convert.ToInt32(btn.Text));
+            }
         }
         private void GetText( int del)
         {
-            SendTable(del);
+            
+            if (KeyShowForm == 1)
+            {
+                SendTableSeat(del);
+            }
+            else
+            {
+                SendTable(del);
+            }
         }
         private void btn1_Click(object sender, EventArgs e)
         {

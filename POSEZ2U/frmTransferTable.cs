@@ -203,7 +203,7 @@ namespace POSEZ2U
         }
         private void lblNoTable_Click(object sender, EventArgs e)
         {
-            frmKeyPadTransferTable frm = new frmKeyPadTransferTable(lblNoTable);
+            frmKeyPadTransferTable frm = new frmKeyPadTransferTable(lblNoTable,2);
             frm.SendTable = new SendTableNO(this.TableNo);
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -214,7 +214,7 @@ namespace POSEZ2U
 
         private void lblNewTable_Click(object sender, EventArgs e)
         {
-            frmKeyPadTransferTable frm = new frmKeyPadTransferTable(lblNewTable);
+            frmKeyPadTransferTable frm = new frmKeyPadTransferTable(lblNewTable,2);
             frm.SendTable = new SendTableNO(this.TableNoNew);
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -365,6 +365,11 @@ namespace POSEZ2U
             {
                 LogPOS.WriteLog("frmTransferTable::::::::::::::::::btnLeft_Click::::::::::::::::::::" + ex.Message);
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         } 
     }
 }

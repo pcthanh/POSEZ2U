@@ -67,6 +67,12 @@ namespace POSEZ2U
             }
         }
 
+        private void btnSeat_Click(object sender, EventArgs e)
+        {
+            frmSeat frm = new frmSeat();
+            frm.ShowDialog();
+        }
+
     }
 
 }

@@ -733,12 +733,7 @@ namespace POSEZ2U
 
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    if (indexControl > 0)
-                    {
-
-                    }
-                    else
-                    {
+                    
                         seat = frm.NumberSeat;
                         OrderMain.addSeat(seat);
                         UCSeat ucSeat = new UCSeat();
@@ -748,7 +743,7 @@ namespace POSEZ2U
                         flpOrder.Controls.Add(ucSeat);
                         flagUcSeatClick = 0;
                         ClearBackColorSeat();
-                    }
+                    
                 }
             }
             catch (Exception ex)
