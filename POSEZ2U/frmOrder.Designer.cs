@@ -74,9 +74,9 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -373,8 +373,8 @@
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.41072F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.625F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -445,7 +445,7 @@
             this.btnJoinTable.Location = new System.Drawing.Point(74, 0);
             this.btnJoinTable.Margin = new System.Windows.Forms.Padding(0);
             this.btnJoinTable.Name = "btnJoinTable";
-            this.btnJoinTable.Size = new System.Drawing.Size(74, 64);
+            this.btnJoinTable.Size = new System.Drawing.Size(78, 64);
             this.btnJoinTable.TabIndex = 1;
             this.btnJoinTable.Text = "Join Table";
             this.btnJoinTable.UseVisualStyleBackColor = false;
@@ -457,10 +457,10 @@
             this.btnTransferTable.FlatAppearance.BorderSize = 0;
             this.btnTransferTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransferTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransferTable.Location = new System.Drawing.Point(148, 0);
+            this.btnTransferTable.Location = new System.Drawing.Point(152, 0);
             this.btnTransferTable.Margin = new System.Windows.Forms.Padding(0);
             this.btnTransferTable.Name = "btnTransferTable";
-            this.btnTransferTable.Size = new System.Drawing.Size(74, 64);
+            this.btnTransferTable.Size = new System.Drawing.Size(70, 64);
             this.btnTransferTable.TabIndex = 1;
             this.btnTransferTable.Text = "Transfer Table";
             this.btnTransferTable.UseVisualStyleBackColor = false;
@@ -479,7 +479,7 @@
             this.btnVoid.Location = new System.Drawing.Point(74, 64);
             this.btnVoid.Margin = new System.Windows.Forms.Padding(0);
             this.btnVoid.Name = "btnVoid";
-            this.btnVoid.Size = new System.Drawing.Size(74, 64);
+            this.btnVoid.Size = new System.Drawing.Size(78, 64);
             this.btnVoid.TabIndex = 1;
             this.btnVoid.Text = "VOID";
             this.btnVoid.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -495,10 +495,10 @@
             this.btnVoidAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVoidAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVoidAll.ForeColor = System.Drawing.Color.White;
-            this.btnVoidAll.Location = new System.Drawing.Point(148, 64);
+            this.btnVoidAll.Location = new System.Drawing.Point(152, 64);
             this.btnVoidAll.Margin = new System.Windows.Forms.Padding(0);
             this.btnVoidAll.Name = "btnVoidAll";
-            this.btnVoidAll.Size = new System.Drawing.Size(74, 64);
+            this.btnVoidAll.Size = new System.Drawing.Size(70, 64);
             this.btnVoidAll.TabIndex = 1;
             this.btnVoidAll.Text = "VOID ALL";
             this.btnVoidAll.UseVisualStyleBackColor = false;
@@ -649,6 +649,19 @@
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(296, 64);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 64);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "OPEN TILL";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ucKeyPadOrder1
             // 
             this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -665,19 +678,6 @@
             this.ucInfoTop1.Name = "ucInfoTop1";
             this.ucInfoTop1.Size = new System.Drawing.Size(954, 42);
             this.ucInfoTop1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(296, 64);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 64);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "OPEN TILL";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmOrder
             // 

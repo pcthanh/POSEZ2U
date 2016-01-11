@@ -896,6 +896,7 @@ namespace POSEZ2U
                 {
                     OrderMain.IsLoadFromData = true;
                     lblSeat.Text = OrderMain.Seat.ToString();
+                    lblStatus.Text = "OLD";
                     for (int seat = 1; seat <= OrderMain.Seat; seat++)
                     {
                         UCSeat ucSeat = new UCSeat();
@@ -930,6 +931,7 @@ namespace POSEZ2U
                             OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
                             int OrderID = OrderService.CountOrder() + 1;
                             OrderMain.OrderID = OrderID;
+                            lblStatus.Text = "NEW";
                         }
                     }
                 }
@@ -938,6 +940,7 @@ namespace POSEZ2U
                     if (OrderMain.ListOrderDetail.Count > 0)
                     {
                         OrderMain.IsLoadFromData = true;
+                        lblStatus.Text = "OLD";
                         for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                         {
                             addOrder(OrderMain.ListOrderDetail[i]);
@@ -960,6 +963,8 @@ namespace POSEZ2U
                         OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
                         int OrderID = OrderService.CountOrder() + 1;
                         OrderMain.OrderID = OrderID;
+                        lblStatus.Text = "NEW";
+
                     }
                 }
                 
