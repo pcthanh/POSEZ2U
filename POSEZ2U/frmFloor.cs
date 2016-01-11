@@ -42,6 +42,7 @@ namespace POSEZ2U
         OrderDateModel OrderMain = new OrderDateModel();
         public delegate void CallBackStatusOrder(OrderDateModel orderMain);
         private delegate void ChangeTextCallback(string text, Control control);
+        public delegate void AfterJoinTable();
         const int AW_HOR_POSITIVE = 1;
         const int AW_HOR_NEGATIVE = 2;
         const int AW_VER_POSITIVE = 4;
@@ -230,7 +231,11 @@ namespace POSEZ2U
             frmTool frm = new frmTool(btnTool);
             System.Windows.Forms.Form f1 = System.Windows.Forms.Application.OpenForms["frmTool"];
             if (f1 == null)
+            {
+                frm.AfterJoinTable = new AfterJoinTable(this.CheckStatusTable);
                 frm.Show();
+                
+            }
             else
                 f1.Close();
         }

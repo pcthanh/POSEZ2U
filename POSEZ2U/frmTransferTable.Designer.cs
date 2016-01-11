@@ -214,6 +214,7 @@
             this.btnRight.Size = new System.Drawing.Size(82, 71);
             this.btnRight.TabIndex = 0;
             this.btnRight.UseVisualStyleBackColor = true;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
             // 
             // btnRightAll
             // 

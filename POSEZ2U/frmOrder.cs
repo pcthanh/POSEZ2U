@@ -496,8 +496,6 @@ namespace POSEZ2U
                 ucOder.BackColor = Color.FromArgb(0, 102, 204);
                 ucOder.ForeColor = Color.FromArgb(255, 255, 255);
                 var listModifire = ModifireService.GetModifireByProduct(item.ProductID);
-                
-                
                 if (listModifire.Count() > 0)
                 {
                     flowLayoutPanel1.Controls.Clear();
@@ -735,15 +733,22 @@ namespace POSEZ2U
 
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    seat = frm.NumberSeat;
-                    OrderMain.addSeat(seat);
-                    UCSeat ucSeat = new UCSeat();
-                    ucSeat.lblSeat.Text = "Seat " + seat;
-                    ucSeat.Click += ucSeat_Click;
-                    lblSeat.Text = seat.ToString();
-                    flpOrder.Controls.Add(ucSeat);
-                    flagUcSeatClick = 0;
-                    ClearBackColorSeat();
+                    if (indexControl > 0)
+                    {
+
+                    }
+                    else
+                    {
+                        seat = frm.NumberSeat;
+                        OrderMain.addSeat(seat);
+                        UCSeat ucSeat = new UCSeat();
+                        ucSeat.lblSeat.Text = "Seat " + seat;
+                        ucSeat.Click += ucSeat_Click;
+                        lblSeat.Text = seat.ToString();
+                        flpOrder.Controls.Add(ucSeat);
+                        flagUcSeatClick = 0;
+                        ClearBackColorSeat();
+                    }
                 }
             }
             catch (Exception ex)

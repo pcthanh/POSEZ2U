@@ -26,6 +26,7 @@ namespace POSEZ2U
             base.Location = p;
         }
         Button btnMani;
+        public frmFloor.AfterJoinTable AfterJoinTable;
         public static int chk = 0;
         public Point GetPositionInForm(Control ctrl)
         {
@@ -48,13 +49,22 @@ namespace POSEZ2U
         private void btnJoinTable_Click(object sender, EventArgs e)
         {
             frmJoinTable frm = new frmJoinTable();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+                AfterJoinTable();
+            }
+
         }
 
         private void btnTranferTable_Click(object sender, EventArgs e)
         {
             frmTransferTable frm = new frmTransferTable();
-            frm.ShowDialog();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Close();
+                AfterJoinTable();
+            }
         }
 
     }

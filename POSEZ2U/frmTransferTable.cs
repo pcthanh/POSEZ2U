@@ -228,7 +228,9 @@ namespace POSEZ2U
             {
                 flpOldTable.Controls.Clear();
                 LoadOrder(lblNoTable.Text, 0,flpNewTable);
-                
+                OrderSlpitNew = OrderMain;
+                OrderSlpitNew.FloorID = lblNewTable.Text;
+                OrderMain.isTransferTableAll = 1;
             }
             catch (Exception ex)
             {
@@ -243,6 +245,7 @@ namespace POSEZ2U
                 flpNewTable.Controls.Clear();
                 flpOldTable.Controls.Clear();
                 LoadOrder(lblNoTable.Text, 0, flpOldTable);
+                OrderMain.isTransferTableAll = 0;
                 OrderSlpitNew.ListOrderDetail.Clear();
             }
             catch (Exception ex)
@@ -291,6 +294,7 @@ namespace POSEZ2U
                         OrderMain.ListOrderDetail.Remove(itemOrder);
                         OrderSlpitNew.SubTotal();
                         OrderMain.SubTotal();
+                        OrderMain.isTransferTableAll = 0;
                         RefeshOrderMain(OrderMain,flpOldTable);
                         RefeshOrderMain(OrderSlpitNew, flpNewTable);
                        
@@ -309,16 +313,57 @@ namespace POSEZ2U
         {
             if (flpNewTable.Controls.Count > 0)
             {
-                if (OrderSlpitNew.FloorID == "#")
+                if (OrderSlpitNew.FloorID == "#" )
                 {
                     frmMessager frm = new frmMessager("Messager", "Input TableNo New");
                     frm.ShowDialog();
                 }
                 else
                 {
-                    OrderService.InsertOrder(OrderMain);
                     OrderService.InsertOrder(OrderSlpitNew);
+                    if (OrderMain.isTransferTableAll == 1)
+                    {
+                        OrderService.DeleteJoinTableAll(OrderMain);
+                    }
+                    else
+                    {
+                        OrderService.InsertOrder(OrderMain);
+                        
+                    }
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
+            }
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (Control ctr in flpNewTable.Controls)
+                {
+
+                    UCOrder ucOrder = (UCOrder)ctr;
+                    if (ucOrder.BackColor == Color.FromArgb(0, 102, 204))
+                    {
+                        OrderDetailModel itemOrder = (OrderDetailModel)ucOrder.Tag;
+                        OrderSlpitNew.FloorID = lblNewTable.Text;
+                        OrderSlpitNew.ShiftID = OrderMain.ShiftID;
+                        OrderSlpitNew.ListOrderDetail.Remove(itemOrder);
+                        OrderMain.addItemToList(itemOrder);
+                        OrderSlpitNew.SubTotal();
+                        OrderMain.SubTotal();
+                        OrderMain.isTransferTableAll = 0;
+                        RefeshOrderMain(OrderMain, flpOldTable);
+                        RefeshOrderMain(OrderSlpitNew, flpNewTable);
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmTransferTable::::::::::::::::::btnLeft_Click::::::::::::::::::::" + ex.Message);
             }
         } 
     }

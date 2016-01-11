@@ -26,6 +26,7 @@ namespace POSEZ2U
             e.Graphics.FillRectangle(Brushes.LimeGreen, e.ClipRectangle);
         }
         MoneyFortmat monetFormat = new MoneyFortmat(MoneyFortmat.AU_TYPE);
+        public frmFloor.CallBackStatusOrder CallBackOrder;
         private delegate void ChangeTextCallback(string text, Control control);
         List<OrderJoinTableModel> lstJoinTable = new List<OrderJoinTableModel>();
         private IOrderService _orderService;
@@ -195,7 +196,10 @@ namespace POSEZ2U
                     {
                         int result = OrderService.JoinTable(lstJoinTable);
                         if (result == 1)
+                        {
                             this.Close();
+                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        }
                     }
                 }
             }
