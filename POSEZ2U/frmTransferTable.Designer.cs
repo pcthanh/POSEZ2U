@@ -184,6 +184,7 @@
             this.btnLeft.Size = new System.Drawing.Size(82, 71);
             this.btnLeft.TabIndex = 0;
             this.btnLeft.UseVisualStyleBackColor = true;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
             // 
             // btnLeftAll
             // 
@@ -198,6 +199,7 @@
             this.btnLeftAll.Size = new System.Drawing.Size(82, 71);
             this.btnLeftAll.TabIndex = 0;
             this.btnLeftAll.UseVisualStyleBackColor = true;
+            this.btnLeftAll.Click += new System.EventHandler(this.btnLeftAll_Click);
             // 
             // btnRight
             // 
@@ -226,6 +228,7 @@
             this.btnRightAll.Size = new System.Drawing.Size(82, 71);
             this.btnRightAll.TabIndex = 0;
             this.btnRightAll.UseVisualStyleBackColor = true;
+            this.btnRightAll.Click += new System.EventHandler(this.btnRightAll_Click);
             // 
             // btnCancel
             // 
@@ -255,6 +258,7 @@
             this.btnOK.Size = new System.Drawing.Size(82, 73);
             this.btnOK.TabIndex = 0;
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // panel7
             // 

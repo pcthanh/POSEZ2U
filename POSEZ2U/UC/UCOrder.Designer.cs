@@ -57,9 +57,10 @@
             this.lblNameItem.AutoSize = true;
             this.lblNameItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNameItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNameItem.Location = new System.Drawing.Point(3, 0);
+            this.lblNameItem.Location = new System.Drawing.Point(0, 0);
+            this.lblNameItem.Margin = new System.Windows.Forms.Padding(0);
             this.lblNameItem.Name = "lblNameItem";
-            this.lblNameItem.Size = new System.Drawing.Size(137, 37);
+            this.lblNameItem.Size = new System.Drawing.Size(143, 37);
             this.lblNameItem.TabIndex = 0;
             this.lblNameItem.Text = "Com chien";
             this.lblNameItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -70,9 +71,10 @@
             this.lblQuanityItem.AutoSize = true;
             this.lblQuanityItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblQuanityItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuanityItem.Location = new System.Drawing.Point(146, 0);
+            this.lblQuanityItem.Location = new System.Drawing.Point(143, 0);
+            this.lblQuanityItem.Margin = new System.Windows.Forms.Padding(0);
             this.lblQuanityItem.Name = "lblQuanityItem";
-            this.lblQuanityItem.Size = new System.Drawing.Size(65, 37);
+            this.lblQuanityItem.Size = new System.Drawing.Size(71, 37);
             this.lblQuanityItem.TabIndex = 0;
             this.lblQuanityItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblQuanityItem.Click += new System.EventHandler(this.UCOrder_Click);
@@ -82,9 +84,10 @@
             this.lblPriceItem.AutoSize = true;
             this.lblPriceItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPriceItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPriceItem.Location = new System.Drawing.Point(217, 0);
+            this.lblPriceItem.Location = new System.Drawing.Point(214, 0);
+            this.lblPriceItem.Margin = new System.Windows.Forms.Padding(0);
             this.lblPriceItem.Name = "lblPriceItem";
-            this.lblPriceItem.Size = new System.Drawing.Size(67, 37);
+            this.lblPriceItem.Size = new System.Drawing.Size(73, 37);
             this.lblPriceItem.TabIndex = 0;
             this.lblPriceItem.Text = "4.00";
             this.lblPriceItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -95,6 +98,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCOrder";
             this.Size = new System.Drawing.Size(287, 37);
             this.tableLayoutPanel1.ResumeLayout(false);
