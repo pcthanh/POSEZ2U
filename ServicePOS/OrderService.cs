@@ -675,6 +675,55 @@ namespace ServicePOS
             }
             return result;
         }
-       
+
+
+
+        public int DeleteJoinTableAll(OrderDateModel itemOrder)
+        {
+            int result = 0;
+            try
+            {
+                ORDER_DATE orderDateTemp = new ORDER_DATE();
+                List<ORDER_DETAIL_DATE> lstOrderDetaiDate = new List<ORDER_DETAIL_DATE>();
+                List<ORDER_DETAIL_MODIFIRE_DATE> lstOrderDetailModifire = new List<ORDER_DETAIL_MODIFIRE_DATE>();
+               
+                OrderDateModel orderDateMoldeTemp = new OrderDateModel();
+                orderDateMoldeTemp = GetOrderByTable(itemOrder.FloorID, 0);
+
+                if (itemOrder.ListOrderDetail.Count > 0)
+                {
+                    using (var transaciton = _context.Database.BeginTransaction())
+                    {
+                        orderDateTemp = CopyOrder(itemOrder);
+                        //_context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Modified;
+                        _context.Database.ExecuteSqlCommand("delete from ORDER_DATE  where OrderID='" + itemOrder.OrderID + "'");
+                        lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
+                        foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
+                        {
+
+                            _context.Database.ExecuteSqlCommand("delete from ORDER_DETAIL_DATE where OrderDetailID='" + item.OrderDetailID + "'");
+
+                        }
+                        
+                        lstOrderDetailModifire = CopyOrderMidifireDate(itemOrder);
+                        foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
+                        {
+                            //_context.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                            // _context.ORDER_DETAIL_MODIFIRE_DATE.Remove(item);
+                            _context.Database.ExecuteSqlCommand("delete ORDER_DETAIL_MODIFIRE_DATE where OrderModifireID='" + item.OrderModifireID + "'");
+                        }
+                        _context.SaveChanges();
+                        transaciton.Commit();
+                        result = 1;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("OrderService::::::::::::::::::::DeleteJoinTableAll::::::::::::::" + ex.Message);
+            }
+            return result;
+        }
     }
 }

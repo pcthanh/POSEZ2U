@@ -25,5 +25,6 @@ namespace ServicePOS
        int CountTotalEaIn();
        int CountTotalTKA();
        int JoinTable(List<OrderJoinTableModel> lstOrderJoin);
+       int DeleteJoinTableAll(OrderDateModel itemOrder);
     }
 }
