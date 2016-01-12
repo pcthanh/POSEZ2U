@@ -8,6 +8,7 @@ using ModelPOS.ModelEntity;
 using SystemLog;
 using ServicePOS.Model;
 
+
 namespace ServicePOS
 {
    public class OrderService:IOrderService
@@ -722,6 +723,40 @@ namespace ServicePOS
             catch (Exception ex)
             {
                 LogPOS.WriteLog("OrderService::::::::::::::::::::DeleteJoinTableAll::::::::::::::" + ex.Message);
+            }
+            return result;
+        }
+
+
+        public int VoidItemHistory(OrderDateModel OrderVoid)
+        {
+            int result = 0;
+            try
+            {
+                foreach (OrderDetailModel item in OrderVoid.ListOrderDetail)
+                {
+                    if (item.ChangeStatus == 2)
+                    {
+                        VOID_ITEM_HISTORY voidItem = new VOID_ITEM_HISTORY();
+                        voidItem.OrderID = OrderVoid.OrderID;
+                        voidItem.FloorID = OrderVoid.FloorID;
+                        voidItem.ShiftID = OrderVoid.ShiftID;
+                        voidItem.ProductID = item.ProductID;
+                        voidItem.Total =Convert.ToInt32(item.Total);
+                        voidItem.Qty = Convert.ToInt32(item.Qty);
+                        voidItem.CreateBy = 0;
+                        voidItem.CreateDate = DateTime.Now;
+                        voidItem.UpdateBy = 0;
+                        voidItem.UpdateDate = DateTime.Now;
+                        _context.Entry(voidItem).State = System.Data.Entity.EntityState.Added;
+                        _context.SaveChanges();
+                        result = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("OrderService::::::::::::::::::::VoidItemHistory::::::::::::::" + ex.Message);
             }
             return result;
         }

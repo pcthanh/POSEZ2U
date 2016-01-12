@@ -48,6 +48,12 @@ namespace ServicePOS.Model
             item.Total = item.Price * item.Qty;
             ListOrderDetail.Add(item);
         }
+        public void addItemToListAddSeat(OrderDetailModel item)
+        {
+            
+            item.Total = item.Price * item.Qty;
+            ListOrderDetail.Add(item);
+        }
         public void addModifierToList(OrderDetailModifireModel modifire, int keyItem)
         {
             if (ListOrderDetail.Count > 0)
@@ -68,7 +74,15 @@ namespace ServicePOS.Model
             {
 
                 total += Convert.ToDouble(ListOrderDetail[i].Price * ListOrderDetail[i].Qty);
+                if (ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                {
+                    for (int j = 0; j < ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                    {
+                        total += Convert.ToDouble(ListOrderDetail[i].ListOrderDetailModifire[j].Price * ListOrderDetail[i].ListOrderDetailModifire[j].Qty);
+                    }
+                }
             }
+            
             TotalAmount = total;
             return total;
         }
