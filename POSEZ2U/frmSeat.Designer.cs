@@ -30,22 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSeat));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblSeat = new System.Windows.Forms.Label();
-            this.lblTable = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.flpNewTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.flpOldOrder = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.lblSeat = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblTable = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.flpOldOrder = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.flpNewTable = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLeft = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
@@ -53,15 +53,15 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,15 +76,13 @@
             this.panel1.Size = new System.Drawing.Size(543, 57);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
+            // panel6
             // 
-            this.panel2.Controls.Add(this.panel11);
-            this.panel2.Controls.Add(this.panel10);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(227, 57);
-            this.panel2.TabIndex = 0;
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(227, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(77, 57);
+            this.panel6.TabIndex = 0;
             // 
             // panel3
             // 
@@ -96,42 +94,6 @@
             this.panel3.Size = new System.Drawing.Size(239, 57);
             this.panel3.TabIndex = 1;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.flpOldOrder);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(0, 57);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(227, 424);
-            this.panel4.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.flpNewTable);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(304, 57);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(239, 424);
-            this.panel5.TabIndex = 2;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.tableLayoutPanel1);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(227, 57);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(77, 424);
-            this.panel7.TabIndex = 3;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.label1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(167, 57);
-            this.panel8.TabIndex = 0;
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.lblSeat);
@@ -140,35 +102,6 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(72, 57);
             this.panel9.TabIndex = 1;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.label4);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(155, 57);
-            this.panel10.TabIndex = 0;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.lblTable);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(155, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(72, 57);
-            this.panel11.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 57);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "NEW TABLE";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblSeat
             // 
@@ -182,6 +115,46 @@
             this.lblSeat.TabIndex = 0;
             this.lblSeat.Text = "#";
             this.lblSeat.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label1);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(167, 57);
+            this.panel8.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 57);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "NEW TABLE";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel11);
+            this.panel2.Controls.Add(this.panel10);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(227, 57);
+            this.panel2.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.lblTable);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(155, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(72, 57);
+            this.panel11.TabIndex = 0;
             // 
             // lblTable
             // 
@@ -197,6 +170,15 @@
             this.lblTable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblTable.Click += new System.EventHandler(this.lblTable_Click);
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.label4);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(155, 57);
+            this.panel10.TabIndex = 0;
+            // 
             // label4
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -208,13 +190,14 @@
             this.label4.Text = "OLD TABLE";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // flpNewTable
+            // panel4
             // 
-            this.flpNewTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpNewTable.Location = new System.Drawing.Point(0, 0);
-            this.flpNewTable.Name = "flpNewTable";
-            this.flpNewTable.Size = new System.Drawing.Size(239, 424);
-            this.flpNewTable.TabIndex = 0;
+            this.panel4.Controls.Add(this.flpOldOrder);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 57);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(227, 424);
+            this.panel4.TabIndex = 1;
             // 
             // flpOldOrder
             // 
@@ -224,13 +207,31 @@
             this.flpOldOrder.Size = new System.Drawing.Size(227, 424);
             this.flpOldOrder.TabIndex = 0;
             // 
-            // panel6
+            // panel5
             // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(227, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(77, 57);
-            this.panel6.TabIndex = 0;
+            this.panel5.Controls.Add(this.flpNewTable);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(304, 57);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(239, 424);
+            this.panel5.TabIndex = 2;
+            // 
+            // flpNewTable
+            // 
+            this.flpNewTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpNewTable.Location = new System.Drawing.Point(0, 0);
+            this.flpNewTable.Name = "flpNewTable";
+            this.flpNewTable.Size = new System.Drawing.Size(239, 424);
+            this.flpNewTable.TabIndex = 0;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.tableLayoutPanel1);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(227, 57);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(77, 424);
+            this.panel7.TabIndex = 3;
             // 
             // tableLayoutPanel1
             // 
@@ -352,15 +353,15 @@
             this.Name = "frmSeat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

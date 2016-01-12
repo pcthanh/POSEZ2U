@@ -95,7 +95,7 @@ namespace POSEZ2U
                                         UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
                                         uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
                                         //uc.Click += ucItemModifierOfMenu_Click;
-                                        addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                        addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j],flp);
                                         indexControl++;
                                     }
                                 }
@@ -123,7 +123,7 @@ namespace POSEZ2U
                                 UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
                                 uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
                                 //uc.Click += ucItemModifierOfMenu_Click;
-                                addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j],flp);
                                 indexControl++;
                             }
                         }
@@ -177,15 +177,15 @@ namespace POSEZ2U
                 LogPOS.WriteLog("frmTransferTable::::::::::::::::::::::::addOrder::::::::::::::" + ex.Message);
             }
         }
-        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifireModel modifier)
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifireModel modifier,FlowLayoutPanel flp)
         {
             try
             {
 
                 ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
                 //ucMdifireOfMenu.lblPriceItenModifierMenu.Text = "1";
-                ucMdifireOfMenu.Width = flpOldOrder.Width;
-                flpOldOrder.Controls.Add(ucMdifireOfMenu);
+                ucMdifireOfMenu.Width = flp.Width;
+                flp.Controls.Add(ucMdifireOfMenu);
 
             }
             catch (Exception ex)
@@ -225,67 +225,84 @@ namespace POSEZ2U
                         UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
                         uc.Tag = OrderRefesh.ListOrderDetail[i].ListOrderDetailModifire[j];
                         //uc.Click += ucItemModifierOfMenu_Click;
-                        addModifreToOrder(uc, OrderRefesh.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                        addModifreToOrder(uc, OrderRefesh.ListOrderDetail[i].ListOrderDetailModifire[j],flp);
 
                     }
 
                 }
             }
+        }
+        private void CopyOrder()
+        {
+            OrderSlpitNew.InvoiceID = OrderMain.InvoiceID;
+            OrderSlpitNew.OrderID = OrderMain.OrderID;
+            OrderSlpitNew.OrderNumber = OrderMain.OrderNumber;
+            OrderSlpitNew.ClientID = OrderMain.ClientID;
+            OrderSlpitNew.FloorID = OrderMain.FloorID;
+            OrderSlpitNew.Status = OrderMain.Status;
+            OrderSlpitNew.TotalAmount = OrderMain.TotalAmount;
+            OrderSlpitNew.CreateBy = OrderMain.CreateBy;
+            OrderSlpitNew.CreateDate = OrderMain.CreateDate;
+            OrderSlpitNew.UpdateBy = OrderMain.UpdateBy;
+            OrderSlpitNew.Seat = OrderMain.Seat;
+            OrderSlpitNew.IsLoadFromData = OrderMain.IsLoadFromData;
+            OrderSlpitNew.ShiftID = OrderMain.ShiftID;
         }
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            if (Seat == 0)
+            try
             {
-                frmMessager frm = new frmMessager("Messager", "Input Number Seat");
-                frm.ShowDialog();
-            }
-            else
-            {
-                OrderSlpitOld = new OrderDateModel();
-                OrderSlpitNew.InvoiceID=OrderMain.InvoiceID;
-		        OrderSlpitNew.OrderID=OrderMain.OrderID;
-		        OrderSlpitNew.OrderNumber=OrderMain.OrderNumber;
-		        OrderSlpitNew.ClientID=OrderMain.ClientID;
-		        OrderSlpitNew.FloorID=OrderMain.FloorID;
-		        OrderSlpitNew.Status=OrderMain.Status;
-		        OrderSlpitNew.TotalAmount=OrderMain.TotalAmount;
-		        OrderSlpitNew.CreateBy=OrderMain.CreateBy;
-		        OrderSlpitNew.CreateDate=OrderMain.CreateDate;
-		        OrderSlpitNew.UpdateBy=OrderMain.UpdateBy;
-		        OrderSlpitNew.Seat=OrderMain.Seat;
-		        OrderSlpitNew.IsLoadFromData=OrderMain.IsLoadFromData;
-                OrderSlpitNew.ShiftID = OrderMain.ShiftID;
-                OrderSlpitNew.addSeat(Seat);
-                foreach (Control ctr in flpOldOrder.Controls)
+                if (Seat == 0)
                 {
-                    if (ctr is UCOrder)
+                    frmMessager frm = new frmMessager("Messager", "Input Number Seat");
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    OrderSlpitOld = new OrderDateModel();
+                    CopyOrder();
+                    OrderSlpitNew.addSeat(Seat);
+                    foreach (Control ctr in flpOldOrder.Controls)
                     {
-                        UCOrder ucOrder = (UCOrder)ctr;
-                        if (ucOrder.BackColor == Color.FromArgb(0, 102, 204))
+                        if (ctr is UCOrder)
                         {
-                            OrderDetailModel item = (OrderDetailModel)ucOrder.Tag;
-                            item.Seat = Seat;
-                            OrderSlpitNew.addItemToList(item);
-                            OrderSlpitOld.addItemToList(item);
-                            OrderMain.ListOrderDetail.Remove(item);
-                            if (item.ListOrderDetailModifire.Count > 0)
+                            UCOrder ucOrder = (UCOrder)ctr;
+                            if (ucOrder.BackColor == Color.FromArgb(0, 102, 204))
                             {
-                                foreach (OrderDetailModifireModel modi in item.ListOrderDetailModifire)
+                                OrderDetailModel item = (OrderDetailModel)ucOrder.Tag;
+                                item.Seat = Seat;
+                                
+                                if (item.ListOrderDetailModifire.Count > 0)
                                 {
-                                    modi.Seat = Seat;
-                                    OrderSlpitNew.addModifierToList(modi,item.KeyItem);
-                                    OrderSlpitOld.addModifierToList(modi, item.KeyItem);
+                                    for (int i = 0; i < item.ListOrderDetailModifire.Count; i++)
+                                    {
+                                        item.ListOrderDetailModifire[i].Seat = Seat;
+                                    }
                                 }
+                                OrderSlpitNew.addItemToListAddSeat(item);
+                                OrderSlpitOld.addItemToListAddSeat(item);
+                                OrderMain.ListOrderDetail.Remove(item);
+
                             }
-                           
                         }
                     }
+                    RefeshOrderMain(OrderSlpitOld, flpNewTable);
+                    RefeshOrderMain(OrderMain, flpOldOrder);
                 }
-                RefeshOrderMain(OrderSlpitOld, flpNewTable);
-                RefeshOrderMain(OrderMain, flpOldOrder);
+
             }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmSeat::::::::::::::::::btnLeft_Click::::::::::::::::::::" + ex.Message);
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
+        
+       
 
     }
 }

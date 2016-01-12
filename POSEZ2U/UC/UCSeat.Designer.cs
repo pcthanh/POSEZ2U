@@ -37,6 +37,7 @@
             this.lblSeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeat.ForeColor = System.Drawing.Color.White;
             this.lblSeat.Location = new System.Drawing.Point(0, 0);
+            this.lblSeat.Margin = new System.Windows.Forms.Padding(0);
             this.lblSeat.Name = "lblSeat";
             this.lblSeat.Size = new System.Drawing.Size(287, 37);
             this.lblSeat.TabIndex = 0;
@@ -50,9 +51,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.Controls.Add(this.lblSeat);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCSeat";
             this.Size = new System.Drawing.Size(287, 37);
-            
             this.ResumeLayout(false);
 
         }

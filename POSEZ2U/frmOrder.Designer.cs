@@ -68,15 +68,18 @@
             this.btnNote = new System.Windows.Forms.Button();
             this.btnPayMent = new System.Windows.Forms.Button();
             this.btnPrintBill = new System.Windows.Forms.Button();
-            this.btnDisCount = new System.Windows.Forms.Button();
+            this.btnPrice = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRefund = new System.Windows.Forms.Button();
             this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
+            this.btnCancelOrder = new System.Windows.Forms.Button();
+            this.btnPrevOrder = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -389,8 +392,11 @@
             this.tableLayoutPanel1.Controls.Add(this.btnNote, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnPayMent, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnPrintBill, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnDisCount, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnPrice, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.button1, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnRefund, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancelOrder, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnPrevOrder, 2, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -468,7 +474,6 @@
             // btnVoid
             // 
             this.btnVoid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnVoid.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnVoid.BackgroundImage")));
             this.btnVoid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnVoid.FlatAppearance.BorderSize = 0;
@@ -482,7 +487,6 @@
             this.btnVoid.Size = new System.Drawing.Size(78, 64);
             this.btnVoid.TabIndex = 1;
             this.btnVoid.Text = "VOID";
-            this.btnVoid.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnVoid.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnVoid.UseVisualStyleBackColor = false;
             this.btnVoid.Click += new System.EventHandler(this.btnVoid_Click);
@@ -529,10 +533,10 @@
             this.btnNewItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewItem.ForeColor = System.Drawing.Color.White;
-            this.btnNewItem.Location = new System.Drawing.Point(223, 65);
-            this.btnNewItem.Margin = new System.Windows.Forms.Padding(1);
+            this.btnNewItem.Location = new System.Drawing.Point(222, 64);
+            this.btnNewItem.Margin = new System.Windows.Forms.Padding(0);
             this.btnNewItem.Name = "btnNewItem";
-            this.btnNewItem.Size = new System.Drawing.Size(72, 62);
+            this.btnNewItem.Size = new System.Drawing.Size(74, 64);
             this.btnNewItem.TabIndex = 1;
             this.btnNewItem.Text = "OPEN ITEM";
             this.btnNewItem.UseVisualStyleBackColor = false;
@@ -589,20 +593,35 @@
             this.btnPrintBill.UseVisualStyleBackColor = false;
             this.btnPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
             // 
-            // btnDisCount
+            // btnPrice
             // 
-            this.btnDisCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.btnDisCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDisCount.FlatAppearance.BorderSize = 0;
-            this.btnDisCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDisCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisCount.Location = new System.Drawing.Point(371, 1);
-            this.btnDisCount.Margin = new System.Windows.Forms.Padding(1);
-            this.btnDisCount.Name = "btnDisCount";
-            this.btnDisCount.Size = new System.Drawing.Size(76, 62);
-            this.btnDisCount.TabIndex = 1;
-            this.btnDisCount.Text = "DIS - COUNT";
-            this.btnDisCount.UseVisualStyleBackColor = false;
+            this.btnPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.btnPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrice.FlatAppearance.BorderSize = 0;
+            this.btnPrice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrice.Location = new System.Drawing.Point(370, 0);
+            this.btnPrice.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrice.Name = "btnPrice";
+            this.btnPrice.Size = new System.Drawing.Size(78, 64);
+            this.btnPrice.TabIndex = 1;
+            this.btnPrice.Text = "PRICE";
+            this.btnPrice.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(145)))), ((int)(((byte)(116)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(296, 64);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(74, 64);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "OPEN TILL";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // panel8
             // 
@@ -649,18 +668,20 @@
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
             // 
-            // button1
+            // btnRefund
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(296, 64);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 64);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "OPEN TILL";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRefund.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(167)))), ((int)(((byte)(28)))));
+            this.btnRefund.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRefund.FlatAppearance.BorderSize = 0;
+            this.btnRefund.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefund.ForeColor = System.Drawing.Color.White;
+            this.btnRefund.Location = new System.Drawing.Point(296, 0);
+            this.btnRefund.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRefund.Name = "btnRefund";
+            this.btnRefund.Size = new System.Drawing.Size(74, 64);
+            this.btnRefund.TabIndex = 3;
+            this.btnRefund.Text = "REFUND";
+            this.btnRefund.UseVisualStyleBackColor = false;
             // 
             // ucKeyPadOrder1
             // 
@@ -678,6 +699,36 @@
             this.ucInfoTop1.Name = "ucInfoTop1";
             this.ucInfoTop1.Size = new System.Drawing.Size(954, 42);
             this.ucInfoTop1.TabIndex = 0;
+            // 
+            // btnCancelOrder
+            // 
+            this.btnCancelOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(33)))), ((int)(((byte)(0)))));
+            this.btnCancelOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCancelOrder.FlatAppearance.BorderSize = 0;
+            this.btnCancelOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelOrder.ForeColor = System.Drawing.Color.White;
+            this.btnCancelOrder.Location = new System.Drawing.Point(74, 128);
+            this.btnCancelOrder.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCancelOrder.Name = "btnCancelOrder";
+            this.btnCancelOrder.Size = new System.Drawing.Size(78, 65);
+            this.btnCancelOrder.TabIndex = 4;
+            this.btnCancelOrder.Text = "CANCEL ORD";
+            this.btnCancelOrder.UseVisualStyleBackColor = false;
+            // 
+            // btnPrevOrder
+            // 
+            this.btnPrevOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(85)))), ((int)(((byte)(204)))));
+            this.btnPrevOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnPrevOrder.FlatAppearance.BorderSize = 0;
+            this.btnPrevOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevOrder.ForeColor = System.Drawing.Color.White;
+            this.btnPrevOrder.Location = new System.Drawing.Point(152, 128);
+            this.btnPrevOrder.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPrevOrder.Name = "btnPrevOrder";
+            this.btnPrevOrder.Size = new System.Drawing.Size(70, 65);
+            this.btnPrevOrder.TabIndex = 5;
+            this.btnPrevOrder.Text = "PREV.ORDER";
+            this.btnPrevOrder.UseVisualStyleBackColor = false;
             // 
             // frmOrder
             // 
@@ -747,7 +798,7 @@
         private System.Windows.Forms.Button btnNote;
         private System.Windows.Forms.Button btnPayMent;
         private System.Windows.Forms.Button btnPrintBill;
-        private System.Windows.Forms.Button btnDisCount;
+        private System.Windows.Forms.Button btnPrice;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel12;
@@ -769,5 +820,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblSeat;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefund;
+        private System.Windows.Forms.Button btnCancelOrder;
+        private System.Windows.Forms.Button btnPrevOrder;
     }
 }

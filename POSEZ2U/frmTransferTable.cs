@@ -106,7 +106,7 @@ namespace POSEZ2U
                 LogPOS.WriteLog("frmTransferTable::::::::::::::::::::::::addOrder::::::::::::::" + ex.Message);
             }
         }
-        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifireModel modifier)
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifireModel modifier,FlowLayoutPanel flp)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace POSEZ2U
                 ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
                 //ucMdifireOfMenu.lblPriceItenModifierMenu.Text = "1";
                 ucMdifireOfMenu.Width = flpOldTable.Width;
-                flpOldTable.Controls.Add(ucMdifireOfMenu);
+                flp.Controls.Add(ucMdifireOfMenu);
                 
             }
             catch (Exception ex)
@@ -154,7 +154,7 @@ namespace POSEZ2U
                                         UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
                                         uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
                                         //uc.Click += ucItemModifierOfMenu_Click;
-                                        addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                        addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j],flp);
                                         indexControl++;
                                     }
                                 }
@@ -182,7 +182,7 @@ namespace POSEZ2U
                                 UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
                                 uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
                                 //uc.Click += ucItemModifierOfMenu_Click;
-                                addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j],flp);
                                 indexControl++;
                             }
                         }
@@ -268,7 +268,7 @@ namespace POSEZ2U
                             UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
                             uc.Tag = OrderRefesh.ListOrderDetail[i].ListOrderDetailModifire[j];
                             //uc.Click += ucItemModifierOfMenu_Click;
-                            addModifreToOrder(uc, OrderRefesh.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                            addModifreToOrder(uc, OrderRefesh.ListOrderDetail[i].ListOrderDetailModifire[j],flp);
                             
                         }
                     

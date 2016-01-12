@@ -19,8 +19,16 @@ namespace POSEZ2U
         public int NumberSeat = 0;
         private void btnOK_Click(object sender, EventArgs e)
         {
-            NumberSeat = Convert.ToInt32(this.txtNumberSeat.Text);
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            if (txtNumberSeat.Text != string.Empty)
+            {
+                NumberSeat = Convert.ToInt32(this.txtNumberSeat.Text);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult=System.Windows.Forms.DialogResult.Cancel;
         }
     }
 }

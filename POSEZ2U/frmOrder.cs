@@ -460,6 +460,7 @@ namespace POSEZ2U
                 ucOrder.lblPriceItem.Text = money.Format2(items.Price.ToString());
                 ucOrder.Click += ucOrder_Click;
                 LogPOS.WriteLog("addOrder::::::::::Item::::::" + items.ProductName + ":::::" + items.Price);
+                ucOrder.Width = flpOrder.Width;
                 flpOrder.Controls.Add(ucOrder);
                 if (flagUcSeatClick > 0)
                 {
@@ -539,11 +540,13 @@ namespace POSEZ2U
                 modifier.Price =Convert.ToDouble(itemsModifre.CurrentPrice);
                 modifier.ModifireID = itemsModifre.ModifireID;
                 modifier.OrderID = OrderMain.OrderID;
+                modifier.Qty = 1;
                 OrderMain.addModifierToList(modifier, keyItemTemp);
                 UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
                 ucItemModifierOfMenu.Tag = modifier;
                 ucItemModifierOfMenu.Click += ucItemModifierOfMenu_Click;
                 addModifreToOrder(ucItemModifierOfMenu, modifier);
+                lblSubtotal.Text = money.Format2(OrderMain.SubTotal());
             }
             catch (Exception ex)
             {
@@ -586,7 +589,8 @@ namespace POSEZ2U
 
                 ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
                 ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
-                ucMdifireOfMenu.lblQtyItenModifierMenu.Text = "1";
+                ucMdifireOfMenu.lblQtyItenModifierMenu.Text = modifier.Qty.ToString();
+                ucMdifireOfMenu.Width = flpOrder.Width;
                 flpOrder.Controls.Add(ucMdifireOfMenu);
                 flpOrder.Controls.SetChildIndex(ucMdifireOfMenu, indexControl + 1);
             }
@@ -850,6 +854,8 @@ namespace POSEZ2U
                     flagClick = 0;
                 }
                 lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
+                if(OrderMain.IsLoadFromData)
+                    OrderService.VoidItemHistory(OrderMain);
             }
             catch (Exception ex)
             {
@@ -865,7 +871,8 @@ namespace POSEZ2U
                 
                 if (OrderMain.IsLoadFromData)
                 {
-                    MessageBox.Show("Can not delete Order");
+                    frmMessager frm = new frmMessager("Meesager", "Can not delete Order");
+                    frm.ShowDialog();
                 }
                 else
                 {
