@@ -418,29 +418,40 @@ namespace POSEZ2U
                 LogPOS.WriteLog("SelectGroupMenu::::::::::::::::::::::::::::::" + ex.Message);
             }
         }
-        
 
+        private void OrderCompleted()
+        {
+            frmMessager frm = new frmMessager("Order", "Order Completed");
+            frm.ShowDialog();
+        }
         void ucMenuOfGroup_Click(object sender, EventArgs e)
         {
             try
             {
-                UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
-                OrderDetailModel item = new OrderDetailModel();
-                if (seat > 0)
-                    item.Seat = seat;
-                ProductionModel itemProduct = (ProductionModel)ucMenuOfGroup.Tag;
-                item.ProductName = itemProduct.ProductNameSort;
-                item.Price = Convert.ToDouble(itemProduct.CurrentPrice);
-                item.ProductID = itemProduct.ProductID;
-                item.Qty = 1;
-                item.OrderID = OrderMain.OrderID;
-                if (flagUcSeatClick == 1)
-                    item.Seat = numSeat;
-                if (OrderMain.IsLoadFromData)
-                    item.ChangeStatus = 1;
-                OrderMain.addItemToList(item);
-                addOrder(item);
-                lblSubtotal.Text = "$"+money.Format2(OrderMain.SubTotal().ToString());
+                if (OrderMain.Status == 1)
+                {
+                    OrderCompleted();
+                }
+                else
+                {
+                    UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
+                    OrderDetailModel item = new OrderDetailModel();
+                    if (seat > 0)
+                        item.Seat = seat;
+                    ProductionModel itemProduct = (ProductionModel)ucMenuOfGroup.Tag;
+                    item.ProductName = itemProduct.ProductNameSort;
+                    item.Price = Convert.ToDouble(itemProduct.CurrentPrice);
+                    item.ProductID = itemProduct.ProductID;
+                    item.Qty = 1;
+                    item.OrderID = OrderMain.OrderID;
+                    if (flagUcSeatClick == 1)
+                        item.Seat = numSeat;
+                    if (OrderMain.IsLoadFromData)
+                        item.ChangeStatus = 1;
+                    OrderMain.addItemToList(item);
+                    addOrder(item);
+                    lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
+                }
             }
             catch (Exception ex)
             {
@@ -798,64 +809,71 @@ namespace POSEZ2U
         {
             try
             {
-                UCOrder ucOrder;
-                UCItemModifierOfMenu ucItemModifireOfMenu;
-                OrderDetailModifireModel modifier = null;
-                OrderDetailModel items = null;
-                if (flagClick == 1)
+                if (OrderMain.Status == 1)
                 {
-
-                    ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
-                    modifier = (OrderDetailModifireModel)ucItemModifireOfMenu.Tag;
+                    OrderCompleted();
                 }
                 else
                 {
-                    ucOrder = (UCOrder)flpOrder.Controls[indexControl];
-                    items = (OrderDetailModel)ucOrder.Tag;
-                }
-                if (items != null)
-                {
-                    for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                    UCOrder ucOrder;
+                    UCItemModifierOfMenu ucItemModifireOfMenu;
+                    OrderDetailModifireModel modifier = null;
+                    OrderDetailModel items = null;
+                    if (flagClick == 1)
                     {
-                        if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
+
+                        ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
+                        modifier = (OrderDetailModifireModel)ucItemModifireOfMenu.Tag;
+                    }
+                    else
+                    {
+                        ucOrder = (UCOrder)flpOrder.Controls[indexControl];
+                        items = (OrderDetailModel)ucOrder.Tag;
+                    }
+                    if (items != null)
+                    {
+                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                         {
-                            if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                            if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
                             {
-                                for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
+                                if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
                                 {
-                                    flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
+                                    for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
+                                    {
+                                        flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
+                                    }
+                                    OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
                                 }
-                                OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
+
+                                //OrderMain.ListOrderDetail.RemoveAt(i);
+                                OrderMain.ListOrderDetail[i].ChangeStatus = 2;
                             }
 
-                          //OrderMain.ListOrderDetail.RemoveAt(i);
-                            OrderMain.ListOrderDetail[i].ChangeStatus = 2;
                         }
 
+                        flpOrder.Controls.RemoveAt(indexControl);
+
                     }
-
-                    flpOrder.Controls.RemoveAt(indexControl);
-
-                }
-                if (modifier != null)
-                {
-                    for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                    if (modifier != null)
                     {
-                        for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                         {
-                            if (modifier.KeyModi == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi && modifier.ModifireID == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID)
+                            for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
                             {
-                                //OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
-                                OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus = 2;
+                                if (modifier.KeyModi == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi && modifier.ModifireID == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID)
+                                {
+                                    //OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
+                                    OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus = 2;
+                                }
                             }
                         }
+                        flpOrder.Controls.RemoveAt(indexControl);
+                        flagClick = 0;
                     }
-                    flpOrder.Controls.RemoveAt(indexControl);
-                    flagClick = 0;
+                    lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
+                    if (OrderMain.IsLoadFromData)
+                        OrderService.VoidItemHistory(OrderMain);
                 }
-                lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
-                if(OrderMain.IsLoadFromData)
-                    OrderService.VoidItemHistory(OrderMain);
             }
             catch (Exception ex)
             {
@@ -868,16 +886,20 @@ namespace POSEZ2U
         {
             try
             {
-                
-                if (OrderMain.IsLoadFromData)
-                {
-                    frmMessager frm = new frmMessager("Meesager", "Can not delete Order");
-                    frm.ShowDialog();
-                }
+                if (OrderMain.Status == 1)
+                    OrderCompleted();
                 else
                 {
-                    flpOrder.Controls.Clear();
-                    OrderMain.ListOrderDetail.Clear();
+                    if (OrderMain.IsLoadFromData)
+                    {
+                        frmMessager frm = new frmMessager("Meesager", "Can not delete Order");
+                        frm.ShowDialog();
+                    }
+                    else
+                    {
+                        flpOrder.Controls.Clear();
+                        OrderMain.ListOrderDetail.Clear();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1158,56 +1180,61 @@ namespace POSEZ2U
             //flags = WinAPI.AW_ACTIVATE | WinAPI.AW_HOR_POSITIVE;
             try
             {
-                if (OrderMain.ListOrderDetail.Count > 0)
+                if (OrderMain.Status == 1)
+                    OrderCompleted();
+                else
                 {
-                    frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
-                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    if (OrderMain.ListOrderDetail.Count > 0)
                     {
-                        int result = 0;
-                        OrderMain = frm.OrderMain;
-                        result = InvoiceService.InsertInvoice(OrderMain);
-
-                        if (result == 1)
+                        frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
+                        if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
-                            if (OrderMain.isNoPrintBill == 1)
-                            {
-                                if (OrderMain.isTKA == 1)
-                                {
-                                    this.Close();
-                                    frmTakeAway frmTKA = new frmTakeAway();
-                                    frmTKA.Show();
+                            int result = 0;
+                            OrderMain = frm.OrderMain;
+                            result = InvoiceService.InsertInvoice(OrderMain);
 
+                            if (result == 1)
+                            {
+                                if (OrderMain.isNoPrintBill == 1)
+                                {
+                                    if (OrderMain.isTKA == 1)
+                                    {
+                                        this.Close();
+                                        frmTakeAway frmTKA = new frmTakeAway();
+                                        frmTKA.Show();
+
+                                    }
+                                    else
+                                    {
+                                        CallBackStatusOrder(OrderMain);
+                                        this.Close();
+                                    }
                                 }
                                 else
                                 {
-                                    CallBackStatusOrder(OrderMain);
-                                    this.Close();
-                                }
-                            }
-                            else
-                            {
-                                PrinterServer printServer = new PrinterServer(2);
-                                printServer.Print(OrderMain);
-                                if (OrderMain.isTKA == 1)
-                                {
-                                    this.Close();
-                                    frmTakeAway frmTKA = new frmTakeAway();
-                                    frmTKA.Show();
+                                    PrinterServer printServer = new PrinterServer(2);
+                                    printServer.Print(OrderMain);
+                                    if (OrderMain.isTKA == 1)
+                                    {
+                                        this.Close();
+                                        frmTakeAway frmTKA = new frmTakeAway();
+                                        frmTKA.Show();
 
-                                }
-                                else
-                                {
-                                    CallBackStatusOrder(OrderMain);
-                                    this.Close();
+                                    }
+                                    else
+                                    {
+                                        CallBackStatusOrder(OrderMain);
+                                        this.Close();
+                                    }
                                 }
                             }
                         }
                     }
-                }
-                else
-                {
-                    frmMessager frm = new frmMessager("PayMent", "Order empty");
-                    frm.ShowDialog();
+                    else
+                    {
+                        frmMessager frm = new frmMessager("PayMent", "Order empty");
+                        frm.ShowDialog();
+                    }
                 }
             }
             catch (Exception ex)
@@ -1244,15 +1271,108 @@ namespace POSEZ2U
 
         private void btnReprint_Click(object sender, EventArgs e)
         {
-            if (OrderMain.ListOrderDetail.Count > 0)
-            {
-                PrinterServer print = new PrinterServer(1);
-                print.Print(OrderMain);
-            }
+            if (OrderMain.isPrevOrder == 1)
+                OrderCompleted();
             else
             {
-                frmMessager frm = new frmMessager("Print Bill", "Order is empty");
-                frm.ShowDialog();
+                if (OrderMain.ListOrderDetail.Count > 0)
+                {
+                    PrinterServer print = new PrinterServer(1);
+                    print.Print(OrderMain);
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Print Bill", "Order is empty");
+                    frm.ShowDialog();
+                }
+            }
+        }
+        public void LoadOrderPrev(int orderID)
+        {
+            indexControl = 1;
+            try
+            {
+                OrderMain = new OrderDateModel();
+                OrderMain = OrderService.GetListOrderPrevOrder("",orderID);
+                lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
+                if (OrderMain.Seat > 0)
+                {
+                    OrderMain.IsLoadFromData = true;
+                    lblSeat.Text = OrderMain.Seat.ToString();
+                    lblStatus.Text = "OLD";
+                    for (int seat = 1; seat <= OrderMain.Seat; seat++)
+                    {
+                        UCSeat ucSeat = new UCSeat();
+                        ucSeat.lblSeat.Text = "Seat " + seat.ToString();
+                        ucSeat.Click += ucSeat_Click;
+                        flpOrder.Controls.Add(ucSeat);
+                        indexControl = flpOrder.Controls.Count;
+                        if (OrderMain.ListOrderDetail.Count > 0)
+                        {
+                            for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                            {
+                                if (OrderMain.ListOrderDetail[i].Seat == seat)
+                                {
+                                    addOrder(OrderMain.ListOrderDetail[i]);
+                                    indexControl++;
+                                    for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                                    {
+                                        UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
+                                        uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
+                                        uc.Click += ucItemModifierOfMenu_Click;
+                                        addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                        indexControl++;
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    if (OrderMain.ListOrderDetail.Count > 0)
+                    {
+                        OrderMain.IsLoadFromData = true;
+                        lblStatus.Text = "OLD";
+                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                        {
+                            addOrder(OrderMain.ListOrderDetail[i]);
+                            indexControl++;
+                            for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                            {
+                                UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
+                                uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
+                                uc.Click += ucItemModifierOfMenu_Click;
+                                addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                indexControl++;
+                            }
+                        }
+                    }
+                    
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("LoadOrder:::::::::::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+        private void btnPrevOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                frmPrevOrder frm = new frmPrevOrder();
+                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    LoadOrderPrev(frm.OrderID);
+                    OrderMain.isPrevOrder = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmOrder:::::::::::::::::::::::::btnPrevOrder_Click::::::::::::::::::::::::" + ex.Message);
             }
         }
     }
