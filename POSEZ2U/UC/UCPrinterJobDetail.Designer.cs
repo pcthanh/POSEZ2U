@@ -181,16 +181,17 @@
             // 
             // flpPriterMap
             // 
+            this.flpPriterMap.AutoScroll = true;
             this.flpPriterMap.Dock = System.Windows.Forms.DockStyle.Top;
             this.flpPriterMap.Location = new System.Drawing.Point(0, 238);
             this.flpPriterMap.Name = "flpPriterMap";
-            this.flpPriterMap.Size = new System.Drawing.Size(475, 135);
+            this.flpPriterMap.Size = new System.Drawing.Size(475, 200);
             this.flpPriterMap.TabIndex = 3;
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 373);
+            this.panel3.Location = new System.Drawing.Point(0, 438);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(475, 10);
             this.panel3.TabIndex = 4;
@@ -199,7 +200,7 @@
             // 
             this.panel4.Controls.Add(this.btnMap);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 383);
+            this.panel4.Location = new System.Drawing.Point(0, 448);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(475, 35);
             this.panel4.TabIndex = 5;
@@ -267,19 +268,19 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label lblTittel;
         private System.Windows.Forms.Label label2;
-        private UCTextBoxKeyBoard txtPrintJobName;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbPrintContent;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel2;
         private UCPrinterMappingTitle ucPrinterMappingTitle1;
-        private System.Windows.Forms.FlowLayoutPanel flpPriterMap;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnMap;
+        public System.Windows.Forms.Label lblTittel;
+        public UCTextBoxKeyBoard txtPrintJobName;
+        public System.Windows.Forms.ComboBox cbPrintContent;
+        public System.Windows.Forms.Button btnRemove;
+        public System.Windows.Forms.Button btnSave;
+        public System.Windows.Forms.FlowLayoutPanel flpPriterMap;
     }
 }

@@ -44,28 +44,9 @@ namespace POSEZ2U.UC
         private void LoadPrinterType()
         {
             cbPrintType.Items.Add("Ticket Printer");
+           // cbPrintType.SelectedIndex = 0;
         }
-        //private void InsertPrinter()
-        //{
-        //    try
-        //    {
-                
-        //        PrinterModel item = new PrinterModel();
-        //        item.PrintName = this.txtPrintName.Text;
-        //        item.PrinterName = this.cbSharePrint.Text;
-        //        item.PrinterType = this.cbPrintType.Text;
-        //        item.Status = 1;
-        //        int result= PrinterService.InsertPrinter(item);
-        //        if (result == 1)
-        //        {
-        //            ResetPrinterList(1);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        LogPOS.WriteLog("UCPrinter:::::::::::::::::::::InsertPrinter:::::::::" + ex.Message);
-        //    }
-        //}
+        
 
         private void UCPrinter_Load(object sender, EventArgs e)
         {

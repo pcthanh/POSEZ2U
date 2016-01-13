@@ -65,6 +65,7 @@
             this.cbGroupItem.Name = "cbGroupItem";
             this.cbGroupItem.Size = new System.Drawing.Size(129, 37);
             this.cbGroupItem.TabIndex = 0;
+            this.cbGroupItem.SelectedIndexChanged += new System.EventHandler(this.cbGroupItem_SelectedIndexChanged);
             // 
             // cbItem
             // 
@@ -106,6 +107,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "UCPrinterMapping";
             this.Size = new System.Drawing.Size(516, 38);
+            this.Load += new System.EventHandler(this.UCPrinterMapping_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -114,9 +116,9 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ComboBox cbGroupItem;
-        private System.Windows.Forms.ComboBox cbItem;
-        private System.Windows.Forms.ComboBox cbPrinter;
-        private System.Windows.Forms.ComboBox cbTemplate;
+        public System.Windows.Forms.ComboBox cbGroupItem;
+        public System.Windows.Forms.ComboBox cbItem;
+        public System.Windows.Forms.ComboBox cbPrinter;
+        public System.Windows.Forms.ComboBox cbTemplate;
     }
 }

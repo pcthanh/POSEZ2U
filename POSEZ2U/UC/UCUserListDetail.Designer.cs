@@ -33,16 +33,16 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbPinCode = new System.Windows.Forms.Label();
-            this.txtPinCode = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.lbUserName = new System.Windows.Forms.Label();
-            this.txtUserName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.lbTitle = new System.Windows.Forms.Label();
             this.lbFname = new System.Windows.Forms.Label();
-            this.txtFname = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.lbLname = new System.Windows.Forms.Label();
-            this.txtLname = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.lbRole = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
+            this.txtPinCode = new POSEZ2U.UC.UCTextBoxKeyPad();
+            this.txtUserName = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtFname = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtLname = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -133,18 +133,6 @@
             this.lbPinCode.Text = "Pin Code";
             this.lbPinCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtPinCode
-            // 
-            this.txtPinCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtPinCode.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPinCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtPinCode.Location = new System.Drawing.Point(3, 323);
-            this.txtPinCode.MaxLength = 4;
-            this.txtPinCode.Multiline = true;
-            this.txtPinCode.Name = "txtPinCode";
-            this.txtPinCode.Size = new System.Drawing.Size(547, 34);
-            this.txtPinCode.TabIndex = 9;
-            // 
             // lbUserName
             // 
             this.lbUserName.AutoSize = true;
@@ -155,17 +143,6 @@
             this.lbUserName.TabIndex = 6;
             this.lbUserName.Text = "User Name";
             this.lbUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtUserName
-            // 
-            this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtUserName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtUserName.Location = new System.Drawing.Point(3, 243);
-            this.txtUserName.Multiline = true;
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(547, 34);
-            this.txtUserName.TabIndex = 7;
             // 
             // lbTitle
             // 
@@ -191,17 +168,6 @@
             this.lbFname.Text = "First Name";
             this.lbFname.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtFname
-            // 
-            this.txtFname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtFname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtFname.Location = new System.Drawing.Point(3, 83);
-            this.txtFname.Multiline = true;
-            this.txtFname.Name = "txtFname";
-            this.txtFname.Size = new System.Drawing.Size(547, 34);
-            this.txtFname.TabIndex = 3;
-            // 
             // lbLname
             // 
             this.lbLname.AutoSize = true;
@@ -212,17 +178,6 @@
             this.lbLname.TabIndex = 2;
             this.lbLname.Text = "Last Name";
             this.lbLname.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtLname
-            // 
-            this.txtLname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.txtLname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtLname.Location = new System.Drawing.Point(3, 163);
-            this.txtLname.Multiline = true;
-            this.txtLname.Name = "txtLname";
-            this.txtLname.Size = new System.Drawing.Size(547, 34);
-            this.txtLname.TabIndex = 4;
             // 
             // lbRole
             // 
@@ -245,6 +200,51 @@
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(547, 28);
             this.cbRole.TabIndex = 5;
+            // 
+            // txtPinCode
+            // 
+            this.txtPinCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtPinCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPinCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtPinCode.Location = new System.Drawing.Point(3, 323);
+            this.txtPinCode.MaxLength = 4;
+            this.txtPinCode.Multiline = true;
+            this.txtPinCode.Name = "txtPinCode";
+            this.txtPinCode.Size = new System.Drawing.Size(547, 34);
+            this.txtPinCode.TabIndex = 9;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtUserName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtUserName.Location = new System.Drawing.Point(3, 243);
+            this.txtUserName.Multiline = true;
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(547, 34);
+            this.txtUserName.TabIndex = 7;
+            // 
+            // txtFname
+            // 
+            this.txtFname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtFname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtFname.Location = new System.Drawing.Point(3, 83);
+            this.txtFname.Multiline = true;
+            this.txtFname.Name = "txtFname";
+            this.txtFname.Size = new System.Drawing.Size(547, 34);
+            this.txtFname.TabIndex = 3;
+            // 
+            // txtLname
+            // 
+            this.txtLname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.txtLname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtLname.Location = new System.Drawing.Point(3, 163);
+            this.txtLname.Multiline = true;
+            this.txtLname.Name = "txtLname";
+            this.txtLname.Size = new System.Drawing.Size(547, 34);
+            this.txtLname.TabIndex = 4;
             // 
             // UCUserListDetail
             // 
