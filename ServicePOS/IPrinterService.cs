@@ -11,5 +11,17 @@ namespace ServicePOS
         int InsertPrinter(PrinterModel Printer);
         IEnumerable<PrinterModel> GetListPrinter();
         int UpdatePrinter(PrinterModel Printer);
+
+        IEnumerable<PrintJobModel> GetListPrintJobsList();
+
+        IEnumerable<CategoryModel> GetCategoryList();
+        IEnumerable<ProductionModel> GetProductListByCategory(int categoryid);
+
+        IEnumerable<PrintJobDetailModel> GetPrintJobDetailList(int PrinteJobID);
+
+
+        int SaveDataPrinterJob(PrintJobModel data);
+
+        int RemoveDataPrinterJob(PrintJobModel data);
     }
 }
