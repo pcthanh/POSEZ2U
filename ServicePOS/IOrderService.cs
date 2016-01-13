@@ -27,5 +27,7 @@ namespace ServicePOS
        int JoinTable(List<OrderJoinTableModel> lstOrderJoin);
        int DeleteJoinTableAll(OrderDateModel itemOrder);
        int VoidItemHistory(OrderDateModel OrderVoid);
+       IEnumerable<OrderDateModel> GetPrevOrder();
+       OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder);
     }
 }

@@ -760,5 +760,131 @@ namespace ServicePOS
             }
             return result;
         }
+
+
+
+
+
+        public IEnumerable<OrderDateModel> GetPrevOrder()
+        {
+            var listPrev = _context.ORDER_DATE.Where(x => x.Status == 1)
+                .Select(x => new OrderDateModel
+                {
+                    OrderID=x.OrderID,
+                    TotalAmount = x.TotalAmount,
+                    ShiftID = x.ShiftID??0,
+                    ClientID = x.ClientID,
+                    CreateBy = x.CreateBy,
+                    CreateDate = x.CreateDate,
+                    UpdateBy = x.UpdateBy,
+                    UpdateDate = x.UpdateDate,
+                    Status = x.Status
+                }
+                );
+            return listPrev;
+        }
+
+        public OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder)
+        {
+            OrderDateModel OrderMain = new OrderDateModel();
+            var dataOrder = _context.ORDER_DATE.Where(x => x.OrderID==idOrder && x.Status == 1).SingleOrDefault();
+
+
+            if (dataOrder != null)
+            {
+                OrderMain.Seat = dataOrder.Seat ?? 0;
+                OrderMain.FloorID = dataOrder.FloorID;
+                OrderMain.OrderID = dataOrder.OrderID;
+                OrderMain.TotalAmount = dataOrder.TotalAmount;
+                OrderMain.ShiftID = dataOrder.ShiftID ?? 0;
+                OrderMain.CreateBy = dataOrder.CreateBy;
+                OrderMain.UpdateBy = dataOrder.UpdateBy;
+                var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
+                 item => item.OrderID, (order, item) => new { order, item })
+                 .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
+                 .Where(x => x.pro.order.FloorID == dataOrder.FloorID && x.pro.order.OrderID == x.pro.item.OrderID && x.pro.order.OrderID == dataOrder.OrderID && x.pro.item.OrderID == dataOrder.OrderID && x.pro.item.ProductID == x.c.ProductID)
+                 .Select(x => new OrderDetailModel()
+                 {
+                     ProductID = x.pro.item.ProductID,
+                     Price = x.pro.item.Price,
+                     Qty = x.pro.item.Qty,
+                     Total = x.pro.item.Qty * x.pro.item.Price,
+                     OrderID = x.pro.item.OrderID,
+                     Satust = x.pro.item.Satust,
+                     ProductName = x.c.ProductNameSort,
+                     KeyItem = x.pro.item.KeyItem ?? 0,
+                     Seat = x.pro.item.Seat ?? 0,
+                     DynID = x.pro.item.DynId ?? 0,
+                     OrderDetailID = x.pro.item.OrderDetailID
+
+
+                 });
+                var openitems = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_OPEN_ITEM, x => x.DynId, openitem => openitem.dynID, (x, openitem) => new { x, openitem })
+                            .Where(a => a.x.DynId == a.openitem.dynID && a.x.OrderID == dataOrder.OrderID)
+                            .Select(a => new OrderDetailModel()
+                            {
+                                ProductName = a.openitem.ItemNameShort,
+                                Qty = a.x.Qty,
+                                Price = a.openitem.UnitPrice,
+                                ProductID = a.x.ProductID,
+                                Total = a.x.Qty * a.x.Price,
+                                OrderID = a.x.OrderID,
+                                Satust = a.x.Satust,
+                                KeyItem = a.x.KeyItem ?? 0,
+                                Seat = a.x.Seat ?? 0,
+                                DynID = a.x.DynId ?? 0,
+                                OrderDetailID = a.x.OrderDetailID
+                            });
+                foreach (OrderDetailModel openItem in openitems)
+                {
+                    OrderMain.addItemToList(openItem);
+                }
+                foreach (OrderDetailModel item in data)
+                {
+                    int keyItemOld = item.KeyItem;
+                    OrderMain.addItemToList(item);
+                    var dataOrderModifire = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_DETAIL_MODIFIRE_DATE, pro => pro.ProductID,
+                       modifire => modifire.ProductID, (pro, modifire) => new { pro, modifire })
+                       .Join(_context.MODIFIREs, modi => modi.modifire.ModifireID, c => c.ModifireID, (modi, c) => new { modi, c })
+                       .Where(x => x.modi.pro.OrderID == item.OrderID && x.modi.modifire.OrderID == item.OrderID && x.modi.pro.ProductID == item.ProductID && x.modi.modifire.ProductID == item.ProductID && x.modi.modifire.ModifireID == x.c.ModifireID && x.modi.modifire.KeyModi == keyItemOld && x.modi.pro.KeyItem == keyItemOld)
+                       .Select(x => new OrderDetailModifireModel()
+                       {
+                           ModifireID = x.modi.modifire.ModifireID,
+                           Price = x.modi.modifire.Price,
+                           Qty = x.modi.modifire.Qty,
+                           ModifireName = x.c.ModifireName,
+                           Total = x.modi.modifire.Price * x.modi.modifire.Qty,
+                           Seat = x.modi.modifire.Seat ?? 0,
+                           OrderModifireID = x.modi.modifire.OrderModifireID,
+                           OrderID = x.modi.pro.OrderID,
+                           DynID = x.modi.modifire.DynId ?? 0
+                       });
+                    foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
+                    {
+                        OrderMain.addModifierToList(itemmodifire, item.KeyItem);
+                    }
+                    var openItemModiier = _context.ORDER_DETAIL_MODIFIRE_DATE.Join(_context.ORDER_OPEN_ITEM, modi => modi.DynId, open => open.dynID, (modi, open) => new { modi, open })
+                        .Where(x => x.modi.DynId == x.open.dynID && x.modi.ProductID == item.ProductID && x.modi.OrderID == item.OrderID && x.modi.KeyModi == keyItemOld)
+                        .Select(x => new OrderDetailModifireModel()
+                        {
+                            ModifireID = x.modi.ModifireID,
+                            Price = x.modi.Price,
+                            Qty = x.modi.Qty,
+                            ModifireName = x.open.ItemNameShort,
+                            Total = x.modi.Price * x.modi.Qty,
+                            Seat = x.modi.Seat ?? 0,
+                            OrderModifireID = x.modi.OrderModifireID,
+                            OrderID = x.modi.OrderID ?? 0,
+                            DynID = x.modi.DynId ?? 0
+                        });
+                    foreach (OrderDetailModifireModel Openitem in openItemModiier)
+                    {
+                        OrderMain.addModifierToList(Openitem, item.KeyItem);
+                    }
+
+                }
+            }
+            return OrderMain;
+        }
     }
 }
