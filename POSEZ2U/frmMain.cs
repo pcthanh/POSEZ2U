@@ -51,28 +51,28 @@ namespace POSEZ2U
                 var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
                 var shiftid = UserLoginModel.ShiffID;
                 var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-                frmFloor frm = new frmFloor();
-                frm.Show();
-                //if (result > 0)
-                //{
-                //    if (shiftid > 0)
-                //    {
-                //        frmFloor frm = new frmFloor();
-                //        frm.Show();
-                //    }
-                //    else
-                //    {
-                //        frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
-                //        frm.ShowDialog();
-                //    }
+                //frmFloor frm = new frmFloor();
+                //frm.Show();
+                if (result > 0)
+                {
+                    if (shiftid > 0)
+                    {
+                        frmFloor frm = new frmFloor();
+                        frm.Show();
+                    }
+                    else
+                    {
+                        frmAgainShift frm = new frmAgainShift();
+                        frm.ShowDialog();
+                    }
 
 
-                //}
-                //else
-                //{
-                //    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                //    frm.ShowDialog();
-                //}
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+                    frm.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -144,7 +144,7 @@ namespace POSEZ2U
                     }
                     else
                     {
-                        frmMessager frm = new frmMessager("Messenger", "Please create new shift.");
+                        frmAgainShift frm = new frmAgainShift();
                         frm.ShowDialog();
                     }
 
