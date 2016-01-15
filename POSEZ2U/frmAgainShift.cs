@@ -69,6 +69,12 @@ namespace POSEZ2U
                     this.txtCashStart.Text = (modelShift.CashStart ?? 0).ToString("C");
                  
                 }
+                else
+                {
+                    frmMessager frm = new frmMessager("Messenger", "Please create new shift. ");
+                    this.Close();
+                    frm.ShowDialog();
+                }
                
             }
         }
