@@ -684,8 +684,8 @@ namespace POSEZ2U
         {
             OrderMain.ListPayment = lstPaymentSplitBill;
             OrderMain.ListInvoiceByCard = lstInvoiceByCardSplitBill;
-            PrinterServer printServer = new PrinterServer(2);
-            printServer.Print(OrderMain);
+            //PrinterServer printServer = new PrinterServer(2);
+            //printServer.Print(OrderMain);
             lstInvoiceByCardSplitBill = new List<InvoiceByCardModel>();
             lstPaymentSplitBill = new List<PayMentModel>();
         }

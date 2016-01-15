@@ -41,6 +41,7 @@
             this.btnPrintnoBill = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btn5 = new System.Windows.Forms.Button();
@@ -71,7 +72,6 @@
             this.btnGiftCard = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpPaymentType = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -301,6 +301,15 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(196, 244);
             this.panel8.TabIndex = 0;
+            // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
             // 
             // panel9
             // 
@@ -690,15 +699,6 @@
             this.flpPaymentType.Size = new System.Drawing.Size(271, 400);
             this.flpPaymentType.TabIndex = 0;
             // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
             // frmPayMent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,6 +713,7 @@
             this.Controls.Add(this.txtTender);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmPayMent";
+            this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmPayMent_Load);
             this.panel1.ResumeLayout(false);

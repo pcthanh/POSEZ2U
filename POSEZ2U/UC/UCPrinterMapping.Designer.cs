@@ -58,6 +58,7 @@
             // cbGroupItem
             // 
             this.cbGroupItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbGroupItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGroupItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbGroupItem.FormattingEnabled = true;
             this.cbGroupItem.Location = new System.Drawing.Point(0, 0);
@@ -70,6 +71,7 @@
             // cbItem
             // 
             this.cbItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbItem.FormattingEnabled = true;
             this.cbItem.Location = new System.Drawing.Point(129, 0);
@@ -81,6 +83,7 @@
             // cbPrinter
             // 
             this.cbPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPrinter.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPrinter.FormattingEnabled = true;
             this.cbPrinter.Location = new System.Drawing.Point(258, 0);
@@ -92,6 +95,7 @@
             // cbTemplate
             // 
             this.cbTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTemplate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTemplate.FormattingEnabled = true;
             this.cbTemplate.Location = new System.Drawing.Point(387, 0);

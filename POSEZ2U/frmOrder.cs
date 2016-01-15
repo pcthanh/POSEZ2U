@@ -37,6 +37,7 @@ namespace POSEZ2U
         int countItemOfSeat;
         int flagUcSeatClick;
         int numSeat;
+        List<PrinterModel> PrintData = new List<PrinterModel>();
         OrderDateModel OrderMain;
         private int flags;
         private ICatalogueService _catalogeService;
@@ -73,6 +74,13 @@ namespace POSEZ2U
         {
             get { return _invoiceService ?? (_invoiceService = new InvoiceService()); }
             set { _invoiceService = value; }
+        }
+
+        private IPrinterService _printService;
+        private IPrinterService PrintService
+        {
+            get { return _printService ?? (_printService = new PrinterService()); }
+            set { _printService = value; }
         }
         List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         List<OrderDetailModifireModel> ListOrderModifire = new List<OrderDetailModifireModel>();
@@ -448,6 +456,22 @@ namespace POSEZ2U
                         item.Seat = numSeat;
                     if (OrderMain.IsLoadFromData)
                         item.ChangeStatus = 1;
+                    ProductionModel itemPrint = new ProductionModel();
+                    itemPrint = ProductService.GetPrinterType(itemProduct.ProductID);
+                    if (itemPrint != null)
+                    {
+                        item.Printer = itemPrint.Printer;
+                        item.PrintJob = itemPrint.PrinterJob;
+                    }
+                    else
+                    {
+                        itemPrint = ProductService.GetPrinterTypeByCate(itemProduct.CategoryID);
+                        if (itemPrint != null)
+                        {
+                            item.Printer = itemPrint.Printer;
+                            item.PrintJob = itemPrint.PrinterJob;
+                        }
+                    }
                     OrderMain.addItemToList(item);
                     addOrder(item);
                     lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
@@ -1092,20 +1116,21 @@ namespace POSEZ2U
         {
             try
             {
+                GetListPrinter();
                 if (OrderMain.ListOrderDetail.Count >= 0)
                 {
                     int result = 0;
+                    OrderMain.PrintType = 1;
                     result= OrderService.InsertOrder(OrderMain);
                     if (result == 1)
                     {
-                        PrinterServer printServer = new PrinterServer(1);
-                        printServer.Print(OrderMain);
+                        PrinterServer printServer = new PrinterServer();
+                        printServer.PrintData(OrderMain, PrintData);
                         if (OrderMain.isTKA == 1)
                         {
                             frmTakeAway frm = new frmTakeAway();
                             //CallBackStatusOrderTKA(OrderMain);
                             frm.Show();
-                          
                             this.Close();
                         }
                         else
@@ -1191,6 +1216,7 @@ namespace POSEZ2U
                         {
                             int result = 0;
                             OrderMain = frm.OrderMain;
+                            OrderMain.PrintType = 2;
                             result = InvoiceService.InsertInvoice(OrderMain);
 
                             if (result == 1)
@@ -1212,8 +1238,8 @@ namespace POSEZ2U
                                 }
                                 else
                                 {
-                                    PrinterServer printServer = new PrinterServer(2);
-                                    printServer.Print(OrderMain);
+                                    //PrinterServer printServer = new PrinterServer();
+                                    //printServer.Print(OrderMain);
                                     if (OrderMain.isTKA == 1)
                                     {
                                         this.Close();
@@ -1256,8 +1282,8 @@ namespace POSEZ2U
                 int result = OrderService.UpdateOrder(OrderMain);
                 if (result == 1)
                 {
-                    PrinterServer print = new PrinterServer(3);
-                    print.Print(OrderMain);
+                    //PrinterServer print = new PrinterServer();
+                    //print.Print(OrderMain);
                     CallBackStatusOrder(OrderMain);
                     this.Close();
                 }
@@ -1277,8 +1303,8 @@ namespace POSEZ2U
             {
                 if (OrderMain.ListOrderDetail.Count > 0)
                 {
-                    PrinterServer print = new PrinterServer(1);
-                    print.Print(OrderMain);
+                    //PrinterServer print = new PrinterServer();
+                    //print.Print(OrderMain);
                 }
                 else
                 {
@@ -1375,5 +1401,20 @@ namespace POSEZ2U
                 LogPOS.WriteLog("frmOrder:::::::::::::::::::::::::btnPrevOrder_Click::::::::::::::::::::::::" + ex.Message);
             }
         }
+
+        private void GetListPrinter()
+        {
+            var listPrinter = PrintService.GetListPrinterMapping();
+            foreach(PrinterModel item in listPrinter)
+            {
+                PrinterModel print = new PrinterModel();
+                print.PrinterName = item.PrinterName;
+                print.PrintName = item.PrintName;
+                print.PrinterType = item.PrinterType;
+                print.ID = item.ID;
+                PrintData.Add(print);
+            }
+        }
+        
     }
 }

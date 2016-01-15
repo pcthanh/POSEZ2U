@@ -94,5 +94,10 @@ namespace POSEZ2U.UC
         {
             this.LoadPriterMapp();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
