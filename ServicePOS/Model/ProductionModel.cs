@@ -21,5 +21,7 @@ namespace ServicePOS.Model
         public Nullable<double> CurrentPrice { get; set; }
         public Nullable<double> WasPrice { get; set; }
         public int CategoryID { get; set; }
+        public int Printer { get; set; }
+        public int PrinterJob { get; set; }
     }
 }

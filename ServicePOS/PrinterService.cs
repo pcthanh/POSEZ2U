@@ -14,6 +14,7 @@ namespace ServicePOS
     {
        public string className="PrinterService:::::::::::::::::::::::";
         private POSEZ2UEntities _context;
+     
         public PrinterService()
         {
             _context = new POSEZ2UEntities();
@@ -383,5 +384,20 @@ namespace ServicePOS
             GC.SuppressFinalize(this);
         }
         #endregion
+
+
+        public IEnumerable<PrinterModel> GetListPrinterMapping()
+        {
+            var data = _context.PRINTERs.Where(x => x.Status == 1)
+                .Select(x => new PrinterModel
+                {
+                    PrinterName = x.PrinterName,
+                    PrintName = x.PrintName,
+                    PrinterType = x.PrinterType,
+                    ID = x.ID
+                }
+                );
+            return data;
+        }
     }
 }

@@ -31,6 +31,7 @@ namespace ServicePOS.Model
         public int ShiftID { get; set; }
         public int isTransferTableAll { get; set; }
         public int isPrevOrder { get; set; }
+        public int PrintType { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         public List<CardModel> ListCard = new List<CardModel>();
         public List<CashModel> ListCash = new List<CashModel>();

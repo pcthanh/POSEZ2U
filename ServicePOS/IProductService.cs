@@ -13,5 +13,7 @@ namespace ServicePOS
         int Created(ProductionModel product);
         int Delete(ProductionModel product);
         IEnumerable<ProductionModel> GetProdutcByCategory(int id);
+        ProductionModel GetPrinterType(int ID);
+        ProductionModel GetPrinterTypeByCate(int ID);
     }
 }

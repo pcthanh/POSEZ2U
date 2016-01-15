@@ -23,5 +23,7 @@ namespace ServicePOS
         int SaveDataPrinterJob(PrintJobModel data);
 
         int RemoveDataPrinterJob(PrintJobModel data);
+        IEnumerable<PrinterModel> GetListPrinterMapping();
+
     }
 }

@@ -29,5 +29,7 @@ namespace ServicePOS.Model
         public int ChangeStatus { get; set; }
         public int OpenItem { get; set; }
         public int DynID { get; set; }
+        public int Printer { get; set; }
+        public int PrintJob { get; set; }
     }
 }

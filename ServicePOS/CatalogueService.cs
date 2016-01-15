@@ -304,7 +304,7 @@ namespace ServicePOS
                     ProductNameDesc = x.pro.ProductNameDesc,
                     ProductNameSort = x.pro.ProductNameSort,
                     Status = x.pro.Status
-                   
+                    
                 });
 
             return data;

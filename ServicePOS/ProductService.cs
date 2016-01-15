@@ -202,11 +202,55 @@ namespace ServicePOS
         #region
         public IEnumerable<ProductionModel> GetProdutcByCategory(int id)
         {
-            var data = _context.Database.SqlQuery<ProductionModel>("getProductByCategory @categoryid",
-              new SqlParameter("categoryid", id)
-            ).ToList();
+            //var data = _context.Database.SqlQuery<ProductionModel>("getProductByCategory @categoryid",
+            //  new SqlParameter("categoryid", id)
+            //).ToList();
+            //return data;
+           
+            var data = _context.MAP_PRODUCT_TO_CATEGORY.Join(_context.PRODUCTs, cate => cate.ProductID, pro => pro.ProductID, (cate, pro) => new { cate, pro })
+                .Join(_context.PRODUCT_PRICE, map => map.pro.ProductID, price => price.ProductID, (map, price) => new { map, price })
+                //.Join(_context.PRINTE_JOB_DETAIL,map1=>map1.map.pro.ProductID,print=>print.ProductID,(map1,print)=>new{map1,print})
+                .Where(x => x.map.cate.CategoryID == id)
+                .Select(x => new ProductionModel()
+                {
+                    ProductNameDesc = x.map.pro.ProductNameDesc,
+                    ProductNameSort = x.map.pro.ProductNameSort,
+                    CurrentPrice = x.price.CurrentPrice,
+                    ProductID = x.map.pro.ProductID,
+                    Status = x.map.pro.Status,
+                    WasPrice = x.price.WasPrice,
+                    Color = x.map.pro.Color,
+                    CategoryID =x.map.cate.CategoryID
+                    //Printer = x.print.PrinterID ?? 0,
+                    //PrinterJob = x.print.PrinteJobID
+                }
+                );
             return data;
         }
         #endregion
+
+
+        public ProductionModel GetPrinterType(int ID)
+        {
+            var data= _context.PRINTE_JOB_DETAIL.Where(x=>x.ProductID==ID)
+                .Select(x=>new ProductionModel
+                {
+                    Printer = x.PrinterID??0,
+                    PrinterJob=x.PrinteJobID
+                }
+                );
+            return data.SingleOrDefault();
+        }
+        public ProductionModel GetPrinterTypeByCate(int ID)
+        {
+            var data = _context.PRINTE_JOB_DETAIL.Where(x => x.CategoryID == ID)
+                .Select(x => new ProductionModel
+                {
+                    Printer = x.PrinterID ?? 0,
+                    PrinterJob = x.PrinteJobID
+                }
+                );
+            return data.SingleOrDefault();
+        }
     }
 }
