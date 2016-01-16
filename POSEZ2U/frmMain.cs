@@ -63,7 +63,11 @@ namespace POSEZ2U
                     else
                     {
                         frmAgainShift frm = new frmAgainShift();
-                        frm.ShowDialog();
+                        if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        {
+                            frmFloor frm1 = new frmFloor();
+                            frm1.Show();
+                        }
                     }
 
 

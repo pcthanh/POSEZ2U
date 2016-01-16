@@ -1214,6 +1214,7 @@ namespace POSEZ2U
                         frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
                         if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
+                            GetListPrinter();
                             int result = 0;
                             OrderMain = frm.OrderMain;
                             OrderMain.PrintType = 2;
@@ -1238,8 +1239,8 @@ namespace POSEZ2U
                                 }
                                 else
                                 {
-                                    //PrinterServer printServer = new PrinterServer();
-                                    //printServer.Print(OrderMain);
+                                    PrinterServer printServer = new PrinterServer();
+                                    printServer.PrintData(OrderMain,PrintData);
                                     if (OrderMain.isTKA == 1)
                                     {
                                         this.Close();
