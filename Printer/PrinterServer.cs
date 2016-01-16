@@ -37,14 +37,43 @@ namespace Printer
 
                for (int i = 0; i < printData.Count; i++)
                {
-                   OrderPrint = new OrderDateModel();
-                   for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
+                   if (OrderMain.IsLoadFromData)
                    {
+                       OrderPrint = new OrderDateModel();
+                       for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
+                       {
+                           if (OrderMain.ListOrderDetail[j].ChangeStatus == 1 || OrderMain.ListOrderDetail[j].ChangeStatus == 2)
+                           {
+                               if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
+                               {
 
-                       if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
+                                   OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                               }
+                           }
+                           for (int k = 0; k < OrderMain.ListOrderDetail[j].ListOrderDetailModifire.Count; k++)
+                           {
+                               if (OrderMain.ListOrderDetail[j].ListOrderDetailModifire[k].ChangeStatus == 1 || OrderMain.ListOrderDetail[j].ListOrderDetailModifire[k].ChangeStatus == 2)
+                               {
+                                   if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
+                                   {
+
+                                       OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                                   }
+                               }
+                           }
+                       }
+                   }
+                   else
+                   {
+                       OrderPrint = new OrderDateModel();
+                       for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
                        {
 
-                           OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                           if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
+                           {
+
+                               OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                           }
                        }
                    }
                    if(OrderPrint.ListOrderDetail.Count>0)
@@ -55,7 +84,8 @@ namespace Printer
            {
                if (OrderMain.PrintType == this.PRINTBILL)
                {
-                   Print(OrderMain, printData[0]);
+                   if(printData.Count>0)
+                        Print(OrderMain, printData[0]);
                }
            }
        }
@@ -324,7 +354,7 @@ namespace Printer
                    if (OrderMain.ListPayment[j].PaymentTypeID == 1)
                    {
                        posPrinter.DrawString("Cash:", e, new Font("Arial", 10), l_y, 1);
-                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
+                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total * 1000), e, new Font("Arial", 10), l_y, 3);
                    }
                    if (OrderMain.ListPayment[j].PaymentTypeID == 2)
                    {
@@ -335,7 +365,7 @@ namespace Printer
                            for (int i = 0; i < OrderMain.ListInvoiceByCard.Count; i++)
                            {
                                posPrinter.DrawString("--" + OrderMain.ListInvoiceByCard[i].NameCard, e, new Font("Arial", 10), l_y, 1);
-                               l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.ListInvoiceByCard[i].Total*1000)), e, new Font("Arial", 10), l_y, 3);
+                               l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.ListInvoiceByCard[i].Total)), e, new Font("Arial", 10), l_y, 3);
                            }
                        }
                    }
