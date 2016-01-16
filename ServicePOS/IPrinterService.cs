@@ -10,6 +10,7 @@ namespace ServicePOS
     {
         int InsertPrinter(PrinterModel Printer);
         IEnumerable<PrinterModel> GetListPrinter();
+        IEnumerable<PrinterModel> GetListPrinterNotPayment();
         int UpdatePrinter(PrinterModel Printer);
 
         IEnumerable<PrintJobModel> GetListPrintJobsList();
@@ -24,6 +25,7 @@ namespace ServicePOS
 
         int RemoveDataPrinterJob(PrintJobModel data);
         IEnumerable<PrinterModel> GetListPrinterMapping();
-
+        IEnumerable<PrinterModel> GetListPaymentprinter();
+        
     }
 }

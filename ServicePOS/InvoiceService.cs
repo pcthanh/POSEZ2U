@@ -202,7 +202,7 @@ namespace ServicePOS
                 item.PaymentTypeID = Order.ListPayment[i].PaymentTypeID;
                 
                 item.Satust = 1;
-                item.Total = Order.ListPayment[i].Total;
+                item.Total = Order.ListPayment[i].Total*1000;
                 item.CreateBy = Order.ListPayment[i].CreateBy ?? 0;
                 item.CreateDate = DateTime.Now;
                 item.UpdateBy = Order.ListPayment[i].UpdateBy ?? 0;
