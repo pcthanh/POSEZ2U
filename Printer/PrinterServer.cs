@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ServicePOS.Model;
 using System.Drawing.Printing;
 using System.Drawing;
+
+
 namespace Printer
 {
    public class PrinterServer
@@ -15,56 +17,100 @@ namespace Printer
        OrderDateModel OrderMain;
        MoneyFortmat money = new MoneyFortmat(MoneyFortmat.AU_TYPE);
        int Function;
-       public PrinterServer(int _Function)
+       int PRINTBAR = 1;
+       int PRINTBILL = 2;
+       OrderDateModel OrderPrint;
+       public PrinterServer()
        {
-           
-           
-           Function = _Function;
         
        }
-
-       public void Print(OrderDateModel _OrderMain)
+       private void GetListPrinter()
+       { 
+                   
+       }
+       public void PrintData(OrderDateModel _OrderMain,List<PrinterModel> printData)
        {
            OrderMain = _OrderMain;
-           if (Function==1)
+
+           if (OrderMain.PrintType == this.PRINTBAR)
            {
-               
-                   //Dataprint 80mm Series Printer//
-               //Microsoft XPS Document Writer
-               posPrinter.SetPrinterName("Microsoft XPS Document Writer");
-               posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-               posPrinter.Print();
+
+               for (int i = 0; i < printData.Count; i++)
+               {
+                   OrderPrint = new OrderDateModel();
+                   for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
+                   {
+
+                       if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
+                       {
+
+                           OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                       }
+                   }
+                   if(OrderPrint.ListOrderDetail.Count>0)
+                        Print(OrderPrint, printData[i]);
+               }
            }
-           if (Function == 2)
+           else
            {
-               posPrinter.SetPrinterName("Microsoft XPS Document Writer");
-               posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-               posPrinter.Print();
-           }
-           if (Function == 3)
-           {
-               posPrinter.SetPrinterName("Microsoft XPS Document Writer");
-               posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-               posPrinter.Print();
+               if (OrderMain.PrintType == this.PRINTBILL)
+               {
+                   Print(OrderMain, printData[0]);
+               }
            }
        }
-
+       public void Print(OrderDateModel _OrderMain,PrinterModel data)
+       {
+           
+           
+               posPrinter.SetPrinterName(data.PrinterName);
+               posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+               posPrinter.Print();
+           
+           //if (Function==1)
+           //{
+               
+           //     //Dataprint 80mm Series Printer//
+           //    //Microsoft XPS Document Writer
+           //    for (int i = 0; i <= 1; i++)
+           //    {
+           //        posPrinter.SetPrinterName("80 Printer");
+           //        posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+           //        posPrinter.Print();
+           //    }
+           //}
+           //if (Function == 2)
+           //{
+           //    posPrinter.SetPrinterName("80 Printer");
+           //    posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+           //    posPrinter.Print();
+           //}
+           //if (Function == 3)
+           //{
+           //    posPrinter.SetPrinterName("80 Printer");
+           //    posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+           //    posPrinter.Print();
+           //}
+       }
        void printDocument_PrintPage(object sender, PrintPageEventArgs e)
        {
-           if (Function == 1)
+
+           if (OrderMain.PrintType == this.PRINTBAR)
            {
-               PrintOrderToKitchenOrBar(e);
+               if(OrderPrint.ListOrderDetail.Count>0)
+                    PrintOrderToKitchenOrBar(OrderPrint, e);
            }
-           if (Function == 2)
+           else
            {
-               PrintReceipt(e);
+               if (OrderMain.PrintType == this.PRINTBILL)
+               {
+                   PrintBill(e);
+               }
+
            }
-           if (Function == 3)
-           {
-               PrintBill(e);
-           }
+              
        }
-       public float PrintOrderToKitchenOrBar(PrintPageEventArgs e)
+       public float PrintOrderToKitchenOrBar(OrderDateModel Order, PrintPageEventArgs e)
        {
            float l_y = 0;
            l_y = posPrinter.DrawString("Kitchen", e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
@@ -78,40 +124,40 @@ namespace Printer
            posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            int countItem =0;
-           for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+           for (int i = 0; i < Order.ListOrderDetail.Count; i++)
            {
                float yStart  = l_y;
-               
-               if (OrderMain.ListOrderDetail[i].ChangeStatus == 2)
+
+               if (Order.ListOrderDetail[i].ChangeStatus == 2)
                {
-                  l_y= posPrinter.DrawString("--Remove  " + OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                   l_y = posPrinter.DrawString("--Remove  " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
                }
                else
                {
-                   if (OrderMain.ListOrderDetail[i].ChangeStatus == 1)
+                   if (Order.ListOrderDetail[i].ChangeStatus == 1)
                    {
-                       l_y = posPrinter.DrawString("--Add  " + OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                       l_y = posPrinter.DrawString("--Add  " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
                    }
                    else
                    {
                        countItem++;
-                       l_y = posPrinter.DrawString(OrderMain.ListOrderDetail[i].Qty.ToString() + " " + OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                       l_y = posPrinter.DrawString(Order.ListOrderDetail[i].Qty.ToString() + " " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
                    }
                }
                //l_y = posPrinter.DrawString(OrderMain.ListOrderDetail[i].Qty.ToString(), e, new Font("Arial", 14), l_y, 2);
                //posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].Price.ToString()), e, new Font("Arial", 14), yStart, 3);
 
-               if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+               if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
                {
-                   for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                   for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
                    {
-                       if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
+                       if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
                        {
-                           l_y = posPrinter.DrawString("---Remove  " + OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14), l_y, 1);
+                           l_y = posPrinter.DrawString("---Remove  " + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14), l_y, 1);
                        }
                        else
                        {
-                           l_y = posPrinter.DrawString("--" + OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                           l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
 
                        }
                        //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 14), l_y, 3);
@@ -188,12 +234,12 @@ namespace Printer
                    if (OrderMain.ListPayment[j].PaymentTypeID == 1)
                    {
                        posPrinter.DrawString("Cash:", e, new Font("Arial", 10), l_y, 1);
-                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
                    }
                    if (OrderMain.ListPayment[j].PaymentTypeID == 2)
                    {
                         posPrinter.DrawString("Card:", e, new Font("Arial", 10), l_y, 1);
-                        l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                        l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
                         if (OrderMain.ListInvoiceByCard.Count > 0)
                         {
                             for (int i = 0; i < OrderMain.ListInvoiceByCard.Count; i++)
@@ -278,18 +324,18 @@ namespace Printer
                    if (OrderMain.ListPayment[j].PaymentTypeID == 1)
                    {
                        posPrinter.DrawString("Cash:", e, new Font("Arial", 10), l_y, 1);
-                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
                    }
                    if (OrderMain.ListPayment[j].PaymentTypeID == 2)
                    {
                        posPrinter.DrawString("Card:", e, new Font("Arial", 10), l_y, 1);
-                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
                        if (OrderMain.ListInvoiceByCard.Count > 0)
                        {
                            for (int i = 0; i < OrderMain.ListInvoiceByCard.Count; i++)
                            {
                                posPrinter.DrawString("--" + OrderMain.ListInvoiceByCard[i].NameCard, e, new Font("Arial", 10), l_y, 1);
-                               l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.ListInvoiceByCard[i].Total)), e, new Font("Arial", 10), l_y, 3);
+                               l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.ListInvoiceByCard[i].Total*1000)), e, new Font("Arial", 10), l_y, 3);
                            }
                        }
                    }
