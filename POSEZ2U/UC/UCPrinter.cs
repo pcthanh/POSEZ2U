@@ -43,8 +43,9 @@ namespace POSEZ2U.UC
         }
         private void LoadPrinterType()
         {
-            cbPrintType.Items.Add("Ticket Printer");
-           // cbPrintType.SelectedIndex = 0;
+           // cbPrintType.Items.Add("Ticket Printer");
+           // cbPrintType.Items.Add("Payment Printer");
+           //// cbPrintType.SelectedIndex = 0;
         }
         
 

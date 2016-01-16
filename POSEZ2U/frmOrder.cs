@@ -576,6 +576,8 @@ namespace POSEZ2U
                 modifier.ModifireID = itemsModifre.ModifireID;
                 modifier.OrderID = OrderMain.OrderID;
                 modifier.Qty = 1;
+                if (OrderMain.IsLoadFromData)
+                    modifier.ChangeStatus = 1;
                 OrderMain.addModifierToList(modifier, keyItemTemp);
                 UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
                 ucItemModifierOfMenu.Tag = modifier;
@@ -1214,7 +1216,7 @@ namespace POSEZ2U
                         frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
                         if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
-                            GetListPrinter();
+                            GetListPaymentPrinter();
                             int result = 0;
                             OrderMain = frm.OrderMain;
                             OrderMain.PrintType = 2;
@@ -1407,6 +1409,19 @@ namespace POSEZ2U
         {
             var listPrinter = PrintService.GetListPrinterMapping();
             foreach(PrinterModel item in listPrinter)
+            {
+                PrinterModel print = new PrinterModel();
+                print.PrinterName = item.PrinterName;
+                print.PrintName = item.PrintName;
+                print.PrinterType = item.PrinterType;
+                print.ID = item.ID;
+                PrintData.Add(print);
+            }
+        }
+        private void GetListPaymentPrinter()
+        {
+            var listPrinter = PrintService.GetListPaymentprinter();
+            foreach (PrinterModel item in listPrinter)
             {
                 PrinterModel print = new PrinterModel();
                 print.PrinterName = item.PrinterName;

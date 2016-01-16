@@ -32,7 +32,12 @@ namespace POSEZ2U
             get { return _printerService ?? (_printerService = new PrinterService()); }
             set { _printerService = value; }
         }
-
+        /// <summary>
+        /// PrinterType = 0 is Ticket
+        /// PrinterType = 1 is Payment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void frmPrinterSetting_Load(object sender, EventArgs e)
         {
@@ -351,12 +356,10 @@ namespace POSEZ2U
                 {
 
                     UCPrinter uc = (UCPrinter)pDetail.Controls[0];
-
                     uc.btnRemove.Show();
-
                     uc.lblTitle.Text = item.PrintName;
                     uc.txtPrintName.Text = item.PrintName;
-                    uc.cbPrintType.SelectedItem = item.PrinterType;
+                    uc.cbPrintType.SelectedIndex = item.PrinterType;
                     uc.cbSharePrint.SelectedItem = item.PrinterName;
                     uc.btnRemove.Click += btnRemove_Click;
                     uc.btnRemove.Tag = item;
@@ -375,7 +378,7 @@ namespace POSEZ2U
                 pDetail.Controls.Add(ucPrinter);
                 ucPrinter.lblTitle.Text = item.PrintName;
                 ucPrinter.txtPrintName.Text = item.PrintName;
-                ucPrinter.cbPrintType.SelectedItem = item.PrinterType;
+                ucPrinter.cbPrintType.SelectedIndex = item.PrinterType;
                 ucPrinter.cbSharePrint.SelectedItem = item.PrinterName;
                 ucPrinter.btnRemove.Click += btnRemove_Click;
                 ucPrinter.btnRemove.Tag = item;
@@ -427,7 +430,7 @@ namespace POSEZ2U
                 {
                     item.PrintName = uc.txtPrintName.Text ?? "";
                     item.PrinterName = uc.cbSharePrint.Text ?? "";
-                    item.PrinterType = uc.cbPrintType.Text ?? "";
+                    item.PrinterType = uc.cbPrintType.SelectedIndex;
                     item.Status = 1;
                     item.UpdateBy = userid;
                     item.UpdateDate = DateTime.Now;
@@ -441,7 +444,7 @@ namespace POSEZ2U
                     {
                         messenger = messenger + "Shared Printer / Port  isn't empty. ";
                     }
-                    if (item.PrinterType == "")
+                    if (item.PrinterType <0)
                     {
                         messenger = messenger + "Printer Type isn't empty. ";
                     }
@@ -472,7 +475,7 @@ namespace POSEZ2U
                     item = new PrinterModel();
                     item.PrintName = uc.txtPrintName.Text ?? "";
                     item.PrinterName = uc.cbSharePrint.Text ?? "";
-                    item.PrinterType = uc.cbPrintType.Text ?? "";
+                    item.PrinterType = uc.cbPrintType.SelectedIndex;
                     item.Status = 1;
                     item.CreateBy = userid;
                     item.CreateDate = DateTime.Now;
@@ -487,7 +490,7 @@ namespace POSEZ2U
                     {
                         messenger = messenger + "Shared Printer / Port  isn't empty. ";
                     }
-                    if (item.PrinterType == "")
+                    if (item.PrinterType == 0)
                     {
                         messenger = messenger + "Printer Type isn't empty. ";
                     }
