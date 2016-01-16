@@ -75,6 +75,7 @@ namespace ServicePOS
                         orderDetaiDate.Note = itemOrder.ListOrderDetail[i].Note;
                         orderDetaiDate.Seat = itemOrder.ListOrderDetail[i].Seat;
                         orderDetaiDate.DynId = itemOrder.ListOrderDetail[i].DynID;
+                        orderDetaiDate.PrintType = itemOrder.ListOrderDetail[i].Printer;
                         orderDetaiDate.CreateBy = itemOrder.ListOrderDetail[i].CreateBy ?? 0;
                         orderDetaiDate.CreateDate = itemOrder.ListOrderDetail[i].CreateDate ?? DateTime.Now;
                         orderDetaiDate.UpdateBy = itemOrder.ListOrderDetail[i].UpdateBy ?? 0;
@@ -163,8 +164,8 @@ namespace ServicePOS
                         {
                             // _context.Entry(item).State = System.Data.Entity.EntityState.Added;;
 
-                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,ProductID,KeyItem,Satust,Price,Qty,Total,Seat,DynId)values" +
-                                "('" + item.OrderID + "','" + item.ProductID + "','" + item.KeyItem + "','" + item.Satust + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','"+item.DynId+"')");
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,ProductID,KeyItem,Satust,Price,Qty,Total,Seat,DynId,PrintType)values" +
+                                "('" + item.OrderID + "','" + item.ProductID + "','" + item.KeyItem + "','" + item.Satust + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','"+item.DynId+"','"+ item.PrintType+"')");
 
                         }
                         lstOrderDetailModifire = CopyOrderMidifireDate(orderDateMoldeTemp);
@@ -338,7 +339,8 @@ namespace ServicePOS
                      KeyItem =x.pro.item.KeyItem??0,
                      Seat=x.pro.item.Seat??0,
                      DynID=x.pro.item.DynId??0,
-                     OrderDetailID =x.pro.item.OrderDetailID
+                     OrderDetailID =x.pro.item.OrderDetailID,
+                     Printer = x.pro.item.PrintType??0
                      
 
                  });

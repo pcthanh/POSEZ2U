@@ -51,6 +51,7 @@ namespace ServicePOS
         public int InsertInvoice(OrderDateModel Order)
         {
             int result = 0;
+            int InvoiceID;
             INVOICE invoice = new INVOICE();
             List<INVOICE_DETAIL> invoiceDEtail = new List<INVOICE_DETAIL>();
             List<INVOICE_DETAIL_MODIFIRE> invoiceDetailModifier = new List<INVOICE_DETAIL_MODIFIRE>();
@@ -61,28 +62,33 @@ namespace ServicePOS
                 _context.Database.ExecuteSqlCommand("update ORDER_DATE set Status=1 where OrderID='" + Order.OrderID + "'");
                 invoice = CopyInvoice(Order);
                 _context.Entry(invoice).State = System.Data.Entity.EntityState.Added;
-
+                _context.SaveChanges();
+                InvoiceID = invoice.InvoiceID;
                 invoiceDEtail = CopyInvoicedetail(Order);
                 foreach (INVOICE_DETAIL item in invoiceDEtail)
                 {
+                    item.InvoiceID = InvoiceID;
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
                 invoiceDetailModifier = CopyInvoiceMidifire(Order);
 
                 foreach (INVOICE_DETAIL_MODIFIRE item in invoiceDetailModifier)
                 {
+                    item.InvoiceID = InvoiceID;
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
 
                 PaymentHistory = CopyListPayment(Order);
                 foreach (PAYMENT_INVOICE_HISTORY item in PaymentHistory)
                 {
+                    item.InvoiceID = InvoiceID;
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
 
                 InvoiceByCard = CopyInvoiceByCard(Order);
                 foreach(INVOICE_BY_CARD item in InvoiceByCard)
                 {
+                    item.InvoiceID = InvoiceID;
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
 
@@ -128,7 +134,7 @@ namespace ServicePOS
                         
                         orderDetaiDate.OrderDetailID = itemOrder.ListOrderDetail[i].OrderDetailID;
                         orderDetaiDate.ProductID = itemOrder.ListOrderDetail[i].ProductID;
-                        orderDetaiDate.InvoiceNumber =Convert.ToString(CountInvoie() + 1);
+                        
                         orderDetaiDate.Qty = itemOrder.ListOrderDetail[i].Qty;
                         orderDetaiDate.KeyItem = itemOrder.ListOrderDetail[i].KeyItem;
                         orderDetaiDate.Total = itemOrder.ListOrderDetail[i].Total;
@@ -162,7 +168,7 @@ namespace ServicePOS
 
                             INVOICE_DETAIL_MODIFIRE orderDetailModifire = new INVOICE_DETAIL_MODIFIRE();
                             orderDetailModifire.ModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID;
-                            orderDetailModifire.InvoiceNumber = Convert.ToString(CountInvoie() + 1);
+                            
                             orderDetailModifire.OrderModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderModifireID;
                             orderDetailModifire.ProductID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ProductID;
                             orderDetailModifire.KeyModi = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi;    
@@ -194,7 +200,7 @@ namespace ServicePOS
             {
                 PAYMENT_INVOICE_HISTORY item = new PAYMENT_INVOICE_HISTORY();
                 item.PaymentTypeID = Order.ListPayment[i].PaymentTypeID;
-                item.InvoiceNumber = Convert.ToString(CountInvoie() + 1);
+                
                 item.Satust = 1;
                 item.Total = Order.ListPayment[i].Total;
                 item.CreateBy = Order.ListPayment[i].CreateBy ?? 0;
@@ -214,7 +220,7 @@ namespace ServicePOS
             {
                 INVOICE_BY_CARD item = new INVOICE_BY_CARD();
                 item.InvoiceByCardID =(CustomerInvoiceByCardID());
-                item.InvoiceNum = Convert.ToString(CountInvoie() + 1);
+                
                 item.CardID = Order.ListInvoiceByCard[i].CardID;
                 item.Total = Order.ListInvoiceByCard[i].Total;
                 item.CreateBy = Order.ListInvoiceByCard[i].CreateBy ?? 0;
