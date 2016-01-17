@@ -28,6 +28,8 @@ namespace POSEZ2U
         }
        
         public POSEZ2U.frmFloor.CallBackStatusOrder CallBackStatusOrder;
+        public POSEZ2U.frmFloor.CallBackStatusOrderCancel CallBackStatusOrderCancel;
+        public POSEZ2U.frmFloor.CallBackStatusOrderPrintBill CallBackStatusOrderPrintBill;
         public POSEZ2U.frmTakeAway.CallBackStatusOrderTKA CallBackStatusOrderTKA;
         POSPrinter posPrinter = new POSPrinter();
         POSEZ2U.Class.MoneyFortmat money = new POSEZ2U.Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
@@ -40,6 +42,7 @@ namespace POSEZ2U
         List<PrinterModel> PrintData = new List<PrinterModel>();
         OrderDateModel OrderMain;
         private int flags;
+        OrderDetailModel ItemMain = new OrderDetailModel();
         private ICatalogueService _catalogeService;
         private ICatalogueService CatalogeService
         {
@@ -517,6 +520,7 @@ namespace POSEZ2U
             {
                 UCOrder ucOder = (UCOrder)sender;
                 OrderDetailModel item = (OrderDetailModel)ucOder.Tag;
+                ItemMain = item;
                 indexControl = flpOrder.Controls.GetChildIndex(ucOder);
                 foreach (Control ctr in flpOrder.Controls)
                 {
@@ -1287,7 +1291,7 @@ namespace POSEZ2U
                 {
                     //PrinterServer print = new PrinterServer();
                     //print.Print(OrderMain);
-                    CallBackStatusOrder(OrderMain);
+                    CallBackStatusOrderPrintBill();
                     this.Close();
                 }
             }
@@ -1429,6 +1433,42 @@ namespace POSEZ2U
                 print.PrinterType = item.PrinterType;
                 print.ID = item.ID;
                 PrintData.Add(print);
+            }
+        }
+
+        private void btnCancelOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (OrderMain.ListOrderDetail.Count > 0)
+                {
+                    frmConfirm frm = new frmConfirm("Order","Are You sure CANCEL ORDER???");
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        int result = OrderService.CancelOrder(OrderMain);
+                        if (result == 1)
+                        {
+                            CallBackStatusOrderCancel();
+                            this.Close();
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                LogPOS.WriteLog("frmOrder:::::::::::::::::btnCancelOrder_Click:::::::::::::::::::" + ex.Message);
+            }
+        }
+
+        private void btnPrice_Click(object sender, EventArgs e)
+        {
+            frmChangePrice frm = new frmChangePrice(ItemMain);
+            if(frm.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+            {
+                ItemMain.Price = frm.ItemMain.Price;
+                
+                OrderMain.SubTotal();
+                lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
             }
         }
         
