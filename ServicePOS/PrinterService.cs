@@ -71,7 +71,7 @@ namespace ServicePOS
                        ID = x.ID,
                        PrinterName = x.PrinterName,
                        PrintName =x.PrintName,
-                       PrinterType=x.PrinterType??0,
+                       PrinterType=x.PrinterType,
                        Status=x.Status,
                        CreateBy=x.CreateBy,
                        CreateDate=x.CreateDate,
@@ -393,7 +393,7 @@ namespace ServicePOS
                 {
                     PrinterName = x.PrinterName,
                     PrintName = x.PrintName,
-                    PrinterType = x.PrinterType??0,
+                    PrinterType = x.PrinterType,
                     ID = x.ID
                 }
                 );
@@ -403,12 +403,12 @@ namespace ServicePOS
 
         public IEnumerable<PrinterModel> GetListPaymentprinter()
         {
-            var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType==1)
+            var data = _context.PRINTERs.Where(x => x.Status == 1 )
                .Select(x => new PrinterModel
                {
                    PrinterName = x.PrinterName,
                    PrintName = x.PrintName,
-                   PrinterType = x.PrinterType ?? 0,
+                   PrinterType = x.PrinterType,
                    ID = x.ID
                }
                );
@@ -422,13 +422,13 @@ namespace ServicePOS
 
             try
             {
-                var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType != 1).Select
+                var data = _context.PRINTERs.Where(x => x.Status == 1).Select
                     (x => new PrinterModel()
                     {
                         ID = x.ID,
                         PrinterName = x.PrinterName,
                         PrintName = x.PrintName,
-                        PrinterType = x.PrinterType ?? 0,
+                        PrinterType = x.PrinterType,
                         Status = x.Status,
                         CreateBy = x.CreateBy,
                         CreateDate = x.CreateDate,
