@@ -31,7 +31,6 @@ namespace Printer
        public void PrintData(OrderDateModel _OrderMain,List<PrinterModel> printData)
        {
            OrderMain = _OrderMain;
-
            if (OrderMain.PrintType == this.PRINTBAR)
            {
 
