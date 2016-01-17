@@ -434,6 +434,7 @@ namespace ServicePOS
                         CreateDate = x.CreateDate,
                         UpdateBy = x.UpdateBy,
                         UpdateDate = x.UpdateDate
+						
                     }
                     );
                 return data;
