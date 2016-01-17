@@ -159,6 +159,12 @@ namespace POSEZ2U
         }
         private void frmReport_Load(object sender, EventArgs e)
         {
+            dateSelect.Format = DateTimePickerFormat.Custom;
+            dateSelect.CustomFormat = "dd-MMM-yyyy";
+
+            //var data =Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+
             this.LoadTitleReport();
         }
 
