@@ -29,5 +29,7 @@ namespace ServicePOS
        int VoidItemHistory(OrderDateModel OrderVoid);
        IEnumerable<OrderDateModel> GetPrevOrder();
        OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder);
+       int CancelOrder(OrderDateModel Order);
+
     }
 }

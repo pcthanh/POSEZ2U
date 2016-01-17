@@ -296,7 +296,7 @@ namespace ServicePOS
             StatusTable st = new StatusTable();
             st.Complete = -1;
            
-            var status =_context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status!=1).SingleOrDefault();
+            var status =_context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status!=1 && x.Status!=4).SingleOrDefault();
             if (status != null)
             {
                 st.Complete = status.Status;
@@ -311,7 +311,7 @@ namespace ServicePOS
         public OrderDateModel GetOrderByTable(string idTable, int idOrder)
         {
             OrderDateModel OrderMain = new OrderDateModel();
-            var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == idTable && x.Status!=1).SingleOrDefault();
+            var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == idTable && x.Status!=1 && x.Status!=4).SingleOrDefault();
             
           
             if (dataOrder != null)
@@ -616,7 +616,7 @@ namespace ServicePOS
 
         public int CountTotalEaIn()
         {
-            return _context.ORDER_DATE.Where(x => x.Status != 1 &&!x.FloorID.Contains("TKA-")).Count();
+            return _context.ORDER_DATE.Where(x => x.Status != 1 &&!x.FloorID.Contains("TKA-") && x.Status!=4).Count();
         }
 
         public int CountTotalTKA()
@@ -887,6 +887,26 @@ namespace ServicePOS
                 }
             }
             return OrderMain;
+        }
+
+
+        public int CancelOrder(OrderDateModel Order)
+        {
+            int Result = 0;
+            try
+            {
+                using (var tran = _context.Database.BeginTransaction())
+                {
+                    _context.Database.ExecuteSqlCommand("update ORDER_DATE set Status=4 where OrderID='" + Order.OrderID + "'");
+                    tran.Commit();
+                    Result = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+            
+            }
+            return Result;
         }
     }
 }
