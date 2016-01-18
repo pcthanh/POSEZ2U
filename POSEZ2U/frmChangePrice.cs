@@ -35,25 +35,28 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-        }
-
-        private void txtHiden_TextChanged(object sender, EventArgs e)
-        {
             if (PriceType == 1)
             {
 
                 lblTotal.Text = txtHiden.Text;
-
+                double Newprice = (Convert.ToDouble(ItemMain.Price) * (Convert.ToDouble(lblTotal.Text))) / 100.0;
+                ItemMain.Price = Newprice;
             }
             else
             {
                 if (PriceType == 2)
                 {
-                    lblTotal.Text = txtHiden.Text;
-                    ItemMain.Price = Convert.ToDouble(txtHiden.Text) * 1000;
+
+                    ItemMain.Price = Convert.ToDouble(txtHiden.Text) *1000;
                 }
             }
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        private void txtHiden_TextChanged(object sender, EventArgs e)
+        {
+            lblTotal.Text = txtHiden.Text;
+            
         }
 
         private void frmChangePrice_Load(object sender, EventArgs e)

@@ -114,71 +114,70 @@ namespace POSEZ2U
             return total;
         }
 
-        
-        private void txtTender_TextChanged(object sender, EventArgs e)
+        private void CalTotal()
         {
-            if (lockTextChange) { }
-            else
+            try
             {
-                try
+                lblTender.Text = txtTender.Text;
+                double tender = 0;
+                double totaldiscount;
+                double total = OrderMain.SubTotal();
+                double totalPaymet = 0;
+                double totaltemp1 = 0;
+                this.EnableButton();
+                if (txtTender.Text != string.Empty)
                 {
-                    lblTender.Text = txtTender.Text;
-                    double tender = 0;
-                    double totaldiscount;
-                    double total = OrderMain.SubTotal();
-                    double totalPaymet = 0;
-                    double totaltemp1 = 0;
-                    this.EnableButton();
-                    if (txtTender.Text != string.Empty)
+                    tender = Convert.ToDouble(txtTender.Text) * 1000;
+                }
+                if (OrderMain.DiscountType > 0)
+                {
+                    totaldiscount = OrderMain.Discount;
+                    totalPaymet = TotalListPayMent() * 1000;
+                    double totaltemp = total - totaldiscount - tender - totalPaymet;
+
+                    if (totaltemp > 0)
+                        txtBalance.Text = "$" + money.Format2(totaltemp);
+                    else
                     {
-                        tender = Convert.ToDouble(txtTender.Text)*1000;
+                        txtBalance.Text = "$0.00";
+                        lblChange.Text = "$" + money.Format2(totaltemp * -1);
                     }
-                    if (OrderMain.DiscountType > 0)
+                }
+                else
+                {
+                    if (tender > total)
                     {
-                        totaldiscount = OrderMain.Discount;
-                        totalPaymet = TotalListPayMent()*1000;
-                        double totaltemp = total - totaldiscount - tender-totalPaymet;
-                        
-                        if (totaltemp > 0)
-                            txtBalance.Text = "$" + money.Format2(totaltemp);
-                        else
-                        {
-                            txtBalance.Text = "$0.00";
-                            lblChange.Text = "$" + money.Format2(totaltemp * -1);
-                        }
+                        lblChange.Text = "$" + money.Format2((total - tender) * -1);
+                        txtBalance.Text = "$0.00";
                     }
                     else
                     {
-                        if (tender > total)
+                        if (lstPayment.Count > 0)
                         {
-                            lblChange.Text = "$" + money.Format2((total - tender) * -1);
-                            txtBalance.Text = "$0.00";
-                        }
-                        else
-                        {
-                            if (lstPayment.Count > 0)
+                            for (int i = 0; i < lstPayment.Count; i++)
                             {
-                                for (int i = 0; i < lstPayment.Count; i++)
-                                {
-                                    totaltemp1 = totaltemp1 + lstPayment[i].Total;
-                                }
-                                if (total - (totaltemp1 * 1000 + tender) < 0)
-                                {
-                                    txtBalance.Text = "$0.00";
-                                }
-                                else
-                                    txtBalance.Text = "$" + money.Format2(total - (totaltemp1 * 1000 + tender));
+                                totaltemp1 = totaltemp1 + lstPayment[i].Total;
+                            }
+                            if (total - (totaltemp1 * 1000 + tender) < 0)
+                            {
+                                txtBalance.Text = "$0.00";
                             }
                             else
-                                txtBalance.Text = "$" + money.Format2(total - tender);
+                                txtBalance.Text = "$" + money.Format2(total - (totaltemp1 * 1000 + tender));
                         }
+                        else
+                            txtBalance.Text = "$" + money.Format2(total - tender);
                     }
                 }
-                catch (Exception ex)
-                {
-                    LogPOS.WriteLog("frmPayMent::::::::::::::::::::::::::::::txtTender_TextChanged:::::::::::::::::;" + ex.Message);
-                }
             }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayMent::::::::::::::::::::::::::::::txtTender_TextChanged:::::::::::::::::;" + ex.Message);
+            }
+        }
+        private void txtTender_TextChanged(object sender, EventArgs e)
+        {
+            CalTotal();
 
         }
         private int CountUcPayMent()
@@ -688,6 +687,31 @@ namespace POSEZ2U
             //printServer.Print(OrderMain);
             lstInvoiceByCardSplitBill = new List<InvoiceByCardModel>();
             lstPaymentSplitBill = new List<PayMentModel>();
+        }
+        private bool IsCheckCashOut()
+        {
+            foreach (Control ctr in flpPaymentType.Controls)
+            {
+                if (ctr is UCPayment)
+                    return false;
+            }
+            return true;
+        }
+
+        private void btnCashOut_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                if (IsCheckCashOut())
+                {
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+ 
+            }
         }
     }
 }

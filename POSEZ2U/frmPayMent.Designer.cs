@@ -33,7 +33,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnHide = new System.Windows.Forms.Button();
             this.btnExact = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnCashOut = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnSplitBill = new System.Windows.Forms.Button();
@@ -108,7 +108,7 @@
             this.tableLayoutPanel3.Controls.Add(this.btnOK, 4, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnHide, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnExact, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.button9, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnCashOut, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnPrint, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnDiscount, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnSplitBill, 2, 1);
@@ -177,21 +177,22 @@
             this.btnExact.UseVisualStyleBackColor = false;
             this.btnExact.Click += new System.EventHandler(this.btnExact_Click);
             // 
-            // button9
+            // btnCashOut
             // 
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(234, 0);
-            this.button9.Margin = new System.Windows.Forms.Padding(0);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(117, 69);
-            this.button9.TabIndex = 1;
-            this.button9.Text = "CASHOUT";
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnCashOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.btnCashOut.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCashOut.FlatAppearance.BorderSize = 0;
+            this.btnCashOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCashOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCashOut.ForeColor = System.Drawing.Color.White;
+            this.btnCashOut.Location = new System.Drawing.Point(234, 0);
+            this.btnCashOut.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCashOut.Name = "btnCashOut";
+            this.btnCashOut.Size = new System.Drawing.Size(117, 69);
+            this.btnCashOut.TabIndex = 1;
+            this.btnCashOut.Text = "CASHOUT";
+            this.btnCashOut.UseVisualStyleBackColor = false;
+            this.btnCashOut.Click += new System.EventHandler(this.btnCashOut_Click);
             // 
             // btnPrint
             // 
@@ -769,7 +770,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnHide;
         private System.Windows.Forms.Button btnExact;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnCashOut;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Button btnSplitBill;
