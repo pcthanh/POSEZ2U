@@ -159,7 +159,8 @@ namespace Printer
 
                if (Order.ListOrderDetail[i].ChangeStatus == 2)
                {
-                   l_y = posPrinter.DrawString("--Remove  " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                   l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                   posPrinter.DrawCancelLine(e, yStart, l_y);
                }
                else
                {
@@ -182,7 +183,8 @@ namespace Printer
                    {
                        if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
                        {
-                           l_y = posPrinter.DrawString("---Remove  " + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14), l_y, 1);
+                           l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14), l_y, 1);
+                           posPrinter.DrawCancelLine(e, yStart, l_y);
                        }
                        else
                        {
