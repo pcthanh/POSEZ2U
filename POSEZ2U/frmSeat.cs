@@ -61,7 +61,16 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            OrderService.InsertOrder(OrderSlpitNew);
+            try
+            {
+                int result = OrderService.InsertOrder(OrderSlpitNew);
+                if (result == 1)
+                    this.Close();
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmSeat::::::::::::::::::::::::btnOK_Click::::::::::::::::::::" + ex.Message);
+            }
         }
         public void LoadOrder(string TableID, int orderID, FlowLayoutPanel flp)
         {

@@ -178,7 +178,6 @@ namespace POSEZ2U
         private void txtTender_TextChanged(object sender, EventArgs e)
         {
             CalTotal();
-
         }
         private int CountUcPayMent()
         {
@@ -581,6 +580,7 @@ namespace POSEZ2U
                             OrderMain.Change = Convert.ToInt32(totalPayment - total);
                             txtTender.Text = string.Empty;
                             lblTender.Text = string.Empty;
+                            lockTextChange = true;
                         }
                         else
                         {
@@ -703,10 +703,10 @@ namespace POSEZ2U
             
             try
             {
-                if (IsCheckCashOut())
-                {
-                    
-                }
+                //if (IsCheckCashOut())
+                //{
+                MessageBox.Show(txtTender.Text);
+                //}
             }
             catch (Exception ex)
             {
