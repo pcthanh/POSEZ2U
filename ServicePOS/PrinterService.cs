@@ -71,7 +71,7 @@ namespace ServicePOS
                        ID = x.ID,
                        PrinterName = x.PrinterName,
                        PrintName =x.PrintName,
-                       PrinterType=x.PrinterType,
+                       PrinterType=x.PrinterType??0,
                        Status=x.Status,
                        CreateBy=x.CreateBy,
                        CreateDate=x.CreateDate,
@@ -393,7 +393,7 @@ namespace ServicePOS
                 {
                     PrinterName = x.PrinterName,
                     PrintName = x.PrintName,
-                    PrinterType = x.PrinterType,
+                    PrinterType = x.PrinterType??0,
                     ID = x.ID
                 }
                 );
@@ -408,7 +408,7 @@ namespace ServicePOS
                {
                    PrinterName = x.PrinterName,
                    PrintName = x.PrintName,
-                   PrinterType = x.PrinterType,
+                   PrinterType = x.PrinterType??0,
                    ID = x.ID
                }
                );
@@ -428,7 +428,7 @@ namespace ServicePOS
                         ID = x.ID,
                         PrinterName = x.PrinterName,
                         PrintName = x.PrintName,
-                        PrinterType = x.PrinterType,
+                        PrinterType = x.PrinterType??0,
                         Status = x.Status,
                         CreateBy = x.CreateBy,
                         CreateDate = x.CreateDate,

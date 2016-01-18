@@ -323,6 +323,7 @@ namespace ServicePOS
                 OrderMain.ShiftID = dataOrder.ShiftID ?? 0;
                 OrderMain.CreateBy = dataOrder.CreateBy;
                 OrderMain.UpdateBy = dataOrder.UpdateBy;
+                OrderMain.Status = dataOrder.Status;
                 var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
                  item => item.OrderID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
@@ -790,8 +791,6 @@ namespace ServicePOS
         {
             OrderDateModel OrderMain = new OrderDateModel();
             var dataOrder = _context.ORDER_DATE.Where(x => x.OrderID==idOrder && x.Status == 1).SingleOrDefault();
-
-
             if (dataOrder != null)
             {
                 OrderMain.Seat = dataOrder.Seat ?? 0;
