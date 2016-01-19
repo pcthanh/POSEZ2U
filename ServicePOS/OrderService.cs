@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using ModelPOS.ModelEntity;
 using SystemLog;
 using ServicePOS.Model;
+using System.Data.Entity.Core.Objects;
 
 
 namespace ServicePOS
@@ -16,7 +17,7 @@ namespace ServicePOS
 
         private POSEZ2UEntities _context;
         ORDER_DATE orderDate = new ORDER_DATE();
-        
+        public int DynID;
        
         public OrderService()
         {
@@ -461,6 +462,7 @@ namespace ServicePOS
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                     _context.SaveChanges();
                     trans.Commit();
+                    DynID = item.dynID;
                     flag = 1;
                 }
 
@@ -787,54 +789,97 @@ namespace ServicePOS
             return listPrev;
         }
 
-        public OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder)
+        public OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder, DateTime ts)
         {
             OrderDateModel OrderMain = new OrderDateModel();
-            var dataOrder = _context.ORDER_DATE.Where(x => x.OrderID==idOrder && x.Status == 1).SingleOrDefault();
+            var dataOrder = _context.INVOICEs.Where(x => x.OrderID == idOrder && x.Satust == 1 ).SingleOrDefault();
             if (dataOrder != null)
             {
                 OrderMain.Seat = dataOrder.Seat ?? 0;
-                OrderMain.FloorID = dataOrder.FloorID;
+                //OrderMain.FloorID = dataOrder.FloorID;
                 OrderMain.OrderID = dataOrder.OrderID;
-                OrderMain.TotalAmount = dataOrder.TotalAmount;
+                OrderMain.TotalAmount = dataOrder.Total;
                 OrderMain.ShiftID = dataOrder.ShiftID ?? 0;
                 OrderMain.CreateBy = dataOrder.CreateBy;
                 OrderMain.UpdateBy = dataOrder.UpdateBy;
-                var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
-                 item => item.OrderID, (order, item) => new { order, item })
+                OrderMain.Payment = dataOrder.Payment??0;
+                OrderMain.Change = dataOrder.Change??0;
+                OrderMain.Discount = dataOrder.Discount??0;
+                OrderMain.DiscountType = dataOrder.DiscountType??0;
+                OrderMain.InvoiceID = dataOrder.InvoiceID;
+
+                var listPayMent = _context.INVOICEs.Join(_context.PAYMENT_INVOICE_HISTORY, inv => inv.InvoiceID, pay => pay.InvoiceID, (inv, pay) => new { inv, pay })
+                    .Where(x => x.inv.InvoiceID == x.pay.InvoiceID && x.inv.InvoiceID == dataOrder.InvoiceID && x.pay.InvoiceID == dataOrder.InvoiceID)
+                    .Select(x => new PayMentModel { 
+                        InvoiceNumber=x.inv.InvoiceID.ToString(),
+                        Total= x.pay.Total,
+                        PaymentTypeID = x.pay.PaymentTypeID,
+                        PaymentHistoryID = x.pay.PaymentHistoryID
+                    }
+                    );
+                foreach (PayMentModel pay in listPayMent)
+                {
+                    PayMentModel item = new PayMentModel();
+                    item.InvoiceNumber = pay.InvoiceNumber;
+                    item.PaymentHistoryID = pay.PaymentHistoryID;
+                    item.PaymentTypeID = pay.PaymentTypeID;
+                    item.Total = pay.Total;
+                    OrderMain.ListPayment.Add(item);
+                }
+
+                var listCard = _context.INVOICEs.Join(_context.INVOICE_BY_CARD, invoice => invoice.InvoiceID, incard => incard.InvoiceID, (invoice, incard) => new { invoice, incard })
+                    .Where(x => x.incard.InvoiceID == x.incard.InvoiceID && x.incard.InvoiceID == dataOrder.InvoiceID)
+                .Select(x => new InByCardModel { 
+                   InvoiceID = x.incard.InvoiceID,
+                   CardID = x.incard.CardID,
+                   Total = x.incard.Total,
+
+                }
+                );
+
+                foreach (InByCardModel item in listCard)
+                {
+                    var getCardName =_context.Cards.Where(x=>x.CardID==item.CardID).SingleOrDefault();
+                    InvoiceByCardModel byINCard = new InvoiceByCardModel();
+                    byINCard .Total= item.Total;
+                    byINCard.NameCard = getCardName.CardName;
+                    OrderMain.ListInvoiceByCard.Add(byINCard);
+                }
+                var data = _context.INVOICEs.Join(_context.INVOICE_DETAIL, order => order.InvoiceID,
+                 item => item.InvoiceID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
-                 .Where(x => x.pro.order.FloorID == dataOrder.FloorID && x.pro.order.OrderID == x.pro.item.OrderID && x.pro.order.OrderID == dataOrder.OrderID && x.pro.item.OrderID == dataOrder.OrderID && x.pro.item.ProductID == x.c.ProductID)
+                 .Where(x => x.pro.order.InvoiceID == dataOrder.InvoiceID && x.pro.order.OrderID == x.pro.item.InvoiceID && x.pro.order.InvoiceID == dataOrder.InvoiceID && x.pro.item.InvoiceID == dataOrder.InvoiceID && x.pro.item.ProductID == x.c.ProductID)
                  .Select(x => new OrderDetailModel()
                  {
-                     ProductID = x.pro.item.ProductID,
+                     ProductID = x.pro.item.ProductID??0,
                      Price = x.pro.item.Price,
                      Qty = x.pro.item.Qty,
                      Total = x.pro.item.Qty * x.pro.item.Price,
-                     OrderID = x.pro.item.OrderID,
-                     Satust = x.pro.item.Satust,
+                     InvoiceID = x.pro.item.InvoiceID,
+                     Satust = x.pro.item.Status,
                      ProductName = x.c.ProductNameSort,
                      KeyItem = x.pro.item.KeyItem ?? 0,
                      Seat = x.pro.item.Seat ?? 0,
                      DynID = x.pro.item.DynId ?? 0,
-                     OrderDetailID = x.pro.item.OrderDetailID
+                     OrderDetailID = x.pro.item.OrderDetailID??0
 
 
                  });
-                var openitems = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_OPEN_ITEM, x => x.DynId, openitem => openitem.dynID, (x, openitem) => new { x, openitem })
-                            .Where(a => a.x.DynId == a.openitem.dynID && a.x.OrderID == dataOrder.OrderID)
+                var openitems = _context.INVOICE_DETAIL.Join(_context.ORDER_OPEN_ITEM, x => x.DynId, openitem => openitem.dynID, (x, openitem) => new { x, openitem })
+                            .Where(a => a.x.DynId == a.openitem.dynID && a.x.InvoiceID == dataOrder.InvoiceID)
                             .Select(a => new OrderDetailModel()
                             {
                                 ProductName = a.openitem.ItemNameShort,
                                 Qty = a.x.Qty,
                                 Price = a.openitem.UnitPrice,
-                                ProductID = a.x.ProductID,
+                                ProductID = a.x.ProductID??0,
                                 Total = a.x.Qty * a.x.Price,
-                                OrderID = a.x.OrderID,
-                                Satust = a.x.Satust,
+                                InvoiceID = a.x.InvoiceID,
+                                Satust = a.x.Status,
                                 KeyItem = a.x.KeyItem ?? 0,
                                 Seat = a.x.Seat ?? 0,
                                 DynID = a.x.DynId ?? 0,
-                                OrderDetailID = a.x.OrderDetailID
+                                OrderDetailID = a.x.OrderDetailID??0
                             });
                 foreach (OrderDetailModel openItem in openitems)
                 {
@@ -844,38 +889,38 @@ namespace ServicePOS
                 {
                     int keyItemOld = item.KeyItem;
                     OrderMain.addItemToList(item);
-                    var dataOrderModifire = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_DETAIL_MODIFIRE_DATE, pro => pro.ProductID,
+                    var dataOrderModifire = _context.INVOICE_DETAIL.Join(_context.INVOICE_DETAIL_MODIFIRE, pro => pro.ProductID,
                        modifire => modifire.ProductID, (pro, modifire) => new { pro, modifire })
                        .Join(_context.MODIFIREs, modi => modi.modifire.ModifireID, c => c.ModifireID, (modi, c) => new { modi, c })
-                       .Where(x => x.modi.pro.OrderID == item.OrderID && x.modi.modifire.OrderID == item.OrderID && x.modi.pro.ProductID == item.ProductID && x.modi.modifire.ProductID == item.ProductID && x.modi.modifire.ModifireID == x.c.ModifireID && x.modi.modifire.KeyModi == keyItemOld && x.modi.pro.KeyItem == keyItemOld)
+                       .Where(x => x.modi.pro.InvoiceID == item.InvoiceID && x.modi.modifire.InvoiceID == item.InvoiceID && x.modi.pro.ProductID == item.ProductID && x.modi.modifire.ProductID == item.ProductID && x.modi.modifire.ModifireID == x.c.ModifireID && x.modi.modifire.KeyModi == keyItemOld && x.modi.pro.KeyItem == keyItemOld)
                        .Select(x => new OrderDetailModifireModel()
                        {
-                           ModifireID = x.modi.modifire.ModifireID,
+                           ModifireID = x.modi.modifire.ModifireID??0,
                            Price = x.modi.modifire.Price,
                            Qty = x.modi.modifire.Qty,
                            ModifireName = x.c.ModifireName,
                            Total = x.modi.modifire.Price * x.modi.modifire.Qty,
                            Seat = x.modi.modifire.Seat ?? 0,
-                           OrderModifireID = x.modi.modifire.OrderModifireID,
-                           OrderID = x.modi.pro.OrderID,
+                           OrderModifireID = x.modi.modifire.OrderModifireID??0,
+                           InvoiceID = x.modi.pro.InvoiceID,
                            DynID = x.modi.modifire.DynId ?? 0
                        });
                     foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
                     {
                         OrderMain.addModifierToList(itemmodifire, item.KeyItem);
                     }
-                    var openItemModiier = _context.ORDER_DETAIL_MODIFIRE_DATE.Join(_context.ORDER_OPEN_ITEM, modi => modi.DynId, open => open.dynID, (modi, open) => new { modi, open })
-                        .Where(x => x.modi.DynId == x.open.dynID && x.modi.ProductID == item.ProductID && x.modi.OrderID == item.OrderID && x.modi.KeyModi == keyItemOld)
+                    var openItemModiier = _context.INVOICE_DETAIL_MODIFIRE.Join(_context.ORDER_OPEN_ITEM, modi => modi.DynId, open => open.dynID, (modi, open) => new { modi, open })
+                        .Where(x => x.modi.DynId == x.open.dynID && x.modi.ProductID == item.ProductID && x.modi.InvoiceID == item.InvoiceID && x.modi.KeyModi == keyItemOld)
                         .Select(x => new OrderDetailModifireModel()
                         {
-                            ModifireID = x.modi.ModifireID,
+                            ModifireID = x.modi.ModifireID??0,
                             Price = x.modi.Price,
                             Qty = x.modi.Qty,
                             ModifireName = x.open.ItemNameShort,
                             Total = x.modi.Price * x.modi.Qty,
                             Seat = x.modi.Seat ?? 0,
-                            OrderModifireID = x.modi.OrderModifireID,
-                            OrderID = x.modi.OrderID ?? 0,
+                            OrderModifireID = x.modi.OrderModifireID??0,
+                            InvoiceID = x.modi.InvoiceID,
                             DynID = x.modi.DynId ?? 0
                         });
                     foreach (OrderDetailModifireModel Openitem in openItemModiier)
@@ -906,6 +951,12 @@ namespace ServicePOS
             
             }
             return Result;
+        }
+
+
+        public int LastDynID()
+        {
+            return DynID;
         }
     }
 }

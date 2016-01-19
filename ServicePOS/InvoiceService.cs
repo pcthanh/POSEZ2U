@@ -118,6 +118,7 @@ namespace ServicePOS
             invoice.UpdateBy = itemOrder.UpdateBy ?? 0;
             invoice.UpdateDate = DateTime.Now;
             invoice.Note = itemOrder.Note ?? "";
+            invoice.ShiftID = itemOrder.ShiftID;
             return invoice;
         }
         private List<INVOICE_DETAIL> CopyInvoicedetail(OrderDateModel itemOrder)
@@ -134,7 +135,8 @@ namespace ServicePOS
                         
                         orderDetaiDate.OrderDetailID = itemOrder.ListOrderDetail[i].OrderDetailID;
                         orderDetaiDate.ProductID = itemOrder.ListOrderDetail[i].ProductID;
-                        
+                        orderDetaiDate.DynId = itemOrder.ListOrderDetail[i].DynID;
+                        orderDetaiDate.Seat = itemOrder.ListOrderDetail[i].Seat;
                         orderDetaiDate.Qty = itemOrder.ListOrderDetail[i].Qty;
                         orderDetaiDate.KeyItem = itemOrder.ListOrderDetail[i].KeyItem;
                         orderDetaiDate.Total = itemOrder.ListOrderDetail[i].Total;
@@ -176,6 +178,8 @@ namespace ServicePOS
                             orderDetailModifire.Qty = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Qty;
                             orderDetailModifire.Total = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Total;
                             orderDetailModifire.Satust = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
+                            orderDetailModifire.Seat = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Seat;
+                            orderDetailModifire.DynId = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].DynID;
                             orderDetailModifire.CreateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateBy ?? 0;
                             orderDetailModifire.CreateDate = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateDate ?? DateTime.Now;
                             orderDetailModifire.UpdateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].UpdateBy ?? 0;

@@ -12,7 +12,7 @@ namespace ServicePOS.Model
         public string ItemNameShort { get; set; }
         public string ItemNameDesc { get; set; }
         public int UnitPrice { get; set; }
-        public string PrintType { get; set; }
+        public int PrintType { get; set; }
         public Nullable<int> CreateBy { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> UpdateBy { get; set; }
