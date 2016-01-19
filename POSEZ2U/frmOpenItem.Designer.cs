@@ -34,6 +34,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtOpenItemPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.txtOpenitemName = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbPrinter = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -62,7 +64,7 @@
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.Location = new System.Drawing.Point(117, 101);
+            this.btnOK.Location = new System.Drawing.Point(117, 146);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(97, 42);
             this.btnOK.TabIndex = 3;
@@ -76,7 +78,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(481, 101);
+            this.btnCancel.Location = new System.Drawing.Point(481, 146);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(97, 42);
             this.btnCancel.TabIndex = 3;
@@ -102,12 +104,32 @@
             this.txtOpenitemName.Size = new System.Drawing.Size(461, 26);
             this.txtOpenitemName.TabIndex = 1;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Select printer";
+            // 
+            // cbPrinter
+            // 
+            this.cbPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPrinter.FormattingEnabled = true;
+            this.cbPrinter.Location = new System.Drawing.Point(117, 109);
+            this.cbPrinter.Name = "cbPrinter";
+            this.cbPrinter.Size = new System.Drawing.Size(461, 28);
+            this.cbPrinter.TabIndex = 5;
+            // 
             // frmOpenItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 155);
+            this.ClientSize = new System.Drawing.Size(590, 198);
             this.ControlBox = false;
+            this.Controls.Add(this.cbPrinter);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtOpenItemPrice);
@@ -119,6 +141,7 @@
             this.Name = "frmOpenItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Open Item";
+            this.Load += new System.EventHandler(this.frmOpenItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +155,7 @@
         private UC.UCTextBoxKeyPad txtOpenItemPrice;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbPrinter;
     }
 }

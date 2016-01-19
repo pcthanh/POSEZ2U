@@ -83,9 +83,9 @@ namespace POSEZ2U
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             UserLoginModel.ShiffID = shiftid;
-            frmMain frm= new frmMain();
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
-            frm.ShowDialog();
+            
         }
     }
 }

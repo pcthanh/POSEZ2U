@@ -49,7 +49,6 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.panel19 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -60,6 +59,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.pDetail = new System.Windows.Forms.Panel();
+            this.dateSelect = new System.Windows.Forms.DateTimePicker();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -277,25 +277,12 @@
             // 
             // panel18
             // 
-            this.panel18.Controls.Add(this.button1);
+            this.panel18.Controls.Add(this.dateSelect);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel18.Location = new System.Drawing.Point(0, 40);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(185, 37);
             this.panel18.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(185, 37);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "DATE";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // panel17
             // 
@@ -393,6 +380,18 @@
             this.pDetail.Size = new System.Drawing.Size(291, 418);
             this.pDetail.TabIndex = 10;
             // 
+            // dateSelect
+            // 
+            this.dateSelect.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateSelect.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateSelect.Location = new System.Drawing.Point(0, 0);
+            this.dateSelect.Name = "dateSelect";
+            this.dateSelect.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateSelect.Size = new System.Drawing.Size(185, 26);
+            this.dateSelect.TabIndex = 0;
+            // 
             // ucInfoTop1
             // 
             this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -465,7 +464,6 @@
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGenerate;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel22;
@@ -475,5 +473,6 @@
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.FlowLayoutPanel flpReportList;
         private System.Windows.Forms.Button btnBack;
+        public System.Windows.Forms.DateTimePicker dateSelect;
     }
 }

@@ -41,6 +41,8 @@ namespace POSEZ2U
         MoneyFortmat monetFormat = new MoneyFortmat(MoneyFortmat.AU_TYPE);
         OrderDateModel OrderMain = new OrderDateModel();
         public delegate void CallBackStatusOrder(OrderDateModel orderMain);
+        public delegate void CallBackStatusOrderCancel();
+        public delegate void CallBackStatusOrderPrintBill();
         private delegate void ChangeTextCallback(string text, Control control);
         public delegate void AfterJoinTable();
         const int AW_HOR_POSITIVE = 1;
@@ -76,6 +78,8 @@ namespace POSEZ2U
                 frmOrder frm = new frmOrder();
                 frm.LoadOrder(ucTable.lbTableNo.Text, 0);
                 frm.CallBackStatusOrder = new CallBackStatusOrder(this.CallBackOrder);
+                frm.CallBackStatusOrderCancel = new CallBackStatusOrderCancel(this.CheckStatusTable);
+                frm.CallBackStatusOrderPrintBill = new CallBackStatusOrderPrintBill(this.CheckStatusTable);
                 frm.Show();
                 
             }
@@ -102,6 +106,12 @@ namespace POSEZ2U
             
             CheckStatusTable();
             
+        }
+        private void CallBackOrderCancel(OrderDateModel orderCallBack)
+        {
+
+            CheckStatusTable();
+
         }
         private void CheckStatusTable()
         {

@@ -28,6 +28,8 @@ namespace POSEZ2U
         }
        
         public POSEZ2U.frmFloor.CallBackStatusOrder CallBackStatusOrder;
+        public POSEZ2U.frmFloor.CallBackStatusOrderCancel CallBackStatusOrderCancel;
+        public POSEZ2U.frmFloor.CallBackStatusOrderPrintBill CallBackStatusOrderPrintBill;
         public POSEZ2U.frmTakeAway.CallBackStatusOrderTKA CallBackStatusOrderTKA;
         POSPrinter posPrinter = new POSPrinter();
         POSEZ2U.Class.MoneyFortmat money = new POSEZ2U.Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
@@ -37,9 +39,12 @@ namespace POSEZ2U
         int countItemOfSeat;
         int flagUcSeatClick;
         int numSeat;
+        int PRINTBILL = 2;
+
         List<PrinterModel> PrintData = new List<PrinterModel>();
         OrderDateModel OrderMain;
         private int flags;
+        OrderDetailModel ItemMain = new OrderDetailModel();
         private ICatalogueService _catalogeService;
         private ICatalogueService CatalogeService
         {
@@ -215,7 +220,7 @@ namespace POSEZ2U
                     int resul = OrderService.InsertOpenItem(OpenItem);
                     if (resul == 1)
                     {
-                        frm.items.DynID = OrderService.GetIDLastInsertOpenItem();
+                        frm.items.DynID = OrderService.LastDynID();
                         frm.items.OrderID = OrderMain.OrderID;
                         frm.items.Qty = 1;
                         if (seat > 0)
@@ -340,6 +345,7 @@ namespace POSEZ2U
                 OpenItem.ItemNameDesc = frm.items.ProductName;
                 OpenItem.ItemNameShort = frm.items.ProductName;
                 OpenItem.UnitPrice =Convert.ToInt32(frm.items.Price);
+                OpenItem.PrintType = frm.items.Printer;
                 resul = OrderService.InsertOpenItem(OpenItem);
                 if (resul == 1)
                 {
@@ -517,6 +523,7 @@ namespace POSEZ2U
             {
                 UCOrder ucOder = (UCOrder)sender;
                 OrderDetailModel item = (OrderDetailModel)ucOder.Tag;
+                ItemMain = item;
                 indexControl = flpOrder.Controls.GetChildIndex(ucOder);
                 foreach (Control ctr in flpOrder.Controls)
                 {
@@ -576,6 +583,8 @@ namespace POSEZ2U
                 modifier.ModifireID = itemsModifre.ModifireID;
                 modifier.OrderID = OrderMain.OrderID;
                 modifier.Qty = 1;
+                if (OrderMain.IsLoadFromData)
+                    modifier.ChangeStatus = 1;
                 OrderMain.addModifierToList(modifier, keyItemTemp);
                 UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
                 ucItemModifierOfMenu.Tag = modifier;
@@ -745,7 +754,6 @@ namespace POSEZ2U
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            frmFloor frm = new frmFloor();
             
             this.Close();
         }
@@ -1117,28 +1125,35 @@ namespace POSEZ2U
             try
             {
                 GetListPrinter();
-                if (OrderMain.ListOrderDetail.Count >= 0)
+                if (OrderMain.Status == PRINTBILL)
                 {
-                    int result = 0;
-                    OrderMain.PrintType = 1;
-                    result= OrderService.InsertOrder(OrderMain);
-                    if (result == 1)
+                    OrderCompleted();
+                }
+                else
+                {
+                    if (OrderMain.ListOrderDetail.Count >= 0)
                     {
-                        PrinterServer printServer = new PrinterServer();
-                        printServer.PrintData(OrderMain, PrintData);
-                        if (OrderMain.isTKA == 1)
+                        int result = 0;
+                        OrderMain.PrintType = 1;
+                        result = OrderService.InsertOrder(OrderMain);
+                        if (result == 1)
                         {
-                            frmTakeAway frm = new frmTakeAway();
-                            //CallBackStatusOrderTKA(OrderMain);
-                            frm.Show();
-                            this.Close();
+                            PrinterServer printServer = new PrinterServer();
+                            printServer.PrintData(OrderMain, PrintData);
+                            if (OrderMain.isTKA == 1)
+                            {
+                                frmTakeAway frm = new frmTakeAway();
+                                //CallBackStatusOrderTKA(OrderMain);
+                                frm.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                CallBackStatusOrder(OrderMain);
+                                this.Close();
+                            }
+
                         }
-                        else
-                        {
-                            CallBackStatusOrder(OrderMain);
-                            this.Close();
-                        }
-                       
                     }
                 }
             }
@@ -1214,6 +1229,7 @@ namespace POSEZ2U
                         frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
                         if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
+                            GetListPaymentPrinter();
                             int result = 0;
                             OrderMain = frm.OrderMain;
                             OrderMain.PrintType = 2;
@@ -1238,8 +1254,8 @@ namespace POSEZ2U
                                 }
                                 else
                                 {
-                                    //PrinterServer printServer = new PrinterServer();
-                                    //printServer.Print(OrderMain);
+                                    PrinterServer printServer = new PrinterServer();
+                                    printServer.PrintData(OrderMain,PrintData);
                                     if (OrderMain.isTKA == 1)
                                     {
                                         this.Close();
@@ -1276,22 +1292,31 @@ namespace POSEZ2U
 
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
-
-            if (OrderMain.ListOrderDetail.Count > 0)
+            if (OrderMain.isPrevOrder==1)
             {
-                int result = OrderService.UpdateOrder(OrderMain);
-                if (result == 1)
-                {
-                    //PrinterServer print = new PrinterServer();
-                    //print.Print(OrderMain);
-                    CallBackStatusOrder(OrderMain);
-                    this.Close();
-                }
+                GetListPaymentPrinter();
+                OrderMain.PrintType=2;
+                PrinterServer print = new PrinterServer();
+                print.PrintData(OrderMain, PrintData);
             }
             else
             {
-                frmMessager frm = new frmMessager("Print Bill", "Order is empty");
-                frm.ShowDialog();
+                if (OrderMain.ListOrderDetail.Count > 0)
+                {
+                    int result = OrderService.UpdateOrder(OrderMain);
+                    if (result == 1)
+                    {
+                        //PrinterServer print = new PrinterServer();
+                        //print.P
+                        CallBackStatusOrderPrintBill();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Print Bill", "Order is empty");
+                    frm.ShowDialog();
+                }
             }
         }
 
@@ -1319,7 +1344,7 @@ namespace POSEZ2U
             try
             {
                 OrderMain = new OrderDateModel();
-                OrderMain = OrderService.GetListOrderPrevOrder("",orderID);
+                OrderMain = OrderService.GetListOrderPrevOrder("",orderID,DateTime.Now.Date);
                 lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
                 if (OrderMain.Seat > 0)
                 {
@@ -1415,6 +1440,91 @@ namespace POSEZ2U
                 PrintData.Add(print);
             }
         }
+        private void GetListPaymentPrinter()
+        {
+            var listPrinter = PrintService.GetListPaymentprinter();
+            foreach (PrinterModel item in listPrinter)
+            {
+                PrinterModel print = new PrinterModel();
+                print.PrinterName = item.PrinterName;
+                print.PrintName = item.PrintName;
+                print.PrinterType = item.PrinterType;
+                print.ID = item.ID;
+                PrintData.Add(print);
+            }
+        }
+
+        private void btnCancelOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (OrderMain.ListOrderDetail.Count > 0)
+                {
+                    frmConfirm frm = new frmConfirm("Order","Are You sure CANCEL ORDER???");
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        int result = OrderService.CancelOrder(OrderMain);
+                        if (result == 1)
+                        {
+                            CallBackStatusOrderCancel();
+                            this.Close();
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                LogPOS.WriteLog("frmOrder:::::::::::::::::btnCancelOrder_Click:::::::::::::::::::" + ex.Message);
+            }
+        }
+
+        private void ModifireItemInOrder(OrderDateModel Order,OrderDetailModel Item)
+        {
+            for (int i = 0; i < Order.ListOrderDetail.Count; i++)
+            {
+                if (Order.ListOrderDetail[i].KeyItem == Item.KeyItem)
+                {
+                    Order.ListOrderDetail[i].Price = Item.Price;
+                }
+            }
+        }
+        private void btnPrice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (OrderMain.Status == PRINTBILL)
+                        OrderCompleted();
+                else
+                {
+                    frmChangePrice frm = new frmChangePrice(ItemMain);
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        ItemMain.Price = frm.ItemMain.Price;
+                        foreach (Control ctr in flpOrder.Controls)
+                        {
+                            if (ctr.BackColor == Color.FromArgb(0, 102, 204))
+                            {
+                                UCOrder uc = (UCOrder)ctr;
+                                OrderDetailModel itemUc = (OrderDetailModel)uc.Tag;
+                                ModifireItemInOrder(OrderMain, ItemMain);
+                                uc.lblPriceItem.Text = money.Format2(Convert.ToDouble(ItemMain.Price));
+                            }
+                        }
+                        OrderMain.SubTotal();
+                        lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
+
+                    }
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmOrder::::::::::::::::::btnPrice_Click::::::::::::::::::" + ex.Message);
+            }
+        }
+            
+        
         
     }
 }

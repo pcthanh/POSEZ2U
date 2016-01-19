@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace ServicePOS.Model
 {
-   public class PrinterModel
+    public class InByCardModel
     {
+        public string InvoiceByCardID { get; set; }
+        public Nullable<int> InvoiceID { get; set; }
+        public Nullable<int> CardID { get; set; }
+        public Nullable<double> Total { get; set; }
+        public string Note { get; set; }
         public int ID { get; set; }
-        public string PrintName { get; set; }
-        public string PrinterName { get; set; }
-        public int PrinterType { get; set; }
-        public Nullable<int> Status { get; set; }
-        public Nullable<int> CreateBy { get; set; }
+        public int CreateBy { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public string Header { get; set; }
     }
 }

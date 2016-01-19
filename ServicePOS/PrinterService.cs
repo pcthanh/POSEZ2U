@@ -71,7 +71,7 @@ namespace ServicePOS
                        ID = x.ID,
                        PrinterName = x.PrinterName,
                        PrintName =x.PrintName,
-                       PrinterType=x.PrinterType,
+                       PrinterType=x.PrinterType??0,
                        Status=x.Status,
                        CreateBy=x.CreateBy,
                        CreateDate=x.CreateDate,
@@ -393,11 +393,58 @@ namespace ServicePOS
                 {
                     PrinterName = x.PrinterName,
                     PrintName = x.PrintName,
-                    PrinterType = x.PrinterType,
+                    PrinterType = x.PrinterType??0,
                     ID = x.ID
                 }
                 );
             return data;
+        }
+
+
+        public IEnumerable<PrinterModel> GetListPaymentprinter()
+        {
+            var data = _context.PRINTERs.Where(x => x.Status == 1 )
+               .Select(x => new PrinterModel
+               {
+                   PrinterName = x.PrinterName,
+                   PrintName = x.PrintName,
+                   PrinterType = x.PrinterType??0,
+                   ID = x.ID
+               }
+               );
+            return data;
+        }
+
+
+        public IEnumerable<PrinterModel> GetListPrinterNotPayment()
+        {
+
+
+            try
+            {
+                var data = _context.PRINTERs.Where(x => x.Status == 1).Select
+                    (x => new PrinterModel()
+                    {
+                        ID = x.ID,
+                        PrinterName = x.PrinterName,
+                        PrintName = x.PrintName,
+                        PrinterType = x.PrinterType??0,
+                        Status = x.Status,
+                        CreateBy = x.CreateBy,
+                        CreateDate = x.CreateDate,
+                        UpdateBy = x.UpdateBy,
+                        UpdateDate = x.UpdateDate
+						
+                    }
+                    );
+                return data;
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
     }
 }

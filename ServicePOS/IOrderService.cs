@@ -28,6 +28,8 @@ namespace ServicePOS
        int DeleteJoinTableAll(OrderDateModel itemOrder);
        int VoidItemHistory(OrderDateModel OrderVoid);
        IEnumerable<OrderDateModel> GetPrevOrder();
-       OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder);
+       OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder,DateTime ts);
+       int CancelOrder(OrderDateModel Order);
+       int LastDynID();
     }
 }

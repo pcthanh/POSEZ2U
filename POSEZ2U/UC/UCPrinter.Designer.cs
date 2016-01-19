@@ -186,6 +186,9 @@
             this.cbPrintType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPrintType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPrintType.FormattingEnabled = true;
+            this.cbPrintType.Items.AddRange(new object[] {
+            "Ticket Printer",
+            "Payment Printer"});
             this.cbPrintType.Location = new System.Drawing.Point(3, 225);
             this.cbPrintType.Name = "cbPrintType";
             this.cbPrintType.Size = new System.Drawing.Size(517, 32);

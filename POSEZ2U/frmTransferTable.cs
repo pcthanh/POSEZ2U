@@ -283,21 +283,24 @@ namespace POSEZ2U
             {
                 foreach (Control ctr in flpOldTable.Controls)
                 {
-                    
-                    UCOrder ucOrder = (UCOrder)ctr;
-                    if (ucOrder.BackColor == Color.FromArgb(0, 102, 204))
+
+                    if (ctr is UCOrder)
                     {
-                        OrderDetailModel itemOrder = (OrderDetailModel)ucOrder.Tag;
-                        OrderSlpitNew.FloorID = lblNewTable.Text;
-                        OrderSlpitNew.ShiftID = OrderMain.ShiftID;
-                        OrderSlpitNew.addItemToList(itemOrder);
-                        OrderMain.ListOrderDetail.Remove(itemOrder);
-                        OrderSlpitNew.SubTotal();
-                        OrderMain.SubTotal();
-                        OrderMain.isTransferTableAll = 0;
-                        RefeshOrderMain(OrderMain,flpOldTable);
-                        RefeshOrderMain(OrderSlpitNew, flpNewTable);
-                       
+                        UCOrder ucOrder = (UCOrder)ctr;
+                        if (ucOrder.BackColor == Color.FromArgb(0, 102, 204))
+                        {
+                            OrderDetailModel itemOrder = (OrderDetailModel)ucOrder.Tag;
+                            OrderSlpitNew.FloorID = lblNewTable.Text;
+                            OrderSlpitNew.ShiftID = OrderMain.ShiftID;
+                            OrderSlpitNew.addItemToList(itemOrder);
+                            OrderMain.ListOrderDetail.Remove(itemOrder);
+                            OrderSlpitNew.SubTotal();
+                            OrderMain.SubTotal();
+                            OrderMain.isTransferTableAll = 0;
+                            RefeshOrderMain(OrderMain, flpOldTable);
+                            RefeshOrderMain(OrderSlpitNew, flpNewTable);
+
+                        }
                     }
                     
                 }
@@ -311,27 +314,40 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (flpNewTable.Controls.Count > 0)
+            try
             {
-                if (OrderSlpitNew.FloorID == "#" )
+                if (flpNewTable.Controls.Count > 0)
                 {
-                    frmMessager frm = new frmMessager("Messager", "Input TableNo New");
-                    frm.ShowDialog();
-                }
-                else
-                {
-                    OrderService.InsertOrder(OrderSlpitNew);
-                    if (OrderMain.isTransferTableAll == 1)
+                    if (OrderSlpitNew.FloorID == "#")
                     {
-                        OrderService.DeleteJoinTableAll(OrderMain);
+                        frmMessager frm = new frmMessager("Messager", "Input TableNo New");
+                        frm.ShowDialog();
                     }
                     else
                     {
-                        OrderService.InsertOrder(OrderMain);
+                        OrderMain.Seat = 0;
+                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                        {
+                            OrderMain.ListOrderDetail[i].Seat = 0;
+                        }
+                        OrderService.InsertOrder(OrderSlpitNew);
+                        if (OrderMain.isTransferTableAll == 1)
+                        {
+                            OrderService.DeleteJoinTableAll(OrderMain);
+                        }
+                        else
+                        {
+                            OrderService.InsertOrder(OrderMain);
+
+                        }
                         
                     }
-                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmTransferTable::::::::::::::::::::::btnOK_Click::::::::::::::::;;" + ex.Message);
             }
         }
 
