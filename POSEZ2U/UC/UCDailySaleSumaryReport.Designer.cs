@@ -314,7 +314,7 @@
             this.lblTotalAccount.Name = "lblTotalAccount";
             this.lblTotalAccount.Size = new System.Drawing.Size(265, 32);
             this.lblTotalAccount.TabIndex = 0;
-            this.lblTotalAccount.Text = "label2";
+            this.lblTotalAccount.Text = "$0.00";
             this.lblTotalAccount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotalCard
@@ -326,7 +326,7 @@
             this.lblTotalCard.Name = "lblTotalCard";
             this.lblTotalCard.Size = new System.Drawing.Size(265, 29);
             this.lblTotalCard.TabIndex = 0;
-            this.lblTotalCard.Text = "label2";
+            this.lblTotalCard.Text = "$0.00";
             this.lblTotalCard.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotakCash
@@ -339,7 +339,7 @@
             this.lblTotakCash.Name = "lblTotakCash";
             this.lblTotakCash.Size = new System.Drawing.Size(265, 29);
             this.lblTotakCash.TabIndex = 0;
-            this.lblTotakCash.Text = "label2";
+            this.lblTotakCash.Text = "$0.00";
             this.lblTotakCash.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTotakReceiva
@@ -351,7 +351,7 @@
             this.lblTotakReceiva.Name = "lblTotakReceiva";
             this.lblTotakReceiva.Size = new System.Drawing.Size(265, 29);
             this.lblTotakReceiva.TabIndex = 0;
-            this.lblTotakReceiva.Text = "label2";
+            this.lblTotakReceiva.Text = "$0.00";
             this.lblTotakReceiva.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblRefund
@@ -364,7 +364,7 @@
             this.lblRefund.Name = "lblRefund";
             this.lblRefund.Size = new System.Drawing.Size(265, 29);
             this.lblRefund.TabIndex = 0;
-            this.lblRefund.Text = "label2";
+            this.lblRefund.Text = "$0.00";
             this.lblRefund.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblDiscount
@@ -376,7 +376,7 @@
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(265, 29);
             this.lblDiscount.TabIndex = 0;
-            this.lblDiscount.Text = "label2";
+            this.lblDiscount.Text = "$0.00";
             this.lblDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblGST
@@ -389,7 +389,7 @@
             this.lblGST.Name = "lblGST";
             this.lblGST.Size = new System.Drawing.Size(265, 29);
             this.lblGST.TabIndex = 0;
-            this.lblGST.Text = "label2";
+            this.lblGST.Text = "$0.00";
             this.lblGST.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblNetSalse
@@ -401,7 +401,7 @@
             this.lblNetSalse.Name = "lblNetSalse";
             this.lblNetSalse.Size = new System.Drawing.Size(265, 29);
             this.lblNetSalse.TabIndex = 0;
-            this.lblNetSalse.Text = "label2";
+            this.lblNetSalse.Text = "$0.00";
             this.lblNetSalse.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // UCDailySaleSumaryReport
