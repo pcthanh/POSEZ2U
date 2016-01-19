@@ -220,7 +220,7 @@ namespace POSEZ2U
                     int resul = OrderService.InsertOpenItem(OpenItem);
                     if (resul == 1)
                     {
-                        frm.items.DynID = OrderService.GetIDLastInsertOpenItem();
+                        frm.items.DynID = OrderService.LastDynID();
                         frm.items.OrderID = OrderMain.OrderID;
                         frm.items.Qty = 1;
                         if (seat > 0)
@@ -345,6 +345,7 @@ namespace POSEZ2U
                 OpenItem.ItemNameDesc = frm.items.ProductName;
                 OpenItem.ItemNameShort = frm.items.ProductName;
                 OpenItem.UnitPrice =Convert.ToInt32(frm.items.Price);
+                OpenItem.PrintType = frm.items.Printer;
                 resul = OrderService.InsertOpenItem(OpenItem);
                 if (resul == 1)
                 {
@@ -1291,22 +1292,31 @@ namespace POSEZ2U
 
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
-
-            if (OrderMain.ListOrderDetail.Count > 0)
+            if (OrderMain.isPrevOrder==1)
             {
-                int result = OrderService.UpdateOrder(OrderMain);
-                if (result == 1)
-                {
-                    //PrinterServer print = new PrinterServer();
-                    //print.Print(OrderMain);
-                    CallBackStatusOrderPrintBill();
-                    this.Close();
-                }
+                GetListPaymentPrinter();
+                OrderMain.PrintType=2;
+                PrinterServer print = new PrinterServer();
+                print.PrintData(OrderMain, PrintData);
             }
             else
             {
-                frmMessager frm = new frmMessager("Print Bill", "Order is empty");
-                frm.ShowDialog();
+                if (OrderMain.ListOrderDetail.Count > 0)
+                {
+                    int result = OrderService.UpdateOrder(OrderMain);
+                    if (result == 1)
+                    {
+                        //PrinterServer print = new PrinterServer();
+                        //print.P
+                        CallBackStatusOrderPrintBill();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Print Bill", "Order is empty");
+                    frm.ShowDialog();
+                }
             }
         }
 
@@ -1334,7 +1344,7 @@ namespace POSEZ2U
             try
             {
                 OrderMain = new OrderDateModel();
-                OrderMain = OrderService.GetListOrderPrevOrder("",orderID);
+                OrderMain = OrderService.GetListOrderPrevOrder("",orderID,DateTime.Now.Date);
                 lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
                 if (OrderMain.Seat > 0)
                 {
