@@ -10,5 +10,9 @@ namespace ServicePOS
     public interface IProductPriceService : IDisposable
     {
         IEnumerable<ProductPriceModel> GetListProductPrice();
+
+        IEnumerable<ProductPriceModel> GetDetailProductPrice(int productID);
+
+        int EditProductPrice(ProductPriceModel productPriceData);
     }
 }

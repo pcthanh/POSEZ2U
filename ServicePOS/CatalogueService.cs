@@ -351,6 +351,12 @@ namespace ServicePOS
 
         }
 
+        public IEnumerable<CategoryModel> searchProduct(string textSearch, int type)
+        {
+            var data = _context.Database.SqlQuery<CategoryModel>("pos_th_SearchProduct @txtSearch, @type", new SqlParameter("txtSearch", textSearch), new SqlParameter("type", type)).ToList();
+            return data;
+        }
+
         #endregion
 
         #endregion

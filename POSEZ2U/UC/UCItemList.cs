@@ -45,7 +45,7 @@ namespace POSEZ2U.UC
                         flpItemList.Controls.AddRange(ucItemListButton);
                     }
                 }
-            }        
+            }
         }
         public void addButton(int productID)
         {
@@ -68,14 +68,14 @@ namespace POSEZ2U.UC
         {
             Button addnewGroup = (Button)sender;
             int tag = Convert.ToInt16(addnewGroup.Tag);
-            //frmMenuAddItemList frmMenuAddItemList = new frmMenuAddItemList(tag);
-            //if (frmMenuAddItemList.ShowDialog() == DialogResult.OK)
-            //{
-            //    flpItemList.Controls.Clear();
-            //    addUcMenuGroup(tag);
-            //    addButton(tag);
+            frmMenuAddItemList frmMenuAddItemList = new frmMenuAddItemList(tag);
+            if (frmMenuAddItemList.ShowDialog() == DialogResult.OK)
+            {
+                flpItemList.Controls.Clear();
+                addUcMenuGroup(tag);
+                addButton(tag);
 
-            //}
+            }
         }
         void UCItemList_Click(object sender, EventArgs e)
         {
@@ -108,7 +108,6 @@ namespace POSEZ2U.UC
             {
                 this.cbProductColor.Items.Add(c.Name);
             }
-            
         }
 
         public void btnSave_Click(object sender, EventArgs e)

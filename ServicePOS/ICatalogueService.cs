@@ -29,5 +29,7 @@ namespace ServicePOS
         IEnumerable<ProductionModel> GetAllListProductByCategory(int CategoryID);
 
         int SaveDataMapProductToCategory(List<ProductionModel> data, int categoryid, int userid);
+
+        IEnumerable<CategoryModel> searchProduct(string textSearch, int type);
     }
 }

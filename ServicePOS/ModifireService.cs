@@ -237,5 +237,11 @@ namespace ServicePOS
            ).ToList();
             return data;
         }
+
+        public IEnumerable<ModifireModel> searchProduct(string textSearch, int type)
+        {
+            var data = _context.Database.SqlQuery<ModifireModel>("pos_th_SearchProduct @txtSearch, @type", new SqlParameter("txtSearch", textSearch), new SqlParameter("type", type)).ToList();
+            return data;
+        }
     }
 }

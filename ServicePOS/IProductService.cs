@@ -15,5 +15,6 @@ namespace ServicePOS
         IEnumerable<ProductionModel> GetProdutcByCategory(int id);
         ProductionModel GetPrinterType(int ID);
         ProductionModel GetPrinterTypeByCate(int ID);
+        IEnumerable<ProductionModel> searchProduct(string textSearch, int type); 
     }
 }

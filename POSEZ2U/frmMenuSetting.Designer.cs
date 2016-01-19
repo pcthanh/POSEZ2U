@@ -42,6 +42,7 @@
             this.pn2 = new System.Windows.Forms.Panel();
             this.flpMenuList = new System.Windows.Forms.FlowLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.txtSearch = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.ucPriceListTitle = new POSEZ2U.UC.UCPriceList();
             this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -196,6 +197,7 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.txtSearch);
             this.panel11.Controls.Add(this.ucPriceListTitle);
             this.panel11.Controls.Add(this.txtNameMenuList);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
@@ -204,13 +206,23 @@
             this.panel11.Size = new System.Drawing.Size(262, 35);
             this.panel11.TabIndex = 9;
             // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearch.Location = new System.Drawing.Point(89, 6);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(154, 26);
+            this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.ucTextBoxKeyBoard1_TextChanged);
+            // 
             // ucPriceListTitle
             // 
             this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
             this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
-            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(1200, 32);
             this.ucPriceListTitle.Name = "ucPriceListTitle";
-            this.ucPriceListTitle.Size = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.Size = new System.Drawing.Size(1200, 32);
             this.ucPriceListTitle.TabIndex = 1;
             this.ucPriceListTitle.Visible = false;
             // 
@@ -286,6 +298,7 @@
             this.panel8.ResumeLayout(false);
             this.pn2.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -314,5 +327,6 @@
         public System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.Panel pnDetail;
         public System.Windows.Forms.FlowLayoutPanel flpMenuList;
+        private UC.UCTextBoxKeyBoard txtSearch;
     }
 }

@@ -43,13 +43,21 @@ namespace POSEZ2U
         }
         #endregion
 
+        #region
+        private IProductPriceService _productPriceService;
+        private IProductPriceService ProductPriceService
+        {
+            get { return _productPriceService ?? (_productPriceService = new ProductPriceService()); }
+            set { _productPriceService = value; }
+        }
+        #endregion
 
 
         public frmMenuSetting()
         {
             InitializeComponent();
         }
-        int flag = 0;
+        int flag;
         int OldWidthPn2 = 262;
         int NewWidthPn2 = Screen.PrimaryScreen.WorkingArea.Width - 400;
         private void ResizeTopriceList()
@@ -93,7 +101,7 @@ namespace POSEZ2U
                     ucItemList.btnSave.Click += ucItemList_btnSave_Click;
                     ucItemList.btnRemove.Visible = false;
                     ucItemList.btnAddProtions.Visible = false;
-                   
+
                     pnDetail.Controls.Add(ucItemList);
                     break;
                 case 4:
@@ -113,14 +121,14 @@ namespace POSEZ2U
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
         private void loadDataProductSetting()
         {
             flpProdutcSetting.Controls.Clear();
             int i = 1;
             string[] lstProduct = { "Menu List", "Group List", "Item List", "Modifier List", "Price List" };
-
+            txtSearch.Visible = false;
             foreach (string str in lstProduct)
             {
 
@@ -173,6 +181,12 @@ namespace POSEZ2U
         }
         private void addMenuList(string lblName, int i)
         {
+            if (btnAdd.Visible == false)
+            {
+                btnAdd.Visible = true;
+            }
+            txtSearch.Visible = false;
+            txtSearch.Tag = i;
             btnAdd.Tag = i;
             ResizeToOthder();
             int index = 1;
@@ -206,6 +220,12 @@ namespace POSEZ2U
         }
         private void addModifier(string lblName, int i)
         {
+            if (btnAdd.Visible == false)
+            {
+                btnAdd.Visible = true;
+            }
+            txtSearch.Visible = true;
+            txtSearch.Tag = i;
             btnAdd.Tag = i;
             ResizeToOthder();
             int index = 1;
@@ -237,7 +257,12 @@ namespace POSEZ2U
         }
         private void addGroupList(string lblName, int i)
         {
-
+            if (btnAdd.Visible == false)
+            {
+                btnAdd.Visible = true;
+            }
+            txtSearch.Visible = true;
+            txtSearch.Tag = i;
             btnAdd.Tag = i;
             int index = 1;
             // string[] str = { "COM", "PHO", "HU TIEU", "CHAO", "Coffee", "Tea", "Smoothie" };
@@ -265,6 +290,12 @@ namespace POSEZ2U
 
         private void addItemList(string lblName, int i)
         {
+            if (btnAdd.Visible == false)
+            {
+                btnAdd.Visible = true;
+            }
+            txtSearch.Visible = true;
+            txtSearch.Tag = i;
             btnAdd.Tag = i;
             ResizeToOthder();
             int index = 1;
@@ -295,9 +326,11 @@ namespace POSEZ2U
 
         }
 
-        private void addPriceList(int i)
+        public void addPriceList(int i)
         {
-            string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
+            txtSearch.Visible = false;
+            btnAdd.Visible = false;
+            var data = ProductPriceService.GetListProductPrice().ToList();
             if (i == 5)
             {
                 this.ResizeTopriceList();
@@ -307,24 +340,26 @@ namespace POSEZ2U
                 ucPriceListTitle.BackColor = Color.FromArgb(0, 102, 204);
                 ucPriceListTitle.ForeColor = Color.FromArgb(255, 255, 255);
                 ucPriceListTitle.Dock = DockStyle.Fill;
-                foreach (string strPriceList in str)
+                foreach (var strPriceList in data)
                 {
                     UCPriceList ucPriceList = new UCPriceList();
-                    ucPriceList.lblPriceNameProduct.Text = strPriceList;
-                    ucPriceList.lblPriceSizeProduct.Text = "Regular";
-                    ucPriceList.lblPriceProduct.Text = "10.00";
+                    ucPriceList.lblPriceNameProduct.Text = strPriceList.ProductNameDesc;
+                    ucPriceList.lblPriceSizeProduct.Text = strPriceList.Portions;
+                    ucPriceList.lblPriceProduct.Text = Convert.ToString(strPriceList.CurrentPrice);
                     ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
                     //ucPriceList.Dock = DockStyle.Fill;
+                    ucPriceList.Tag = strPriceList.ProductPriceID;
                     ucPriceList.Click += ucPriceList_Click;
                     flpMenuList.Controls.Add(ucPriceList);
                 }
-                addButtonPriceList();
+                addButtonPriceList(0);
             }
 
         }
 
         void ucPriceList_Click(object sender, EventArgs e)
         {
+
             UCPriceList ucPriceList = (UCPriceList)sender;
             int tag = Convert.ToInt32(ucPriceList.Tag);
             foreach (Control ctr in flpMenuList.Controls)
@@ -337,15 +372,11 @@ namespace POSEZ2U
             }
             ucPriceList.BackColor = Color.FromArgb(0, 153, 51);
             ucPriceList.ForeColor = Color.FromArgb(255, 255, 255);
+            pnDetail.Controls.Clear();
+            addButtonPriceList(tag);
         }
-        private void addButtonPriceList()
+        private void addButtonPriceList(int tag)
         {
-
-
-
-
-
-            ////////////////////////
             int i = 1;
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
@@ -361,7 +392,7 @@ namespace POSEZ2U
                 btnGoToProduct.FlatAppearance.BorderSize = 0;
                 btnGoToProduct.Dock = DockStyle.Top;
                 btnGoToProduct.Text = str;
-                btnGoToProduct.Tag = str;
+                btnGoToProduct.Tag = str + '_' + tag;
                 btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
                 btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
                 btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -375,7 +406,22 @@ namespace POSEZ2U
         void btnGoToProduct_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            MessageBox.Show(btn.Tag.ToString());
+            var data = btn.Tag.ToString().Split('_');
+            if (data[1] == "0")
+            {
+                string title = "Waring.";
+                string description = "Please choose product.";
+                frmMessager frmMessager = new frmMessager(title, description);
+                frmMessager.ShowDialog();
+            }
+            else
+            {
+                if (data[0] == "Edit")
+                {
+                    frmEditProductPriceList frmEditProductPriceList = new frmEditProductPriceList(Int32.Parse(data[1]));
+                    frmEditProductPriceList.ShowDialog();
+                }
+            }
         }
 
 
@@ -496,29 +542,30 @@ namespace POSEZ2U
             if (tag.CatalogueName != "")
             {
                 var result = CatalogeService.SavaDataCatalogue(tag);
-
+                var message = "";
                 if (result == 1)
                 {
                     addMenuList("Menu List", 1);
-
-                    MessageBox.Show("Save data menu successful", "Messenger");
+                    message = "Save data menu successful";
                 }
                 else
                 {
                     if (result == -1)
                     {
-                        MessageBox.Show("Group name already exist. Please change menu name.", "Messenger");
+                        message = "Menu name already exists. Please change menu name";
                     }
                     else
                     {
-                        MessageBox.Show("Save data menu fail", "Messenger");
+                        message = "Save data menu fail";
                     }
-
                 }
+                frmMessager frm = new frmMessager("Messager", message);
+                frm.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Menu name isn't empty.", "Messenger");
+                frmMessager frm = new frmMessager("Messager","Menu name isn't empty.");
+                frm.ShowDialog();
             }
 
 
@@ -526,24 +573,29 @@ namespace POSEZ2U
 
         void ucMenuList_btnRemove_Click(object sender, EventArgs e)
         {
-            Button btnRemove = (Button)sender;
-            CatalogueModel tag = (CatalogueModel)(btnRemove.Tag);
-            if (tag.CatalogueID > 0)
+            frmConfirm frmcon = new frmConfirm("Warning", "Do you want remove this menu ?");
+            frmcon.ShowDialog();
+            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                var result = CatalogeService.RemoveCatalogue(tag.CatalogueID, 0);
-                if (result == 1)
+                Button btnRemove = (Button)sender;
+                CatalogueModel tag = (CatalogueModel)(btnRemove.Tag);
+                if (tag.CatalogueID > 0)
                 {
-                    addMenuList("Menu List", 1);
-                    pnDetail.Controls.Clear();
-                    MessageBox.Show("Remove menu successful", "Messenger");
-                }
-                else
-                {
-                    MessageBox.Show("Remove menu fail", "Messenger");
+                    var result = CatalogeService.RemoveCatalogue(tag.CatalogueID, 0);
+                    if (result == 1)
+                    {
+                        addMenuList("Menu List", 1);
+                        pnDetail.Controls.Clear();
+                        frmMessager frm = new frmMessager("Messenger", "Delete menu successful.");
+                        frm.ShowDialog();
+                    }
+                    else
+                    {
+                        frmMessager frm = new frmMessager("Messenger", "Delete menu fail.");
+                        frm.ShowDialog();
+                    }
                 }
             }
-
-
         }
 
 
@@ -572,14 +624,25 @@ namespace POSEZ2U
         }
         private void ucModifier_btnRemove_Click(object sender, EventArgs e)
         {
-            Button modifier = (Button)sender;
-            ModifireModel dataModifier = (ModifireModel)(modifier.Tag);
-            var result = ModifireService.Delete(dataModifier);
-            if (result == 1)
+            frmConfirm frmcon = new frmConfirm("Warning", "Do you want remove this modifier ?");
+            frmcon.ShowDialog();
+            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                addModifier("Modifier List", 4);
-                pnDetail.Controls.Clear();
-                MessageBox.Show("Delete modifire success", "Messenger");
+                Button modifier = (Button)sender;
+                ModifireModel dataModifier = (ModifireModel)(modifier.Tag);
+                var result = ModifireService.Delete(dataModifier);
+                if (result == 1)
+                {
+                    addModifier("Modifier List", 4);
+                    pnDetail.Controls.Clear();
+                    frmMessager frm = new frmMessager("Messenger", "Delete modifire success.");
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    frmMessager frm = new frmMessager("Messenger", "Delete modifire fail.");
+                    frm.ShowDialog();
+                }
             }
         }
 
@@ -616,28 +679,31 @@ namespace POSEZ2U
                 dataModifier.Color = modifierColor;
                 dataModifier.CurrentPrice = double.Parse(modifierPrice);
                 var result = ModifireService.Created(dataModifier);
+                var message = "";
                 if (result == 1)
                 {
                     addModifier("Modifier List", 4);
                     pnDetail.Controls.Clear();
-                    MessageBox.Show("Save Modifire Successful", "Messenger");
+                    message = "Save modifier Successful";
                 }
                 else
                 {
                     if (result == -1)
                     {
-                        MessageBox.Show("Modifire name already exist. Please change modifire name.", "Messenger");
+                        message = "Modifier name already exist. Please change modifire name.";
                     }
                     else
                     {
-                        MessageBox.Show("Save Modifire Fail", "Messenger");
+                        message = "Save modifier fail";
                     }
-
+                    frmMessager frm = new frmMessager("Messenger", message);
+                    frm.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show(message_error, "Messenger");
+                frmMessager frm = new frmMessager("Messenger", message_error);
+                frm.ShowDialog();
             }
         }
 
@@ -695,54 +761,62 @@ namespace POSEZ2U
             if (tag.CategoryName != "")
             {
                 var result = CatalogeService.SaveDataCategory(tag);
-
+                var message = "";
                 if (result == 1)
                 {
 
                     addGroupList("Group List", 2);
-                    MessageBox.Show("Save data group successful", "Messenger");
+                    message = "Save data group successful.";
                 }
                 else
                 {
                     if (result == -1)
                     {
-                        MessageBox.Show("Menu name already exist. Please change group name.", "Messenger");
+                        message = "Menu name already exist. Please change group name.";
                     }
                     else
                     {
-                        MessageBox.Show("Save data group Fail", "Messenger");
+                        message = "Save data group fail";
                     }
 
                 }
+                frmMessager frm = new frmMessager("Messenger", message);
+                frm.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Group name isn't empty.", "Messenger");
+                frmMessager frm = new frmMessager("Messenger", "Group name isn't empty.");
+                frm.ShowDialog();
             }
 
         }
 
         void ucGroupList_btnRemove_Click(object sender, EventArgs e)
         {
-            Button btnRemoveGroup = (Button)sender;
-            CategoryModel tag = (CategoryModel)(btnRemoveGroup.Tag);
-            if (tag.CategoryID > 0)
+            frmConfirm frmcon = new frmConfirm("Warning", "Do you want remove this group ?");
+            frmcon.ShowDialog();
+            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                var result = CatalogeService.RemoveCategory(tag.CategoryID, 0);
-                if (result == 1)
+                Button btnRemoveGroup = (Button)sender;
+                CategoryModel tag = (CategoryModel)(btnRemoveGroup.Tag);
+                if (tag.CategoryID > 0)
                 {
-                    addGroupList("Group List", 2);
-                    pnDetail.Controls.Clear();
-                    MessageBox.Show("Remove group successful", "Messenger");
-                }
-                else
-                {
-                    MessageBox.Show("Remove group fail", "Messenger");
+                    var result = CatalogeService.RemoveCategory(tag.CategoryID, 0);
+                    var messenge = "";
+                    if (result == 1)
+                    {
+                        addGroupList("Group List", 2);
+                        pnDetail.Controls.Clear();
+                        messenge = "Remove group successful.";
+                    }
+                    else
+                    {
+                        messenge = "Remove group fail.";
+                    }
+                    frmMessager frm = new frmMessager("Messenger", messenge);
+                    frm.ShowDialog();
                 }
             }
-
-
-
         }
         private void addItemListDetail(ProductionModel productData)
         {
@@ -775,14 +849,20 @@ namespace POSEZ2U
         }
         private void ucItemList_btnRemove_Click(object sender, EventArgs e)
         {
-            Button product = (Button)sender;
-            ProductionModel dataProduct = (ProductionModel)(product.Tag);
-            var result = ProductService.Delete(dataProduct);
-            if (result == 1)
+            frmConfirm frmcon = new frmConfirm("Warning", "Do you want remove this item ?");
+            frmcon.ShowDialog();
+            if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                addItemList("Item List", 3);
-                pnDetail.Controls.Clear();
-                MessageBox.Show("Delete product success", "Messenger");
+                Button product = (Button)sender;
+                ProductionModel dataProduct = (ProductionModel)(product.Tag);
+                var result = ProductService.Delete(dataProduct);
+                if (result == 1)
+                {
+                    addItemList("Item List", 3);
+                    pnDetail.Controls.Clear();
+                    frmMessager frm = new frmMessager("Messenger", "Delete product success");
+                    frm.ShowDialog();
+                }
             }
         }
         private void ucItemList_btnSave_Click(object sender, EventArgs e)
@@ -823,33 +903,136 @@ namespace POSEZ2U
                 dataProduct.Color = productColor;
                 dataProduct.CurrentPrice = double.Parse(productPrice);
                 var result = ProductService.Created(dataProduct);
+                var message = "";
                 if (result == 1)
                 {
                     addItemList("Item List", 3);
                     pnDetail.Controls.Clear();
-                    MessageBox.Show("Save Product Successful", "Messenger");
+                    message = "Save Product Successful.";
                 }
                 else
                 {
                     if (result == -1)
                     {
-                        MessageBox.Show("Product name already exist. Please change product name.", "Messenger");
+                        message = "Product name already exist. Please change product name.";
                     }
                     else
                     {
-                        MessageBox.Show("Save Product Fail", "Messenger");
+                        message = "Save product fail.";
                     }
-
                 }
+                frmMessager frm_item = new frmMessager("Messenger", message);
+                frm_item.ShowDialog();
             }
             else
             {
-                MessageBox.Show(messageError, "Messenger");
+                frmMessager frm_item = new frmMessager("Messenger", messageError);
+                frm_item.ShowDialog();
             }
         }
         private void frmMenuSetting_Load(object sender, EventArgs e)
         {
             loadDataProductSetting();
+        }
+
+        private void ucTextBoxKeyBoard1_TextChanged(object sender, EventArgs e)
+        {
+            TextBox addNew = (TextBox)sender;
+            int tag = Convert.ToInt32(addNew.Tag);
+            string textSearch = txtSearch.Text;
+            switch (tag)
+            {
+                case 1:
+                    UCMenu ucMenu = new UCMenu();
+                    ucMenu.Dock = DockStyle.Fill;
+                    ucMenu.btnSave.Click += ucMenuList_btnSave_Click;
+                    ucMenu.btnRemove.Hide();
+                    pnDetail.Controls.Add(ucMenu);
+                    break;
+                case 2:
+                    btnAdd.Tag = tag;
+                    int index_group = 1;
+                    // string[] str = { "COM", "PHO", "HU TIEU", "CHAO", "Coffee", "Tea", "Smoothie" };
+                    if (tag == 2)
+                    {
+
+                        var dataCategory = CatalogeService.searchProduct(textSearch, 2).ToList();
+                        flpMenuList.Controls.Clear();
+                        //txtNameMenuList.Visible = true;
+                        txtNameMenuList.lblMenuListName.Text = "Group List";
+                        txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
+                        txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
+                        foreach (var item in dataCategory)
+                        {
+                            UCGroupListItem ucGroupListItem = new UCGroupListItem();
+                            ucGroupListItem.lblGroupListItemName.Text = item.CategoryName;
+                            ucGroupListItem.Tag = item;
+                            ucGroupListItem.Click += ucGroupListItem_Click;
+                            flpMenuList.Controls.Add(ucGroupListItem);
+                            index_group++;
+                        }
+                    }
+                    break;
+                case 3:
+                    btnAdd.Tag = tag;
+                    ResizeToOthder();
+                    int index_item = 1;
+                    //string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
+                    var dataProduct = ProductService.searchProduct(textSearch,3).ToList();
+                    if (tag == 3)
+                    {
+                        flpMenuList.Controls.Clear();
+                        txtNameMenuList.lblMenuListName.Text = "ItemList";
+                        txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
+                        txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
+                        foreach (var data in dataProduct)
+                        {
+                            UCItem ucItem = new UCItem();
+                            ucItem.lblItem.Text = data.ProductNameDesc;
+                            ucItem.Tag = data;
+                            ucItem.Click += ucItem_Click;
+                            flpMenuList.Controls.Add(ucItem);
+                            index_item++;
+                        }
+                    }
+                    else
+                    {
+                        flpMenuList.Controls.Clear();
+                        pnDetail.Controls.Clear();
+                    }
+                    break;
+                case 4:
+                    btnAdd.Tag = tag;
+                    ResizeToOthder();
+                    int index_modifier = 1;
+                    //string[] str = { "No Sugar", "More Sugar", "More Ice", "Less Ice", "More Milk", "Them Bun", "Them Thit" };
+                    var dataModifire = ModifireService.searchProduct(textSearch,4).ToList();
+                    if (tag == 4)
+                    {
+                        flpMenuList.Controls.Clear();
+                        //txtNameMenuList.Visible = true;
+                        txtNameMenuList.lblMenuListName.Text = "Modifier List";
+                        txtNameMenuList.BackColor = Color.FromArgb(0, 102, 204);
+                        txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
+                        foreach (var data in dataModifire)
+                        {
+                            UCModifierItem ucModifierItem = new UCModifierItem();
+                            ucModifierItem.lblModifierItemName.Text = data.ModifireName;
+                            ucModifierItem.Tag = data;
+                            ucModifierItem.Click += ucModifierItem_Click;
+                            flpMenuList.Controls.Add(ucModifierItem);
+                            index_modifier++;
+                        }
+                    }
+                    else
+                    {
+                        flpMenuList.Controls.Clear();
+                        pnDetail.Controls.Clear();
+                    }
+                    break;
+                case 5:
+                    break;
+            }
         }
 
 
