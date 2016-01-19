@@ -355,12 +355,18 @@ namespace Printer
                    if (OrderMain.ListPayment[j].PaymentTypeID == 1)
                    {
                        posPrinter.DrawString("Cash:", e, new Font("Arial", 10), l_y, 1);
-                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total * 1000), e, new Font("Arial", 10), l_y, 3);
+                       if(OrderMain.isPrevOrder==1)
+                            l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                       else
+                           l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
                    }
                    if (OrderMain.ListPayment[j].PaymentTypeID == 2)
                    {
                        posPrinter.DrawString("Card:", e, new Font("Arial", 10), l_y, 1);
-                       l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
+                        if(OrderMain.isPrevOrder==1)
+                           l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total), e, new Font("Arial", 10), l_y, 3);
+                        else
+                            l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListPayment[j].Total*1000), e, new Font("Arial", 10), l_y, 3);
                        if (OrderMain.ListInvoiceByCard.Count > 0)
                        {
                            for (int i = 0; i < OrderMain.ListInvoiceByCard.Count; i++)
