@@ -54,6 +54,8 @@ namespace ServicePOS
         #endregion
 
 
+        #region Old Code Report
+
         #region Daily Report
 
 
@@ -132,5 +134,83 @@ namespace ServicePOS
 
         #endregion
 
+        #endregion Old Code Report
+
+
+        #region New Code Report
+
+        public IEnumerable<DailyReportModel> GetDataSummaryReport(string dateSelect,int type)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<DailyReportModel>("pos_th_GetDataSummaryReport @dateselect,@type",
+                     new SqlParameter("dateselect", dateSelect??""),
+                     new SqlParameter("type", type)
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<QTYGroupReportModel> GetDataQTYGroupReport(string dateSelect, int type)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<QTYGroupReportModel>("pos_th_GetQTYGroupSaleReport @dateselect,@type",
+                     new SqlParameter("dateselect", dateSelect ?? ""),
+                     new SqlParameter("type", type)
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<QTYItemReportModel> GetDataQTYItemReport(string dateSelect, int type)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<QTYItemReportModel>("pos_th_GetQTYItemSaleReport @dateselect,@type",
+                     new SqlParameter("dateselect", dateSelect ?? ""),
+                     new SqlParameter("type", type)
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<ShiftReportModel> GetDataShiftReport(string dateSelect)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<ShiftReportModel>("pos_th_GetShiftReport @dateselect",
+                     new SqlParameter("dateselect", dateSelect ?? "")
+                    
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        #endregion New Code Report
     }
 }
