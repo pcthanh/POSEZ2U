@@ -32,10 +32,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtOpenItemPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
-            this.txtOpenitemName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
             this.cbPrinter = new System.Windows.Forms.ComboBox();
+            this.txtOpenItemPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
+            this.txtOpenitemName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.SuspendLayout();
             // 
             // label1
@@ -78,31 +78,13 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(481, 146);
+            this.btnCancel.Location = new System.Drawing.Point(292, 143);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(97, 42);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // txtOpenItemPrice
-            // 
-            this.txtOpenItemPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtOpenItemPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtOpenItemPrice.Location = new System.Drawing.Point(117, 65);
-            this.txtOpenItemPrice.Name = "txtOpenItemPrice";
-            this.txtOpenItemPrice.Size = new System.Drawing.Size(461, 26);
-            this.txtOpenItemPrice.TabIndex = 2;
-            // 
-            // txtOpenitemName
-            // 
-            this.txtOpenitemName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtOpenitemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtOpenitemName.Location = new System.Drawing.Point(117, 15);
-            this.txtOpenitemName.Name = "txtOpenitemName";
-            this.txtOpenitemName.Size = new System.Drawing.Size(461, 26);
-            this.txtOpenitemName.TabIndex = 1;
             // 
             // label3
             // 
@@ -117,16 +99,35 @@
             // 
             this.cbPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPrinter.FormattingEnabled = true;
-            this.cbPrinter.Location = new System.Drawing.Point(117, 109);
+            this.cbPrinter.Location = new System.Drawing.Point(262, 104);
             this.cbPrinter.Name = "cbPrinter";
-            this.cbPrinter.Size = new System.Drawing.Size(461, 28);
+            this.cbPrinter.Size = new System.Drawing.Size(127, 28);
             this.cbPrinter.TabIndex = 5;
+            // 
+            // txtOpenItemPrice
+            // 
+            this.txtOpenItemPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtOpenItemPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtOpenItemPrice.Location = new System.Drawing.Point(117, 65);
+            this.txtOpenItemPrice.Name = "txtOpenItemPrice";
+            this.txtOpenItemPrice.Size = new System.Drawing.Size(272, 26);
+            this.txtOpenItemPrice.TabIndex = 2;
+            // 
+            // txtOpenitemName
+            // 
+            this.txtOpenitemName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtOpenitemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtOpenitemName.Location = new System.Drawing.Point(117, 15);
+            this.txtOpenitemName.Name = "txtOpenitemName";
+            this.txtOpenitemName.Size = new System.Drawing.Size(272, 26);
+            this.txtOpenitemName.TabIndex = 1;
             // 
             // frmOpenItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 198);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(406, 198);
             this.ControlBox = false;
             this.Controls.Add(this.cbPrinter);
             this.Controls.Add(this.label3);
@@ -137,10 +138,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmOpenItem";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Open Item";
             this.Load += new System.EventHandler(this.frmOpenItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

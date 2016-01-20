@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
@@ -49,6 +50,7 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.panel19 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.dateSelect = new System.Windows.Forms.DateTimePicker();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -59,8 +61,6 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.pDetail = new System.Windows.Forms.Panel();
-            this.dateSelect = new System.Windows.Forms.DateTimePicker();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -84,6 +84,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(716, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // ucInfoTop1
+            // 
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(716, 39);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -284,6 +292,19 @@
             this.panel18.Size = new System.Drawing.Size(185, 37);
             this.panel18.TabIndex = 0;
             // 
+            // dateSelect
+            // 
+            this.dateSelect.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dateSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateSelect.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateSelect.Location = new System.Drawing.Point(0, 0);
+            this.dateSelect.Name = "dateSelect";
+            this.dateSelect.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateSelect.Size = new System.Drawing.Size(185, 26);
+            this.dateSelect.TabIndex = 0;
+            this.dateSelect.ValueChanged += new System.EventHandler(this.dateSelect_ValueChanged);
+            // 
             // panel17
             // 
             this.panel17.Controls.Add(this.label1);
@@ -379,26 +400,6 @@
             this.pDetail.Name = "pDetail";
             this.pDetail.Size = new System.Drawing.Size(291, 418);
             this.pDetail.TabIndex = 10;
-            // 
-            // dateSelect
-            // 
-            this.dateSelect.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateSelect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dateSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateSelect.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateSelect.Location = new System.Drawing.Point(0, 0);
-            this.dateSelect.Name = "dateSelect";
-            this.dateSelect.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dateSelect.Size = new System.Drawing.Size(185, 26);
-            this.dateSelect.TabIndex = 0;
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(716, 39);
-            this.ucInfoTop1.TabIndex = 0;
             // 
             // frmReport
             // 

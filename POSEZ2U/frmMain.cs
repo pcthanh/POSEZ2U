@@ -203,7 +203,7 @@ namespace POSEZ2U
             if (result > 0)
             {
                 frmReport frm = new frmReport();
-                this.Close();
+               
                 frm.ShowDialog();
             }
             else

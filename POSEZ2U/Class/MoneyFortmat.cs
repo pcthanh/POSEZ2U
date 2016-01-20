@@ -323,5 +323,9 @@ namespace POSEZ2U.Class
         {
             return Convert.ToInt32(value.Replace(",", "").Trim());
         }
+        public double getValue(double value)
+        {
+            return value / 1000;
+        }
     }
 }

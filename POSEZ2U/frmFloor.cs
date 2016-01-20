@@ -259,6 +259,12 @@ namespace POSEZ2U
         {
             CloseFormTool();
         }
+
+        private void btnGoTo_Click(object sender, EventArgs e)
+        {
+            frmOrder frm = new frmOrder();
+            frm.Show();
+        }
         
     }
 }

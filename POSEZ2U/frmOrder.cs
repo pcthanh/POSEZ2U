@@ -40,6 +40,14 @@ namespace POSEZ2U
         int flagUcSeatClick;
         int numSeat;
         int PRINTBILL = 2;
+        private int PgSize = 21;
+        private int CurrentPageIndex = 1;
+        private int TotalPage = 0;
+
+        private int PgSizeModi = 21;
+        private int CurrentPageIndexModi = 1;
+        private int TotalPageModi = 0; 
+
 
         List<PrinterModel> PrintData = new List<PrinterModel>();
         OrderDateModel OrderMain;
@@ -97,7 +105,8 @@ namespace POSEZ2U
         {
             LoadMenuGroup();
             this.SelectGroupMenu();
-            this.lblTable.Text = OrderMain.FloorID.ToString();
+            if (OrderMain != null)
+                this.lblTable.Text = OrderMain.FloorID.ToString();
         }
         
         private void AddButtonOpenItem()
@@ -158,7 +167,7 @@ namespace POSEZ2U
            // this.LoadItemOfGroup();
             try
             {
-                LoadItemOfGroup(CategoryIDMain);
+                LoadItemOfGroup(CategoryIDMain,CurrentPageIndex);
             }
             catch (Exception ex)
             {
@@ -268,7 +277,11 @@ namespace POSEZ2U
 
         void btnBackSubItemPage_Click(object sender, EventArgs e)
         {
-            //throw new NotImplementedException();
+            if (this.CurrentPageIndexModi > 1)
+            {
+                CurrentPageIndexModi--;
+                LoadModifrieOfMenu(CurrentPageIndex);
+            }
         }
         private void AddButtonNextSubItemPage()
         {
@@ -290,7 +303,11 @@ namespace POSEZ2U
 
         void btnNextSubItemPage_Click(object sender, EventArgs e)
         {
-           
+            if (this.CurrentPageIndexModi < this.TotalPageModi)
+            {
+                CurrentPageIndexModi++;
+                LoadModifrieOfMenu(CurrentPageIndexModi);
+            }
         }
         private void AddButtonBackItemPage()
         {
@@ -303,7 +320,9 @@ namespace POSEZ2U
             btnBackItem.ForeColor = Color.FromArgb(13, 13, 13);
             btnBackItem.FlatAppearance.BorderSize = 0;
             btnBackItem.FlatStyle = FlatStyle.Flat;
-            
+            var margin = btnBackItem.Margin;
+            margin.All = 1;
+            btnBackItem.Margin = margin;
             btnBackItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnBackItem.Click += btnBackItem_Click;
             flowLayoutPanel1.Controls.Add(btnBackItem);
@@ -319,20 +338,48 @@ namespace POSEZ2U
             btnNextItem.ForeColor = Color.FromArgb(13, 13, 13);
             btnNextItem.FlatAppearance.BorderSize = 0;
             btnNextItem.FlatStyle = FlatStyle.Flat;
-           
+            var margin = btnNextItem.Margin;
+            margin.All = 1;
+            btnNextItem.Margin = margin;
             btnNextItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnNextItem.Click += btnNextItem_Click;
             flowLayoutPanel1.Controls.Add(btnNextItem);
         }
+        private void CalculateTotalPages(int rowCount)
+        {
+            
+            this.TotalPage = rowCount / PgSize;
+            if (rowCount % PgSize > 0) // if remainder is more than  zero 
+            {
+                this.TotalPage += 1;
+            }
+        }
 
+        private void CalculateTotalPagesModi(int rowCount)
+        {
+
+            this.TotalPageModi = rowCount/ PgSizeModi;
+            if (rowCount % PgSizeModi > 0) // if remainder is more than  zero 
+            {
+                this.TotalPageModi += 1;
+            }
+        }
         void btnNextItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("NEXT Page");
+            if (this.CurrentPageIndex < this.TotalPage)
+            {
+                CurrentPageIndex++;
+                LoadItemOfGroup(CategoryIDMain, CurrentPageIndex);
+            }
         }
 
         void btnBackItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Back Page");
+            if (this.CurrentPageIndex > 1)
+            {
+                CurrentPageIndex--;
+                LoadItemOfGroup(CategoryIDMain, CurrentPageIndex);
+            }
         }
 
         void btnOpenItemItem_Click(object sender, EventArgs e)
@@ -517,6 +564,36 @@ namespace POSEZ2U
             }
         }
 
+        private void LoadModifrieOfMenu(int Page)
+        {
+            var listModifire = ModifireService.GetModifireByProduct(ItemMain.ProductID, Page);
+            if (listModifire.Count() > 0)
+            {
+                flowLayoutPanel1.Controls.Clear();
+                this.AddButtonBackSubItem();
+                keyItemTemp =ItemMain.KeyItem;
+                int Row = 1;
+                foreach (ModifireModel Modififer in listModifire)
+                {
+                    Row++;
+                    UCModifierOfMenu ucModifierOfMenu = new UCModifierOfMenu();
+                    ucModifierOfMenu.lblModifierOfMenu.Text = Modififer.ModifireName;
+                    ucModifierOfMenu.lblModifierOfMenu.BackColor = Color.FromName(Modififer.Color);
+                    ucModifierOfMenu.Tag = Modififer;
+                    ucModifierOfMenu.Click += ucModifierOfMenu_Click;
+                    flowLayoutPanel1.Controls.Add(ucModifierOfMenu);
+                }
+                CalculateTotalPagesModi(Row);
+                this.AddButtonOpenItemSubItem();
+                this.AddButtonBackSubItemPage();
+                this.AddButtonNextSubItemPage();
+            }
+            else
+            {
+                flowLayoutPanel1.Controls.Clear();
+                this.AddButtonBackSubItem();
+            }
+        }
         void ucOrder_Click(object sender, EventArgs e)
         {
             try
@@ -538,30 +615,7 @@ namespace POSEZ2U
                 }
                 ucOder.BackColor = Color.FromArgb(0, 102, 204);
                 ucOder.ForeColor = Color.FromArgb(255, 255, 255);
-                var listModifire = ModifireService.GetModifireByProduct(item.ProductID);
-                if (listModifire.Count() > 0)
-                {
-                    flowLayoutPanel1.Controls.Clear();
-                    this.AddButtonBackSubItem();
-                    keyItemTemp = item.KeyItem;
-                    foreach (ModifireModel Modififer in listModifire)
-                    {
-                        UCModifierOfMenu ucModifierOfMenu = new UCModifierOfMenu();
-                        ucModifierOfMenu.lblModifierOfMenu.Text = Modififer.ModifireName;
-                        ucModifierOfMenu.lblModifierOfMenu.BackColor = Color.FromName(Modififer.Color);
-                        ucModifierOfMenu.Tag = Modififer;
-                        ucModifierOfMenu.Click += ucModifierOfMenu_Click;
-                        flowLayoutPanel1.Controls.Add(ucModifierOfMenu);
-                    }
-                    this.AddButtonOpenItemSubItem();
-                    this.AddButtonBackSubItemPage();
-                    this.AddButtonNextSubItemPage();
-                }
-                else
-                {
-                    flowLayoutPanel1.Controls.Clear();
-                    this.AddButtonBackSubItem();
-                }
+                LoadModifrieOfMenu(CurrentPageIndexModi);
             }
             catch (Exception ex)
             {
@@ -708,28 +762,32 @@ namespace POSEZ2U
             }
         }
 
-        private void LoadItemOfGroup(int CategoryId)
+        private void LoadItemOfGroup(int CategoryId,int PageSki)
         {
             try
             {
                 this.flowLayoutPanel1.Controls.Clear();
                 this.AddButtonBackItem();
                 int keyItem = 1;
-                var dataPrduct = ProductService.GetProdutcByCategory(CategoryId);
-                foreach (ProductionModel itemProductionModel in dataPrduct)
-                {
-                    keyItem++;
-                    UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
-                    ucMenuOfGroup.lblNameMenuOfGroup.Text = itemProductionModel.ProductNameSort;
-                    ucMenuOfGroup.Tag = itemProductionModel;
-                    ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(itemProductionModel.Color);
-                    ucMenuOfGroup.Click += ucMenuOfGroup_Click;
-                    flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
+                var dataPrduct = ProductService.GetProdutcByCategory(CategoryId,PageSki);
+                int RowCount=1;
+                
+                    foreach (ProductionModel itemProductionModel in dataPrduct)
+                    {
+                        keyItem++;
+                        RowCount++;
+                        UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
+                        ucMenuOfGroup.lblNameMenuOfGroup.Text = itemProductionModel.ProductNameSort;
+                        ucMenuOfGroup.Tag = itemProductionModel;
+                        ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(itemProductionModel.Color);
+                        ucMenuOfGroup.Click += ucMenuOfGroup_Click;
+                        flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
 
-                }
+                    }
+                    CalculateTotalPages(RowCount);
                 this.AddButtonOpenItemItem();
-                //this.AddButtonBackItemPage();
-                //this.AddButtonMextItemPage();
+                this.AddButtonBackItemPage();
+                this.AddButtonMextItemPage();
             }
             catch (Exception ex)
             {
@@ -744,7 +802,7 @@ namespace POSEZ2U
                 UCMenuOrdercs ucGroup = (UCMenuOrdercs)sender;
                 CategoryModel item = (CategoryModel)ucGroup.Tag;
                 CategoryIDMain = item.CategoryID;
-                LoadItemOfGroup(item.CategoryID);
+                LoadItemOfGroup(item.CategoryID,CurrentPageIndex);
             }
             catch (Exception ex)
             {
@@ -1124,35 +1182,42 @@ namespace POSEZ2U
         {
             try
             {
-                GetListPrinter();
-                if (OrderMain.Status == PRINTBILL)
+                if (OrderMain == null)
                 {
-                    OrderCompleted();
+                    
                 }
                 else
                 {
-                    if (OrderMain.ListOrderDetail.Count >= 0)
+                    GetListPrinter();
+                    if (OrderMain.Status == PRINTBILL)
                     {
-                        int result = 0;
-                        OrderMain.PrintType = 1;
-                        result = OrderService.InsertOrder(OrderMain);
-                        if (result == 1)
+                        OrderCompleted();
+                    }
+                    else
+                    {
+                        if (OrderMain.ListOrderDetail.Count > 0)
                         {
-                            PrinterServer printServer = new PrinterServer();
-                            printServer.PrintData(OrderMain, PrintData);
-                            if (OrderMain.isTKA == 1)
+                            int result = 0;
+                            OrderMain.PrintType = 1;
+                            result = OrderService.InsertOrder(OrderMain);
+                            if (result == 1)
                             {
-                                frmTakeAway frm = new frmTakeAway();
-                                //CallBackStatusOrderTKA(OrderMain);
-                                frm.Show();
-                                this.Close();
-                            }
-                            else
-                            {
-                                CallBackStatusOrder(OrderMain);
-                                this.Close();
-                            }
+                                PrinterServer printServer = new PrinterServer();
+                                printServer.PrintData(OrderMain, PrintData);
+                                if (OrderMain.isTKA == 1)
+                                {
+                                    frmTakeAway frm = new frmTakeAway();
+                                    //CallBackStatusOrderTKA(OrderMain);
+                                    frm.Show();
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    CallBackStatusOrder(OrderMain);
+                                    this.Close();
+                                }
 
+                            }
                         }
                     }
                 }

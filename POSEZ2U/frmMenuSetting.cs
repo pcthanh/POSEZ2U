@@ -419,7 +419,10 @@ namespace POSEZ2U
                 if (data[0] == "Edit")
                 {
                     frmEditProductPriceList frmEditProductPriceList = new frmEditProductPriceList(Int32.Parse(data[1]));
-                    frmEditProductPriceList.ShowDialog();
+                    if (frmEditProductPriceList.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        addPriceList(5);
+                    }
                 }
             }
         }

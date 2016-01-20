@@ -69,12 +69,14 @@ namespace POSEZ2U
                     var result = ProductPriceService.EditProductPrice(dataProductPrice);
                     if (result == 1)
                     {
-                        frmMessager frmMessager = new frmMessager("Edit Product Price", "Success");
-                        frmMessager.ShowDialog();
-                        this.Hide();
-                        frmMenuSetting frmMenuSetting = new frmMenuSetting();
-                        frmMenuSetting.flpMenuList.Controls.Clear();
-                        frmMenuSetting.addPriceList(5);
+                        //frmMessager frmMessager = new frmMessager("Edit Product Price", "Success");
+                        //frmMessager.ShowDialog();
+                        //this.Hide();
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        this.Close();
+                        //frmMenuSetting frmMenuSetting = new frmMenuSetting();
+                        //frmMenuSetting.flpMenuList.Controls.Clear();
+                        //frmMenuSetting.addPriceList(5);
                     }
                     else
                     {
