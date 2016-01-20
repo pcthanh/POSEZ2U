@@ -39,7 +39,7 @@ namespace ServicePOS
         {
             ORDER_DATE orderDate = new ORDER_DATE();
             orderDate.FloorID = itemOrder.FloorID.ToString();
-            orderDate.OrderNumber = itemOrder.OrderID.ToString()??"";
+            orderDate.OrderNumber = itemOrder.OrderNumber;
             orderDate.OrderID = itemOrder.OrderID;
             orderDate.TotalAmount = itemOrder.TotalAmount ?? 0;
             orderDate.Status = itemOrder.Status;
@@ -197,10 +197,13 @@ namespace ServicePOS
                         _context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Added;
                         _context.SaveChanges();
                         int i = orderDateTemp.OrderID;
+                        string OrderNum = i + "" + DateTime.Now.Date.Year + "" + DateTime.Now.Date.Month + "" + DateTime.Now.Date.Day;
+                        _context.Database.ExecuteSqlCommand("update ORDER_DATE set OrderNumber='" + OrderNum + "' where OrderID='"+ i+"'");
                         lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
                         foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
                         {
                             item.OrderID = i;
+                            item.OrderNumber = Convert.ToInt32(OrderNum);
                             _context.Entry(item).State = System.Data.Entity.EntityState.Added;
 
                         }
@@ -209,7 +212,7 @@ namespace ServicePOS
                         foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
                         {
                             item.OrderID = i;
-                            
+                            item.OrderNumber = Convert.ToInt32(OrderNum);
                             _context.Entry(item).State = System.Data.Entity.EntityState.Added;
 
                         }
@@ -325,6 +328,7 @@ namespace ServicePOS
                 OrderMain.CreateBy = dataOrder.CreateBy;
                 OrderMain.UpdateBy = dataOrder.UpdateBy;
                 OrderMain.Status = dataOrder.Status;
+                OrderMain.OrderNumber = dataOrder.OrderNumber??0;
                 var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
                  item => item.OrderID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
@@ -342,9 +346,8 @@ namespace ServicePOS
                      Seat=x.pro.item.Seat??0,
                      DynID=x.pro.item.DynId??0,
                      OrderDetailID =x.pro.item.OrderDetailID,
-                     Printer = x.pro.item.PrintType??0
-                     
-
+                     Printer = x.pro.item.PrintType??0,
+                     OrderNumber =x.pro.item.OrderNumber??0
                  });
                 var openitems = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_OPEN_ITEM, x => x.DynId, openitem => openitem.dynID, (x, openitem) => new { x, openitem })
                             .Where(a => a.x.DynId == a.openitem.dynID && a.x.OrderID==dataOrder.OrderID)
@@ -360,7 +363,8 @@ namespace ServicePOS
                                 KeyItem = a.x.KeyItem ?? 0,
                                 Seat = a.x.Seat ?? 0,
                                 DynID = a.x.DynId ?? 0,
-                                OrderDetailID = a.x.OrderDetailID
+                                OrderDetailID = a.x.OrderDetailID,
+                                OrderNumber = a.x.OrderNumber??0
                             });
                 foreach (OrderDetailModel openItem in openitems)
                 {
@@ -384,7 +388,8 @@ namespace ServicePOS
                            Seat = x.modi.modifire.Seat ?? 0,
                            OrderModifireID = x.modi.modifire.OrderModifireID,
                            OrderID = x.modi.pro.OrderID,
-                           DynID = x.modi.modifire.DynId ?? 0
+                           DynID = x.modi.modifire.DynId ?? 0,
+                           OrderNumber = x.modi.modifire.OrderNumber??0
                        });
                     foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
                     {
@@ -402,7 +407,8 @@ namespace ServicePOS
                             Seat = x.modi.Seat ?? 0,
                             OrderModifireID = x.modi.OrderModifireID,
                             OrderID = x.modi.OrderID??0,
-                            DynID = x.modi.DynId??0
+                            DynID = x.modi.DynId??0,
+                            OrderNumber = x.modi.OrderNumber??0
                         });
                     foreach (OrderDetailModifireModel Openitem in openItemModiier)
                     {
@@ -651,7 +657,7 @@ namespace ServicePOS
                     OrderJoinNew.CreateDate = DateTime.Now;
                     OrderJoinNew.UpdateBy = 0;
                     OrderJoinNew.UpdateDate = DateTime.Now;
-                    OrderJoinNew.OrderNumber = CountOrder().ToString();
+                    //OrderJoinNew.OrderNumber = order
                     OrderJoinNew.ClientID = 0;
                     _context.Entry(OrderJoinNew).State = System.Data.Entity.EntityState.Added;
                     _context.SaveChanges();
@@ -848,7 +854,7 @@ namespace ServicePOS
                 var data = _context.INVOICEs.Join(_context.INVOICE_DETAIL, order => order.InvoiceID,
                  item => item.InvoiceID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
-                 .Where(x => x.pro.order.InvoiceID == dataOrder.InvoiceID && x.pro.order.OrderID == x.pro.item.InvoiceID && x.pro.order.InvoiceID == dataOrder.InvoiceID && x.pro.item.InvoiceID == dataOrder.InvoiceID && x.pro.item.ProductID == x.c.ProductID)
+                 .Where(x => x.pro.order.InvoiceID == dataOrder.InvoiceID && x.pro.order.InvoiceID == x.pro.item.InvoiceID && x.pro.order.InvoiceID == dataOrder.InvoiceID && x.pro.item.InvoiceID == dataOrder.InvoiceID && x.pro.item.ProductID == x.c.ProductID)
                  .Select(x => new OrderDetailModel()
                  {
                      ProductID = x.pro.item.ProductID??0,

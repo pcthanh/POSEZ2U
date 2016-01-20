@@ -30,5 +30,6 @@ namespace ServicePOS.Model
         public int Seat { get; set; }
         public int ChangeStatus { get; set; }
         public int DynID { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

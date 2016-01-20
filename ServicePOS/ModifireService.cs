@@ -230,11 +230,23 @@ namespace ServicePOS
         #endregion
 
 
-        public IEnumerable<ModifireModel> GetModifireByProduct(int productID)
+        public IEnumerable<ModifireModel> GetModifireByProduct(int productID,int Page)
         {
-            var data = _context.Database.SqlQuery<ModifireModel>("getModifireByProduct @productID",
-             new SqlParameter("productID", productID)
-           ).ToList();
+           // var data = _context.Database.SqlQuery<ModifireModel>("getModifireByProduct @productID",
+           //  new SqlParameter("productID", productID)
+           //).ToList();
+           // return data;
+            var data = _context.MAP_MODIFIRE_TO_PRODUCT.Join(_context.MODIFIREs, map => map.ModifireID, modi => modi.ModifireID, (map, modi) => new { map, modi })
+                .Join(_context.MODIFIRE_PRICE, maping => maping.modi.ModifireID, price => price.ModifireID, (mapping, price) => new { mapping, price })
+                .Where(x => x.mapping.map.ProductID == productID && x.mapping.map.ModifireID == x.mapping.modi.ModifireID && x.price.ModifireID == x.mapping.modi.ModifireID && x.mapping.modi.Status == 1)
+                .Select(x => new ModifireModel
+                {
+                    ModifireID = x.mapping.modi.ModifireID,
+                    CurrentPrice = x.price.CurrentPrice,
+                    ModifireName = x.mapping.modi.ModifireName,
+                    Color = x.mapping.modi.Color
+                }
+                ).OrderBy(x => x.ModifireName).Skip(21 * (Page - 1)).Take(21).ToList();
             return data;
         }
 

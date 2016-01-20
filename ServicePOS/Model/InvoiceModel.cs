@@ -25,5 +25,6 @@ namespace ServicePOS.Model
         public bool IsLoadFromData { get; set; }
         public List<InvoiceDetailModel> ListOrderDetail = new List<InvoiceDetailModel>();
         public List<CardModel> ListCard = new List<CardModel>();
+        public int InvoiceNumber { get; set; }
     }
 }

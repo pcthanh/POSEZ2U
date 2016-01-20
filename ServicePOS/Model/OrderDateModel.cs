@@ -10,7 +10,7 @@ namespace ServicePOS.Model
     {
         public int InvoiceID { get; set; }
         public int OrderID { get; set; }
-        public string OrderNumber { get; set; }
+        public int OrderNumber { get; set; }
         public Nullable<int> ClientID { get; set; }
         public string FloorID { get; set; }
         public int Status { get; set; }
@@ -33,6 +33,7 @@ namespace ServicePOS.Model
         public int isTransferTableAll { get; set; }
         public int isPrevOrder { get; set; }
         public int PrintType { get; set; }
+        public int InvoiceNumber { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         public List<CardModel> ListCard = new List<CardModel>();
         public List<CashModel> ListCash = new List<CashModel>();

@@ -12,7 +12,7 @@ namespace ServicePOS
         IEnumerable<ProductionModel> GetProductsList();
         int Created(ProductionModel product);
         int Delete(ProductionModel product);
-        IEnumerable<ProductionModel> GetProdutcByCategory(int id);
+        IEnumerable<ProductionModel> GetProdutcByCategory(int id,int page);
         ProductionModel GetPrinterType(int ID);
         ProductionModel GetPrinterTypeByCate(int ID);
         IEnumerable<ProductionModel> searchProduct(string textSearch, int type); 

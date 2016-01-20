@@ -64,10 +64,13 @@ namespace ServicePOS
                 _context.Entry(invoice).State = System.Data.Entity.EntityState.Added;
                 _context.SaveChanges();
                 InvoiceID = invoice.InvoiceID;
+                string InvNum = InvoiceID + "" + DateTime.Now.Date.Year + "" + DateTime.Now.Date.Month + "" + DateTime.Now.Date.Day;
+                _context.Database.ExecuteSqlCommand("update invoice set InvoiceNumber='" + InvNum + "'where InvoiceID='" + InvoiceID + "'");
                 invoiceDEtail = CopyInvoicedetail(Order);
                 foreach (INVOICE_DETAIL item in invoiceDEtail)
                 {
                     item.InvoiceID = InvoiceID;
+                    item.InvoiceNumber = Convert.ToInt32(InvNum);
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
                 invoiceDetailModifier = CopyInvoiceMidifire(Order);
@@ -75,6 +78,8 @@ namespace ServicePOS
                 foreach (INVOICE_DETAIL_MODIFIRE item in invoiceDetailModifier)
                 {
                     item.InvoiceID = InvoiceID;
+                    item.InvoiceNumber = Convert.ToInt32(InvNum);
+                   
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
 
@@ -82,6 +87,7 @@ namespace ServicePOS
                 foreach (PAYMENT_INVOICE_HISTORY item in PaymentHistory)
                 {
                     item.InvoiceID = InvoiceID;
+                    item.InvoiceNumber = Convert.ToInt32(InvNum);
                     _context.Entry(item).State = System.Data.Entity.EntityState.Added;
                 }
 
@@ -101,7 +107,7 @@ namespace ServicePOS
         private INVOICE CopyInvoice(OrderDateModel itemOrder)
         {
             INVOICE invoice = new INVOICE();
-            invoice.InvoiceNumber =Convert.ToString(CountInvoie() + 1);
+            invoice.InvoiceNumber = itemOrder.InvoiceNumber;
             invoice.OrderID = itemOrder.OrderID;
             invoice.Total = Convert.ToInt32(itemOrder.TotalAmount);
             invoice.Satust = 1;

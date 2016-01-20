@@ -31,5 +31,6 @@ namespace ServicePOS.Model
         public int DynID { get; set; }
         public int Printer { get; set; }
         public int PrintJob { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

@@ -168,7 +168,7 @@ namespace ServicePOS
 
                 return data;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }
@@ -204,7 +204,7 @@ namespace ServicePOS
 
                 return data;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return null;
             }

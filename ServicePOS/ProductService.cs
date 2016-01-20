@@ -200,7 +200,7 @@ namespace ServicePOS
         }
         #endregion
         #region
-        public IEnumerable<ProductionModel> GetProdutcByCategory(int id)
+        public IEnumerable<ProductionModel> GetProdutcByCategory(int id,int page)
         {
             //var data = _context.Database.SqlQuery<ProductionModel>("getProductByCategory @categoryid",
             //  new SqlParameter("categoryid", id)
@@ -224,7 +224,8 @@ namespace ServicePOS
                     //Printer = x.print.PrinterID ?? 0,
                     //PrinterJob = x.print.PrinteJobID
                 }
-                );
+                ).OrderBy(p => p.ProductNameSort).Skip(21 * (page - 1))
+         .Take(21).ToList();
             return data;
         }
         #endregion
@@ -252,7 +253,6 @@ namespace ServicePOS
                 );
             return data.SingleOrDefault();
         }
-
         public IEnumerable<ProductionModel> searchProduct(string textSearch, int type)
         {
             var data = _context.Database.SqlQuery<ProductionModel>("pos_th_SearchProduct @txtSearch, @type", new SqlParameter("txtSearch", textSearch), new SqlParameter("type", type)).ToList();

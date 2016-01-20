@@ -30,5 +30,6 @@ namespace ServicePOS.Model
         public int KeyModi { get; set; }
         public int Seat { get; set; }
         public int ChangeStatus { get; set; }
+        public int InvoiceNumber { get; set; }
     }
 }
