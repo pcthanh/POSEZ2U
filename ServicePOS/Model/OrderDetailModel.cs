@@ -24,6 +24,7 @@ namespace ServicePOS.Model
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
         public List<OrderDetailModifireModel> ListOrderDetailModifire = new List<OrderDetailModifireModel>();
+        public List<PrinteJobDetailModel> ListPrintJob = new List<PrinteJobDetailModel>();
         public int KeyItem { get; set; }
         public int Seat { get; set; }
         public int ChangeStatus { get; set; }

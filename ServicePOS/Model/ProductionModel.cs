@@ -23,5 +23,6 @@ namespace ServicePOS.Model
         public int CategoryID { get; set; }
         public int Printer { get; set; }
         public int PrinterJob { get; set; }
+        public List<PrinteJobDetailModel> ListPrinter = new List<PrinteJobDetailModel>();
     }
 }

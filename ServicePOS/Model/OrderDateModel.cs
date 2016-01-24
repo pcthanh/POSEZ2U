@@ -39,6 +39,7 @@ namespace ServicePOS.Model
         public List<CashModel> ListCash = new List<CashModel>();
         public List<PayMentModel> ListPayment = new List<PayMentModel>();
         public List<InvoiceByCardModel> ListInvoiceByCard = new List<InvoiceByCardModel>();
+        public List<SeatModel> ListSeatOfOrder = new List<SeatModel>();
         private IOrderService _orderService;
         private IOrderService OrderService
         {

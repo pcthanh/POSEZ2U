@@ -66,13 +66,14 @@ namespace ServicePOS
                     {
                         ORDER_DETAIL_DATE orderDetaiDate = new ORDER_DETAIL_DATE();
                         orderDetaiDate.OrderID = itemOrder.ListOrderDetail[i].OrderID;
+                        orderDetaiDate.OrderNumber = itemOrder.ListOrderDetail[i].OrderNumber;
                         orderDetaiDate.OrderDetailID = itemOrder.ListOrderDetail[i].OrderDetailID;
                         orderDetaiDate.ProductID = itemOrder.ListOrderDetail[i].ProductID;
                         orderDetaiDate.KeyItem = itemOrder.ListOrderDetail[i].KeyItem;
                         orderDetaiDate.Qty = itemOrder.ListOrderDetail[i].Qty;
                         orderDetaiDate.Total = itemOrder.ListOrderDetail[i].Total;
                         orderDetaiDate.Price = itemOrder.ListOrderDetail[i].Price;
-                        orderDetaiDate.Satust = itemOrder.ListOrderDetail[i].Satust;
+                        orderDetaiDate.Status = itemOrder.ListOrderDetail[i].Satust;
                         orderDetaiDate.Note = itemOrder.ListOrderDetail[i].Note;
                         orderDetaiDate.Seat = itemOrder.ListOrderDetail[i].Seat;
                         orderDetaiDate.DynId = itemOrder.ListOrderDetail[i].DynID;
@@ -108,12 +109,13 @@ namespace ServicePOS
                             orderDetailModifire.OrderDetailID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderDetailID;
                             orderDetailModifire.OrderModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderModifireID;
                             orderDetailModifire.OrderID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderID;
+                            orderDetailModifire.OrderNumber = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderNumber;
                             orderDetailModifire.ProductID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ProductID;
                             orderDetailModifire.KeyModi = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi;
                             orderDetailModifire.Price = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Price;
                             orderDetailModifire.Qty = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Qty;
                             orderDetailModifire.Total = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Total;
-                            orderDetailModifire.Satust = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
+                            orderDetailModifire.Status = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
                             orderDetailModifire.Seat = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Seat;
                             orderDetailModifire.DynId = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].DynID;
                             orderDetailModifire.CreateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateBy ?? 0;
@@ -132,7 +134,31 @@ namespace ServicePOS
             }
             return lstOrderModifreDate;
         }
-
+        private List<SEAT> CopySeat(OrderDateModel itemOrder)
+        {
+            List<SEAT> lst = new List<SEAT>();
+            try
+            {
+                foreach (SeatModel item in itemOrder.ListSeatOfOrder)
+                {
+                    if (item.ChangeStatus != 2)
+                    {
+                        SEAT seat = new SEAT();
+                        seat.Seat1 = item.Seat ?? 0;
+                        seat.CreateDate = DateTime.Now.Date;
+                        seat.CreateBy = item.CreateBY;
+                        seat.UpdateBy = item.UpdateBy;
+                        seat.ID = item.ID;
+                        lst.Add(seat);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+ 
+            }
+            return lst;
+        }
         public int InsertOrder(OrderDateModel itemOrder)
         {
             int flag = 0;
@@ -141,6 +167,7 @@ namespace ServicePOS
                 ORDER_DATE orderDateTemp = new ORDER_DATE();
                 List<ORDER_DETAIL_DATE> lstOrderDetaiDate = new List<ORDER_DETAIL_DATE>();
                 List<ORDER_DETAIL_MODIFIRE_DATE> lstOrderDetailModifire = new List<ORDER_DETAIL_MODIFIRE_DATE>();
+                List<SEAT> lstSeat = new List<SEAT>();
                // ORDER_DETAIL_DATE orderDetailTemp = new ORDER_DETAIL_DATE();
                 //ORDER_DETAIL_MODIFIRE_DATE orderDetailModofireDate = new ORDER_DETAIL_MODIFIRE_DATE();
                 OrderDateModel orderDateMoldeTemp = new OrderDateModel();
@@ -153,6 +180,20 @@ namespace ServicePOS
                         orderDateTemp = CopyOrder(itemOrder);
                         //_context.Entry(orderDateTemp).State = System.Data.Entity.EntityState.Modified;
                         _context.Database.ExecuteSqlCommand("update ORDER_DATE set TotalAmount='" + orderDateTemp.TotalAmount + "',Seat='"+ itemOrder.Seat+"' where OrderID='"+ orderDateTemp.OrderID+"'");
+
+                        lstSeat = CopySeat(orderDateMoldeTemp);
+                        foreach (SEAT item in lstSeat)
+                        {
+                            _context.Database.ExecuteSqlCommand("delete from SEAT where ID='" + item.ID + "'");
+                        }
+                        lstSeat = CopySeat(itemOrder);
+
+                        foreach (SEAT item in lstSeat)
+                        {
+                            item.OrderNumber = itemOrder.OrderNumber;
+                            _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+                            _context.SaveChanges();
+                        }
                         lstOrderDetaiDate = CopyOrderDetailDate(orderDateMoldeTemp);
                         foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
                         {
@@ -165,8 +206,8 @@ namespace ServicePOS
                         {
                             // _context.Entry(item).State = System.Data.Entity.EntityState.Added;;
 
-                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,ProductID,KeyItem,Satust,Price,Qty,Total,Seat,DynId,PrintType)values" +
-                                "('" + item.OrderID + "','" + item.ProductID + "','" + item.KeyItem + "','" + item.Satust + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','"+item.DynId+"','"+ item.PrintType+"')");
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,OrderNumber,ProductID,KeyItem,Satust,Price,Qty,Total,Seat,DynId,PrintType)values" +
+                                "('" + item.OrderID + "', '"+ item.OrderNumber+"', '" + item.ProductID + "','" + item.KeyItem + "','" + item.Status + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','"+item.DynId+"','"+ item.PrintType+"')");
 
                         }
                         lstOrderDetailModifire = CopyOrderMidifireDate(orderDateMoldeTemp);
@@ -180,8 +221,8 @@ namespace ServicePOS
                         foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
                         {
                             // _context.Entry(item).State = System.Data.Entity.EntityState.Added;
-                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_MODIFIRE_DATE (OrderDetailID,OrderID,ProductID,KeyModi,ModifireID,Satust,Price,Qty,Total,Seat,DynID)values" +
-                                "('" + item.OrderDetailID + "','" + item.OrderID + "','" + item.ProductID + "','" + item.KeyModi + "','" + item.ModifireID + "','" + item.Satust + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','"+ item.DynId+"')");
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_MODIFIRE_DATE (OrderDetailID,OrderID,OrderNumber,ProductID,KeyModi,ModifireID,Satust,Price,Qty,Total,Seat,DynID)values" +
+                                "('" + item.OrderDetailID + "','" + item.OrderID + "','" + item.OrderNumber + "', '" + item.ProductID + "','" + item.KeyModi + "','" + item.ModifireID + "','" + item.Status + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','" + item.DynId + "')");
 
                         }
                         transaciton.Commit();
@@ -199,6 +240,12 @@ namespace ServicePOS
                         int i = orderDateTemp.OrderID;
                         string OrderNum = i + "" + DateTime.Now.Date.Year + "" + DateTime.Now.Date.Month + "" + DateTime.Now.Date.Day;
                         _context.Database.ExecuteSqlCommand("update ORDER_DATE set OrderNumber='" + OrderNum + "' where OrderID='"+ i+"'");
+                        lstSeat = CopySeat(itemOrder);
+                        foreach (SEAT item in lstSeat)
+                        {
+                            item.OrderNumber = Convert.ToInt32(OrderNum);
+                            _context.Entry(item).State = System.Data.Entity.EntityState.Added;
+                        }
                         lstOrderDetaiDate = CopyOrderDetailDate(itemOrder);
                         foreach (ORDER_DETAIL_DATE item in lstOrderDetaiDate)
                         {
@@ -329,6 +376,20 @@ namespace ServicePOS
                 OrderMain.UpdateBy = dataOrder.UpdateBy;
                 OrderMain.Status = dataOrder.Status;
                 OrderMain.OrderNumber = dataOrder.OrderNumber??0;
+
+                var seat = _context.ORDER_DATE.Join(_context.SEATs, order => order.OrderNumber, seatmap => seatmap.OrderNumber, (order, seatmap) => new { order, seatmap })
+                    .Where(x => x.order.OrderNumber == dataOrder.OrderNumber && x.seatmap.OrderNumber == dataOrder.OrderNumber && x.order.OrderNumber == x.seatmap.OrderNumber)
+                    .Select(x => new SeatModel { 
+                        Seat = x.seatmap.Seat1,
+                        OrderNumber = x.seatmap.OrderNumber,
+                        ID = x.seatmap.ID
+                    }
+                    );
+                foreach(SeatModel item in seat)
+                {
+                    OrderMain.ListSeatOfOrder.Add(item);
+                }
+
                 var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
                  item => item.OrderID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
@@ -340,7 +401,7 @@ namespace ServicePOS
                      Qty = x.pro.item.Qty,
                      Total = x.pro.item.Qty * x.pro.item.Price,
                      OrderID = x.pro.item.OrderID,
-                     Satust = x.pro.item.Satust,
+                     Satust = x.pro.item.Status,
                      ProductName = x.c.ProductNameSort,
                      KeyItem =x.pro.item.KeyItem??0,
                      Seat=x.pro.item.Seat??0,
@@ -359,7 +420,7 @@ namespace ServicePOS
                                 ProductID = a.x.ProductID,
                                 Total = a.x.Qty * a.x.Price,
                                 OrderID = a.x.OrderID,
-                                Satust = a.x.Satust,
+                                Satust = a.x.Status,
                                 KeyItem = a.x.KeyItem ?? 0,
                                 Seat = a.x.Seat ?? 0,
                                 DynID = a.x.DynId ?? 0,
@@ -516,7 +577,7 @@ namespace ServicePOS
                          Qty = x.pro.item.Qty,
                          Total = x.pro.item.Qty * x.pro.item.Price,
                          OrderID = x.pro.item.OrderID,
-                         Satust = x.pro.item.Satust,
+                         Satust = x.pro.item.Status,
                          ProductName = x.c.ProductNameSort,
                          KeyItem = x.pro.item.KeyItem ?? 0,
                          Seat = x.pro.item.Seat ?? 0,
@@ -534,7 +595,7 @@ namespace ServicePOS
                                     ProductID = a.x.ProductID,
                                     Total = a.x.Qty * a.x.Price,
                                     OrderID = a.x.OrderID,
-                                    Satust = a.x.Satust,
+                                    Satust = a.x.Status,
                                     KeyItem = a.x.KeyItem ?? 0,
                                     Seat = a.x.Seat ?? 0,
                                     DynID = a.x.DynId ?? 0,
@@ -750,6 +811,7 @@ namespace ServicePOS
                     {
                         VOID_ITEM_HISTORY voidItem = new VOID_ITEM_HISTORY();
                         voidItem.OrderID = OrderVoid.OrderID;
+                        voidItem.OrderNumber = OrderVoid.OrderNumber;
                         voidItem.FloorID = OrderVoid.FloorID;
                         voidItem.ShiftID = OrderVoid.ShiftID;
                         voidItem.ProductID = item.ProductID;
@@ -798,12 +860,12 @@ namespace ServicePOS
         public OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder, DateTime ts)
         {
             OrderDateModel OrderMain = new OrderDateModel();
-            var dataOrder = _context.INVOICEs.Where(x => x.OrderID == idOrder && x.Satust == 1 ).SingleOrDefault();
+            var dataOrder = _context.INVOICEs.Where(x => x.OrderID == idOrder && x.Status == 1 ).SingleOrDefault();
             if (dataOrder != null)
             {
                 OrderMain.Seat = dataOrder.Seat ?? 0;
                 //OrderMain.FloorID = dataOrder.FloorID;
-                OrderMain.OrderID = dataOrder.OrderID;
+                OrderMain.OrderID = dataOrder.OrderID??0;
                 OrderMain.TotalAmount = dataOrder.Total;
                 OrderMain.ShiftID = dataOrder.ShiftID ?? 0;
                 OrderMain.CreateBy = dataOrder.CreateBy;
@@ -926,7 +988,7 @@ namespace ServicePOS
                             Total = x.modi.Price * x.modi.Qty,
                             Seat = x.modi.Seat ?? 0,
                             OrderModifireID = x.modi.OrderModifireID??0,
-                            InvoiceID = x.modi.InvoiceID,
+                            InvoiceID = x.modi.InvoiceID??0,
                             DynID = x.modi.DynId ?? 0
                         });
                     foreach (OrderDetailModifireModel Openitem in openItemModiier)

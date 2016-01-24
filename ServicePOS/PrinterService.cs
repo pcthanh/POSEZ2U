@@ -179,25 +179,26 @@ namespace ServicePOS
 
        public IEnumerable<PrintJobDetailModel> GetPrintJobDetailList(int PrinteJobID)
        {
-           var data =
-               _context.PRINTE_JOB_DETAIL.Where(x => x.PrinteJobID == PrinteJobID)
-                   .Select(x => new PrintJobDetailModel
-                   {
-                       ID = x.ID,
-                       PrinteJobID = x.PrinteJobID,
-                       CategoryID = x.CategoryID,
-                       ProductID = x.ProductID,
-                       PrinterID = x.PrinterID,
-                       TemplatesID = x.TemplatesID,
-                       Status = x.Status,
-                       Notes = x.Notes??"",
-                       CreateBy = x.CreateBy,
-                       CreateDate = x.CreateDate,
-                       UpdateBy = x.UpdateBy,
-                       UpdateDate = x.UpdateDate
-                   });
+           //var data =
+           //    _context.PRINTE_JOB_DETAIL.Where(x => x.PrinteJobID == PrinteJobID)
+           //        .Select(x => new PrintJobDetailModel
+           //        {
+           //            ID = x.ID,
+           //            PrinteJobID = x.PrinteJobID,
+           //            CategoryID = x.CategoryID,
+           //            ProductID = x.ProductID,
+           //            PrinterID = x.PrinterID,
+           //            TemplatesID = x.TemplatesID,
+           //            Status = x.Status,
+           //            Notes = x.Notes??"",
+           //            CreateBy = x.CreateBy,
+           //            CreateDate = x.CreateDate,
+           //            UpdateBy = x.UpdateBy,
+           //            UpdateDate = x.UpdateDate
+           //        });
 
-           return data;
+           //return data;
+           return null;
        }
 
        public int SaveDataPrinterJob(PrintJobModel data)
@@ -243,7 +244,7 @@ namespace ServicePOS
                            {
                                var tempitem = new PRINTE_JOB_DETAIL();
 
-                               tempitem.PrinteJobID = printejob.ID;
+                               //tempitem.PrinteJobID = printejob.ID;
 
                                tempitem.CategoryID = item.CategoryID;
                                tempitem.ProductID = item.ProductID;
@@ -290,7 +291,7 @@ namespace ServicePOS
 
                        var tempitem = new PRINTE_JOB_DETAIL();
 
-                       tempitem.PrinteJobID = printejob.ID;
+                       //tempitem.PrinteJobID = printejob.ID;
 
                        tempitem.CategoryID = item.CategoryID;
                        tempitem.ProductID = item.ProductID;
@@ -326,38 +327,39 @@ namespace ServicePOS
        {
            try
            {
-               if (data!=null)
-               {
-                   var printjob = _context.PRINT_JOB.Find(data.ID);
-                   if (printjob != null)
-                   {
-                       printjob.Status = 0;
-                       printjob.UpdateBy = data.UpdateBy;
-                       printjob.UpdateDate = DateTime.Now;
+               //if (data!=null)
+               //{
+               //    var printjob = _context.PRINT_JOB.Find(data.ID);
+               //    if (printjob != null)
+               //    {
+               //        printjob.Status = 0;
+               //        printjob.UpdateBy = data.UpdateBy;
+               //        printjob.UpdateDate = DateTime.Now;
 
-                       _context.Entry(printjob).State = System.Data.Entity.EntityState.Modified;
-                       _context.SaveChanges();
+               //        _context.Entry(printjob).State = System.Data.Entity.EntityState.Modified;
+               //        _context.SaveChanges();
 
-                       var detail =_context.PRINTE_JOB_DETAIL.Where(x => x.PrinteJobID == printjob.ID && x.Status == 1).ToList();
-                       foreach (var item in detail)
-                       {
-                           item.Status = 0;
-                           item.UpdateBy = data.UpdateBy;
-                           item.UpdateDate = DateTime.Now;
+               //        var detail =_context.PRINTE_JOB_DETAIL.Where(x => x.PrinteJobID == printjob.ID && x.Status == 1).ToList();
+               //        foreach (var item in detail)
+               //        {
+               //            item.Status = 0;
+               //            item.UpdateBy = data.UpdateBy;
+               //            item.UpdateDate = DateTime.Now;
 
-                           _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
-                           _context.SaveChanges();
-                       }
-                       return 1;
-                   }
-               }
-               return 0;
+               //            _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+               //            _context.SaveChanges();
+               //        }
+               //        return 1;
+               //    }
+               //}
+               //return 0;
            }
            catch (Exception ex)
            {
                LogPOS.WriteLog("Service Printer Job:::::::::::::::::::RemoveDataPrinterJob::::::::::::::::" + ex.Message);
                return 0;
            }
+           return 0;
        }
 
         #endregion Printer Job
@@ -394,7 +396,8 @@ namespace ServicePOS
                     PrinterName = x.PrinterName,
                     PrintName = x.PrintName,
                     PrinterType = x.PrinterType??0,
-                    ID = x.ID
+                    ID = x.ID,
+                    Header = x.Header
                 }
                 );
             return data;

@@ -109,16 +109,17 @@ namespace ServicePOS
             INVOICE invoice = new INVOICE();
             invoice.InvoiceNumber = itemOrder.InvoiceNumber;
             invoice.OrderID = itemOrder.OrderID;
+            invoice.OrderNumber = itemOrder.OrderNumber;
             invoice.Total = Convert.ToInt32(itemOrder.TotalAmount);
-            invoice.Satust = 1;
+            invoice.Status = 1;
             invoice.DiscountType = itemOrder.DiscountType;
             invoice.Discount =(itemOrder.Discount);
             invoice.Payment = itemOrder.Payment;
             invoice.Change = itemOrder.Change;
             if (itemOrder.ListInvoiceByCard.Count > 0)
-                invoice.InvoiceByCardID =(CustomerInvoiceByCardID());
+                invoice.InvoiceByCardID =Convert.ToInt32(CustomerInvoiceByCardID());
             else
-                invoice.InvoiceByCardID = "";
+                invoice.InvoiceByCardID = 0;
             invoice.CreateBy = itemOrder.CreateBy ?? 0;
             invoice.CreateDate = DateTime.Now;
             invoice.UpdateBy = itemOrder.UpdateBy ?? 0;
@@ -183,7 +184,7 @@ namespace ServicePOS
                             orderDetailModifire.Price = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Price;
                             orderDetailModifire.Qty = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Qty;
                             orderDetailModifire.Total = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Total;
-                            orderDetailModifire.Satust = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
+                            orderDetailModifire.Status = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Satust;
                             orderDetailModifire.Seat = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Seat;
                             orderDetailModifire.DynId = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].DynID;
                             orderDetailModifire.CreateBy = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].CreateBy ?? 0;
@@ -211,7 +212,7 @@ namespace ServicePOS
                 PAYMENT_INVOICE_HISTORY item = new PAYMENT_INVOICE_HISTORY();
                 item.PaymentTypeID = Order.ListPayment[i].PaymentTypeID;
                 
-                item.Satust = 1;
+                item.Status = 1;
                 item.Total = Order.ListPayment[i].Total*1000;
                 item.CreateBy = Order.ListPayment[i].CreateBy ?? 0;
                 item.CreateDate = DateTime.Now;
@@ -229,7 +230,7 @@ namespace ServicePOS
             for (int i = 0; i < Order.ListInvoiceByCard.Count; i++)
             {
                 INVOICE_BY_CARD item = new INVOICE_BY_CARD();
-                item.InvoiceByCardID =(CustomerInvoiceByCardID());
+                item.InvoiceByCardID =Convert.ToInt32(CustomerInvoiceByCardID());
                 
                 item.CardID = Order.ListInvoiceByCard[i].CardID;
                 item.Total = Order.ListInvoiceByCard[i].Total;
