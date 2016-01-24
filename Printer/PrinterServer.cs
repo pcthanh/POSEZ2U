@@ -20,6 +20,7 @@ namespace Printer
        int PRINTBAR = 1;
        int PRINTBILL = 2;
        OrderDateModel OrderPrint;
+       string Header = string.Empty;
        public PrinterServer()
        {
         
@@ -28,56 +29,52 @@ namespace Printer
        { 
                    
        }
+       
+       private OrderDateModel SliptPriter(OrderDateModel OrderS,List<PrinterModel> printData)
+       {
+           OrderDateModel OrderSlipt = new OrderDateModel();
+           for(int i = 0; i< printData.Count; i++)
+           {
+               for (int j = 0; j < OrderS.ListOrderDetail.Count; j++)
+               {
+                   for (int k = 0; k < OrderS.ListOrderDetail[j].ListPrintJob.Count; k++)
+                   {
+                       if (OrderS.ListOrderDetail[j].ListPrintJob[k].PrinterID == printData[i].ID)
+                       {
+                           OrderSlipt.ListOrderDetail.Add(OrderS.ListOrderDetail[k]);
+                       }
+                   }
+               }
+           }
+           return OrderS;
+       }
        public void PrintData(OrderDateModel _OrderMain,List<PrinterModel> printData)
        {
            OrderMain = _OrderMain;
+          
            if (OrderMain.PrintType == this.PRINTBAR)
            {
-
                for (int i = 0; i < printData.Count; i++)
                {
-                   if (OrderMain.IsLoadFromData)
+                   OrderPrint = new OrderDateModel();
+                   for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
                    {
-                       OrderPrint = new OrderDateModel();
-                       for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
+                       for (int k = 0; k < OrderMain.ListOrderDetail[j].ListPrintJob.Count; k++)
                        {
-                           if (OrderMain.ListOrderDetail[j].ChangeStatus == 1 || OrderMain.ListOrderDetail[j].ChangeStatus == 2)
+                           if (OrderMain.ListOrderDetail[j].ListPrintJob[k].PrinterID == printData[i].ID)
                            {
-                               if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
-                               {
-
-                                   OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
-                               }
-                           }
-                           for (int k = 0; k < OrderMain.ListOrderDetail[j].ListOrderDetailModifire.Count; k++)
-                           {
-                               if (OrderMain.ListOrderDetail[j].ListOrderDetailModifire[k].ChangeStatus == 1 || OrderMain.ListOrderDetail[j].ListOrderDetailModifire[k].ChangeStatus == 2)
-                               {
-                                   if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
-                                   {
-
-                                       OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
-                                   }
-                               }
-                           }
-                       }
-                   }
-                   else
-                   {
-                       OrderPrint = new OrderDateModel();
-                       for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
-                       {
-
-                           if (OrderMain.ListOrderDetail[j].Printer == printData[i].ID)
-                           {
-
                                OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
                            }
                        }
                    }
-                   if(OrderPrint.ListOrderDetail.Count>0)
-                        Print(OrderPrint, printData[i]);
+                   if (OrderPrint.ListOrderDetail.Count > 0)
+                   {
+                       Header = printData[i].Header;
+                       Print(OrderPrint, printData[i]);
+                       
+                   }
                }
+               
            }
            else
            {
@@ -94,32 +91,10 @@ namespace Printer
            
                posPrinter.SetPrinterName(data.PrinterName);
                posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+                
                posPrinter.Print();
            
-           //if (Function==1)
-           //{
-               
-           //     //Dataprint 80mm Series Printer//
-           //    //Microsoft XPS Document Writer
-           //    for (int i = 0; i <= 1; i++)
-           //    {
-           //        posPrinter.SetPrinterName("80 Printer");
-           //        posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-           //        posPrinter.Print();
-           //    }
-           //}
-           //if (Function == 2)
-           //{
-           //    posPrinter.SetPrinterName("80 Printer");
-           //    posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-           //    posPrinter.Print();
-           //}
-           //if (Function == 3)
-           //{
-           //    posPrinter.SetPrinterName("80 Printer");
-           //    posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-           //    posPrinter.Print();
-           //}
+           
        }
        void printDocument_PrintPage(object sender, PrintPageEventArgs e)
        {
@@ -142,7 +117,7 @@ namespace Printer
        public float PrintOrderToKitchenOrBar(OrderDateModel Order, PrintPageEventArgs e)
        {
            float l_y = 0;
-           l_y = posPrinter.DrawString("Kitchen", e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            l_y=posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
@@ -384,6 +359,23 @@ namespace Printer
                l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.Change), e, new Font("Arial", 10), l_y, 3);
 
            }
+           l_y += posPrinter.GetHeightPrinterLine() / 2;
+           l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+
+       }
+       public void printJoinTable(string JoinTable, PrintPageEventArgs e)
+       {
+           float l_y = 0;
+           l_y = posPrinter.DrawString("BI RESTAURANT", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString("ABN:45 134918497", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString("233A Canley Vale Rd Canley Heights NSW 2166", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString("Tel: 9727 7585", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+           l_y = posPrinter.DrawString(JoinTable, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 2;
            l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
            l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
