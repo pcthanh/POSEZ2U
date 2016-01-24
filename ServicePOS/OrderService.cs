@@ -66,7 +66,7 @@ namespace ServicePOS
                     {
                         ORDER_DETAIL_DATE orderDetaiDate = new ORDER_DETAIL_DATE();
                         orderDetaiDate.OrderID = itemOrder.ListOrderDetail[i].OrderID;
-                        orderDetaiDate.OrderNumber = itemOrder.ListOrderDetail[i].OrderNumber;
+                        orderDetaiDate.OrderNumber = itemOrder.OrderNumber;
                         orderDetaiDate.OrderDetailID = itemOrder.ListOrderDetail[i].OrderDetailID;
                         orderDetaiDate.ProductID = itemOrder.ListOrderDetail[i].ProductID;
                         orderDetaiDate.KeyItem = itemOrder.ListOrderDetail[i].KeyItem;
@@ -109,7 +109,7 @@ namespace ServicePOS
                             orderDetailModifire.OrderDetailID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderDetailID;
                             orderDetailModifire.OrderModifireID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderModifireID;
                             orderDetailModifire.OrderID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderID;
-                            orderDetailModifire.OrderNumber = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].OrderNumber;
+                            orderDetailModifire.OrderNumber = itemOrder.OrderNumber;
                             orderDetailModifire.ProductID = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].ProductID;
                             orderDetailModifire.KeyModi = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi;
                             orderDetailModifire.Price = itemOrder.ListOrderDetail[i].ListOrderDetailModifire[j].Price;
@@ -206,7 +206,7 @@ namespace ServicePOS
                         {
                             // _context.Entry(item).State = System.Data.Entity.EntityState.Added;;
 
-                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,OrderNumber,ProductID,KeyItem,Satust,Price,Qty,Total,Seat,DynId,PrintType)values" +
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_DATE(OrderID,OrderNumber,ProductID,KeyItem,Status,Price,Qty,Total,Seat,DynId,PrintType)values" +
                                 "('" + item.OrderID + "', '"+ item.OrderNumber+"', '" + item.ProductID + "','" + item.KeyItem + "','" + item.Status + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','"+item.DynId+"','"+ item.PrintType+"')");
 
                         }
@@ -221,7 +221,7 @@ namespace ServicePOS
                         foreach (ORDER_DETAIL_MODIFIRE_DATE item in lstOrderDetailModifire)
                         {
                             // _context.Entry(item).State = System.Data.Entity.EntityState.Added;
-                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_MODIFIRE_DATE (OrderDetailID,OrderID,OrderNumber,ProductID,KeyModi,ModifireID,Satust,Price,Qty,Total,Seat,DynID)values" +
+                            _context.Database.ExecuteSqlCommand("insert into ORDER_DETAIL_MODIFIRE_DATE (OrderDetailID,OrderID,OrderNumber,ProductID,KeyModi,ModifireID,Status,Price,Qty,Total,Seat,DynID)values" +
                                 "('" + item.OrderDetailID + "','" + item.OrderID + "','" + item.OrderNumber + "', '" + item.ProductID + "','" + item.KeyModi + "','" + item.ModifireID + "','" + item.Status + "','" + item.Price + "','" + item.Qty + "','" + item.Total + "','" + item.Seat + "','" + item.DynId + "')");
 
                         }
