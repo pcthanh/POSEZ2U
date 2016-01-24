@@ -318,9 +318,9 @@ namespace POSEZ2U
             {
                 if (flpNewTable.Controls.Count > 0)
                 {
-                    if (OrderSlpitNew.FloorID == "#")
+                    if (OrderSlpitNew.FloorID == "#" ||Convert.ToInt32(OrderSlpitNew.FloorID)>40)
                     {
-                        frmMessager frm = new frmMessager("Messager", "Input TableNo New");
+                        frmMessager frm = new frmMessager("Messager", "TableNo is unavailable");
                         frm.ShowDialog();
                     }
                     else

@@ -43,7 +43,7 @@ namespace POSEZ2U
         private int PgSize = 21;
         private int CurrentPageIndex = 1;
         private int TotalPage = 0;
-
+        List<SeatModel> lstSeat = new List<SeatModel>();
         private int PgSizeModi = 21;
         private int CurrentPageIndexModi = 1;
         private int TotalPageModi = 0; 
@@ -509,21 +509,30 @@ namespace POSEZ2U
                         item.Seat = numSeat;
                     if (OrderMain.IsLoadFromData)
                         item.ChangeStatus = 1;
-                    ProductionModel itemPrint = new ProductionModel();
-                    itemPrint = ProductService.GetPrinterType(itemProduct.ProductID);
-                    if (itemPrint != null)
+
+                    //ProductionModel itemPrint = new ProductionModel();
+                    //itemPrint = ProductService.GetPrinterType(itemProduct.ProductID);
+                    //if (itemPrint != null)
+                    //{
+                    //    item.Printer = itemPrint.Printer;
+                    //    item.PrintJob = itemPrint.PrinterJob;
+                    //}
+                    //else
+                    //{
+                    //    itemPrint = ProductService.GetPrinterTypeByCate(itemProduct.CategoryID);
+                    //    if (itemPrint != null)
+                    //    {;
+                    //        item.Printer = itemPrint.Printer;
+                    //        item.PrintJob = itemPrint.PrinterJob;
+                    //    }
+                    //}
+                    var dataPrint = ProductService.GetListPrintJob(itemProduct.ProductID);
+                    foreach (PrinteJobDetailModel itemPrint in dataPrint)
                     {
-                        item.Printer = itemPrint.Printer;
-                        item.PrintJob = itemPrint.PrinterJob;
-                    }
-                    else
-                    {
-                        itemPrint = ProductService.GetPrinterTypeByCate(itemProduct.CategoryID);
-                        if (itemPrint != null)
-                        {
-                            item.Printer = itemPrint.Printer;
-                            item.PrintJob = itemPrint.PrinterJob;
-                        }
+                        PrinteJobDetailModel p = new PrinteJobDetailModel();
+                        p.ProductID = itemPrint.ProductID;
+                        p.PrinterID = itemPrint.PrinterID;
+                        item.ListPrintJob.Add(p);
                     }
                     OrderMain.addItemToList(item);
                     addOrder(item);
@@ -840,7 +849,11 @@ namespace POSEZ2U
                 {
                     
                         seat = frm.NumberSeat;
-                        OrderMain.addSeat(seat);
+                        //OrderMain.addSeat(seat);
+                        SeatModel seatAdd = new SeatModel();
+                        seatAdd.Seat = seat;
+                        lstSeat.Add(seatAdd);
+                        OrderMain.ListSeatOfOrder = lstSeat;
                         UCSeat ucSeat = new UCSeat();
                         ucSeat.lblSeat.Text = "Seat " + seat;
                         ucSeat.Click += ucSeat_Click;
@@ -909,16 +922,26 @@ namespace POSEZ2U
                     UCItemModifierOfMenu ucItemModifireOfMenu;
                     OrderDetailModifireModel modifier = null;
                     OrderDetailModel items = null;
+                    UCSeat ucSeat = null;
+                    int CountIndexitemOfSeat = 0;
                     if (flagClick == 1)
                     {
 
                         ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
                         modifier = (OrderDetailModifireModel)ucItemModifireOfMenu.Tag;
                     }
+
                     else
                     {
-                        ucOrder = (UCOrder)flpOrder.Controls[indexControl];
-                        items = (OrderDetailModel)ucOrder.Tag;
+                        if (numSeat > 0)
+                        {
+                            ucSeat = (UCSeat)flpOrder.Controls[indexOfUcSeat];
+                        }
+                        else
+                        {
+                            ucOrder = (UCOrder)flpOrder.Controls[indexControl];
+                            items = (OrderDetailModel)ucOrder.Tag;
+                        }
                     }
                     if (items != null)
                     {
@@ -958,11 +981,43 @@ namespace POSEZ2U
                             }
                         }
                         flpOrder.Controls.RemoveAt(indexControl);
+
+                    }
+                    if (numSeat > 0)
+                    {
+                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                        {
+
+                            if (numSeat == OrderMain.ListOrderDetail[i].Seat && OrderMain.ListOrderDetail[i].ChangeStatus!=2)
+                            { 
+                                CountIndexitemOfSeat++;
+                                OrderMain.ListOrderDetail[i].ChangeStatus = 2;
+                            }
+                        }
+                        for (int remove = 0; remove < OrderMain.ListSeatOfOrder.Count; remove++)
+                        {
+                            if (OrderMain.ListSeatOfOrder[remove].Seat == numSeat)
+                            {
+                                OrderMain.ListSeatOfOrder[remove].ChangeStatus = 2;
+                            }
+                        }
+                        for (int count = CountIndexitemOfSeat+indexOfUcSeat; count > indexOfUcSeat; count--)
+                        {
+                            flpOrder.Controls.RemoveAt(count);
+                        }
+                            
+                        flpOrder.Controls.RemoveAt(indexOfUcSeat);
+                        numSeat = 0;
+                    }
+                    else
+                    {
+                        //flpOrder.Controls.RemoveAt(indexControl);
                         flagClick = 0;
                     }
                     lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
                     if (OrderMain.IsLoadFromData)
                         OrderService.VoidItemHistory(OrderMain);
+                    
                 }
             }
             catch (Exception ex)
@@ -1006,15 +1061,15 @@ namespace POSEZ2U
                 OrderMain = new OrderDateModel();
                 OrderMain = OrderService.GetOrderByTable(TableID, 0);
                 lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
-                if (OrderMain.Seat > 0)
+                if (OrderMain.ListSeatOfOrder.Count > 0)
                 {
                     OrderMain.IsLoadFromData = true;
                     lblSeat.Text = OrderMain.Seat.ToString();
                     lblStatus.Text = "OLD";
-                    for (int seat = 1; seat <= OrderMain.Seat; seat++)
+                    foreach (SeatModel seat in OrderMain.ListSeatOfOrder)
                     {
                         UCSeat ucSeat = new UCSeat();
-                        ucSeat.lblSeat.Text ="Seat " +seat.ToString();
+                        ucSeat.lblSeat.Text ="Seat " +seat.Seat.ToString();
                         ucSeat.Click += ucSeat_Click;
                         flpOrder.Controls.Add(ucSeat);
                         indexControl = flpOrder.Controls.Count;
@@ -1022,7 +1077,7 @@ namespace POSEZ2U
                         {
                             for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                             {
-                                if (OrderMain.ListOrderDetail[i].Seat == seat)
+                                if (OrderMain.ListOrderDetail[i].Seat == seat.Seat)
                                 {
                                     addOrder(OrderMain.ListOrderDetail[i]);
                                     indexControl++;
@@ -1199,6 +1254,7 @@ namespace POSEZ2U
                         {
                             int result = 0;
                             OrderMain.PrintType = 1;
+                           
                             result = OrderService.InsertOrder(OrderMain);
                             if (result == 1)
                             {
@@ -1501,6 +1557,7 @@ namespace POSEZ2U
                 print.PrinterName = item.PrinterName;
                 print.PrintName = item.PrintName;
                 print.PrinterType = item.PrinterType;
+                print.Header = item.Header;
                 print.ID = item.ID;
                 PrintData.Add(print);
             }

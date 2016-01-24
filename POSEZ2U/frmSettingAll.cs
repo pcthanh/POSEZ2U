@@ -39,7 +39,7 @@ namespace POSEZ2U
 
         private void btnPrinter_Click(object sender, EventArgs e)
         {
-            frmPrinterSetting frm = new frmPrinterSetting();
+            frmSettingPrint frm = new frmSettingPrint();
             this.Close();
             frm.ShowDialog();
         }

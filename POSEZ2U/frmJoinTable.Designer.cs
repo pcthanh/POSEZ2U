@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -50,18 +49,10 @@
             this.panel10.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(862, 47);
-            this.panel1.TabIndex = 0;
-            // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 47);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(862, 10);
             this.panel2.TabIndex = 1;
@@ -69,17 +60,17 @@
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 57);
+            this.panel3.Location = new System.Drawing.Point(0, 10);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(10, 485);
+            this.panel3.Size = new System.Drawing.Size(10, 532);
             this.panel3.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(852, 57);
+            this.panel4.Location = new System.Drawing.Point(852, 10);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(10, 485);
+            this.panel4.Size = new System.Drawing.Size(10, 532);
             this.panel4.TabIndex = 2;
             // 
             // panel5
@@ -136,9 +127,9 @@
             // 
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(10, 409);
+            this.panel7.Location = new System.Drawing.Point(10, 440);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(842, 85);
+            this.panel7.Size = new System.Drawing.Size(842, 54);
             this.panel7.TabIndex = 5;
             // 
             // panel8
@@ -165,18 +156,18 @@
             // panel9
             // 
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(10, 383);
+            this.panel9.Location = new System.Drawing.Point(10, 420);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(842, 26);
+            this.panel9.Size = new System.Drawing.Size(842, 20);
             this.panel9.TabIndex = 6;
             // 
             // panel10
             // 
             this.panel10.Controls.Add(this.flpJoinTable);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(10, 57);
+            this.panel10.Location = new System.Drawing.Point(10, 10);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(842, 326);
+            this.panel10.Size = new System.Drawing.Size(842, 410);
             this.panel10.TabIndex = 7;
             // 
             // flpJoinTable
@@ -184,7 +175,7 @@
             this.flpJoinTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpJoinTable.Location = new System.Drawing.Point(0, 0);
             this.flpJoinTable.Name = "flpJoinTable";
-            this.flpJoinTable.Size = new System.Drawing.Size(842, 326);
+            this.flpJoinTable.Size = new System.Drawing.Size(842, 410);
             this.flpJoinTable.TabIndex = 0;
             // 
             // timer1
@@ -207,7 +198,6 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmJoinTable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -223,7 +213,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;

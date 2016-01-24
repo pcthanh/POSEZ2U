@@ -41,6 +41,7 @@ namespace POSEZ2U
             {
                 UC.UCTable ucTable = new UC.UCTable();
                 ucTable.lbTableNo.Text = i.ToString();
+                
                 ucTable.Click += ucTable_Click;
                 flpJoinTable.Controls.Add(ucTable);
             }
@@ -56,7 +57,22 @@ namespace POSEZ2U
                     ucTable.BackColor = Color.FromArgb(242, 242, 242);
                 }
                 else
-                    ucTable.BackColor = Color.FromArgb(0, 204, 15);
+                {
+                    if (ucTable.Tag != null)
+                    {
+                        if (ucTable.BackColor == Color.FromArgb(0, 102, 204))
+                        {
+                            frmMessager frm = new frmMessager("Join Table", "Table waitting print BILL");
+                            frm.ShowDialog();
+                        }
+                        else
+                        {
+                            ucTable.BackColor = Color.FromArgb(0, 204, 15);
+                        }
+
+                    }
+                        
+                }
 
             }
             catch (Exception ex)
@@ -139,6 +155,16 @@ namespace POSEZ2U
                         SetText("", ucTable.lbTime);
                         SetText("", ucTable.lbSubTotal);
                     }
+                    if (statusTable.Complete == 2)
+                    {
+
+                        ucTable.BackColor = Color.FromArgb(0, 102, 204);
+                        ucTable.ForeColor = Color.White;
+                        ucTable.lbTime.Text = statusTable.Time;
+                        ucTable.Tag = statusTable;
+                        SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
+                        ucTable.Refresh();
+                    }
                 }
             }
             catch (Exception ex)
@@ -176,30 +202,41 @@ namespace POSEZ2U
             try
             {
                 frmChooseeTableJoin frm = new frmChooseeTableJoin();
+                string lineOldTableNo = string.Empty;
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    foreach (Control ctr in flpJoinTable.Controls)
+                    if (frm.TableNo < 40)
                     {
-                        UCTable ucTableJoin = (UCTable)ctr;
-                        if (ucTableJoin.BackColor == Color.FromArgb(0, 204, 15))
+                        foreach (Control ctr in flpJoinTable.Controls)
                         {
-                            StatusTable st = (StatusTable)ucTableJoin.Tag;
-                            OrderJoinTableModel JoinTable = new OrderJoinTableModel();
-                            JoinTable.OrderID = st.OrderID;
-                            JoinTable.TableID =Convert.ToInt32(st.TableID);
-                            JoinTable.SubTotalTable =Convert.ToDouble(st.SubTotal);
-                            JoinTable.TableIDNew = frm.TableNo;
-                            lstJoinTable.Add(JoinTable);
+                            UCTable ucTableJoin = (UCTable)ctr;
+                            if (ucTableJoin.BackColor == Color.FromArgb(0, 204, 15))
+                            {
+                                StatusTable st = (StatusTable)ucTableJoin.Tag;
+                                OrderJoinTableModel JoinTable = new OrderJoinTableModel();
+                                JoinTable.OrderID = st.OrderID;
+                                JoinTable.TableID = Convert.ToInt32(st.TableID);
+                                JoinTable.SubTotalTable = Convert.ToDouble(st.SubTotal);
+                                JoinTable.TableIDNew = frm.TableNo;
+                                
+                                lstJoinTable.Add(JoinTable);
+                            }
+                        }
+                        if (lstJoinTable.Count > 0)
+                        {
+                            int result = OrderService.JoinTable(lstJoinTable);
+                            if (result == 1)
+                            {
+
+                                this.Close();
+                                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                            }
                         }
                     }
-                    if (lstJoinTable.Count > 0)
+                    else
                     {
-                        int result = OrderService.JoinTable(lstJoinTable);
-                        if (result == 1)
-                        {
-                            this.Close();
-                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        }
+                        frmMessager frmmes = new frmMessager("Join Table", "TableNo is unavailable");
+                        frmmes.ShowDialog();
                     }
                 }
             }

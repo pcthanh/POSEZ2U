@@ -36,6 +36,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.btnGoTo = new System.Windows.Forms.Button();
+            this.panel19 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.btnTool = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -53,16 +56,13 @@
             this.panel17 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.btnGoTo = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel20.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel20.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -138,6 +138,38 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(951, 42);
             this.panel4.TabIndex = 2;
+            // 
+            // panel20
+            // 
+            this.panel20.Controls.Add(this.btnGoTo);
+            this.panel20.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel20.Location = new System.Drawing.Point(174, 0);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(180, 42);
+            this.panel20.TabIndex = 12;
+            // 
+            // btnGoTo
+            // 
+            this.btnGoTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.btnGoTo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGoTo.FlatAppearance.BorderSize = 0;
+            this.btnGoTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGoTo.Location = new System.Drawing.Point(0, 0);
+            this.btnGoTo.Name = "btnGoTo";
+            this.btnGoTo.Size = new System.Drawing.Size(180, 42);
+            this.btnGoTo.TabIndex = 0;
+            this.btnGoTo.Text = "Go to Order Screen";
+            this.btnGoTo.UseVisualStyleBackColor = false;
+            this.btnGoTo.Click += new System.EventHandler(this.btnGoTo_Click);
+            // 
+            // panel19
+            // 
+            this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel19.Location = new System.Drawing.Point(354, 0);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(10, 42);
+            this.panel19.TabIndex = 11;
             // 
             // panel16
             // 
@@ -301,38 +333,6 @@
             this.panel6.Size = new System.Drawing.Size(951, 10);
             this.panel6.TabIndex = 7;
             // 
-            // panel19
-            // 
-            this.panel19.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel19.Location = new System.Drawing.Point(354, 0);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(10, 42);
-            this.panel19.TabIndex = 11;
-            // 
-            // panel20
-            // 
-            this.panel20.Controls.Add(this.btnGoTo);
-            this.panel20.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel20.Location = new System.Drawing.Point(174, 0);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(180, 42);
-            this.panel20.TabIndex = 12;
-            // 
-            // btnGoTo
-            // 
-            this.btnGoTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.btnGoTo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGoTo.FlatAppearance.BorderSize = 0;
-            this.btnGoTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGoTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGoTo.Location = new System.Drawing.Point(0, 0);
-            this.btnGoTo.Name = "btnGoTo";
-            this.btnGoTo.Size = new System.Drawing.Size(180, 42);
-            this.btnGoTo.TabIndex = 0;
-            this.btnGoTo.Text = "Go to Order Screen";
-            this.btnGoTo.UseVisualStyleBackColor = false;
-            this.btnGoTo.Click += new System.EventHandler(this.btnGoTo_Click);
-            // 
             // frmFloor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,10 +359,10 @@
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.panel20.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            this.panel20.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

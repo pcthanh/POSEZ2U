@@ -37,7 +37,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnSplitBill = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
             this.btnPrintnoBill = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -72,6 +71,7 @@
             this.btnGiftCard = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpPaymentType = new System.Windows.Forms.FlowLayoutPanel();
+            this.button13 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -244,22 +244,6 @@
             this.btnSplitBill.Text = "SPLIT BILL";
             this.btnSplitBill.UseVisualStyleBackColor = false;
             this.btnSplitBill.Click += new System.EventHandler(this.btnSplitBill_Click);
-            // 
-            // button13
-            // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.FlatAppearance.BorderSize = 0;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(351, 69);
-            this.button13.Margin = new System.Windows.Forms.Padding(0);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(82, 69);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "SMS";
-            this.button13.UseVisualStyleBackColor = false;
             // 
             // btnPrintnoBill
             // 
@@ -700,6 +684,23 @@
             this.flpPaymentType.Size = new System.Drawing.Size(271, 400);
             this.flpPaymentType.TabIndex = 0;
             // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button13.Enabled = false;
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button13.ForeColor = System.Drawing.Color.White;
+            this.button13.Location = new System.Drawing.Point(351, 69);
+            this.button13.Margin = new System.Windows.Forms.Padding(0);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(82, 69);
+            this.button13.TabIndex = 1;
+            this.button13.Text = "SMS";
+            this.button13.UseVisualStyleBackColor = false;
+            // 
             // frmPayMent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -774,7 +775,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnDiscount;
         private System.Windows.Forms.Button btnSplitBill;
-        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.FlowLayoutPanel flpPaymentType;
         private System.Windows.Forms.TextBox txtTender;
         private System.Windows.Forms.Panel panel10;
@@ -782,6 +782,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBalancetemp;
         private System.Windows.Forms.Button btnPrintnoBill;
+        private System.Windows.Forms.Button button13;
 
     }
 }

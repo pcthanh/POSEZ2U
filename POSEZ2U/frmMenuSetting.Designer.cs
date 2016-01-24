@@ -152,9 +152,9 @@
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Location = new System.Drawing.Point(4, 4);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(105, 37);
+            this.btnBack.Size = new System.Drawing.Size(227, 37);
             this.btnBack.TabIndex = 0;
-            this.btnBack.Text = "BACK";
+            this.btnBack.Text = "Back to Main Menu";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -220,9 +220,9 @@
             // 
             this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
             this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
-            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(1200, 32);
+            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
             this.ucPriceListTitle.Name = "ucPriceListTitle";
-            this.ucPriceListTitle.Size = new System.Drawing.Size(1200, 32);
+            this.ucPriceListTitle.Size = new System.Drawing.Size(966, 32);
             this.ucPriceListTitle.TabIndex = 1;
             this.ucPriceListTitle.Visible = false;
             // 
