@@ -144,7 +144,9 @@ namespace POSEZ2U
                 {
                     if (shiftid > 0)
                     {
-                        frmFloor frm = new frmFloor();
+                        frmTakeAway frm = new frmTakeAway();
+                        this.picWarning.Show();
+                        this.lbWarning.Show();
                         frm.ShowDialog();
                     }
                     else
