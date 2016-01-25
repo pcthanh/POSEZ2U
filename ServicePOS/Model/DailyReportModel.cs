@@ -59,4 +59,25 @@ namespace ServicePOS.Model
         public int TotalSale { get; set; }
 
     }
+
+    public class StaffSaleReportModel
+    {
+        public int StaffID { get; set; }
+        public string UserName { get; set; }
+        public int Total { get; set; }
+    }
+
+    public class CardSaleReportModel
+    {
+        public int CardID { get; set; }
+        public string CardName { get; set; }
+        public double Total { get; set; }
+    }
+
+    public class AccountSaleReportModel
+    {
+        public int ClientID { get; set; }
+        public string FullName { get; set; }
+        public double Total { get; set; }
+    }
 }
