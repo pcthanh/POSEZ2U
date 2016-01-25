@@ -179,15 +179,15 @@ namespace POSEZ2U
                     break;
                 case 4:
                     pDetail.Controls.Clear();
-                    LoadReportDetail();
+                    LoadReportSaleByStaffDetail();
                     break;
                 case 5:
                     pDetail.Controls.Clear();
-                    LoadReportDetail();
+                    LoadReportAccountSaleDetail();
                     break;
                 case 6:
                     pDetail.Controls.Clear();
-                    LoadReportDetail();
+                    LoadReportCardSaleDetail();
                     break;
                 default:
                     pDetail.Controls.Clear();
@@ -288,6 +288,120 @@ namespace POSEZ2U
 
         }
 
+        private void LoadReportSaleByStaffDetail()
+        {
+            pDetail.Controls.Clear();
+            UCDailySaleQTYReport UCQTYReport = new UCDailySaleQTYReport();
+
+            UCQTYReport.Dock = DockStyle.Fill;
+
+            pDetail.Controls.Add(UCQTYReport);
+
+            var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+            var data = ReportService.GetDataStaffSaleReport(dateselect, 0).ToList();
+
+            var i = 1;
+            foreach (var item in data)
+            {
+                UCItemReport ucitem = new UCItemReport();
+
+                ucitem.lbname.Text = item.UserName;
+
+                var fomat = new MoneyFortmat(1);
+
+                ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
+
+                ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
+
+                if (i % 2 == 0)
+                {
+                    ucitem.BackColor = Color.FromArgb(221, 221, 221);
+                }
+
+                UCQTYReport.PDetail.Controls.Add(ucitem);
+                i++;
+            }
+
+
+        }
+
+        private void LoadReportCardSaleDetail()
+        {
+            pDetail.Controls.Clear();
+            UCDailySaleQTYReport UCQTYReport = new UCDailySaleQTYReport();
+
+            UCQTYReport.Dock = DockStyle.Fill;
+
+            pDetail.Controls.Add(UCQTYReport);
+
+            var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+            var data = ReportService.GetDataCardSaleReport(dateselect, 0).ToList();
+
+            var i = 1;
+            foreach (var item in data)
+            {
+                UCItemReport ucitem = new UCItemReport();
+
+                ucitem.lbname.Text = item.CardName;
+
+                var fomat = new MoneyFortmat(1);
+
+                ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
+
+                ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
+
+                if (i % 2 == 0)
+                {
+                    ucitem.BackColor = Color.FromArgb(221, 221, 221);
+                }
+
+                UCQTYReport.PDetail.Controls.Add(ucitem);
+                i++;
+            }
+
+
+        }
+
+        private void LoadReportAccountSaleDetail()
+        {
+            pDetail.Controls.Clear();
+            UCDailySaleQTYReport UCQTYReport = new UCDailySaleQTYReport();
+
+            UCQTYReport.Dock = DockStyle.Fill;
+
+            pDetail.Controls.Add(UCQTYReport);
+
+            var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+            var data = ReportService.GetDataAccountSaleReport(dateselect, 0).ToList();
+
+            var i = 1;
+            foreach (var item in data)
+            {
+                UCItemReport ucitem = new UCItemReport();
+
+                ucitem.lbname.Text = item.FullName;
+
+                var fomat = new MoneyFortmat(1);
+
+                ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
+
+                ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
+
+                if (i % 2 == 0)
+                {
+                    ucitem.BackColor = Color.FromArgb(221, 221, 221);
+                }
+
+                UCQTYReport.PDetail.Controls.Add(ucitem);
+                i++;
+            }
+
+
+        }
+
         #endregion Daily Report
 
 
@@ -340,15 +454,15 @@ namespace POSEZ2U
                     break;
                 case 4:
                     pDetail.Controls.Clear();
-                    LoadWeeklyReportDetail();
+                    LoadReportWeeklySaleByStaffDetail();
                     break;
                 case 5:
                     pDetail.Controls.Clear();
-                    LoadWeeklyReportDetail();
+                    LoadReportWeeklyAccountSaleDetail();
                     break;
                 case 6:
                     pDetail.Controls.Clear();
-                    LoadWeeklyReportDetail();
+                    LoadReportWeeklyCardSaleDetail();
                     break;
                 default:
                     pDetail.Controls.Clear();
@@ -441,9 +555,123 @@ namespace POSEZ2U
 
         }
 
+        private void LoadReportWeeklySaleByStaffDetail()
+        {
+            pDetail.Controls.Clear();
+            UCDailySaleQTYReport UCQTYReport = new UCDailySaleQTYReport();
+
+            UCQTYReport.Dock = DockStyle.Fill;
+
+            pDetail.Controls.Add(UCQTYReport);
+
+            var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+            var data = ReportService.GetDataStaffSaleReport(dateselect, 1).ToList();
+
+            var i = 1;
+            foreach (var item in data)
+            {
+                UCItemReport ucitem = new UCItemReport();
+
+                ucitem.lbname.Text = item.UserName;
+
+                var fomat = new MoneyFortmat(1);
+
+                ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
+
+                ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
+
+                if (i % 2 == 0)
+                {
+                    ucitem.BackColor = Color.FromArgb(221, 221, 221);
+                }
+
+                UCQTYReport.PDetail.Controls.Add(ucitem);
+                i++;
+            }
+
+
+        }
+
+        private void LoadReportWeeklyCardSaleDetail()
+        {
+            pDetail.Controls.Clear();
+            UCDailySaleQTYReport UCQTYReport = new UCDailySaleQTYReport();
+
+            UCQTYReport.Dock = DockStyle.Fill;
+
+            pDetail.Controls.Add(UCQTYReport);
+
+            var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+            var data = ReportService.GetDataCardSaleReport(dateselect, 1).ToList();
+
+            var i = 1;
+            foreach (var item in data)
+            {
+                UCItemReport ucitem = new UCItemReport();
+
+                ucitem.lbname.Text = item.CardName;
+
+                var fomat = new MoneyFortmat(1);
+
+                ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
+
+                ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
+
+                if (i % 2 == 0)
+                {
+                    ucitem.BackColor = Color.FromArgb(221, 221, 221);
+                }
+
+                UCQTYReport.PDetail.Controls.Add(ucitem);
+                i++;
+            }
+
+
+        }
+
+        private void LoadReportWeeklyAccountSaleDetail()
+        {
+            pDetail.Controls.Clear();
+            UCDailySaleQTYReport UCQTYReport = new UCDailySaleQTYReport();
+
+            UCQTYReport.Dock = DockStyle.Fill;
+
+            pDetail.Controls.Add(UCQTYReport);
+
+            var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
+
+            var data = ReportService.GetDataAccountSaleReport(dateselect, 1).ToList();
+
+            var i = 1;
+            foreach (var item in data)
+            {
+                UCItemReport ucitem = new UCItemReport();
+
+                ucitem.lbname.Text = item.FullName;
+
+                var fomat = new MoneyFortmat(1);
+
+                ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
+
+                ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
+
+                if (i % 2 == 0)
+                {
+                    ucitem.BackColor = Color.FromArgb(221, 221, 221);
+                }
+
+                UCQTYReport.PDetail.Controls.Add(ucitem);
+                i++;
+            }
+
+
+        }
+
         #endregion Weekly Report
 
-
+       
 
         #region Shift Report
 
@@ -506,7 +734,7 @@ namespace POSEZ2U
                 shift.lblEndCash.Text = data.CashEnd.ToString("C");
                 shift.lblSafeDrop.Text = data.SafeDrop.ToString("C");
                 shift.lblTotal.Text = fomat.getValue(data.TotalCash).ToString("C");
-                shift.lblVariation.Text = (fomat.getValue(data.TotalCash) - data.CashEnd).ToString("c");
+                shift.lblVariation.Text = "$" + (data.CashEnd - data.CashStart-fomat.getValue(data.TotalCash)).ToString("N");
                 shift.lblTotalNetSalse.Text = fomat.getValue(data.TotalSale).ToString("C");
 
                 pDetail.Controls.Add(shift);
