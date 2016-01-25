@@ -53,90 +53,6 @@ namespace ServicePOS
         }
         #endregion
 
-
-        #region Old Code Report
-
-        #region Daily Report
-
-
-        public IEnumerable<DailyReportModel> GetDataDailyReport()
-        {
-            try
-            {
-                var data = _context.Database.SqlQuery<DailyReportModel>("pos_th_GetDailySaleReport").ToList();
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-           
-        }
-
-
-        public IEnumerable<DailyReportDetailModel> GetDataDetailDailyReport(int paymenttypeid)
-        {
-            try
-            {
-                var data = _context.Database.SqlQuery<DailyReportDetailModel>("pos_th_GetDetailDailyReport @paymenttypeid",
-                 new SqlParameter("paymenttypeid", paymenttypeid)
-                ).ToList();
-                return data;
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
-            
-        }
-
-
-
-        #endregion
-
-        #region Weekly Report
-
-
-        public IEnumerable<DailyReportModel> GetDataWeeklyReport()
-        {
-            try
-            {
-                var data = _context.Database.SqlQuery<DailyReportModel>("pos_th_GetWeeklySaleReport").ToList();
-                return data;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-
-        }
-
-
-        public IEnumerable<DailyReportDetailModel> GetDataDetailWeeklyReport(int paymenttypeid)
-        {
-            try
-            {
-                var data = _context.Database.SqlQuery<DailyReportDetailModel>("pos_th_GetDetailWeeklyReport @paymenttypeid",
-                 new SqlParameter("paymenttypeid", paymenttypeid)
-                ).ToList();
-                return data;
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
-
-        }
-
-
-
-        #endregion
-
-        #endregion Old Code Report
-
-
         #region New Code Report
 
         public IEnumerable<DailyReportModel> GetDataSummaryReport(string dateSelect,int type)
@@ -205,6 +121,60 @@ namespace ServicePOS
                 return data;
             }
             catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<StaffSaleReportModel> GetDataStaffSaleReport(string dateSelect, int type)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<StaffSaleReportModel>("pos_th_GetReportSaleByStaff @dateselect,@type",
+                     new SqlParameter("dateselect", dateSelect ?? ""),
+                     new SqlParameter("type", type)
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<CardSaleReportModel> GetDataCardSaleReport(string dateSelect, int type)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<CardSaleReportModel>("pos_th_GetDataSaleByCard @dateselect,@type",
+                     new SqlParameter("dateselect", dateSelect ?? ""),
+                     new SqlParameter("type", type)
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<AccountSaleReportModel> GetDataAccountSaleReport(string dateSelect, int type)
+        {
+            try
+            {
+                var data = _context.Database.SqlQuery<AccountSaleReportModel>("pos_th_GetDataSaleByAccount @dateselect,@type",
+                     new SqlParameter("dateselect", dateSelect ?? ""),
+                     new SqlParameter("type", type)
+                    ).ToList();
+
+                return data;
+            }
+            catch (Exception)
             {
                 return null;
             }

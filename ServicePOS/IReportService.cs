@@ -9,17 +9,6 @@ namespace ServicePOS
 {
     public interface IReportService:IDisposable
     {
-        #region Old Code Report
-        IEnumerable<DailyReportModel> GetDataDailyReport();
-        IEnumerable<DailyReportDetailModel> GetDataDetailDailyReport(int paymenttypeid);
-
-
-        IEnumerable<DailyReportModel> GetDataWeeklyReport();
-
-        IEnumerable<DailyReportDetailModel> GetDataDetailWeeklyReport(int paymenttypeid);
-
-        #endregion Old Code Report
-
         #region New Code Report
 
         IEnumerable<DailyReportModel> GetDataSummaryReport(string dateSelect, int type);
@@ -28,6 +17,12 @@ namespace ServicePOS
         IEnumerable<QTYItemReportModel> GetDataQTYItemReport(string dateSelect, int type);
 
         IEnumerable<ShiftReportModel> GetDataShiftReport(string dateSelect);
+
+        IEnumerable<StaffSaleReportModel> GetDataStaffSaleReport(string dateSelect, int type);
+
+        IEnumerable<CardSaleReportModel> GetDataCardSaleReport(string dateSelect, int type);
+
+        IEnumerable<AccountSaleReportModel> GetDataAccountSaleReport(string dateSelect, int type);
 
         #endregion New Code Report
     }
