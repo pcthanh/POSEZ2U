@@ -61,17 +61,40 @@ namespace Printer
                    {
                        for (int k = 0; k < OrderMain.ListOrderDetail[j].ListPrintJob.Count; k++)
                        {
-                           if (OrderMain.ListOrderDetail[j].ListPrintJob[k].PrinterID == printData[i].ID)
+                           if (OrderMain.IsLoadFromData )
                            {
-                               OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                               if (OrderMain.ListOrderDetail[j].ListPrintJob[k].PrinterID == printData[i].ID )
+                               {
+                                   if (OrderMain.ListOrderDetail[j].ChangeStatus == 2 || OrderMain.ListOrderDetail[j].ChangeStatus == 1 || OrderMain.ListOrderDetail[j].ChangeStatus == 3)
+                                        OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                               }
+                           }
+                           else
+                           {
+                                   if (OrderMain.ListOrderDetail[j].ListPrintJob[k].PrinterID == printData[i].ID)
+                                   {
+                                       OrderPrint.ListOrderDetail.Add(OrderMain.ListOrderDetail[j]);
+                                   }
+                               
                            }
                        }
                    }
                    if (OrderPrint.ListOrderDetail.Count > 0)
                    {
-                       Header = printData[i].Header;
-                       Print(OrderPrint, printData[i]);
+                       if (printData[i].PrinterType == 1)
+                       {
+                           Header = printData[i].Header;
+                           Print(OrderPrint, printData[i]);
+                       }
                        
+                   }
+                   if (OrderMain.ListOrderDetail.Count > 0)
+                   {
+                       if (printData[i].PrinterType == 0)
+                       {
+                           Header = printData[i].Header;
+                           Print(OrderMain, printData[i]);
+                       }
                    }
                }
                
@@ -103,6 +126,8 @@ namespace Printer
            {
                if(OrderPrint.ListOrderDetail.Count>0)
                     PrintOrderToKitchenOrBar(OrderPrint, e);
+               else
+                   PrintOrderToKitchenOrBar(OrderMain, e);
            }
            else
            {
@@ -158,13 +183,20 @@ namespace Printer
                    {
                        if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
                        {
-                           l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14), l_y, 1);
+                           l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
                            posPrinter.DrawCancelLine(e, yStart, l_y);
                        }
                        else
                        {
-                           l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
-
+                           if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 1)
+                           {
+                               l_y = posPrinter.DrawString("--Add" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                           }
+                           else
+                           {
+                               if(!OrderMain.IsLoadFromData)
+                                    l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                           }
                        }
                        //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 14), l_y, 3);
                    }
