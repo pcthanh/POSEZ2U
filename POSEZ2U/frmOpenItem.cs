@@ -37,6 +37,9 @@ namespace POSEZ2U
                 items.OpenItem = 1;
                 PrinterModel Printer = (PrinterModel)cbPrinter.SelectedValue;
                 items.Printer =Printer.ID;
+                PrinteJobDetailModel job = new PrinteJobDetailModel();
+                job.PrinterID = Printer.ID;
+                items.ListPrintJob.Add(job);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }
@@ -56,7 +59,7 @@ namespace POSEZ2U
                 lst.Add(item);
             }
             cbPrinter.DataSource = lst;
-            cbPrinter.DisplayMember = "PrinterName";
+            cbPrinter.DisplayMember = "PrintName";
             cbPrinter.SelectedValue = "ID";
             
         }

@@ -15,6 +15,14 @@ namespace POSEZ2U
 {
     public partial class frmAddPrinter : Form
     {
+        /// <summary>
+        /// PrintType
+        /// 0.In ra may in tong khi SendOrder
+        /// 1.In ra tung may in khi lay SendOrder
+        /// 2.In khi Jointable
+        /// 3.In khi TransferTable
+        /// 4.In khi Tinh tien Order
+        /// </summary>
         public frmAddPrinter()
         {
             InitializeComponent();
@@ -48,6 +56,7 @@ namespace POSEZ2U
             item.PrintName = txtPrintName.Text;
             item.Header = txtHeader.Text;
             item.PrinterType = cbPrintType.SelectedIndex;
+            item.NumberOfTicket = Convert.ToInt32(txtNumberOfTicket.Text);
             int result= PrintService.InsertPrinter(item);
             if (result == 1)
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;

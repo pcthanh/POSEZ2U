@@ -280,5 +280,10 @@ namespace POSEZ2U
                 LoadDataOfPrinter();
             }
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

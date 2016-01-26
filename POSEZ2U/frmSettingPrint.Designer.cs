@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
+            this.panel23 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -36,14 +38,21 @@
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.flpPrintSetting = new System.Windows.Forms.FlowLayoutPanel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.flpPrintList = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.btnAddPrinter = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
@@ -56,15 +65,6 @@
             this.flpGroup = new System.Windows.Forms.FlowLayoutPanel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.panel26 = new System.Windows.Forms.Panel();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAddPrinter = new System.Windows.Forms.Button();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel18.SuspendLayout();
@@ -73,15 +73,15 @@
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel24.SuspendLayout();
+            this.panel26.SuspendLayout();
+            this.panel25.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel14.SuspendLayout();
             this.panel21.SuspendLayout();
             this.panel20.SuspendLayout();
-            this.panel24.SuspendLayout();
-            this.panel25.SuspendLayout();
-            this.panel26.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,6 +93,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(920, 54);
             this.panel1.TabIndex = 0;
+            // 
+            // ucInfoTop1
+            // 
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(920, 44);
+            this.ucInfoTop1.TabIndex = 1;
+            // 
+            // panel23
+            // 
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel23.Location = new System.Drawing.Point(0, 44);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(920, 10);
+            this.panel23.TabIndex = 0;
             // 
             // panel2
             // 
@@ -154,6 +170,22 @@
             this.panel17.Size = new System.Drawing.Size(463, 40);
             this.panel17.TabIndex = 0;
             // 
+            // btnBack
+            // 
+            this.btnBack.BackColor = System.Drawing.Color.Black;
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.White;
+            this.btnBack.Location = new System.Drawing.Point(0, 0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(160, 40);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.Text = "Back to Main Menu";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -201,6 +233,19 @@
             this.panel13.TabIndex = 0;
             this.panel13.Paint += new System.Windows.Forms.PaintEventHandler(this.panel13_Paint);
             // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Print Setting";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // panel8
             // 
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
@@ -227,6 +272,69 @@
             this.flpPrintList.Name = "flpPrintList";
             this.flpPrintList.Size = new System.Drawing.Size(152, 352);
             this.flpPrintList.TabIndex = 0;
+            // 
+            // panel24
+            // 
+            this.panel24.Controls.Add(this.panel26);
+            this.panel24.Controls.Add(this.panel25);
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel24.Location = new System.Drawing.Point(0, 352);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(152, 38);
+            this.panel24.TabIndex = 1;
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.btnEdit);
+            this.panel26.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel26.Location = new System.Drawing.Point(78, 0);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(74, 38);
+            this.panel26.TabIndex = 1;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
+            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(0, 0);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(0);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(74, 38);
+            this.btnEdit.TabIndex = 0;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // panel25
+            // 
+            this.panel25.Controls.Add(this.btnAddPrinter);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel25.Location = new System.Drawing.Point(0, 0);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(78, 38);
+            this.panel25.TabIndex = 0;
+            this.panel25.Paint += new System.Windows.Forms.PaintEventHandler(this.panel25_Paint);
+            // 
+            // btnAddPrinter
+            // 
+            this.btnAddPrinter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnAddPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddPrinter.FlatAppearance.BorderSize = 0;
+            this.btnAddPrinter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPrinter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPrinter.ForeColor = System.Drawing.Color.White;
+            this.btnAddPrinter.Location = new System.Drawing.Point(0, 0);
+            this.btnAddPrinter.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddPrinter.Name = "btnAddPrinter";
+            this.btnAddPrinter.Size = new System.Drawing.Size(78, 38);
+            this.btnAddPrinter.TabIndex = 0;
+            this.btnAddPrinter.Text = "Add ";
+            this.btnAddPrinter.UseVisualStyleBackColor = false;
+            this.btnAddPrinter.Click += new System.EventHandler(this.btnAddPrinter_Click);
             // 
             // panel10
             // 
@@ -351,113 +459,6 @@
             this.btnAdd.Text = "Add Group";
             this.btnAdd.UseVisualStyleBackColor = false;
             // 
-            // panel23
-            // 
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel23.Location = new System.Drawing.Point(0, 44);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(920, 10);
-            this.panel23.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 37);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Print Setting";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnBack
-            // 
-            this.btnBack.BackColor = System.Drawing.Color.Black;
-            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(0, 0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(160, 40);
-            this.btnBack.TabIndex = 0;
-            this.btnBack.Text = "Back to Main Menu";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // panel24
-            // 
-            this.panel24.Controls.Add(this.panel26);
-            this.panel24.Controls.Add(this.panel25);
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel24.Location = new System.Drawing.Point(0, 352);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(152, 38);
-            this.panel24.TabIndex = 1;
-            // 
-            // panel25
-            // 
-            this.panel25.Controls.Add(this.btnAddPrinter);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel25.Location = new System.Drawing.Point(0, 0);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(78, 38);
-            this.panel25.TabIndex = 0;
-            this.panel25.Paint += new System.Windows.Forms.PaintEventHandler(this.panel25_Paint);
-            // 
-            // panel26
-            // 
-            this.panel26.Controls.Add(this.btnEdit);
-            this.panel26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel26.Location = new System.Drawing.Point(78, 0);
-            this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(74, 38);
-            this.panel26.TabIndex = 1;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(51)))));
-            this.btnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(0, 0);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(0);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(74, 38);
-            this.btnEdit.TabIndex = 0;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            // 
-            // btnAddPrinter
-            // 
-            this.btnAddPrinter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.btnAddPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddPrinter.FlatAppearance.BorderSize = 0;
-            this.btnAddPrinter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddPrinter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddPrinter.ForeColor = System.Drawing.Color.White;
-            this.btnAddPrinter.Location = new System.Drawing.Point(0, 0);
-            this.btnAddPrinter.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddPrinter.Name = "btnAddPrinter";
-            this.btnAddPrinter.Size = new System.Drawing.Size(78, 38);
-            this.btnAddPrinter.TabIndex = 0;
-            this.btnAddPrinter.Text = "Add ";
-            this.btnAddPrinter.UseVisualStyleBackColor = false;
-            this.btnAddPrinter.Click += new System.EventHandler(this.btnAddPrinter_Click);
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(920, 44);
-            this.ucInfoTop1.TabIndex = 1;
-            // 
             // frmSettingPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,15 +489,15 @@
             this.panel12.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            this.panel24.ResumeLayout(false);
+            this.panel26.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             this.panel21.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
-            this.panel24.ResumeLayout(false);
-            this.panel25.ResumeLayout(false);
-            this.panel26.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -244,6 +244,7 @@ namespace POSEZ2U
                         modifierTemp.ProductID = itemTemp.ProductID;
                         modifierTemp.DynID = itemTemp.DynID;
                         modifierTemp.Seat = itemTemp.Seat;
+                        modifierTemp.ChangeStatus = 1;
                         OrderMain.addModifierToList(modifierTemp, keyItemTemp);
                         UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
                         this.addModifreToOrder(ucItemModifierOfMenu, modifierTemp);
@@ -372,7 +373,7 @@ namespace POSEZ2U
                 LoadItemOfGroup(CategoryIDMain, CurrentPageIndex);
             }
         }
-
+        
         void btnBackItem_Click(object sender, EventArgs e)
         {
             if (this.CurrentPageIndex > 1)
@@ -393,6 +394,7 @@ namespace POSEZ2U
                 OpenItem.ItemNameShort = frm.items.ProductName;
                 OpenItem.UnitPrice =Convert.ToInt32(frm.items.Price);
                 OpenItem.PrintType = frm.items.Printer;
+                OpenItem.PrinterID = frm.items.Printer;
                 resul = OrderService.InsertOpenItem(OpenItem);
                 if (resul == 1)
                 {
@@ -1443,14 +1445,18 @@ namespace POSEZ2U
 
         private void btnReprint_Click(object sender, EventArgs e)
         {
+            GetListPrinter();
             if (OrderMain.isPrevOrder == 1)
                 OrderCompleted();
             else
             {
+                OrderMain.PrintType = 1;
+                OrderMain.IsPrePrint = true;
+                OrderMain.IsLoadFromData = false;
                 if (OrderMain.ListOrderDetail.Count > 0)
                 {
-                    //PrinterServer print = new PrinterServer();
-                    //print.Print(OrderMain);
+                     PrinterServer printServer = new PrinterServer();
+                     printServer.PrintData(OrderMain, PrintData);
                 }
                 else
                 {
@@ -1550,6 +1556,7 @@ namespace POSEZ2U
 
         private void GetListPrinter()
         {
+            PrintData.Clear();
             var listPrinter = PrintService.GetListPrinterMapping();
             foreach(PrinterModel item in listPrinter)
             {
