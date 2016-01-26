@@ -18,5 +18,6 @@ namespace ServicePOS.Model
         public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Header { get; set; }
+        public int NumberOfTicket { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace ServicePOS.Model
         public string Note { get; set; }
         public int Seat { get; set; }
         public bool IsLoadFromData { get; set; }
+        public bool IsPrePrint { get; set; }
         public int DiscountType { get; set; }
         public int Discount { get; set; }
         public int Payment { get; set; }
@@ -63,11 +64,16 @@ namespace ServicePOS.Model
         {
             if (ListOrderDetail.Count > 0)
             {
+                if (modifire.ChangeStatus == 1)
+                {
+                    ListOrderDetail[keyItem - 1].ChangeStatus = 3;
+                }
                 modifire.KeyItem = ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Count + 1;
                 modifire.KeyModi = ListOrderDetail[keyItem - 1].KeyItem;
                 modifire.ProductID = ListOrderDetail[keyItem - 1].ProductID;
                 modifire.Seat = ListOrderDetail[keyItem - 1].Seat;
                 modifire.Total = ListOrderDetail[keyItem - 1].Price * ListOrderDetail[keyItem - 1].Qty;
+                
                 ListOrderDetail[keyItem - 1].ListOrderDetailModifire.Add(modifire);
 
             }

@@ -143,6 +143,7 @@ namespace ServicePOS
                 printer.PrinterType = Printer.PrinterType;
                 printer.Status = 1;
                 printer.Header = Printer.Header;
+                printer.NumberOfTicket = Printer.NumberOfTicket;
                 printer.CreateBy = Printer.CreateBy ?? 0;
                 printer.CreateDate = DateTime.Now;
                 _context.Entry(printer).State = System.Data.Entity.EntityState.Added;

@@ -65,7 +65,7 @@ namespace ServicePOS
             
             try
             {
-               var data= _context.PRINTERs.Where(x=>x.Status==1).Select
+               var data= _context.PRINTERs.Where(x=>x.Status==1 && x.PrinterType==1).Select
                    (x=>new PrinterModel()
                    {
                        ID = x.ID,
@@ -390,7 +390,7 @@ namespace ServicePOS
 
         public IEnumerable<PrinterModel> GetListPrinterMapping()
         {
-            var data = _context.PRINTERs.Where(x => x.Status == 1)
+            var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType==1 || x.PrinterType==0)
                 .Select(x => new PrinterModel
                 {
                     PrinterName = x.PrinterName,
