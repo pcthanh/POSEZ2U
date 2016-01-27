@@ -12,6 +12,8 @@ using ServicePOS.Model;
 using ServicePOS;
 using POSEZ2U.Class;
 using SystemLog;
+using System.Drawing.Printing;
+
 
 namespace POSEZ2U
 {
@@ -21,6 +23,16 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+        private IPrinterService _printService;
+        private IPrinterService PrintService
+        {
+            get { return _printService ?? (_printService = new PrinterService()); }
+            set { _printService = value; }
+        }
+        Printer.POSPrinter posPrinter = new Printer.POSPrinter();
+        List<PrinterModel> PrintData = new List<PrinterModel>();
+        string Header = string.Empty;
+        string TableNew = string.Empty;
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             e.Graphics.FillRectangle(Brushes.LimeGreen, e.ClipRectangle);
@@ -207,6 +219,7 @@ namespace POSEZ2U
                 {
                     if (frm.TableNo < 40)
                     {
+                        TableNew = frm.TableNo+"";
                         foreach (Control ctr in flpJoinTable.Controls)
                         {
                             UCTable ucTableJoin = (UCTable)ctr;
@@ -227,7 +240,15 @@ namespace POSEZ2U
                             int result = OrderService.JoinTable(lstJoinTable);
                             if (result == 1)
                             {
-
+                                GetListPrinter();
+                                foreach (PrinterModel item in PrintData)
+                                {
+                                    Header = item.Header;
+                                    posPrinter.SetPrinterName(item.PrinterName);
+                                    posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+                                    posPrinter.Print();
+                                }
+                               
                                 this.Close();
                                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                             }
@@ -243,6 +264,51 @@ namespace POSEZ2U
             catch (Exception ex)
             {
                 LogPOS.WriteLog("frmJoinTable:::::::::::::::::btnJoin_Click::::::::::::::::;;" + ex.Message);
+            }
+        }
+
+        void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+
+            string TableOld = string.Empty;
+            foreach (OrderJoinTableModel item in lstJoinTable)
+            {
+                TableOld = TableOld + item.TableID+",";
+            }
+            string str = TableOld.Substring(0, TableOld.Length - 1);
+
+            printJoinTable("From table(" + str + ") To Table:  "+TableNew , e);
+        }
+
+        public void printJoinTable(string JoinTable, PrintPageEventArgs e)
+        {
+            float l_y = 0;
+            l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+            l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y = posPrinter.DrawString(JoinTable, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine() / 2;
+            l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+
+        }
+        private void GetListPrinter()
+        {
+            PrintData.Clear();
+            var listPrinter = PrintService.GetListPrinterJoinTable();
+            foreach (PrinterModel item in listPrinter)
+            {
+                PrinterModel print = new PrinterModel();
+                print.PrinterName = item.PrinterName;
+                print.PrintName = item.PrintName;
+                print.PrinterType = item.PrinterType;
+                print.Header = item.Header;
+                print.ID = item.ID;
+                PrintData.Add(print);
             }
         }
     }

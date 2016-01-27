@@ -216,7 +216,7 @@ namespace POSEZ2U
         {
             try
             {
-                frmOpenItem frm = new frmOpenItem();
+                frmOpenItem frm = new frmOpenItem(1);
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     //Order.Item itemTemp = new Order.Item();
@@ -245,6 +245,7 @@ namespace POSEZ2U
                         modifierTemp.DynID = itemTemp.DynID;
                         modifierTemp.Seat = itemTemp.Seat;
                         modifierTemp.ChangeStatus = 1;
+
                         OrderMain.addModifierToList(modifierTemp, keyItemTemp);
                         UCItemModifierOfMenu ucItemModifierOfMenu = new UCItemModifierOfMenu();
                         this.addModifreToOrder(ucItemModifierOfMenu, modifierTemp);
@@ -385,7 +386,7 @@ namespace POSEZ2U
 
         void btnOpenItemItem_Click(object sender, EventArgs e)
         {
-            frmOpenItem frm = new frmOpenItem();
+            frmOpenItem frm = new frmOpenItem(0);
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 int resul = 0;
@@ -405,6 +406,7 @@ namespace POSEZ2U
                         frm.items.Seat = seat;
                     if (flagUcSeatClick == 1)
                         frm.items.Seat = numSeat;
+                    frm.items.ChangeStatus = 1;
                     OrderMain.addItemToList(frm.items);
                     addOrder(frm.items);
                     lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
@@ -432,7 +434,7 @@ namespace POSEZ2U
         {
             try
             {
-                frmOpenItem frm = new frmOpenItem();
+                frmOpenItem frm = new frmOpenItem(1);
                 if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     OrderMain.addItemToList(frm.items);
@@ -1571,7 +1573,9 @@ namespace POSEZ2U
         }
         private void GetListPaymentPrinter()
         {
+            PrintData.Clear();
             var listPrinter = PrintService.GetListPaymentprinter();
+
             foreach (PrinterModel item in listPrinter)
             {
                 PrinterModel print = new PrinterModel();

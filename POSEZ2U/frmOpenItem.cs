@@ -16,10 +16,12 @@ namespace POSEZ2U
 {
     public partial class frmOpenItem : Form
     {
-        public frmOpenItem()
+        public frmOpenItem(int _flag)
         {
             InitializeComponent();
+            Flag = _flag;
         }
+        int Flag;
         private IPrinterService _printService;
         private IPrinterService PrintService
         {
@@ -36,9 +38,16 @@ namespace POSEZ2U
                 items.Price = Convert.ToDouble(txtOpenItemPrice.Text)*1000;
                 items.OpenItem = 1;
                 PrinterModel Printer = (PrinterModel)cbPrinter.SelectedValue;
-                items.Printer =Printer.ID;
                 PrinteJobDetailModel job = new PrinteJobDetailModel();
-                job.PrinterID = Printer.ID;
+                if (Flag == 0)
+                {
+                    
+                    items.Printer = Printer.ID;
+                    
+                    job.PrinterID = Printer.ID;
+                }
+                
+             
                 items.ListPrintJob.Add(job);
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
@@ -66,7 +75,15 @@ namespace POSEZ2U
 
         private void frmOpenItem_Load(object sender, EventArgs e)
         {
-            LoadPrinter();
+            if (Flag == 1)
+            {
+                cbPrinter.Enabled = false;
+            }
+            else
+            {
+                LoadPrinter();
+            }
+            
         }
         
 
