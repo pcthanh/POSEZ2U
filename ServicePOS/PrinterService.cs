@@ -406,7 +406,7 @@ namespace ServicePOS
 
         public IEnumerable<PrinterModel> GetListPaymentprinter()
         {
-            var data = _context.PRINTERs.Where(x => x.Status == 1 )
+            var data = _context.PRINTERs.Where(x => x.Status == 1 &&x.PrinterType==4)
                .Select(x => new PrinterModel
                {
                    PrinterName = x.PrinterName,
@@ -438,6 +438,37 @@ namespace ServicePOS
                         UpdateBy = x.UpdateBy,
                         UpdateDate = x.UpdateDate
 						
+                    }
+                    );
+                return data;
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+            return null;
+        }
+
+
+        public IEnumerable<PrinterModel> GetListPrinterJoinTable()
+        {
+            try
+            {
+                var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType==2).Select
+                    (x => new PrinterModel()
+                    {
+                        ID = x.ID,
+                        PrinterName = x.PrinterName,
+                        PrintName = x.PrintName,
+                        PrinterType = x.PrinterType ?? 0,
+                        Status = x.Status,
+                        CreateBy = x.CreateBy,
+                        CreateDate = x.CreateDate,
+                        UpdateBy = x.UpdateBy,
+                        UpdateDate = x.UpdateDate,
+                        Header = x.Header
+
                     }
                     );
                 return data;

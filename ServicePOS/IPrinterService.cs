@@ -26,6 +26,8 @@ namespace ServicePOS
         int RemoveDataPrinterJob(PrintJobModel data);
         IEnumerable<PrinterModel> GetListPrinterMapping();
         IEnumerable<PrinterModel> GetListPaymentprinter();
+
+        IEnumerable<PrinterModel> GetListPrinterJoinTable();
         
     }
 }

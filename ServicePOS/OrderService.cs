@@ -428,10 +428,14 @@ namespace ServicePOS
                                 Seat = a.x.Seat ?? 0,
                                 DynID = a.x.DynId ?? 0,
                                 OrderDetailID = a.x.OrderDetailID,
-                                OrderNumber = a.x.OrderNumber??0
+                                OrderNumber = a.x.OrderNumber??0,
+                                Printer = a.openitem.PrinterID??0
                             });
                 foreach (OrderDetailModel openItem in openitems)
                 {
+                    PrinteJobDetailModel pritn = new PrinteJobDetailModel();
+                    pritn.PrinterID = openItem.Printer;
+                    openItem.ListPrintJob.Add(pritn);
                     OrderMain.addItemToList(openItem);
                 }
                 foreach(OrderDetailModel item in data)
@@ -529,6 +533,7 @@ namespace ServicePOS
             items.ItemNameDesc = item.ItemNameDesc;
             items.UnitPrice = item.UnitPrice;
             items.PrintType = item.PrintType;
+            items.PrinterID = item.PrinterID;
             items.CreateBy = items.CreateBy;
             items.CreateDate = item.CreateDate;
             items.UpdateBy = item.UpdateBy;
