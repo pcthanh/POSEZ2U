@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ModelPOS.ModelEntity;
 using ModelPOS;
 using ServicePOS.Model;
+using SystemLog;
 
 namespace ServicePOS
 {
@@ -150,6 +151,41 @@ namespace ServicePOS
                 _context.SaveChanges();
                 trans.Commit();
                 result = 1;
+            }
+            return result;
+        }
+
+
+        public int UpdatePrinter(PrinterModel Printer)
+        {
+            int result = 0;
+            try
+            {
+                if (Printer != null)
+                {
+                    var item = _context.PRINTERs.Find(Printer.ID);
+                    if (item != null)
+                    {
+                        item.ID = Printer.ID;
+                        item.PrinterName = Printer.PrinterName;
+                        item.PrintName = Printer.PrintName;
+                        item.PrinterType = Printer.PrinterType;
+                        item.Status = Printer.Status;
+                        item.Header = Printer.Header;
+                        item.NumberOfTicket = Printer.NumberOfTicket;
+                        //item.CreateBy = Printer.CreateBy ?? 0;
+                        //item.CreateDate = DateTime.Now;
+                        item.UpdateBy = Printer.UpdateBy ?? 0;
+                        item.UpdateDate = DateTime.Now;
+                        _context.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                        _context.SaveChanges();
+                        result = 1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("PrinterSettingServer::::::::::::::InsertPrinter:::::::::::::::::::" + ex.Message);
             }
             return result;
         }

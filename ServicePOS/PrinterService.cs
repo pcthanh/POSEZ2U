@@ -65,7 +65,7 @@ namespace ServicePOS
             
             try
             {
-               var data= _context.PRINTERs.Where(x=>x.Status==1 && x.PrinterType==1).Select
+               var data= _context.PRINTERs.Where(x=>x.Status==1).Select
                    (x=>new PrinterModel()
                    {
                        ID = x.ID,
@@ -73,6 +73,8 @@ namespace ServicePOS
                        PrintName =x.PrintName,
                        PrinterType=x.PrinterType??0,
                        Status=x.Status,
+                       NumberOfTicket = x.NumberOfTicket??0,
+                       Header = x.Header,
                        CreateBy=x.CreateBy,
                        CreateDate=x.CreateDate,
                        UpdateBy=x.UpdateBy,
