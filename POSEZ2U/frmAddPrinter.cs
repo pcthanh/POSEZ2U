@@ -23,10 +23,12 @@ namespace POSEZ2U
         /// 3.In khi TransferTable
         /// 4.In khi Tinh tien Order
         /// </summary>
-        public frmAddPrinter()
+        public frmAddPrinter(PrinterModel _PrinterMain)
         {
             InitializeComponent();
+            PrinterMain = _PrinterMain;
         }
+        PrinterModel PrinterMain;
         private IPrinterSettingServer _printService;
         private IPrinterSettingServer PrintService
         {
@@ -36,6 +38,15 @@ namespace POSEZ2U
         private void frmAddPrinter_Load(object sender, EventArgs e)
         {
             LoadPrinterMachine();
+            if (PrinterMain.ID>0)
+            {
+                txtPrintName.Text = PrinterMain.PrintName;
+                txtHeader.Text = PrinterMain.Header;
+                cbPrinter.SelectedItem = PrinterMain.PrinterName;
+                cbPrintType.SelectedIndex = PrinterMain.PrinterType;
+                txtNumberOfTicket.Text = PrinterMain.NumberOfTicket.ToString();
+            }
+            
         }
         private void LoadPrinterMachine()
         {
@@ -51,15 +62,28 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+
             PrinterModel item = new PrinterModel();
             item.PrinterName = cbPrinter.SelectedItem.ToString();
             item.PrintName = txtPrintName.Text;
             item.Header = txtHeader.Text;
             item.PrinterType = cbPrintType.SelectedIndex;
             item.NumberOfTicket = Convert.ToInt32(txtNumberOfTicket.Text);
-            int result= PrintService.InsertPrinter(item);
-            if (result == 1)
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            
+            if (PrinterMain.ID==0)
+            {
+                int result = PrintService.InsertPrinter(item);
+                if (result == 1)
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            else
+            {
+                item.ID = PrinterMain.ID;
+                item.Status = PrinterMain.Status;
+                int result = PrintService.UpdatePrinter(item);
+                if (result == 1)
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
         }
     }
 }

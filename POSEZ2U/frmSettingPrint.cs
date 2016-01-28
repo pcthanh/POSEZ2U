@@ -26,6 +26,7 @@ namespace POSEZ2U
         int flag;
         int CategoryID;
         int PriterID;
+        public PrinterModel PrinterMain = new PrinterModel();
         public List<PrintJobDetailModel> LstPrinterJob = new List<PrintJobDetailModel>();
         private IPrinterService _printerService;
         private IPrinterService PrinterService
@@ -117,6 +118,7 @@ namespace POSEZ2U
         {
             UCPrinterList ucP = (UCPrinterList)sender;
             PrinterModel priter = (PrinterModel)ucP.Tag;
+            PrinterMain = priter;
             PriterID = priter.ID;
             //flag = Convert.ToInt32(ucP.Tag);
             foreach (Control ctr in flpPrintList.Controls)
@@ -129,7 +131,13 @@ namespace POSEZ2U
             }
             ucP.BackColor = Color.FromArgb(0, 153, 51);
             ucP.ForeColor = Color.FromArgb(255, 255, 255);
-            LoadCategory();
+            if (priter.PrinterType == 1)
+                LoadCategory();
+            else
+            {
+                flpGroup.Controls.Clear();
+                flpItem.Controls.Clear();
+            }
         }
 
         private void LoadCategory()
@@ -274,7 +282,8 @@ namespace POSEZ2U
 
         private void btnAddPrinter_Click(object sender, EventArgs e)
         {
-            frmAddPrinter frm = new frmAddPrinter();
+            PrinterMain = new PrinterModel();
+            frmAddPrinter frm = new frmAddPrinter(PrinterMain);
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 LoadDataOfPrinter();
@@ -283,7 +292,29 @@ namespace POSEZ2U
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
+            frmAddPrinter frm = new frmAddPrinter(PrinterMain);
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                LoadDataOfPrinter();
+            }
+        }
+
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach (Control ctr in flpItem.Controls)
+            {
+                ctr.BackColor = Color.FromArgb(0, 153, 51);
+                ctr.ForeColor = Color.FromArgb(255, 255, 255);
+            }
+        }
+
+        private void btnUnSelect_Click(object sender, EventArgs e)
+        {
+            foreach (Control ctr in flpItem.Controls)
+            {
+                ctr.BackColor = Color.FromArgb(228,228,228);
+                ctr.ForeColor = Color.FromArgb(51, 51, 51);
+            }
         }
     }
 }

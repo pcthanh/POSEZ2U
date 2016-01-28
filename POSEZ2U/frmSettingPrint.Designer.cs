@@ -65,6 +65,10 @@
             this.flpGroup = new System.Windows.Forms.FlowLayoutPanel();
             this.panel20 = new System.Windows.Forms.Panel();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.btnSelectAll = new System.Windows.Forms.Button();
+            this.panel28 = new System.Windows.Forms.Panel();
+            this.btnUnSelect = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel18.SuspendLayout();
@@ -376,6 +380,10 @@
             // 
             // panel22
             // 
+            this.panel22.Controls.Add(this.btnUnSelect);
+            this.panel22.Controls.Add(this.panel28);
+            this.panel22.Controls.Add(this.btnSelectAll);
+            this.panel22.Controls.Add(this.panel27);
             this.panel22.Controls.Add(this.btnSave);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel22.Location = new System.Drawing.Point(0, 352);
@@ -459,6 +467,54 @@
             this.btnAdd.Text = "Add Group";
             this.btnAdd.UseVisualStyleBackColor = false;
             // 
+            // panel27
+            // 
+            this.panel27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel27.Location = new System.Drawing.Point(115, 0);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(10, 38);
+            this.panel27.TabIndex = 1;
+            // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnSelectAll.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnSelectAll.FlatAppearance.BorderSize = 0;
+            this.btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSelectAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectAll.ForeColor = System.Drawing.Color.White;
+            this.btnSelectAll.Location = new System.Drawing.Point(125, 0);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(115, 38);
+            this.btnSelectAll.TabIndex = 2;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.UseVisualStyleBackColor = false;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
+            // panel28
+            // 
+            this.panel28.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel28.Location = new System.Drawing.Point(240, 0);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(10, 38);
+            this.panel28.TabIndex = 3;
+            // 
+            // btnUnSelect
+            // 
+            this.btnUnSelect.BackColor = System.Drawing.Color.Red;
+            this.btnUnSelect.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnUnSelect.FlatAppearance.BorderSize = 0;
+            this.btnUnSelect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnSelect.ForeColor = System.Drawing.Color.White;
+            this.btnUnSelect.Location = new System.Drawing.Point(250, 0);
+            this.btnUnSelect.Name = "btnUnSelect";
+            this.btnUnSelect.Size = new System.Drawing.Size(115, 38);
+            this.btnUnSelect.TabIndex = 4;
+            this.btnUnSelect.Text = "UnSelect All";
+            this.btnUnSelect.UseVisualStyleBackColor = false;
+            this.btnUnSelect.Click += new System.EventHandler(this.btnUnSelect_Click);
+            // 
             // frmSettingPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,5 +597,9 @@
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAddPrinter;
+        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Button btnSelectAll;
+        private System.Windows.Forms.Panel panel28;
+        private System.Windows.Forms.Button btnUnSelect;
     }
 }
