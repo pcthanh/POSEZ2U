@@ -229,6 +229,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataQTYGroupReport(dateselect, 0).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -239,6 +240,12 @@ namespace POSEZ2U
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
+
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.CategoryName;
+                temp.Value = item.TotalQty.ToString("N0");
+                export.Add(temp);
+
                 if (i % 2 == 0)
                 {
                     ucitem.BackColor = Color.FromArgb(221, 221, 221);
@@ -248,7 +255,8 @@ namespace POSEZ2U
                 i++;
             }
 
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
 
         }
@@ -266,6 +274,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataQTYItemReport(dateselect, 0).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -273,6 +282,11 @@ namespace POSEZ2U
 
                 ucitem.lbname.Text = item.ProductNameDesc;
                 ucitem.lbtotal.Text = item.TotalQty.ToString("N0");
+
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.ProductNameDesc;
+                temp.Value = item.TotalQty.ToString("N0");
+                export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
@@ -284,7 +298,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -301,6 +316,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataStaffSaleReport(dateselect, 0).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -312,6 +328,11 @@ namespace POSEZ2U
 
                 ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
 
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.UserName;
+                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                export.Add(temp);
+
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
                 if (i % 2 == 0)
@@ -322,7 +343,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -339,6 +361,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataCardSaleReport(dateselect, 0).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -350,6 +373,11 @@ namespace POSEZ2U
 
                 ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
 
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.CardName;
+                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                export.Add(temp);
+
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
                 if (i % 2 == 0)
@@ -360,7 +388,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -376,7 +405,7 @@ namespace POSEZ2U
             var dateselect = Convert.ToDateTime(dateSelect.Text).ToString("yyyy-MM-dd");
 
             var data = ReportService.GetDataAccountSaleReport(dateselect, 0).ToList();
-
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -388,6 +417,11 @@ namespace POSEZ2U
 
                 ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
 
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.FullName;
+                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                export.Add(temp);
+
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
                 if (i % 2 == 0)
@@ -398,7 +432,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -500,6 +535,9 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataQTYGroupReport(dateselect, 1).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
+
+            
             var i = 1;
             foreach (var item in data)
             {
@@ -507,6 +545,11 @@ namespace POSEZ2U
 
                 ucitem.lbname.Text = item.CategoryName;
                 ucitem.lbtotal.Text = item.TotalQty.ToString("N0");
+
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.CategoryName;
+                temp.Value = item.TotalQty.ToString("N0");
+                export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
@@ -518,6 +561,9 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
+
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
 
         }
@@ -533,6 +579,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataQTYItemReport(dateselect, 1).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -540,6 +587,11 @@ namespace POSEZ2U
 
                 ucitem.lbname.Text = item.ProductNameDesc;
                 ucitem.lbtotal.Text = item.TotalQty.ToString("N0");
+
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.ProductNameDesc;
+                temp.Value = item.TotalQty.ToString("N0");
+                export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
@@ -551,7 +603,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -568,6 +621,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataStaffSaleReport(dateselect, 1).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -579,6 +633,11 @@ namespace POSEZ2U
 
                 ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
 
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.UserName;
+                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                export.Add(temp);
+
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
                 if (i % 2 == 0)
@@ -589,7 +648,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -606,6 +666,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataCardSaleReport(dateselect, 1).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -617,6 +678,11 @@ namespace POSEZ2U
 
                 ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
 
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.CardName;
+                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                export.Add(temp);
+
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
                 if (i % 2 == 0)
@@ -627,7 +693,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -644,6 +711,7 @@ namespace POSEZ2U
 
             var data = ReportService.GetDataAccountSaleReport(dateselect, 1).ToList();
 
+            var export = new List<ExportExcelToDataTable>();
             var i = 1;
             foreach (var item in data)
             {
@@ -655,6 +723,11 @@ namespace POSEZ2U
 
                 ucitem.lbtotal.Text = fomat.getValue(item.Total).ToString("C");
 
+                var temp = new ExportExcelToDataTable();
+                temp.Tilte = item.FullName;
+                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                export.Add(temp);
+
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
 
                 if (i % 2 == 0)
@@ -665,7 +738,8 @@ namespace POSEZ2U
                 UCQTYReport.PDetail.Controls.Add(ucitem);
                 i++;
             }
-
+            UCQTYReport.btnExport.Tag = export;
+            UCQTYReport.btnExport.Click += ExportExcel_Click;
 
         }
 
@@ -737,6 +811,64 @@ namespace POSEZ2U
                 shift.lblVariation.Text = "$" + (data.CashEnd - data.CashStart-fomat.getValue(data.TotalCash)).ToString("N");
                 shift.lblTotalNetSalse.Text = fomat.getValue(data.TotalSale).ToString("C");
 
+
+                var export = new List<ExportExcelToDataTable>();
+
+                var temp1 = new ExportExcelToDataTable();
+                temp1.Tilte = "Shift No";
+                temp1.Value = data.ShiftName ?? "";
+                export.Add(temp1);
+
+                var temp2 = new ExportExcelToDataTable();
+                temp2.Tilte = "Staff";
+                temp2.Value = data.UserName ?? "";
+                export.Add(temp2);
+
+                var temp3 = new ExportExcelToDataTable();
+                temp3.Tilte = "Start Time";
+                temp3.Value = (data.StartShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                export.Add(temp3);
+
+                var temp4 = new ExportExcelToDataTable();
+                temp4.Tilte = "End Time";
+                temp4.Value = (data.EndShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                export.Add(temp4);
+
+                var temp5 = new ExportExcelToDataTable();
+                temp5.Tilte = "Start Cash(Cash float in)";
+                temp5.Value = data.CashStart.ToString("N");
+                export.Add(temp5);
+
+                var temp6 = new ExportExcelToDataTable();
+                temp6.Tilte = "End Cash(Counted by Staff)";
+                temp6.Value = data.CashEnd.ToString("N");
+                export.Add(temp6);
+
+                var temp7 = new ExportExcelToDataTable();
+                temp7.Tilte = "Total Cash by Report";
+                temp7.Value = fomat.getValue(data.TotalCash).ToString("N");
+                export.Add(temp7);
+
+                var temp8 = new ExportExcelToDataTable();
+                temp8.Tilte = "Variation";
+                temp8.Value = (data.CashEnd - data.CashStart - fomat.getValue(data.TotalCash)).ToString("N");
+                export.Add(temp8);
+
+                var temp9 = new ExportExcelToDataTable();
+                temp9.Tilte = "Safe drop";
+                temp9.Value = data.SafeDrop.ToString("N");
+                export.Add(temp9);
+
+                var temp10 = new ExportExcelToDataTable();
+                temp10.Tilte = "Total Net Sale by Shift";
+                temp10.Value = fomat.getValue(data.TotalSale).ToString("N");
+                export.Add(temp10);
+
+                shift.btnExport.Tag = export;
+                shift.btnExport.Click += ExportExcel_Click;
+
+
+
                 pDetail.Controls.Add(shift);
             }
 
@@ -759,6 +891,66 @@ namespace POSEZ2U
             ucDailyReport.lblTotakCash.Text = fomat.getValue(data.CashTotal).ToString("C");
             ucDailyReport.lblTotalCard.Text = fomat.getValue(data.CardTotal).ToString("C");
             ucDailyReport.lblTotalAccount.Text = fomat.getValue(data.AccountTotal).ToString("C");
+
+            var export = new List<ExportExcelToDataTable>();
+
+            var temp1 = new ExportExcelToDataTable();
+            temp1.Tilte = "Net Sale";
+            temp1.Value = fomat.getValue(data.NetSale).ToString("N");
+            export.Add(temp1);
+
+            var temp2 = new ExportExcelToDataTable();
+            temp2.Tilte = "GST";
+            temp2.Value = fomat.getValue(data.GST).ToString("N");
+            export.Add(temp2);
+
+            var temp3 = new ExportExcelToDataTable();
+            temp3.Tilte = "Discount";
+            temp3.Value = fomat.getValue(data.Discount).ToString("N");
+            export.Add(temp3);
+
+            var temp4 = new ExportExcelToDataTable();
+            temp4.Tilte = "Refund";
+            temp4.Value = fomat.getValue(data.Refund).ToString("N");
+            export.Add(temp4);
+
+            var temp5 = new ExportExcelToDataTable();
+            temp5.Tilte = "Total Receivable";
+            temp5.Value = fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("N");
+            export.Add(temp5);
+
+            var temp6 = new ExportExcelToDataTable();
+            temp6.Tilte = "Total CASH";
+            temp6.Value = fomat.getValue(data.CashTotal).ToString("N");
+            export.Add(temp6);
+
+            var temp7 = new ExportExcelToDataTable();
+            temp7.Tilte = "Total CARD";
+            temp7.Value = fomat.getValue(data.CardTotal).ToString("N");
+            export.Add(temp7);
+
+            var temp8 = new ExportExcelToDataTable();
+            temp8.Tilte = "Total ACCOUNT";
+            temp8.Value = fomat.getValue(data.AccountTotal).ToString("N");
+            export.Add(temp8);
+
+            ucDailyReport.btnExport.Tag = export;
+            ucDailyReport.btnExport.Click += ExportExcel_Click;
+
+
+        }
+
+        void ExportExcel_Click(object sender, EventArgs e)
+        {
+            Button ucReportItem = (Button)sender;
+            List<ExportExcelToDataTable> tag = (List<ExportExcelToDataTable>)(ucReportItem.Tag);
+
+            if (tag != null)
+            {
+                ExportExcelToDataTable.WriteExcelToFrom(tag);
+            }
+            
+
         }
 
         #endregion Function all
