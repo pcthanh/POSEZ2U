@@ -255,5 +255,24 @@ namespace ServicePOS
             var data = _context.Database.SqlQuery<ModifireModel>("pos_th_SearchProduct @txtSearch, @type", new SqlParameter("txtSearch", textSearch), new SqlParameter("type", type)).ToList();
             return data;
         }
+
+        public int EditModifirePrice(ModifirePriceModel modifirePriceData)
+        {
+            var data = _context.MODIFIRE_PRICE.Find(modifirePriceData.ModifirePriceID);
+            if (data != null)
+            {
+                data.WasPrice = data.CurrentPrice;
+                data.CurrentPrice = modifirePriceData.CurrentPrice;
+                data.UpdateBy = modifirePriceData.UpdateBy ?? 0;
+                data.UpdateDate = DateTime.Now;
+                _context.Entry(data).State = EntityState.Modified;
+                _context.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

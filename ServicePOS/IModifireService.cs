@@ -22,5 +22,7 @@ namespace ServicePOS
         IEnumerable<ModifireModel> GetModifireByProduct(int productID,int Page);
 
         IEnumerable<ModifireModel> searchProduct(string textSearch, int type);
+
+        int EditModifirePrice(ModifirePriceModel modifirePriceData);
     }
 }

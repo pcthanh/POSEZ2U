@@ -23,19 +23,40 @@ namespace POSEZ2U
             set { _productPriceService = value; }
         }
         #endregion
-        int productPriceListID;
-        public ProductPriceModel productPrice = new ProductPriceModel();
-        public frmEditProductPriceList(int _productPriceListID)
+
+        #region Variables & Constructors
+        private IModifireService _modifirePriceService;
+        private IModifireService ModifirePriceService
+        {
+            get { return _modifirePriceService ?? (_modifirePriceService = new ModifireService()); }
+            set { _modifirePriceService = value; }
+        }
+        #endregion
+        public PriceListModel pricelist = new PriceListModel();
+        public frmEditProductPriceList(PriceListModel _pricelist)
         {
             InitializeComponent();
-            productPriceListID = _productPriceListID;
-            productPrice = ProductPriceService.GetDetailProductPrice(productPriceListID).SingleOrDefault();
-            btnSave.Tag = productPrice;
-            txtProductName.Text = productPrice.ProductNameDesc;
-            txtProductName.Enabled = false;
-            txtProductPrice.Text = Convert.ToString(productPrice.CurrentPrice);
-            txtProductSize.Text = productPrice.Portions;
-            txtProductSize.Enabled = false;
+            if (_pricelist.Type == "MODIFIRE")
+            {
+                btnSave.Tag = _pricelist;
+                txtProductName.Text = _pricelist.NameDesc;
+                txtProductName.Enabled = false;
+                txtProductPrice.Text = Convert.ToString(_pricelist.CurrentPrice);
+                txtProductSize.Text = _pricelist.Portions;
+                txtProductSize.Enabled = false;
+                label1.Text = "Modifire Name";
+                label2.Text = "Modifire Size";
+                label3.Text = "Modifire Price";
+            }
+            else
+            {
+                btnSave.Tag = _pricelist;
+                txtProductName.Text = _pricelist.NameDesc;
+                txtProductName.Enabled = false;
+                txtProductPrice.Text = Convert.ToString(_pricelist.CurrentPrice);
+                txtProductSize.Text = _pricelist.Portions;
+                txtProductSize.Enabled = false;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -50,14 +71,10 @@ namespace POSEZ2U
             if (frmcon.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 Button btn = (Button)sender;
-                ProductPriceModel dataProductPrice = (ProductPriceModel)(btn.Tag);
+                PriceListModel dataPriceList = (PriceListModel)(btn.Tag);
                 var txtPrice = txtProductPrice.Text;
                 string message_error = "";
 
-                if (dataProductPrice == null)
-                {
-                    dataProductPrice = new ProductPriceModel();
-                }
                 if (txtPrice == "")
                 {
                     message_error = "Price is not empty";
@@ -65,18 +82,24 @@ namespace POSEZ2U
 
                 if (message_error == "")
                 {
-                    dataProductPrice.CurrentPrice = Int32.Parse(txtPrice);
-                    var result = ProductPriceService.EditProductPrice(dataProductPrice);
+                    dataPriceList.CurrentPrice = Int32.Parse(txtPrice);
+                    var result = 0;
+                    if (dataPriceList.Type == "MODIFIRE")
+                    {
+                        ModifirePriceModel modifirePrice = new ModifirePriceModel();
+                        modifirePrice.ModifirePriceID = dataPriceList.PriceID;
+                        modifirePrice.CurrentPrice = dataPriceList.CurrentPrice;
+                        result = ModifirePriceService.EditModifirePrice(modifirePrice);
+                    } else {
+                        ProductPriceModel productPrice = new ProductPriceModel();
+                        productPrice.ProductPriceID = dataPriceList.PriceID;
+                        productPrice.CurrentPrice = dataPriceList.CurrentPrice;
+                        result = ProductPriceService.EditProductPrice(productPrice);
+                    }
                     if (result == 1)
                     {
-                        //frmMessager frmMessager = new frmMessager("Edit Product Price", "Success");
-                        //frmMessager.ShowDialog();
-                        //this.Hide();
                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         this.Close();
-                        //frmMenuSetting frmMenuSetting = new frmMenuSetting();
-                        //frmMenuSetting.flpMenuList.Controls.Clear();
-                        //frmMenuSetting.addPriceList(5);
                     }
                     else
                     {

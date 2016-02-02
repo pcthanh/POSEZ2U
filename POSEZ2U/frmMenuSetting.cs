@@ -52,6 +52,14 @@ namespace POSEZ2U
         }
         #endregion
 
+        #region PriceList
+        private IPriceListService _priceListService;
+        private IPriceListService PriceListSerice
+        {
+            get { return _priceListService ?? (_priceListService = new PriceListService()); }
+            set { _priceListService = value; }
+        }
+        #endregion
 
         public frmMenuSetting()
         {
@@ -330,7 +338,7 @@ namespace POSEZ2U
         {
             txtSearch.Visible = false;
             btnAdd.Visible = false;
-            var data = ProductPriceService.GetListProductPrice().ToList();
+            var data = PriceListSerice.GetDataProductAndModifire();
             if (i == 5)
             {
                 this.ResizeTopriceList();
@@ -343,16 +351,17 @@ namespace POSEZ2U
                 foreach (var strPriceList in data)
                 {
                     UCPriceList ucPriceList = new UCPriceList();
-                    ucPriceList.lblPriceNameProduct.Text = strPriceList.ProductNameDesc;
+                    ucPriceList.lblPriceNameProduct.Text = strPriceList.NameDesc;
                     ucPriceList.lblPriceSizeProduct.Text = strPriceList.Portions;
                     ucPriceList.lblPriceProduct.Text = Convert.ToString(strPriceList.CurrentPrice);
                     ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
                     //ucPriceList.Dock = DockStyle.Fill;
-                    ucPriceList.Tag = strPriceList.ProductPriceID;
+                    ucPriceList.Tag = strPriceList;
                     ucPriceList.Click += ucPriceList_Click;
                     flpMenuList.Controls.Add(ucPriceList);
                 }
-                addButtonPriceList(0);
+                PriceListModel pricelistmodel = new PriceListModel();
+                addButtonPriceList(pricelistmodel);
             }
 
         }
@@ -361,7 +370,7 @@ namespace POSEZ2U
         {
 
             UCPriceList ucPriceList = (UCPriceList)sender;
-            int tag = Convert.ToInt32(ucPriceList.Tag);
+            PriceListModel tag = (PriceListModel)(ucPriceList.Tag);
             foreach (Control ctr in flpMenuList.Controls)
             {
                 if (ctr.BackColor == Color.FromArgb(0, 153, 51))
@@ -375,14 +384,14 @@ namespace POSEZ2U
             pnDetail.Controls.Clear();
             addButtonPriceList(tag);
         }
-        private void addButtonPriceList(int tag)
+        private void addButtonPriceList(PriceListModel tag)
         {
             int i = 1;
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
             flpButtonPriceList.BackColor = Color.FromArgb(215, 214, 216);
             pnDetail.Controls.Add(flpButtonPriceList);
-            string[] strlst = { "Search", "Edit", "Go To Product" };
+            string[] strlst = { "Edit"};
             foreach (string str in strlst)
             {
                 Button btnGoToProduct = new Button();
@@ -392,7 +401,7 @@ namespace POSEZ2U
                 btnGoToProduct.FlatAppearance.BorderSize = 0;
                 btnGoToProduct.Dock = DockStyle.Top;
                 btnGoToProduct.Text = str;
-                btnGoToProduct.Tag = str + '_' + tag;
+                btnGoToProduct.Tag = tag;
                 btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
                 btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
                 btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -406,8 +415,8 @@ namespace POSEZ2U
         void btnGoToProduct_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            var data = btn.Tag.ToString().Split('_');
-            if (data[1] == "0")
+            PriceListModel data = (PriceListModel)(btn.Tag);
+            if (data.ID == null)
             {
                 string title = "Waring.";
                 string description = "Please choose product.";
@@ -416,13 +425,10 @@ namespace POSEZ2U
             }
             else
             {
-                if (data[0] == "Edit")
+                frmEditProductPriceList frmEditProductPriceList = new frmEditProductPriceList(data);
+                if (frmEditProductPriceList.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    frmEditProductPriceList frmEditProductPriceList = new frmEditProductPriceList(Int32.Parse(data[1]));
-                    if (frmEditProductPriceList.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        addPriceList(5);
-                    }
+                    addPriceList(5);
                 }
             }
         }
