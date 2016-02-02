@@ -184,7 +184,7 @@ namespace POSEZ2U
                 foreach (PrinteJobDetailModel joblst in lstPrintJob)
                 {
                     PrintJobDetailModel itemjob = new PrintJobDetailModel();
-                    itemjob.CategoryID = joblst.CategoryID;
+                    itemjob.CategoryID = joblst.CategoryID; 
                     itemjob.ProductID = joblst.ProductID;
                     itemjob.PrinterID = joblst.PrinterID;
                     LstPrinterJob.Add(itemjob);

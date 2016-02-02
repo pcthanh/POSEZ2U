@@ -575,7 +575,7 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Button btnExport;
+        public System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Button btnPrint;
         public System.Windows.Forms.Label lblShiftNo;

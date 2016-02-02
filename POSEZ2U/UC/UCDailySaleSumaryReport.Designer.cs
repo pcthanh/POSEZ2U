@@ -441,7 +441,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnExport;
+        public System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
         public System.Windows.Forms.Label lblTotalAccount;

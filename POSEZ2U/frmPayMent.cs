@@ -563,15 +563,15 @@ namespace POSEZ2U
                 int result = 0;
                 try
                 {
-                    double totalPayment = 0;
-                    double total = Convert.ToDouble(OrderMain.TotalAmount);
+                    Double totalPayment = 0;
+                    Double total = Convert.ToDouble(OrderMain.TotalAmount);
                     if (lstPayment.Count > 0)
                     {
                         for (int i = 0; i < lstPayment.Count; i++)
                         {
                             totalPayment = (totalPayment + lstPayment[i].Total);
                         }
-                        totalPayment = totalPayment *1000;
+                        totalPayment = (totalPayment *100)*10;
                         if (totalPayment >= total)
                         {
                             lblChange.Text = "$" + money.Format2(totalPayment  - total);
