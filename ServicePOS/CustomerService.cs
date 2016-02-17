@@ -67,6 +67,7 @@ namespace ServicePOS
                 client.Email = item.Email;
                 client.Country = item.Country;
                 client.Note = item.Note;
+                client.Balance = item.Balance;
                 client.Status = item.Status;
                 client.CreateBy =item.CreateBy??0;
                 client.CreateDate = DateTime.Now;

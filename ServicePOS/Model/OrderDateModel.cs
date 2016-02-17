@@ -35,12 +35,14 @@ namespace ServicePOS.Model
         public int isPrevOrder { get; set; }
         public int PrintType { get; set; }
         public int InvoiceNumber { get; set; }
+        public int Account { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         public List<CardModel> ListCard = new List<CardModel>();
         public List<CashModel> ListCash = new List<CashModel>();
         public List<PayMentModel> ListPayment = new List<PayMentModel>();
         public List<InvoiceByCardModel> ListInvoiceByCard = new List<InvoiceByCardModel>();
         public List<SeatModel> ListSeatOfOrder = new List<SeatModel>();
+        public CustomerModel CusItem = new CustomerModel();
         private IOrderService _orderService;
         private IOrderService OrderService
         {

@@ -57,6 +57,7 @@ namespace ServicePOS
             List<INVOICE_DETAIL_MODIFIRE> invoiceDetailModifier = new List<INVOICE_DETAIL_MODIFIRE>();
             List<PAYMENT_INVOICE_HISTORY> PaymentHistory = new List<PAYMENT_INVOICE_HISTORY>();
             List<INVOICE_BY_CARD> InvoiceByCard = new List<INVOICE_BY_CARD>();
+            ACC_PAYMENT Acc = new ACC_PAYMENT();
             using (var trans = _context.Database.BeginTransaction())
             {
                 _context.Database.ExecuteSqlCommand("update ORDER_DATE set Status=1 where OrderID='" + Order.OrderID + "'");
@@ -66,6 +67,18 @@ namespace ServicePOS
                 InvoiceID = invoice.InvoiceID;
                 string InvNum = InvoiceID + "" + DateTime.Now.Date.Year + "" + DateTime.Now.Date.Month + "" + DateTime.Now.Date.Day;
                 _context.Database.ExecuteSqlCommand("update invoice set InvoiceNumber='" + InvNum + "'where InvoiceID='" + InvoiceID + "'");
+                
+                //Update balance for customer
+                _context.Database.ExecuteSqlCommand("update client set balance=balance+'" + -Convert.ToInt32(Order.Payment) + "' where ClientID='" + Order.CusItem.ClientID + "'");
+                Acc = CopyAcc(Order);
+                Acc.InvoiceID = InvoiceID;
+                Acc.InvoiceNumber =Convert.ToInt32(InvNum);
+                //_context.Entry(Acc).State = System.Data.Entity.EntityState.Added;
+                string sql = "insert into acc_payment(CusNo,SubTotal,InvoiceID,InvoiceNumber,Cash,Card,IsCredit,IsDebit,CreateDate,CreateBy,UpdateDate,UpdateBy)values(" +
+                    "'" + Order.CusItem.ClientID + "','" + Convert.ToInt32(Order.Payment) + "','" + InvoiceID + "','" + Convert.ToInt32(InvNum) + "',0,0,1,0,'" + DateTime.Now + "','" + Order.ShiftID + "','" + DateTime.Now + "','" + Order.ShiftID + "')";
+                _context.Database.ExecuteSqlCommand("insert into acc_payment(CusNo,SubTotal,InvoiceID,InvoiceNumber,Cash,Card,IsCredit,IsDebit,CreateDate,CreateBy,UpdateDate,UpdateBy)values(" +
+                    "'" + Order.CusItem.ClientID + "','" +Convert.ToInt32(Order.Payment) + "','" + InvoiceID + "','" +Convert.ToInt32(InvNum) + "',0,0,1,0,'" + DateTime.Now + "','" + Order.ShiftID + "','" + DateTime.Now + "','" + Order.ShiftID + "')");
+                //
                 invoiceDEtail = CopyInvoicedetail(Order);
                 foreach (INVOICE_DETAIL item in invoiceDEtail)
                 {
@@ -103,6 +116,25 @@ namespace ServicePOS
                 result = 1;
             }
             return result;
+        }
+
+        private ACC_PAYMENT CopyAcc(OrderDateModel Order)
+        {
+            ACC_PAYMENT acc = new ACC_PAYMENT();
+            acc.SubTotal = Convert.ToInt32(Order.TotalAmount);
+            acc.CusNo = Order.CusItem.ClientID;
+            acc.InvoiceID = Order.InvoiceID;
+            acc.InvoiceNumber = Order.InvoiceNumber;
+            acc.Cash = 0;
+            acc.Card = 0;
+            acc.IsCredit = 1;
+            acc.IsDebit = 0;
+            acc.CreateBy = Order.CreateBy ?? 0;
+            acc.CreateDate = DateTime.Now;
+            acc.UpdateBy = Order.UpdateBy ?? 0;
+            acc.UpdateDate = DateTime.Now;
+            return acc;
+            
         }
         private INVOICE CopyInvoice(OrderDateModel itemOrder)
         {

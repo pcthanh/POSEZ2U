@@ -18,6 +18,7 @@ namespace ServicePOS.Model
         public string Adress2 { get; set; }
         public string Adress3 { get; set; }
         public string Country { get; set; }
+        public int Balance { get; set; }
         public string Note { get; set; }
         public Nullable<int> CreateBy { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }

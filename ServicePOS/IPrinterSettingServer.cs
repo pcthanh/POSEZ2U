@@ -17,5 +17,7 @@ namespace ServicePOS
         int DeletePrintJob(int Category, int ProductID, int Printer);
 
         int InsertPrinter(PrinterModel Printer);
+
+        int UpdatePrinter(PrinterModel Printer);
     }
 }
