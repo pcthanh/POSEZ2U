@@ -37,10 +37,10 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDiscount = new System.Windows.Forms.Button();
             this.btnSplitBill = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.btnPrintnoBill = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btn5 = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@
             this.btnGiftCard = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.flpPaymentType = new System.Windows.Forms.FlowLayoutPanel();
-            this.button13 = new System.Windows.Forms.Button();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -245,6 +245,23 @@
             this.btnSplitBill.UseVisualStyleBackColor = false;
             this.btnSplitBill.Click += new System.EventHandler(this.btnSplitBill_Click);
             // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button13.Enabled = false;
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button13.ForeColor = System.Drawing.Color.White;
+            this.button13.Location = new System.Drawing.Point(351, 69);
+            this.button13.Margin = new System.Windows.Forms.Padding(0);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(82, 69);
+            this.button13.TabIndex = 1;
+            this.button13.Text = "SMS";
+            this.button13.UseVisualStyleBackColor = false;
+            // 
             // btnPrintnoBill
             // 
             this.btnPrintnoBill.AccessibleDescription = "";
@@ -286,15 +303,6 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(196, 244);
             this.panel8.TabIndex = 0;
-            // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
             // 
             // panel9
             // 
@@ -639,7 +647,6 @@
             // btnAccount
             // 
             this.btnAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAccount.Enabled = false;
             this.btnAccount.FlatAppearance.BorderSize = 0;
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -650,6 +657,7 @@
             this.btnAccount.TabIndex = 0;
             this.btnAccount.Text = "ACCOUNT";
             this.btnAccount.UseVisualStyleBackColor = true;
+            this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
             // 
             // btnGiftCard
             // 
@@ -684,22 +692,14 @@
             this.flpPaymentType.Size = new System.Drawing.Size(271, 400);
             this.flpPaymentType.TabIndex = 0;
             // 
-            // button13
+            // ucKeyPadOrder1
             // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
-            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.Enabled = false;
-            this.button13.FlatAppearance.BorderSize = 0;
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(351, 69);
-            this.button13.Margin = new System.Windows.Forms.Padding(0);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(82, 69);
-            this.button13.TabIndex = 1;
-            this.button13.Text = "SMS";
-            this.button13.UseVisualStyleBackColor = false;
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(0, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(196, 244);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
             // 
             // frmPayMent
             // 

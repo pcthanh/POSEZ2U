@@ -288,8 +288,54 @@ namespace POSEZ2U
             }
             return index;
         }
+        private int CheckPayment( AccountModel item)
+        {
+            int index = -1;
+            try
+            {
+                if (lstPayment.Count > 0)
+                {
+                    for (int i = 0; i < lstPayment.Count; i++)
+                    {
+                        if (lstPayment[i].PaymentTypeID == item.PaymentID)
+                        {
+                            index = i;
+                        }
+                    }
+                }
 
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayMent::::::::CheckPayment::::::::::::::::::::AccountModel::::::::::::::::" + ex.Message);
+            }
+            return index;
+        }
         private int CheckPaymentSplitBill(CashModel item)
+        {
+            int index = -1;
+            try
+            {
+                if (lstPaymentSplitBill.Count > 0)
+                {
+                    for (int i = 0; i < lstPaymentSplitBill.Count; i++)
+                    {
+                        if (lstPaymentSplitBill[i].PaymentTypeID == item.PaymentID)
+                        {
+                            index = i;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayMent::::::::CheckPayment::::::::::::::::::::CashModel::::::::::::::::" + ex.Message);
+            }
+            return index;
+        }
+
+        private int CheckPaymentSplitBill(AccountModel item)
         {
             int index = -1;
             try
@@ -343,6 +389,45 @@ namespace POSEZ2U
                     pay.PaymentTypeID = item.PaymentID;
                     pay.Total = item.Total;
                     
+                    lstPaymentSplitBill.Add(pay);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayMent::::::::addPayment:::::::::::::::::::::::::::CashModel::::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+        private void addPayment(AccountModel item)
+        {
+            try
+            {
+                int result = CheckPayment(item);
+                int resulSplit = CheckPaymentSplitBill(item);
+                if (result != -1)
+                {
+                    lstPayment[result].Total = lstPayment[result].Total + item.Total;
+
+                }
+                else
+                {
+                    PayMentModel pay = new PayMentModel();
+                    pay.PaymentTypeID = item.PaymentID;
+                    pay.Total = item.Total;
+                    lstPayment.Add(pay);
+
+                }
+                /////////////
+                if (resulSplit != -1)
+                {
+                    lstPaymentSplitBill[result].Total = lstPaymentSplitBill[result].Total + item.Total;
+
+                }
+                else
+                {
+                    PayMentModel pay = new PayMentModel();
+                    pay.PaymentTypeID = item.PaymentID;
+                    pay.Total = item.Total;
+
                     lstPaymentSplitBill.Add(pay);
                 }
             }
@@ -563,8 +648,8 @@ namespace POSEZ2U
                 int result = 0;
                 try
                 {
-                    Double totalPayment = 0;
-                    Double total = Convert.ToDouble(OrderMain.TotalAmount);
+                    double totalPayment = 0;
+                    double total = Convert.ToDouble(OrderMain.TotalAmount);
                     if (lstPayment.Count > 0)
                     {
                         for (int i = 0; i < lstPayment.Count; i++)
@@ -707,6 +792,51 @@ namespace POSEZ2U
                 //{
                 MessageBox.Show(txtTender.Text);
                 //}
+            }
+            catch (Exception ex)
+            {
+ 
+            }
+        }
+
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            frmPaymentAcc frm = new frmPaymentAcc();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                AccountModel accItem = new AccountModel();
+                accItem.PaymentID = 3;
+                accItem.Total = Convert.ToDouble(txtTender.Text);
+                UCAccPayment acc = new UCAccPayment();
+                acc.lblStt.Text = "#" + CountUcPayMent().ToString();
+                acc.lblMethodType.Text = btnAccount.Text;
+                acc.lblTotal.Text = "$" + money.Format2((Convert.ToDouble(txtTender.Text)) * 1000);
+                acc.Tag = accItem;
+                acc.Click += acc_Click;
+                OrderMain.CusItem = frm.itemS;
+                OrderMain.Account  =Convert.ToInt32(Convert.ToDouble(txtTender.Text)*1000);
+                addPayment(accItem);
+                flpPaymentType.Controls.Add(acc);
+            }
+        }
+
+        void acc_Click(object sender, EventArgs e)
+        {
+            UCAccPayment ucCash = (UCAccPayment)sender;
+            try
+            {
+                AccountModel data = (AccountModel)ucCash.Tag;
+                for (int i = 0; i < lstPayment.Count; i++)
+                {
+                    if (lstPayment[i].PaymentTypeID == data.PaymentID)
+                    {
+                        lstPayment[i].Total = lstPayment[i].Total - data.Total;
+                    }
+                }
+                OrderMain.Account = 0;
+                flpPaymentType.Controls.Remove(ucCash);
+                RemoveUc = true;
+                CheckTotal();
             }
             catch (Exception ex)
             {

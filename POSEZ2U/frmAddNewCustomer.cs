@@ -52,6 +52,7 @@ namespace POSEZ2U
                 item.Email = txtEmail.Text;
                 item.Note = txtNote.Text;
                 item.Status = 1;
+                item.Balance = 0;
                 result = CustomerService.InsertCustomer(item);
                 if (result == 1)
                 {

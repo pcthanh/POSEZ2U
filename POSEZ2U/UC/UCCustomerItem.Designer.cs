@@ -62,9 +62,10 @@
             // 
             this.lblCusID.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCusID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCusID.Location = new System.Drawing.Point(3, 0);
+            this.lblCusID.Location = new System.Drawing.Point(0, 0);
+            this.lblCusID.Margin = new System.Windows.Forms.Padding(0);
             this.lblCusID.Name = "lblCusID";
-            this.lblCusID.Size = new System.Drawing.Size(132, 40);
+            this.lblCusID.Size = new System.Drawing.Size(138, 40);
             this.lblCusID.TabIndex = 0;
             this.lblCusID.Text = "1";
             this.lblCusID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -74,9 +75,10 @@
             // 
             this.lblCusName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCusName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCusName.Location = new System.Drawing.Point(141, 0);
+            this.lblCusName.Location = new System.Drawing.Point(138, 0);
+            this.lblCusName.Margin = new System.Windows.Forms.Padding(0);
             this.lblCusName.Name = "lblCusName";
-            this.lblCusName.Size = new System.Drawing.Size(132, 40);
+            this.lblCusName.Size = new System.Drawing.Size(138, 40);
             this.lblCusName.TabIndex = 0;
             this.lblCusName.Text = "Thanh.Phan";
             this.lblCusName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -86,9 +88,10 @@
             // 
             this.lblCusPhone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCusPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCusPhone.Location = new System.Drawing.Point(279, 0);
+            this.lblCusPhone.Location = new System.Drawing.Point(276, 0);
+            this.lblCusPhone.Margin = new System.Windows.Forms.Padding(0);
             this.lblCusPhone.Name = "lblCusPhone";
-            this.lblCusPhone.Size = new System.Drawing.Size(132, 40);
+            this.lblCusPhone.Size = new System.Drawing.Size(138, 40);
             this.lblCusPhone.TabIndex = 0;
             this.lblCusPhone.Text = "0972641947";
             this.lblCusPhone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -98,9 +101,10 @@
             // 
             this.lblBalance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBalance.Location = new System.Drawing.Point(417, 0);
+            this.lblBalance.Location = new System.Drawing.Point(414, 0);
+            this.lblBalance.Margin = new System.Windows.Forms.Padding(0);
             this.lblBalance.Name = "lblBalance";
-            this.lblBalance.Size = new System.Drawing.Size(132, 40);
+            this.lblBalance.Size = new System.Drawing.Size(138, 40);
             this.lblBalance.TabIndex = 0;
             this.lblBalance.Text = "0.00";
             this.lblBalance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,9 +114,10 @@
             // 
             this.lblDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetail.Location = new System.Drawing.Point(555, 0);
+            this.lblDetail.Location = new System.Drawing.Point(552, 0);
+            this.lblDetail.Margin = new System.Windows.Forms.Padding(0);
             this.lblDetail.Name = "lblDetail";
-            this.lblDetail.Size = new System.Drawing.Size(136, 40);
+            this.lblDetail.Size = new System.Drawing.Size(142, 40);
             this.lblDetail.TabIndex = 0;
             this.lblDetail.Text = "View";
             this.lblDetail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -123,9 +128,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCCustomerItem";
             this.Size = new System.Drawing.Size(694, 40);
-            
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
