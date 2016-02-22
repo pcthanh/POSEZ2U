@@ -166,6 +166,7 @@ namespace POSEZ2U
                     var ucShift = new UCShiftItem();
 
                     //ucShift.Dock = DockStyle.Fill;
+                    MoneyFortmat Fomat = new MoneyFortmat(1);
 
                     totalsafe = totalsafe + item.SafeDrop ?? 0;
 
@@ -175,9 +176,9 @@ namespace POSEZ2U
                     ucShift.lblEnd.Text = " ";
                     if (item.EndShift != null)
                         ucShift.lblEnd.Text = (item.EndShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblCashstart.Text = (item.CashStart ?? 0).ToString("C");
-                    ucShift.lblCashend.Text = (item.CashEnd ?? 0).ToString("C");
-                    ucShift.lblSfaedrop.Text = (item.SafeDrop ?? 0).ToString("C");
+                    ucShift.lblCashstart.Text = Fomat.getValue(item.CashStart ?? 0).ToString("C");
+                    ucShift.lblCashend.Text = Fomat.getValue(item.CashEnd ?? 0).ToString("C");
+                    ucShift.lblSfaedrop.Text = Fomat.getValue(item.SafeDrop ?? 0).ToString("C");
 
                     ucShift.Size = new System.Drawing.Size(flpShiftDetail.Width-5, ucShift.Height);
 
@@ -234,6 +235,7 @@ namespace POSEZ2U
                     //ucShift.Dock = DockStyle.Fill;
 
                     totalsafe = totalsafe + item.SafeDrop ?? 0;
+                    MoneyFortmat Fomat = new MoneyFortmat(1);
 
                     ucShift.lblNo.Text = item.ShiftName;
                     ucShift.lblStaff.Text = item.UserName;
@@ -241,9 +243,9 @@ namespace POSEZ2U
                     ucShift.lblEnd.Text = " ";
                     if (item.EndShift != null)
                         ucShift.lblEnd.Text = (item.EndShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblCashstart.Text = (item.CashStart ?? 0).ToString("C");
-                    ucShift.lblCashend.Text = (item.CashEnd ?? 0).ToString("C");
-                    ucShift.lblSfaedrop.Text = (item.SafeDrop ?? 0).ToString("C");
+                    ucShift.lblCashstart.Text = Fomat.getValue(item.CashStart ?? 0).ToString("C");
+                    ucShift.lblCashend.Text = Fomat.getValue(item.CashEnd ?? 0).ToString("C");
+                    ucShift.lblSfaedrop.Text = Fomat.getValue(item.SafeDrop ?? 0).ToString("C");
 
                     ucShift.Size = new System.Drawing.Size(flpShiftDetail.Width-5, ucShift.Height);
 

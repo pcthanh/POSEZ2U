@@ -59,13 +59,15 @@ namespace POSEZ2U
             {
                 if (modelShift != null)
                 {
+                    MoneyFortmat Fomat = new MoneyFortmat(1);
+
                     this.txtShiftName.Text = modelShift.ShiftName ?? "";
                     this.txtStaffName.Text = modelShift.UserName ?? "";
                     this.txtStartTime.Text = (modelShift.StartShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
                     this.txtEndTime.Text = DateTime.Now.ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    this.txtCashStart.Text = (modelShift.CashStart ?? 0).ToString("C");
-                    this.txtCashEnd.Text = (modelShift.CashEnd ?? 0).ToString("C");
-                    this.txtSafeDrop.Text = (modelShift.SafeDrop ?? 0).ToString("C");
+                    this.txtCashStart.Text = Fomat.getValue(modelShift.CashStart ?? 0).ToString("C");
+                    this.txtCashEnd.Text = Fomat.getValue(modelShift.CashEnd ?? 0).ToString("C");
+                    this.txtSafeDrop.Text = Fomat.getValue(modelShift.SafeDrop ?? 0).ToString("C");
                 }
                
             }
@@ -85,8 +87,12 @@ namespace POSEZ2U
             var cashEnd = this.txtCashEnd.Text.Replace("$", "");
             modelShift.CashEnd = double.Parse(cashEnd);
 
+            MoneyFortmat Fomat = new MoneyFortmat(1);
+            modelShift.CashEnd = Fomat.getFortMat(modelShift.CashEnd??0);
+
             var safeDrop = this.txtSafeDrop.Text.Replace("$", "");
             modelShift.SafeDrop = double.Parse(safeDrop);
+            modelShift.SafeDrop = Fomat.getFortMat(modelShift.SafeDrop ?? 0);
 
             if (modelShift.CashEnd < modelShift.CashStart)
             {

@@ -63,6 +63,9 @@ namespace POSEZ2U
                     startcash = (historyshift.CashEnd??0) - (historyshift.SafeDrop??0);
                 }
 
+                MoneyFortmat Fomat = new MoneyFortmat(1);
+                startcash = Fomat.getValue(startcash);
+
                 var data = ShiftService.GetAllStaffActive().ToList();
 
                 this.cbStaff.DisplayMember = "Value";
@@ -100,6 +103,9 @@ namespace POSEZ2U
             {
                 model.CashStart = double.Parse(this.txtCashStart.Text);
             }
+
+            MoneyFortmat Fomat= new MoneyFortmat(1);
+            model.CashStart = Fomat.getFortMat(model.CashStart??0);
 
             model.CreateBy = userid;
 

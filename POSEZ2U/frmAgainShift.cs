@@ -60,13 +60,13 @@ namespace POSEZ2U
             {
                 if (modelShift != null)
                 {
-
+                    MoneyFortmat Fomat = new MoneyFortmat(1);
                     shiftid = modelShift.ShiftHistoryID;
 
                     this.txtShiftName.Text = modelShift.ShiftName ?? "";
                     this.txtStaffName.Text = modelShift.UserName ?? "";
                     this.txtStartTime.Text = (modelShift.StartShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    this.txtCashStart.Text = (modelShift.CashStart ?? 0).ToString("C");
+                    this.txtCashStart.Text = Fomat.getValue(modelShift.CashStart ?? 0).ToString("C");
                  
                 }
                 else

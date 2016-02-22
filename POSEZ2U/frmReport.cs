@@ -330,7 +330,7 @@ namespace POSEZ2U
 
                 var temp = new ExportExcelToDataTable();
                 temp.Tilte = item.UserName;
-                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                temp.Value = fomat.getValue(item.Total).ToString("N2");
                 export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
@@ -375,7 +375,7 @@ namespace POSEZ2U
 
                 var temp = new ExportExcelToDataTable();
                 temp.Tilte = item.CardName;
-                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                temp.Value = fomat.getValue(item.Total).ToString("N2");
                 export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
@@ -419,7 +419,7 @@ namespace POSEZ2U
 
                 var temp = new ExportExcelToDataTable();
                 temp.Tilte = item.FullName;
-                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                temp.Value = fomat.getValue(item.Total).ToString("N2");
                 export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
@@ -635,7 +635,7 @@ namespace POSEZ2U
 
                 var temp = new ExportExcelToDataTable();
                 temp.Tilte = item.UserName;
-                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                temp.Value = fomat.getValue(item.Total).ToString("N2");
                 export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
@@ -680,7 +680,7 @@ namespace POSEZ2U
 
                 var temp = new ExportExcelToDataTable();
                 temp.Tilte = item.CardName;
-                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                temp.Value = fomat.getValue(item.Total).ToString("N2");
                 export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
@@ -725,7 +725,7 @@ namespace POSEZ2U
 
                 var temp = new ExportExcelToDataTable();
                 temp.Tilte = item.FullName;
-                temp.Value = fomat.getValue(item.Total).ToString("N0");
+                temp.Value = fomat.getValue(item.Total).ToString("N2");
                 export.Add(temp);
 
                 ucitem.Size = new System.Drawing.Size(UCQTYReport.PDetail.Width - 5, ucitem.Height);
@@ -804,12 +804,12 @@ namespace POSEZ2U
                 shift.lblStaff.Text = data.UserName ?? "";
                 shift.lblStartTime.Text = (data.StartShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
                 shift.lblEndTime.Text = (data.EndShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                shift.lblStartCash.Text = data.CashStart.ToString("C");
-                shift.lblEndCash.Text = data.CashEnd.ToString("C");
-                shift.lblSafeDrop.Text = data.SafeDrop.ToString("C");
-                shift.lblTotal.Text = fomat.getValue(data.TotalCash).ToString("C");
-                shift.lblVariation.Text = "$" + (data.CashEnd - data.CashStart-fomat.getValue(data.TotalCash)).ToString("N");
-                shift.lblTotalNetSalse.Text = fomat.getValue(data.TotalSale).ToString("C");
+                shift.lblStartCash.Text = "$" + fomat.getValue(data.CashStart).ToString("N2");
+                shift.lblEndCash.Text = "$" + fomat.getValue(data.CashEnd).ToString("N2");
+                shift.lblSafeDrop.Text = "$" + fomat.getValue(data.SafeDrop).ToString("N2");
+                shift.lblTotal.Text = "$" + fomat.getValue(data.TotalCash).ToString("N2");
+                shift.lblVariation.Text = "$" + fomat.getValue(data.CashEnd - data.CashStart - data.TotalCash).ToString("N2");
+                shift.lblTotalNetSalse.Text = "$" + fomat.getValue(data.TotalSale).ToString("N2");
 
 
                 var export = new List<ExportExcelToDataTable>();
@@ -836,32 +836,32 @@ namespace POSEZ2U
 
                 var temp5 = new ExportExcelToDataTable();
                 temp5.Tilte = "Start Cash(Cash float in)";
-                temp5.Value = data.CashStart.ToString("N");
+                temp5.Value = fomat.getValue(data.CashStart).ToString("N2");
                 export.Add(temp5);
 
                 var temp6 = new ExportExcelToDataTable();
                 temp6.Tilte = "End Cash(Counted by Staff)";
-                temp6.Value = data.CashEnd.ToString("N");
+                temp6.Value =fomat.getValue(data.CashEnd).ToString("N2");
                 export.Add(temp6);
 
                 var temp7 = new ExportExcelToDataTable();
                 temp7.Tilte = "Total Cash by Report";
-                temp7.Value = fomat.getValue(data.TotalCash).ToString("N");
+                temp7.Value = fomat.getValue(data.TotalCash).ToString("N2");
                 export.Add(temp7);
 
                 var temp8 = new ExportExcelToDataTable();
                 temp8.Tilte = "Variation";
-                temp8.Value = (data.CashEnd - data.CashStart - fomat.getValue(data.TotalCash)).ToString("N");
+                temp8.Value = fomat.getValue(data.CashEnd - data.CashStart - data.TotalCash).ToString("N2");
                 export.Add(temp8);
 
                 var temp9 = new ExportExcelToDataTable();
                 temp9.Tilte = "Safe drop";
-                temp9.Value = data.SafeDrop.ToString("N");
+                temp9.Value = fomat.getValue(data.SafeDrop).ToString("N2");
                 export.Add(temp9);
 
                 var temp10 = new ExportExcelToDataTable();
                 temp10.Tilte = "Total Net Sale by Shift";
-                temp10.Value = fomat.getValue(data.TotalSale).ToString("N");
+                temp10.Value = fomat.getValue(data.TotalSale).ToString("N2");
                 export.Add(temp10);
 
                 shift.btnExport.Tag = export;
@@ -887,8 +887,8 @@ namespace POSEZ2U
             ucDailyReport.lblGST.Text = fomat.getValue(data.GST).ToString("C");
             ucDailyReport.lblDiscount.Text = fomat.getValue(data.Discount).ToString("C");
             ucDailyReport.lblRefund.Text = fomat.getValue(data.Refund).ToString("C");
-            ucDailyReport.lblTotakReceiva.Text = fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("C");
-            ucDailyReport.lblTotakCash.Text = fomat.getValue(data.CashTotal).ToString("C");
+            ucDailyReport.lblTotakReceiva.Text = "$"+fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("N2");
+            ucDailyReport.lblTotakCash.Text = "$" + fomat.getValue(data.CashTotal).ToString("N2");
             ucDailyReport.lblTotalCard.Text = fomat.getValue(data.CardTotal).ToString("C");
             ucDailyReport.lblTotalAccount.Text = fomat.getValue(data.AccountTotal).ToString("C");
 
@@ -896,42 +896,42 @@ namespace POSEZ2U
 
             var temp1 = new ExportExcelToDataTable();
             temp1.Tilte = "Net Sale";
-            temp1.Value = fomat.getValue(data.NetSale).ToString("N");
+            temp1.Value = fomat.getValue(data.NetSale).ToString("N2");
             export.Add(temp1);
 
             var temp2 = new ExportExcelToDataTable();
             temp2.Tilte = "GST";
-            temp2.Value = fomat.getValue(data.GST).ToString("N");
+            temp2.Value = fomat.getValue(data.GST).ToString("N2");
             export.Add(temp2);
 
             var temp3 = new ExportExcelToDataTable();
             temp3.Tilte = "Discount";
-            temp3.Value = fomat.getValue(data.Discount).ToString("N");
+            temp3.Value = fomat.getValue(data.Discount).ToString("N2");
             export.Add(temp3);
 
             var temp4 = new ExportExcelToDataTable();
             temp4.Tilte = "Refund";
-            temp4.Value = fomat.getValue(data.Refund).ToString("N");
+            temp4.Value = fomat.getValue(data.Refund).ToString("N2");
             export.Add(temp4);
 
             var temp5 = new ExportExcelToDataTable();
             temp5.Tilte = "Total Receivable";
-            temp5.Value = fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("N");
+            temp5.Value = fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("N2");
             export.Add(temp5);
 
             var temp6 = new ExportExcelToDataTable();
             temp6.Tilte = "Total CASH";
-            temp6.Value = fomat.getValue(data.CashTotal).ToString("N");
+            temp6.Value = fomat.getValue(data.CashTotal).ToString("N2");
             export.Add(temp6);
 
             var temp7 = new ExportExcelToDataTable();
             temp7.Tilte = "Total CARD";
-            temp7.Value = fomat.getValue(data.CardTotal).ToString("N");
+            temp7.Value = fomat.getValue(data.CardTotal).ToString("N2");
             export.Add(temp7);
 
             var temp8 = new ExportExcelToDataTable();
             temp8.Tilte = "Total ACCOUNT";
-            temp8.Value = fomat.getValue(data.AccountTotal).ToString("N");
+            temp8.Value = fomat.getValue(data.AccountTotal).ToString("N2");
             export.Add(temp8);
 
             ucDailyReport.btnExport.Tag = export;
