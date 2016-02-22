@@ -51,7 +51,8 @@ namespace POSEZ2U
 
         private void btnDatabase_Click(object sender, EventArgs e)
         {
-            frmDatabaseSetting frm = new frmDatabaseSetting();
+           // frmDatabaseSetting frm = new frmDatabaseSetting();
+            frmBackupData frm = new frmBackupData();
             this.Close();
             frm.ShowDialog();
         }
