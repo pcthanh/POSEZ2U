@@ -46,7 +46,6 @@ namespace POSEZ2U
             try
             {
                 CustomerModel item = new CustomerModel();
-                item.Lname = txtLastName.Text;
                 item.Fname = txtFristName.Text;
                 item.Phone = txtPhoneNumber.Text;
                 item.Email = txtEmail.Text;

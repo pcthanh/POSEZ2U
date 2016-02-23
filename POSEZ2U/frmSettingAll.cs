@@ -81,5 +81,11 @@ namespace POSEZ2U
         {
 
         }
+
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            frmAccountDebit frm = new frmAccountDebit();
+            frm.ShowDialog();
+        }
     }
 }

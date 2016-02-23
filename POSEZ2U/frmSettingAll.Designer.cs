@@ -52,6 +52,7 @@
             this.btnPrinter = new System.Windows.Forms.Button();
             this.btnUserSetting = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.btnAccount = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -192,6 +193,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button2, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnAccount, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(210, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -338,6 +340,21 @@
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
+            // btnAccount
+            // 
+            this.btnAccount.BackColor = System.Drawing.Color.White;
+            this.btnAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAccount.FlatAppearance.BorderSize = 0;
+            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccount.Location = new System.Drawing.Point(3, 169);
+            this.btnAccount.Name = "btnAccount";
+            this.btnAccount.Size = new System.Drawing.Size(201, 77);
+            this.btnAccount.TabIndex = 2;
+            this.btnAccount.Text = "ACCOUNT";
+            this.btnAccount.UseVisualStyleBackColor = false;
+            this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
+            // 
             // frmSettingAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,5 +410,6 @@
          private System.Windows.Forms.Panel panel6;
          private System.Windows.Forms.Button button1;
          private System.Windows.Forms.Button button2;
+         private System.Windows.Forms.Button btnAccount;
      }
  }
