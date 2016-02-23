@@ -11,5 +11,6 @@ namespace ServicePOS
     {
        int InsertCustomer(CustomerModel item);
        IEnumerable<CustomerModel> GetCustomer();
+       IEnumerable<CustomerModel> GetCustomerSearch(string Name);
     }
 }

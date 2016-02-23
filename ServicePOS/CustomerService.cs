@@ -44,6 +44,7 @@ namespace ServicePOS
                  Adress2 = x.Adress2,
                  Adress3 = x.Adress3,
                  Note = x.Note,
+                 Balance = x.Balance??0,
                  CreateBy = x.CreateBy,
                  CreateDate = x.CreateDate,
                  UpdateBy = x.UpdateBy,
@@ -104,5 +105,38 @@ namespace ServicePOS
             GC.SuppressFinalize(this);
         }
         #endregion
+
+
+        public IEnumerable<CustomerModel> GetCustomerSearch(string Name)
+        {
+            try
+            {
+                var list = _context.CLIENTs.Where(x => x.Status == 1&&x.Fname.Contains(Name))
+            .Select(x => new CustomerModel()
+            {
+                ClientID = x.ClientID,
+                Fname = x.Fname,
+                Lname = x.Lname,
+                Phone = x.Phone,
+                Email = x.Email,
+                Status = x.Status,
+                Adress1 = x.Adress1,
+                Adress2 = x.Adress2,
+                Adress3 = x.Adress3,
+                Note = x.Note,
+                Balance = x.Balance ?? 0,
+                CreateBy = x.CreateBy,
+                CreateDate = x.CreateDate,
+                UpdateBy = x.UpdateBy,
+                UpdateDate = x.UpdateDate
+            });
+                return list;
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("CustomerService:::::::::::::::::::::::GetCustomerSearch::::::::::::::::::::" + ex.Message);
+            }
+            return null;
+        }
     }
 }
