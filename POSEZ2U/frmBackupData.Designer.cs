@@ -43,7 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.lblTotalSafeDrop = new System.Windows.Forms.Label();
+            this.lblTotalFile = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -52,8 +52,8 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.flpDataDetail = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.btnEnd = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRetore = new System.Windows.Forms.Button();
+            this.btnBackup = new System.Windows.Forms.Button();
             this.panel22 = new System.Windows.Forms.Panel();
             this.panel16 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -208,7 +208,7 @@
             // panel7
             // 
             this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.Controls.Add(this.lblTotalSafeDrop);
+            this.panel7.Controls.Add(this.lblTotalFile);
             this.panel7.Controls.Add(this.label2);
             this.panel7.Controls.Add(this.panel18);
             this.panel7.Controls.Add(this.panel17);
@@ -218,17 +218,17 @@
             this.panel7.Size = new System.Drawing.Size(572, 38);
             this.panel7.TabIndex = 7;
             // 
-            // lblTotalSafeDrop
+            // lblTotalFile
             // 
-            this.lblTotalSafeDrop.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTotalSafeDrop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalSafeDrop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.lblTotalSafeDrop.Location = new System.Drawing.Point(280, 0);
-            this.lblTotalSafeDrop.Name = "lblTotalSafeDrop";
-            this.lblTotalSafeDrop.Size = new System.Drawing.Size(282, 38);
-            this.lblTotalSafeDrop.TabIndex = 2;
-            this.lblTotalSafeDrop.Text = "0";
-            this.lblTotalSafeDrop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTotalFile.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblTotalFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.lblTotalFile.Location = new System.Drawing.Point(280, 0);
+            this.lblTotalFile.Name = "lblTotalFile";
+            this.lblTotalFile.Size = new System.Drawing.Size(282, 38);
+            this.lblTotalFile.TabIndex = 2;
+            this.lblTotalFile.Text = "0";
+            this.lblTotalFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
             // 
@@ -297,8 +297,8 @@
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.Color.White;
-            this.panel14.Controls.Add(this.btnEnd);
-            this.panel14.Controls.Add(this.btnAdd);
+            this.panel14.Controls.Add(this.btnRetore);
+            this.panel14.Controls.Add(this.btnBackup);
             this.panel14.Controls.Add(this.panel22);
             this.panel14.Controls.Add(this.panel16);
             this.panel14.Controls.Add(this.panel15);
@@ -308,37 +308,37 @@
             this.panel14.Size = new System.Drawing.Size(572, 45);
             this.panel14.TabIndex = 0;
             // 
-            // btnEnd
+            // btnRetore
             // 
-            this.btnEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.btnEnd.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnEnd.FlatAppearance.BorderSize = 0;
-            this.btnEnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnd.ForeColor = System.Drawing.Color.White;
-            this.btnEnd.Location = new System.Drawing.Point(435, 0);
-            this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(127, 35);
-            this.btnEnd.TabIndex = 2;
-            this.btnEnd.Text = "Restore";
-            this.btnEnd.UseVisualStyleBackColor = false;
-            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            this.btnRetore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.btnRetore.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRetore.FlatAppearance.BorderSize = 0;
+            this.btnRetore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRetore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRetore.ForeColor = System.Drawing.Color.White;
+            this.btnRetore.Location = new System.Drawing.Point(435, 0);
+            this.btnRetore.Name = "btnRetore";
+            this.btnRetore.Size = new System.Drawing.Size(127, 35);
+            this.btnRetore.TabIndex = 2;
+            this.btnRetore.Text = "Restore";
+            this.btnRetore.UseVisualStyleBackColor = false;
+            this.btnRetore.Click += new System.EventHandler(this.btnEnd_Click);
             // 
-            // btnAdd
+            // btnBackup
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(10, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(136, 35);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "New Backup";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnBackup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.btnBackup.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBackup.FlatAppearance.BorderSize = 0;
+            this.btnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBackup.ForeColor = System.Drawing.Color.White;
+            this.btnBackup.Location = new System.Drawing.Point(10, 0);
+            this.btnBackup.Name = "btnBackup";
+            this.btnBackup.Size = new System.Drawing.Size(136, 35);
+            this.btnBackup.TabIndex = 0;
+            this.btnBackup.Text = "New Backup";
+            this.btnBackup.UseVisualStyleBackColor = false;
+            this.btnBackup.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel22
             // 
@@ -444,19 +444,19 @@
         private System.Windows.Forms.Label label1;
         private UC.UCFileBackupTitle ucShiftTitle1;
         private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.FlowLayoutPanel flpDataDetail;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnBackup;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Button btnEnd;
+        private System.Windows.Forms.Button btnRetore;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label lblTotalSafeDrop;
+        private System.Windows.Forms.Label lblTotalFile;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel panel22;
+        public System.Windows.Forms.FlowLayoutPanel flpDataDetail;
     }
 }

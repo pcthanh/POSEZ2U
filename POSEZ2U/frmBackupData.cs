@@ -20,11 +20,11 @@ namespace POSEZ2U
 
         #region Variables & Constructors
 
-        private IShiftService _shiftService;
-        private IShiftService ShiftService
+        private IDatabaseSettingService _databaseSettingService;
+        private IDatabaseSettingService DatabaseSettingService
         {
-            get { return _shiftService ?? (_shiftService = new ShiftService()); }
-            set { _shiftService = value; }
+            get { return _databaseSettingService ?? (_databaseSettingService = new DatabaseSettingService()); }
+            set { _databaseSettingService = value; }
         }
 
 
@@ -45,60 +45,38 @@ namespace POSEZ2U
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            Button EndShift = (Button)sender;
-            ShiftHistoryModel shiftmodel = (ShiftHistoryModel)(EndShift.Tag);
-
-            if (shiftmodel != null)
-            {
-                frmEndShift frm = new frmEndShift(shiftmodel);
+            //Button button = (Button)sender;
+            //BackupDataModel tag = (BackupDataModel)(button.Tag);
+            //if (tag != null)
+            //{
+                frmMessager frm = new frmMessager("Messenger", "Please contact IT support if you want restore database.");
                 frm.ShowDialog();
-
-                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
-                {
-                    addTodayList("Today", 1);
-                    frm.Close();
-                }
-            }
-            else
-            {
-                frmMessager frm = new frmMessager("Messenger", "Please select row befor end shift.");
-                frm.ShowDialog();
-            }
+            //}
+            //else
+            //{
+            //    frmMessager frm = new frmMessager("Messenger", "Please select row befor restore data.");
+            //    frm.ShowDialog();
+            //}
           
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-            var data = ShiftService.GetListShiftHistoryByUserid(userid, 0).ToList().FirstOrDefault();
-
-            if (data != null)
+            userid = UserLoginModel.UserLoginInfo.StaffID;
+            var result= DatabaseSettingService.BackupDatabaseSetting(userid);
+            var text = "Backup database fail.";
+            if (result == 1)
             {
-                frmConfirm frm = new frmConfirm("Confirm", "Do you want again shift old ?");
-                frm.ShowDialog();
-                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
-                {
-                    UserLoginModel.ShiffID = data.ShiftHistoryID;
-                }
+                addTodayList("History", 1);
+                text = "Backup database successful.";
             }
-            else
-            {
-                frmNewShift frm = new frmNewShift();
-                frm.ShowDialog();
-
-                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
-                {
-                    addTodayList("Today", 1);
-                    frm.Close();
-                }
-            }
-        
-          
+            frmMessager frm = new frmMessager("Messenger", text);
+            frm.ShowDialog();
         }
 
         private void AddDatabaseSetting()
         {
-            string[] str = { "Today", "History" };
+            string[] str = { "History" };
             var i = 1;
             foreach (string strList in str)
             {
@@ -136,12 +114,8 @@ namespace POSEZ2U
             switch (tag)
             {
                 case 1:
-                    addTodayList("Today", tag);
+                    addTodayList("History", tag);
                     break;
-                case 2:
-                    addHistoryList("History", tag);
-                    break;
-
             }
 
 
@@ -155,40 +129,28 @@ namespace POSEZ2U
            
             if (i == 1)
             {
-                this.btnAdd.Show();
-                this.btnEnd.Show();
-                var data = ShiftService.GetListShiftHistoryByUserid(userid, 0).ToList();
 
-                double totalsafe = 0;
+                var data = DatabaseSettingService.GetDataBackupFile().ToList();
+
+                double totalfile = data.Count;
 
                 foreach (var item in data)
                 {
-                    var ucShift = new UCShiftItem();
+                    var ucBackup = new UCBackupItem();
+                    ucBackup.lblDate.Text = item.CreateDate??"";
+                    ucBackup.lblFullName.Text = item.FullName??"";
+                    ucBackup.lblDes.Text = item.Description ?? "";
+                    //ucBackup.lblStatus.Text = item.Status ?? "";
 
-                    //ucShift.Dock = DockStyle.Fill;
-                    MoneyFortmat Fomat = new MoneyFortmat(1);
+                    ucBackup.Size = new System.Drawing.Size(flpDataDetail.Width - 5, ucBackup.Height);
 
-                    totalsafe = totalsafe + item.SafeDrop ?? 0;
+                    ucBackup.Tag = item;
+                    ucBackup.Click += UCDataBackupItemNew_Click;
 
-                    ucShift.lblNo.Text = item.ShiftName;
-                    ucShift.lblStaff.Text = item.UserName;
-                    ucShift.lblStart.Text = (item.StartShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblEnd.Text = " ";
-                    if (item.EndShift != null)
-                        ucShift.lblEnd.Text = (item.EndShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblCashstart.Text = Fomat.getValue(item.CashStart ?? 0).ToString("C");
-                    ucShift.lblCashend.Text = Fomat.getValue(item.CashEnd ?? 0).ToString("C");
-                    ucShift.lblSfaedrop.Text = Fomat.getValue(item.SafeDrop ?? 0).ToString("C");
-
-                    ucShift.Size = new System.Drawing.Size(flpDataDetail.Width-5, ucShift.Height);
-
-                    ucShift.Tag = item;
-                    ucShift.Click += UCShiftItem_Click;
-
-                    flpDataDetail.Controls.Add(ucShift);
+                    flpDataDetail.Controls.Add(ucBackup);
                 }
 
-                this.lblTotalSafeDrop.Text = totalsafe.ToString("C");
+                this.lblTotalFile.Text = totalfile.ToString();
 
             }
             else
@@ -198,12 +160,12 @@ namespace POSEZ2U
         }
 
 
-        void UCShiftItem_Click(object sender, EventArgs e)
+        void UCDataBackupItemNew_Click(object sender, EventArgs e)
         {
-            UCShiftItem ucShift = (UCShiftItem)sender;
-            ShiftHistoryModel tag = (ShiftHistoryModel)(ucShift.Tag);
+            UCBackupItem ucBackup = (UCBackupItem)sender;
+            BackupDataModel tag = (BackupDataModel)(ucBackup.Tag);
 
-            btnEnd.Tag = tag;
+            btnRetore.Tag = tag;
 
             foreach (Control ctr in flpDataDetail.Controls)
             {
@@ -213,51 +175,8 @@ namespace POSEZ2U
                     ctr.ForeColor = Color.FromArgb(51, 51, 51);
                 }
             }
-            ucShift.BackColor = Color.FromArgb(0, 153, 51);
-            ucShift.ForeColor = Color.FromArgb(255, 255, 255);
-        }
-
-        public void addHistoryList(string lblName, int i)
-        {
-           
-            if (i == 2)
-            {
-                this.btnAdd.Hide();
-                this.btnEnd.Hide();
-                var data = ShiftService.GetListShiftHistoryByUserid(userid, 1).ToList();
-
-                double totalsafe = 0;
-
-                foreach (var item in data)
-                {
-                    var ucShift = new UCShiftItem();
-
-                    //ucShift.Dock = DockStyle.Fill;
-
-                    totalsafe = totalsafe + item.SafeDrop ?? 0;
-                    MoneyFortmat Fomat = new MoneyFortmat(1);
-
-                    ucShift.lblNo.Text = item.ShiftName;
-                    ucShift.lblStaff.Text = item.UserName;
-                    ucShift.lblStart.Text = (item.StartShift??DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblEnd.Text = " ";
-                    if (item.EndShift != null)
-                        ucShift.lblEnd.Text = (item.EndShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblCashstart.Text = Fomat.getValue(item.CashStart ?? 0).ToString("C");
-                    ucShift.lblCashend.Text = Fomat.getValue(item.CashEnd ?? 0).ToString("C");
-                    ucShift.lblSfaedrop.Text = Fomat.getValue(item.SafeDrop ?? 0).ToString("C");
-
-                    ucShift.Size = new System.Drawing.Size(flpDataDetail.Width-5, ucShift.Height);
-
-                    flpDataDetail.Controls.Add(ucShift);
-                }
-
-                this.lblTotalSafeDrop.Text = totalsafe.ToString("C");
-            }
-            else
-            {
-                flpDataDetail.Controls.Clear();
-            }
+            ucBackup.BackColor = Color.FromArgb(0, 153, 51);
+            ucBackup.ForeColor = Color.FromArgb(255, 255, 255);
         }
 
       
