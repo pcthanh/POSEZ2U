@@ -1049,5 +1049,23 @@ namespace ServicePOS
         {
             return DynID;
         }
+
+
+        public int DeleteTransferTableAll(OrderDateModel itemOrder)
+        {
+            int result = 0;
+            using (var transaciton = _context.Database.BeginTransaction())
+            {
+                _context.Database.ExecuteSqlCommand("delete from ORDER_DATE  where OrderID='" + itemOrder.OrderID + "'");
+                _context.Database.ExecuteSqlCommand("delete from ORDER_DETAIL_DATE where OrderDetailID='" + itemOrder.OrderID + "'");
+                 
+                    _context.Database.ExecuteSqlCommand("delete ORDER_DETAIL_MODIFIRE_DATE where OrderModifireID='" + itemOrder.OrderID + "'");
+                
+                _context.SaveChanges();
+                transaciton.Commit();
+                result = 1;
+            }
+            return result;
+        }
     }
 }

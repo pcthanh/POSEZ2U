@@ -28,6 +28,8 @@ namespace ServicePOS
         IEnumerable<PrinterModel> GetListPaymentprinter();
 
         IEnumerable<PrinterModel> GetListPrinterJoinTable();
+
+        IEnumerable<PrinterModel> GetListPrinterTransferTable();
         
     }
 }

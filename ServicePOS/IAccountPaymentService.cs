@@ -10,5 +10,6 @@ namespace ServicePOS
     public interface IAccountPaymentService : IDisposable
     {
          int InsertDebitAccount(AccountPaymentModel acc);
+         IEnumerable<AccountPaymentModel> GetAccPayment(int CusNo, DateTime TimeFrom, DateTime TimeTo);
     }
 }

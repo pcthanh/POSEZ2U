@@ -85,5 +85,23 @@ namespace ServicePOS
             
         }
 
+
+
+        public IEnumerable<AccountPaymentModel> GetAccPayment(int CusNo, DateTime TimeFrom, DateTime TimeTo)
+        {
+            var list  = _context.ACC_PAYMENT.Where(x=>x.CusNo==CusNo && x.CreateDate>=TimeFrom && x.CreateDate<=TimeTo)
+                .Select(x=>new AccountPaymentModel()
+            {
+                InvoiceID =x.InvoiceID,
+                InvoiceNumber = x.InvoiceNumber,
+                SubTotal = x.SubTotal,
+                Cash =x.Cash,
+                Card=x.Card,
+                IsCredit = x.IsCredit,
+                IsDebit = x.IsDebit,
+                CreateDate = x.CreateDate
+            });
+            return list;
+        }
     }
 }
