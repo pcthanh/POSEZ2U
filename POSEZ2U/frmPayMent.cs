@@ -65,6 +65,15 @@ namespace POSEZ2U
             btnGiftCard.Enabled = true;
             btnAccount.Enabled = true;
         }
+
+        private void DisEnableButton()
+        {
+            btnCash.Enabled = false;
+            btnCard.Enabled = false;
+            btnCheque.Enabled = false;
+            btnGiftCard.Enabled = false;
+            btnAccount.Enabled = false;
+        }
         private void frmPayMent_Load(object sender, EventArgs e)
         {
             //var screen = Screen.FromPoint(this.Location);
@@ -177,6 +186,7 @@ namespace POSEZ2U
         }
         private void txtTender_TextChanged(object sender, EventArgs e)
         {
+            
             CalTotal();
         }
         private int CountUcPayMent()
@@ -188,14 +198,17 @@ namespace POSEZ2U
         {
             try
             {
-                lockTextChange = true;
-                CashModel item = new CashModel();
-                item.PaymentID = 1;
-                item.Total = Convert.ToDouble(txtTender.Text);
-                addCash(item);
-                addPayment(item);
-                CheckTotal();
-                lockTextChange = false;
+                if (txtTender.Text != string.Empty)
+                {
+                    lockTextChange = true;
+                    CashModel item = new CashModel();
+                    item.PaymentID = 1;
+                    item.Total = Convert.ToDouble(txtTender.Text);
+                    addCash(item);
+                    addPayment(item);
+                    CheckTotal();
+                    lockTextChange = false;
+                }
             }
             catch (Exception ex)
             {
@@ -241,23 +254,26 @@ namespace POSEZ2U
         {
             try
             {
-                lockTextChange = true;
-                frmChooseCard frm = new frmChooseCard(cardTemp);
-                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                if (txtTender.Text != string.Empty)
                 {
-                    cardTemp = frm.Card;
-                    cardTemp.PayMenyID = 2;
-                    cardTemp.SubTotal = Convert.ToDouble(txtTender.Text);
-                    addCard(cardTemp);
-                    addPayment(cardTemp);
-                    InvoiceByCardModel item = new InvoiceByCardModel();
-                    item.CardID = cardTemp.CardID;
-                    item.Total = cardTemp.SubTotal * 1000;
-                    item.NameCard = cardTemp.CardName;
-                    lstInvoiceByCard.Add(item);
-                    lstInvoiceByCardSplitBill.Add(item);
-                    CheckTotal();
-                    lockTextChange = false;
+                    lockTextChange = true;
+                    frmChooseCard frm = new frmChooseCard(cardTemp);
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        cardTemp = frm.Card;
+                        cardTemp.PayMenyID = 2;
+                        cardTemp.SubTotal = Convert.ToDouble(txtTender.Text);
+                        addCard(cardTemp);
+                        addPayment(cardTemp);
+                        InvoiceByCardModel item = new InvoiceByCardModel();
+                        item.CardID = cardTemp.CardID;
+                        item.Total = cardTemp.SubTotal * 1000;
+                        item.NameCard = cardTemp.CardName;
+                        lstInvoiceByCard.Add(item);
+                        lstInvoiceByCardSplitBill.Add(item);
+                        CheckTotal();
+                        lockTextChange = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -801,22 +817,32 @@ namespace POSEZ2U
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            frmPaymentAcc frm = new frmPaymentAcc();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                AccountModel accItem = new AccountModel();
-                accItem.PaymentID = 3;
-                accItem.Total = Convert.ToDouble(txtTender.Text);
-                UCAccPayment acc = new UCAccPayment();
-                acc.lblStt.Text = "#" + CountUcPayMent().ToString();
-                acc.lblMethodType.Text = btnAccount.Text;
-                acc.lblTotal.Text = "$" + money.Format2((Convert.ToDouble(txtTender.Text)) * 1000);
-                acc.Tag = accItem;
-                acc.Click += acc_Click;
-                OrderMain.CusItem = frm.itemS;
-                OrderMain.Account  =Convert.ToInt32(Convert.ToDouble(txtTender.Text)*1000);
-                addPayment(accItem);
-                flpPaymentType.Controls.Add(acc);
+                if (txtTender.Text != string.Empty)
+                {
+                    frmPaymentAcc frm = new frmPaymentAcc();
+                    if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        AccountModel accItem = new AccountModel();
+                        accItem.PaymentID = 3;
+                        accItem.Total = Convert.ToDouble(txtTender.Text);
+                        UCAccPayment acc = new UCAccPayment();
+                        acc.lblStt.Text = "#" + CountUcPayMent().ToString();
+                        acc.lblMethodType.Text = btnAccount.Text;
+                        acc.lblTotal.Text = "$" + money.Format2((Convert.ToDouble(txtTender.Text)) * 1000);
+                        acc.Tag = accItem;
+                        acc.Click += acc_Click;
+                        OrderMain.CusItem = frm.itemS;
+                        OrderMain.Account = Convert.ToInt32(Convert.ToDouble(txtTender.Text) * 1000);
+                        addPayment(accItem);
+                        flpPaymentType.Controls.Add(acc);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmPayment::::::::::::::::::::btnAccount_Click:::::::::::::::::" + ex.Message);
             }
         }
 

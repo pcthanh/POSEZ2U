@@ -52,18 +52,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtCash = new POSEZ2U.UC.UCTextBoxKeyPad();
+            this.txtCard = new POSEZ2U.UC.UCTextBoxKeyPad();
+            this.txtBalan = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtSearchCus = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.panel9 = new System.Windows.Forms.Panel();
             this.flpListCus = new System.Windows.Forms.FlowLayoutPanel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.ucCustomerTitle1 = new POSEZ2U.UC.UCCustomerTitle();
-            this.txtSearchCus = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.txtCash = new POSEZ2U.UC.UCTextBoxKeyPad();
-            this.txtCard = new POSEZ2U.UC.UCTextBoxKeyPad();
-            this.txtBalan = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.panel5.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel16.SuspendLayout();
@@ -151,6 +151,7 @@
             this.btnHistory.TabIndex = 0;
             this.btnHistory.Text = "HISTORY";
             this.btnHistory.UseVisualStyleBackColor = false;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
             // 
             // panel17
             // 
@@ -347,6 +348,41 @@
             this.label3.Text = "Balance";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtCash
+            // 
+            this.txtCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtCash.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtCash.Location = new System.Drawing.Point(127, 3);
+            this.txtCash.Multiline = true;
+            this.txtCash.Name = "txtCash";
+            this.txtCash.Size = new System.Drawing.Size(304, 32);
+            this.txtCash.TabIndex = 2;
+            // 
+            // txtCard
+            // 
+            this.txtCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtCard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtCard.Location = new System.Drawing.Point(560, 3);
+            this.txtCard.Multiline = true;
+            this.txtCard.Name = "txtCard";
+            this.txtCard.Size = new System.Drawing.Size(287, 32);
+            this.txtCard.TabIndex = 2;
+            // 
+            // txtBalan
+            // 
+            this.txtBalan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.tableLayoutPanel1.SetColumnSpan(this.txtBalan, 3);
+            this.txtBalan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBalan.Enabled = false;
+            this.txtBalan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtBalan.Location = new System.Drawing.Point(127, 41);
+            this.txtBalan.Multiline = true;
+            this.txtBalan.Name = "txtBalan";
+            this.txtBalan.Size = new System.Drawing.Size(720, 32);
+            this.txtBalan.TabIndex = 2;
+            // 
             // panel7
             // 
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
@@ -391,6 +427,18 @@
             this.label4.Text = "Search Cus";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtSearchCus
+            // 
+            this.txtSearchCus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtSearchCus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearchCus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearchCus.Location = new System.Drawing.Point(126, 3);
+            this.txtSearchCus.Multiline = true;
+            this.txtSearchCus.Name = "txtSearchCus";
+            this.txtSearchCus.Size = new System.Drawing.Size(721, 35);
+            this.txtSearchCus.TabIndex = 1;
+            this.txtSearchCus.TextChanged += new System.EventHandler(this.txtSearchCus_TextChanged);
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.flpListCus);
@@ -427,53 +475,6 @@
             this.ucCustomerTitle1.Name = "ucCustomerTitle1";
             this.ucCustomerTitle1.Size = new System.Drawing.Size(850, 35);
             this.ucCustomerTitle1.TabIndex = 0;
-            // 
-            // txtSearchCus
-            // 
-            this.txtSearchCus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtSearchCus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSearchCus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtSearchCus.Location = new System.Drawing.Point(126, 3);
-            this.txtSearchCus.Multiline = true;
-            this.txtSearchCus.Name = "txtSearchCus";
-            this.txtSearchCus.Size = new System.Drawing.Size(721, 35);
-            this.txtSearchCus.TabIndex = 1;
-            this.txtSearchCus.TextChanged += new System.EventHandler(this.txtSearchCus_TextChanged);
-            // 
-            // txtCash
-            // 
-            this.txtCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtCash.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtCash.Location = new System.Drawing.Point(127, 3);
-            this.txtCash.Multiline = true;
-            this.txtCash.Name = "txtCash";
-            this.txtCash.Size = new System.Drawing.Size(304, 32);
-            this.txtCash.TabIndex = 2;
-            // 
-            // txtCard
-            // 
-            this.txtCard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtCard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtCard.Location = new System.Drawing.Point(560, 3);
-            this.txtCard.Multiline = true;
-            this.txtCard.Name = "txtCard";
-            this.txtCard.Size = new System.Drawing.Size(287, 32);
-            this.txtCard.TabIndex = 2;
-            // 
-            // txtBalan
-            // 
-            this.txtBalan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.tableLayoutPanel1.SetColumnSpan(this.txtBalan, 3);
-            this.txtBalan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtBalan.Enabled = false;
-            this.txtBalan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtBalan.Location = new System.Drawing.Point(127, 41);
-            this.txtBalan.Multiline = true;
-            this.txtBalan.Name = "txtBalan";
-            this.txtBalan.Size = new System.Drawing.Size(720, 32);
-            this.txtBalan.TabIndex = 2;
             // 
             // frmAccountDebit
             // 

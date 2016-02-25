@@ -66,6 +66,18 @@ namespace POSEZ2U
                 flowLayoutPanel1.Controls.Add(ucTable);
             }
         }
+        private void RefeshRealTime()
+        {
+            Timer tRefesh = new Timer();
+            tRefesh.Interval = 1000;
+            tRefesh.Tick += tRefesh_Tick;
+            tRefesh.Start();
+        }
+
+        void tRefesh_Tick(object sender, EventArgs e)
+        {
+            CheckStatusTable();
+        }
 
         void ucTable_Click(object sender, EventArgs e)
         {
@@ -164,6 +176,7 @@ namespace POSEZ2U
             //AnimateWindow(Handle, 10000, AW_BLEND | AW_ACTIVATE);
             CheckStatusTable();
             frmpro.IsStoped = true;
+            
 
         }
 

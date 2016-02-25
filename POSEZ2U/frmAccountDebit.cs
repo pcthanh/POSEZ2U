@@ -151,5 +151,11 @@ namespace POSEZ2U
 
             }
         }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            frmHistoryAccPayment frm = new frmHistoryAccPayment(itemS);
+            frm.ShowDialog();
+        }
     }
 }

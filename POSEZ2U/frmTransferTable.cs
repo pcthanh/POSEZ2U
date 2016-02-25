@@ -11,6 +11,7 @@ using POSEZ2U.UC;
 using ServicePOS;
 using ServicePOS.Model;
 using SystemLog;
+using System.Drawing.Printing;
 
 namespace POSEZ2U
 {
@@ -25,6 +26,16 @@ namespace POSEZ2U
         OrderDateModel OrderMain;
         OrderDateModel OrderSlpitOld = new OrderDateModel();
         OrderDateModel OrderSlpitNew = new OrderDateModel();
+        List<PrinterModel> PrintData = new List<PrinterModel>();
+        Printer.POSPrinter posPrinter = new Printer.POSPrinter();
+        string tableOld;
+        private IPrinterService _printService;
+        private IPrinterService PrintService
+        {
+            get { return _printService ?? (_printService = new PrinterService()); }
+            set { _printService = value; }
+        }
+        string Header = string.Empty;
         private IOrderService _orderService;
         private IOrderService OrderService
         {
@@ -231,6 +242,7 @@ namespace POSEZ2U
                 OrderSlpitNew = OrderMain;
                 OrderSlpitNew.FloorID = lblNewTable.Text;
                 OrderMain.isTransferTableAll = 1;
+                tableOld = this.lblNoTable.Text;
             }
             catch (Exception ex)
             {
@@ -276,7 +288,6 @@ namespace POSEZ2U
             }
         }
        
-        
         private void btnLeft_Click(object sender, EventArgs e)
         {
             try
@@ -314,6 +325,7 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            int result = 0;
             try
             {
                 if (flpNewTable.Controls.Count > 0)
@@ -325,20 +337,35 @@ namespace POSEZ2U
                     }
                     else
                     {
+                        GetListPrinter();
                         OrderMain.Seat = 0;
                         for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                         {
                             OrderMain.ListOrderDetail[i].Seat = 0;
                         }
-                        OrderService.InsertOrder(OrderSlpitNew);
+                        result=result +OrderService.InsertOrder(OrderSlpitNew);
                         if (OrderMain.isTransferTableAll == 1)
                         {
-                            OrderService.DeleteJoinTableAll(OrderMain);
+                             result =result+ OrderService.DeleteJoinTableAll(OrderMain);
+                            
                         }
                         else
                         {
-                            OrderService.InsertOrder(OrderMain);
+                            if(OrderMain.ListOrderDetail.Count>0)
+                                result=result+ OrderService.InsertOrder(OrderMain);
+                            else
+                                result = result + OrderService.DeleteTransferTableAll(OrderMain);
 
+                        }
+                        if (result >= 2)
+                        {
+                            foreach (PrinterModel item in PrintData)
+                            {
+                                Header = item.Header;
+                                posPrinter.SetPrinterName(item.PrinterName);
+                                posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+                                posPrinter.Print();
+                            }
                         }
                         
                     }
@@ -349,6 +376,110 @@ namespace POSEZ2U
             {
                 LogPOS.WriteLog("frmTransferTable::::::::::::::::::::::btnOK_Click::::::::::::::::;;" + ex.Message);
             }
+        }
+
+        void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            if (OrderMain.isTransferTableAll == 1 || OrderMain.ListOrderDetail.Count==0)
+            {
+                string tableNew = "FROM TABLE " + lblNoTable.Text + " TO TABLE " + OrderSlpitNew.FloorID;
+                printnTransferTableAll(tableNew, e);
+            }
+            else
+            {
+                printnTransferTableNotAll(OrderSlpitNew,e);
+            }
+        }
+
+        public void printnTransferTableAll(string TransferTable, PrintPageEventArgs e)
+        {
+            float l_y = 0;
+            l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+            l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y = posPrinter.DrawString(TransferTable, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine() / 2;
+            l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+
+        }
+        public float printnTransferTableNotAll(OrderDateModel Order, PrintPageEventArgs e)
+        {
+            float l_y = 0;
+           l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           l_y=posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+           posPrinter.DrawString("Table# " + Order.FloorID, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+           l_y = posPrinter.DrawString("Order#" + Order.OrderID, e, new Font("Arial", 14), l_y, 3);
+           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           int countItem =0;
+           for (int i = 0; i < Order.ListOrderDetail.Count; i++)
+           {
+               float yStart  = l_y;
+
+               if (Order.ListOrderDetail[i].ChangeStatus == 2)
+               {
+                   l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                   posPrinter.DrawCancelLine(e, yStart, l_y);
+               }
+               else
+               {
+                   if (Order.ListOrderDetail[i].ChangeStatus == 1)
+                   {
+                       l_y = posPrinter.DrawString("--Add  " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                   }
+                   else
+                   {
+                       countItem++;
+                       l_y = posPrinter.DrawString(Order.ListOrderDetail[i].Qty.ToString() + " " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                   }
+               }
+               //l_y = posPrinter.DrawString(OrderMain.ListOrderDetail[i].Qty.ToString(), e, new Font("Arial", 14), l_y, 2);
+               //posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].Price.ToString()), e, new Font("Arial", 14), yStart, 3);
+
+               if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+               {
+                   for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                   {
+                       if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
+                       {
+                           l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
+                           posPrinter.DrawCancelLine(e, yStart, l_y);
+                       }
+                       else
+                       {
+                           if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 1)
+                           {
+                               l_y = posPrinter.DrawString("--Add" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                           }
+                           else
+                           {
+                               if(!OrderMain.IsLoadFromData)
+                                    l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                           }
+                       }
+                       //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 14), l_y, 3);
+                   }
+               }
+           }
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+
+           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+           l_y = posPrinter.DrawString("", e, new Font("Arial", 14), l_y, 1);
+           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           posPrinter.DrawString("Total item: "+countItem, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
+           //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 14, FontStyle.Bold), l_y, 3);
+           l_y += posPrinter.GetHeightPrinterLine()/2;
+           return l_y;
+       
         }
 
         private void btnRight_Click(object sender, EventArgs e)
@@ -386,6 +517,21 @@ namespace POSEZ2U
         private void label1_Click(object sender, EventArgs e)
         {
 
-        } 
+        }
+        private void GetListPrinter()
+        {
+            PrintData.Clear();
+            var listPrinter = PrintService.GetListPrinterTransferTable();
+            foreach (PrinterModel item in listPrinter)
+            {
+                PrinterModel print = new PrinterModel();
+                print.PrinterName = item.PrinterName;
+                print.PrintName = item.PrintName;
+                print.PrinterType = item.PrinterType;
+                print.Header = item.Header;
+                print.ID = item.ID;
+                PrintData.Add(print);
+            }
+        }
     }
 }
