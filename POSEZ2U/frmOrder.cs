@@ -1433,7 +1433,7 @@ namespace POSEZ2U
                     {
                         //PrinterServer print = new PrinterServer();
                         //print.P
-                        CallBackStatusOrderPrintBill();
+                        CallBackStatusOrderPrintBill(OrderMain);
                         this.Close();
                     }
                 }

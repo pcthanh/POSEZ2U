@@ -42,7 +42,7 @@ namespace POSEZ2U
         OrderDateModel OrderMain = new OrderDateModel();
         public delegate void CallBackStatusOrder(OrderDateModel orderMain);
         public delegate void CallBackStatusOrderCancel();
-        public delegate void CallBackStatusOrderPrintBill();
+        public delegate void CallBackStatusOrderPrintBill(OrderDateModel orderMain);
         private delegate void ChangeTextCallback(string text, Control control);
         public delegate void AfterJoinTable();
         const int AW_HOR_POSITIVE = 1;
@@ -76,7 +76,7 @@ namespace POSEZ2U
 
         void tRefesh_Tick(object sender, EventArgs e)
         {
-            CheckStatusTable();
+            CheckStatusTableRealTime();
         }
 
         void ucTable_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace POSEZ2U
                 frm.LoadOrder(ucTable.lbTableNo.Text, 0);
                 frm.CallBackStatusOrder = new CallBackStatusOrder(this.CallBackOrder);
                 frm.CallBackStatusOrderCancel = new CallBackStatusOrderCancel(this.CheckStatusTable);
-                frm.CallBackStatusOrderPrintBill = new CallBackStatusOrderPrintBill(this.CheckStatusTable);
+                frm.CallBackStatusOrderPrintBill = new CallBackStatusOrderPrintBill(this.CallBackOrder);
                 frm.Show();
                 
             }
@@ -125,6 +125,51 @@ namespace POSEZ2U
             CheckStatusTable();
 
         }
+        private void CheckStatusTableRealTime()
+        {
+            try
+            {
+                for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
+                {
+                    UCTable ucTable = (UCTable)flowLayoutPanel1.Controls[i];
+                    if (ucTable.BackColor != Color.Green)
+                    {
+                        StatusTable statusTable = OrderService.GetStatusTable(ucTable.lbTableNo.Text);
+                        if (statusTable.Complete == 0)
+                        {
+                            ucTable.BackColor = Color.Green;
+                            ucTable.ForeColor = Color.White;
+                            ucTable.lbTime.Text = statusTable.Time;
+                            ucTable.Tag = statusTable;
+                            SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
+                        }
+                        if (statusTable.Complete == 2)
+                        {
+
+                            ucTable.BackColor = Color.FromArgb(0, 102, 204);
+                            ucTable.ForeColor = Color.White;
+                            ucTable.lbTime.Text = statusTable.Time;
+                            ucTable.Tag = statusTable;
+                            SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
+                            ucTable.Refresh();
+                        }
+                        if (statusTable.Complete == -1)
+                        {
+                            ucTable.BackColor = Color.FromArgb(242, 242, 242);
+                            ucTable.ForeColor = Color.Black;
+                            ucTable.Tag = null;
+                            SetText("", ucTable.lbTime);
+                            SetText("", ucTable.lbSubTotal);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("CheckStatusTable::::::::::::::::::::::::::::" + ex.Message);
+            }
+        }
+
         private void CheckStatusTable()
         {
             try
@@ -132,33 +177,35 @@ namespace POSEZ2U
                 for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
                 {
                     UCTable ucTable = (UCTable)flowLayoutPanel1.Controls[i];
-                    StatusTable statusTable = OrderService.GetStatusTable(ucTable.lbTableNo.Text);
-                    if (statusTable.Complete == 0)
-                    {
-                        ucTable.BackColor = Color.Green;
-                        ucTable.ForeColor = Color.White;
-                        ucTable.lbTime.Text = statusTable.Time;
-                        ucTable.Tag = statusTable;
-                        SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
-                    }
-                    if (statusTable.Complete == 2)
-                    {
-                        
-                        ucTable.BackColor = Color.FromArgb(0, 102, 204);
-                        ucTable.ForeColor = Color.White;
-                        ucTable.lbTime.Text = statusTable.Time;
-                        ucTable.Tag = statusTable;
-                        SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
-                        ucTable.Refresh();
-                    }
-                    if (statusTable.Complete == -1)
-                    {
-                        ucTable.BackColor = Color.FromArgb(242, 242, 242);
-                        ucTable.ForeColor = Color.Black;
-                        ucTable.Tag = null;
-                        SetText("", ucTable.lbTime);
-                       SetText("", ucTable.lbSubTotal);
-                    }
+                    
+                        StatusTable statusTable = OrderService.GetStatusTable(ucTable.lbTableNo.Text);
+                        if (statusTable.Complete == 0)
+                        {
+                            ucTable.BackColor = Color.Green;
+                            ucTable.ForeColor = Color.White;
+                            ucTable.lbTime.Text = statusTable.Time;
+                            ucTable.Tag = statusTable;
+                            SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
+                        }
+                        if (statusTable.Complete == 2)
+                        {
+
+                            ucTable.BackColor = Color.FromArgb(0, 102, 204);
+                            ucTable.ForeColor = Color.White;
+                            ucTable.lbTime.Text = statusTable.Time;
+                            ucTable.Tag = statusTable;
+                            SetText("$" + monetFormat.Format(Convert.ToDouble(statusTable.SubTotal)), ucTable.lbSubTotal);
+                            ucTable.Refresh();
+                        }
+                        if (statusTable.Complete == -1)
+                        {
+                            ucTable.BackColor = Color.FromArgb(242, 242, 242);
+                            ucTable.ForeColor = Color.Black;
+                            ucTable.Tag = null;
+                            SetText("", ucTable.lbTime);
+                            SetText("", ucTable.lbSubTotal);
+                        }
+                    
                 }
             }
             catch (Exception ex)
@@ -173,8 +220,8 @@ namespace POSEZ2U
             frmpro.Show();
             frmpro.ShowInTaskbar = false;
             this.paintFloor();
-            //AnimateWindow(Handle, 10000, AW_BLEND | AW_ACTIVATE);
             CheckStatusTable();
+            RefeshRealTime();
             frmpro.IsStoped = true;
             
 

@@ -21,6 +21,7 @@ namespace POSEZ2U
             InitializeComponent();
         }
         public delegate void SendTableNO(int TableNO);
+        List<SeatModel> lstSeat = new List<SeatModel>();
         OrderDateModel OrderMain;
         int Seat;
         OrderDateModel OrderSlpitOld = new OrderDateModel();
@@ -80,14 +81,14 @@ namespace POSEZ2U
 
                 OrderMain = OrderService.GetOrderByTable(TableID, 0);
 
-                if (OrderMain.Seat > 0)
+                if (OrderMain.ListSeatOfOrder.Count>0)
                 {
                     OrderMain.IsLoadFromData = true;
                     //lblSeat.Text = OrderMain.Seat.ToString();
-                    for (int seat = 1; seat <= OrderMain.Seat; seat++)
+                    foreach (SeatModel seat in OrderMain.ListSeatOfOrder)
                     {
                         UCSeat ucSeat = new UCSeat();
-                        ucSeat.lblSeat.Text = "Seat " + seat.ToString();
+                        ucSeat.lblSeat.Text = "Seat " + seat.Seat.ToString();
                         // ucSeat.Click += ucSeat_Click;
                         flp.Controls.Add(ucSeat);
                         indexControl = flp.Controls.Count;
@@ -95,7 +96,7 @@ namespace POSEZ2U
                         {
                             for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                             {
-                                if (OrderMain.ListOrderDetail[i].Seat == seat)
+                                if (OrderMain.ListOrderDetail[i].Seat == seat.Seat)
                                 {
                                     addOrder(OrderMain.ListOrderDetail[i], flp);
                                     indexControl++;
@@ -209,7 +210,10 @@ namespace POSEZ2U
             if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 Seat = frm.NumberSeat;
-                OrderMain.addSeat(Seat);
+                SeatModel seatAdd = new SeatModel();
+                seatAdd.Seat = Seat;
+                lstSeat.Add(seatAdd);
+                OrderSlpitNew.ListSeatOfOrder = lstSeat;
                 UCSeat ucSeat = new UCSeat();
                 ucSeat.lblSeat.Text = "Seat " + Seat;
                 //ucSeat.Click += ucSeat_Click;

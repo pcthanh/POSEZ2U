@@ -28,6 +28,7 @@ namespace POSEZ2U
         OrderDateModel OrderSlpitNew = new OrderDateModel();
         List<PrinterModel> PrintData = new List<PrinterModel>();
         Printer.POSPrinter posPrinter = new Printer.POSPrinter();
+        ConfigModel cofig = new ServicePOS.Model.ConfigModel();
         string tableOld;
         private IPrinterService _printService;
         private IPrinterService PrintService
@@ -141,14 +142,14 @@ namespace POSEZ2U
                 
                 OrderMain = OrderService.GetOrderByTable(TableID, 0);
                 
-                if (OrderMain.Seat > 0)
+                if (OrderMain.ListSeatOfOrder.Count>0)
                 {
                     OrderMain.IsLoadFromData = true;
                     //lblSeat.Text = OrderMain.Seat.ToString();
-                    for (int seat = 1; seat <= OrderMain.Seat; seat++)
+                    foreach (SeatModel seat in OrderMain.ListSeatOfOrder)
                     {
                         UCSeat ucSeat = new UCSeat();
-                        ucSeat.lblSeat.Text = "Seat " + seat.ToString();
+                        ucSeat.lblSeat.Text = "Seat " + seat.Seat.ToString();
                        // ucSeat.Click += ucSeat_Click;
                         flpOldTable.Controls.Add(ucSeat);
                         indexControl = flpOldTable.Controls.Count;
@@ -156,7 +157,7 @@ namespace POSEZ2U
                         {
                             for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                             {
-                                if (OrderMain.ListOrderDetail[i].Seat == seat)
+                                if (OrderMain.ListOrderDetail[i].Seat == seat.Seat)
                                 {
                                     addOrder(OrderMain.ListOrderDetail[i],flp);
                                     indexControl++;
@@ -343,7 +344,21 @@ namespace POSEZ2U
                         {
                             OrderMain.ListOrderDetail[i].Seat = 0;
                         }
-                        result=result +OrderService.InsertOrder(OrderSlpitNew);
+                        OrderDateModel OrderTemp = OrderService.GetOrderByTKA(lblNewTable.Text, "");
+                        if (OrderTemp.ListOrderDetail.Count > 0)
+                        {
+                            foreach (OrderDetailModel item in OrderSlpitNew.ListOrderDetail)
+                            {
+                                item.OrderID = OrderTemp.OrderID;
+                                OrderTemp.ListOrderDetail.Add(item);
+                            }
+                            result = result + OrderService.InsertOrder(OrderTemp);
+                        }
+                        else
+                        {
+                            result = result + OrderService.InsertOrder(OrderSlpitNew);
+                        }
+                       
                         if (OrderMain.isTransferTableAll == 1)
                         {
                              result =result+ OrderService.DeleteJoinTableAll(OrderMain);
@@ -402,9 +417,9 @@ namespace POSEZ2U
             l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
             l_y = posPrinter.DrawString(TransferTable, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
             l_y += posPrinter.GetHeightPrinterLine() / 2;
-            l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
-            l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
-            l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString(cofig.Web, e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString(cofig.Logan, e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString(cofig.Note, e, new Font("Arial", 10), l_y, 2);
 
         }
         public float printnTransferTableNotAll(OrderDateModel Order, PrintPageEventArgs e)
