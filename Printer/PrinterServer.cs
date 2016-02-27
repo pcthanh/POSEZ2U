@@ -89,7 +89,7 @@ namespace Printer
                    {
                        for (int k = 0; k < OrderMain.ListOrderDetail[j].ListPrintJob.Count; k++)
                        {
-                           if (OrderMain.IsLoadFromData )
+                           if (OrderMain.IsLoadFromData && (OrderMain.ListOrderDetail[j].ChangeStatus == 2 || OrderMain.ListOrderDetail[j].ChangeStatus == 1 || OrderMain.ListOrderDetail[j].ChangeStatus == 3))
                            {
                                if (OrderMain.ListOrderDetail[j].ListPrintJob[k].PrinterID == printData[i].ID )
                                {
@@ -222,7 +222,7 @@ namespace Printer
                            }
                            else
                            {
-                               if(!OrderMain.IsLoadFromData)
+                               //if(!OrderMain.IsLoadFromData)
                                     l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
                            }
                        }
@@ -334,10 +334,10 @@ namespace Printer
        private void PrintBill(PrintPageEventArgs e)
        {
            float l_y = 0;
-           l_y = posPrinter.DrawString("BI RESTAURANT", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
-           l_y = posPrinter.DrawString("ABN:45 134918497", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
-           l_y = posPrinter.DrawString("233A Canley Vale Rd Canley Heights NSW 2166", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
-           l_y = posPrinter.DrawString("Tel: 9727 7585", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Name, e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.ABN, e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Address, e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Tel, e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
@@ -419,27 +419,34 @@ namespace Printer
                l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.Change), e, new Font("Arial", 10), l_y, 3);
 
            }
+           if (OrderMain.CusItem.ClientID>0)
+           {
+               posPrinter.DrawString("Account:", e, new Font("Arial", 10), l_y, 1);
+               l_y = posPrinter.DrawString("$" + money.Format2(Convert.ToDouble(OrderMain.SubTotal())), e, new Font("Arial", 10), l_y, 3);
+               posPrinter.DrawString("AccountName:", e, new Font("Arial", 10), l_y, 1);
+               l_y = posPrinter.DrawString(OrderMain.CusItem.Fname, e, new Font("Arial", 10), l_y, 3);
+           }
            l_y += posPrinter.GetHeightPrinterLine() / 2;
-           l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
-           l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
-           l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Web, e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Logan, e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Note, e, new Font("Arial", 10), l_y, 2);
 
        }
        public void printJoinTable(string JoinTable, PrintPageEventArgs e)
        {
            float l_y = 0;
-           l_y = posPrinter.DrawString("BI RESTAURANT", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
-           l_y = posPrinter.DrawString("ABN:45 134918497", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
-           l_y = posPrinter.DrawString("233A Canley Vale Rd Canley Heights NSW 2166", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
-           l_y = posPrinter.DrawString("Tel: 9727 7585", e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Name, e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.ABN, e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Address, e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Tel, e, new Font("Arial", 10, FontStyle.Italic), l_y, 2);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
            l_y = posPrinter.DrawString(JoinTable, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 2;
-           l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
-           l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
-           l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Web, e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Logan, e, new Font("Arial", 10), l_y, 2);
+           l_y = posPrinter.DrawString(cofig.Note, e, new Font("Arial", 10), l_y, 2);
 
        }
     }
