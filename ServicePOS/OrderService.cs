@@ -631,7 +631,7 @@ namespace ServicePOS
                     foreach (OrderDetailModel item in data)
                     {
                         int keyItemOld = item.KeyItem;
-                        OrderTKA.addItemToList(item);
+                       
                         var dataOrderModifire = _context.ORDER_DETAIL_DATE.Join(_context.ORDER_DETAIL_MODIFIRE_DATE, pro => pro.ProductID,
                            modifire => modifire.ProductID, (pro, modifire) => new { pro, modifire })
                            .Join(_context.MODIFIREs, modi => modi.modifire.ModifireID, c => c.ModifireID, (modi, c) => new { modi, c })
@@ -648,6 +648,18 @@ namespace ServicePOS
                                OrderID = x.modi.pro.OrderID,
                                DynID = x.modi.modifire.DynId ?? 0
                            });
+                        var print = _context.PRINTE_JOB_DETAIL.Where(x => x.ProductID == item.ProductID)
+                              .Select(x => new PrinteJobDetailModel
+                              {
+                                  ProductID = x.ProductID,
+                                  PrinterID = x.PrinterID
+                              }
+                              );
+                        foreach (PrinteJobDetailModel p in print)
+                        {
+                            item.ListPrintJob.Add(p);
+                        }
+                        OrderTKA.addItemToList(item);
                         foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
                         {
                             OrderTKA.addModifierToList(itemmodifire, item.KeyItem);
@@ -979,7 +991,7 @@ namespace ServicePOS
                 foreach (OrderDetailModel item in data)
                 {
                     int keyItemOld = item.KeyItem;
-                    OrderMain.addItemToList(item);
+                   
                     var dataOrderModifire = _context.INVOICE_DETAIL.Join(_context.INVOICE_DETAIL_MODIFIRE, pro => pro.ProductID,
                        modifire => modifire.ProductID, (pro, modifire) => new { pro, modifire })
                        .Join(_context.MODIFIREs, modi => modi.modifire.ModifireID, c => c.ModifireID, (modi, c) => new { modi, c })
@@ -996,6 +1008,19 @@ namespace ServicePOS
                            InvoiceID = x.modi.pro.InvoiceID,
                            DynID = x.modi.modifire.DynId ?? 0
                        });
+
+                    var print = _context.PRINTE_JOB_DETAIL.Where(x => x.ProductID == item.ProductID)
+                       .Select(x => new PrinteJobDetailModel
+                       {
+                           ProductID = x.ProductID,
+                           PrinterID = x.PrinterID
+                       }
+                       );
+                    foreach (PrinteJobDetailModel p in print)
+                    {
+                        item.ListPrintJob.Add(p);
+                    }
+                    OrderMain.addItemToList(item);
                     foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
                     {
                         OrderMain.addModifierToList(itemmodifire, item.KeyItem);
