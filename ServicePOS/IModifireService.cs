@@ -9,7 +9,9 @@ namespace ServicePOS
 {
     public interface IModifireService:IDisposable
     {
-        IEnumerable<ModifireModel> GetModifireList();
+        IEnumerable<ModifireModel> GetModifireList(int CurrentPage);
+
+        int GetTotalModifire();
 
         int Created(ModifireModel data);
 

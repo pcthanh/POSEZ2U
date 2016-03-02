@@ -49,6 +49,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.btNext = new System.Windows.Forms.Button();
+            this.btBack = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flpProdutcSetting.SuspendLayout();
@@ -220,9 +222,9 @@
             // 
             this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
             this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
-            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(1200, 32);
             this.ucPriceListTitle.Name = "ucPriceListTitle";
-            this.ucPriceListTitle.Size = new System.Drawing.Size(966, 32);
+            this.ucPriceListTitle.Size = new System.Drawing.Size(1200, 32);
             this.ucPriceListTitle.TabIndex = 1;
             this.ucPriceListTitle.Visible = false;
             // 
@@ -238,6 +240,8 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.btBack);
+            this.panel6.Controls.Add(this.btNext);
             this.panel6.Controls.Add(this.btnAdd);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 397);
@@ -270,6 +274,36 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(945, 10);
             this.panel10.TabIndex = 10;
+            // 
+            // btNext
+            // 
+            this.btNext.BackColor = System.Drawing.Color.Gray;
+            this.btNext.FlatAppearance.BorderSize = 0;
+            this.btNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNext.ForeColor = System.Drawing.Color.White;
+            this.btNext.Location = new System.Drawing.Point(179, 7);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(71, 39);
+            this.btNext.TabIndex = 2;
+            this.btNext.Text = "Next";
+            this.btNext.UseVisualStyleBackColor = false;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
+            // btBack
+            // 
+            this.btBack.BackColor = System.Drawing.Color.Gray;
+            this.btBack.FlatAppearance.BorderSize = 0;
+            this.btBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBack.ForeColor = System.Drawing.Color.White;
+            this.btBack.Location = new System.Drawing.Point(101, 7);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(71, 39);
+            this.btBack.TabIndex = 3;
+            this.btBack.Text = "Back";
+            this.btBack.UseVisualStyleBackColor = false;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
             // 
             // frmMenuSetting
             // 
@@ -328,5 +362,7 @@
         public System.Windows.Forms.Panel pnDetail;
         public System.Windows.Forms.FlowLayoutPanel flpMenuList;
         private UC.UCTextBoxKeyBoard txtSearch;
+        public System.Windows.Forms.Button btNext;
+        public System.Windows.Forms.Button btBack;
     }
 }

@@ -9,6 +9,7 @@ namespace ServicePOS
 {
     public interface IPriceListService : IDisposable
     {
-        IEnumerable<PriceListModel> GetDataProductAndModifire();
+        IEnumerable<PriceListModel> GetDataProductAndModifire(int CurrentPage);
+        int GetTotalProductAndModifire();
     }
 }

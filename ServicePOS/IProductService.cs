@@ -9,7 +9,8 @@ namespace ServicePOS
 {
     public interface IProductService : IDisposable
     {
-        IEnumerable<ProductionModel> GetProductsList();
+        IEnumerable<ProductionModel> GetProductsList(int CurrentPage);
+        int GetTotalProducts();
         int Created(ProductionModel product);
         int Delete(ProductionModel product);
         IEnumerable<ProductionModel> GetProdutcByCategory(int id,int page);

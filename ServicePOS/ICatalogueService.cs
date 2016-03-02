@@ -22,6 +22,8 @@ namespace ServicePOS
         IEnumerable<CategoryModel> GetAllListCategoryByCatalogue(int CatalogueID);
 
         IEnumerable<CategoryModel> GetListCategory();
+        IEnumerable<CategoryModel> GetListCategory(int CurrentPage);
+        int GetTotalCategory();
         int SaveDataCategory(CategoryModel cate);
         int RemoveCategory(int categoryid, int userid);
 

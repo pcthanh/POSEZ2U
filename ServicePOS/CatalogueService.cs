@@ -209,6 +209,35 @@ namespace ServicePOS
             return data;
         }
 
+        public IEnumerable<CategoryModel> GetListCategory(int CurrentPage)
+        {
+            var data = _context.CATEGORies.Where(x => x.Status == 1).Select(x => new CategoryModel
+            {
+                CategoryID = x.CategoryID,
+                CategoryName = x.CategoryName,
+                CategoryNameSort = x.CategoryNameSort ?? "",
+                Status = x.Status,
+                Color = x.Color ?? "",
+                ProductColor = x.ProductColor ?? ""
+            }).OrderBy(p => p.CategoryName).Skip(10 * (CurrentPage - 1))
+         .Take(10).ToList();
+            return data;
+        }
+
+        public int GetTotalCategory()
+        {
+            var data = _context.CATEGORies.Where(x => x.Status == 1).Select(x => new CategoryModel
+            {
+                CategoryID = x.CategoryID,
+                CategoryName = x.CategoryName,
+                CategoryNameSort = x.CategoryNameSort ?? "",
+                Status = x.Status,
+                Color = x.Color ?? "",
+                ProductColor = x.ProductColor ?? ""
+            }).Count();
+            return data;
+        }
+
         public int SaveDataCategory(CategoryModel cate)
         {
             try

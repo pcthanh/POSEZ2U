@@ -31,9 +31,18 @@ namespace ServicePOS
         }
         #endregion
 
-        public IEnumerable<PriceListModel> GetDataProductAndModifire()
+        public IEnumerable<PriceListModel> GetDataProductAndModifire(int CurrentPage)
         {
-            var data = _context.Database.SqlQuery<PriceListModel>("pos_th_GetDataProductAndModifire").ToList();
+            var data = _context.Database.SqlQuery<PriceListModel>("pos_th_GetDataProductAndModifire")
+                .OrderBy(p => p.NameDesc).Skip(10 * (CurrentPage - 1))
+                .Take(10).ToList();
+            return data;
+        }
+
+        public int GetTotalProductAndModifire()
+        {
+            var data = _context.Database.SqlQuery<PriceListModel>("pos_th_GetDataProductAndModifire")
+                .Count();
             return data;
         }
 

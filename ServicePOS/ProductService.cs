@@ -23,7 +23,7 @@ namespace ServicePOS
             _context = context;
         }
 
-        public IEnumerable<ProductionModel> GetProductsList()
+        public IEnumerable<ProductionModel> GetProductsList(int CurrentPage)
         {
             var data = _context.PRODUCTs.Join(_context.PRODUCT_PRICE, product => product.ProductID, product_price => product_price.ProductID, (product, product_price) => new { product, product_price })
                 .Where(x => x.product.Status == 1 && x.product_price.Status == 1).Select(x => new ProductionModel
@@ -33,7 +33,22 @@ namespace ServicePOS
                 ProductNameSort = x.product.ProductNameSort,
                 Color = x.product.Color,
                 CurrentPrice = x.product_price.CurrentPrice
-            });
+            }).OrderBy(p => p.ProductNameDesc).Skip(10 * (CurrentPage - 1))
+         .Take(10).ToList();
+            return data;
+        }
+
+        public int GetTotalProducts()
+        {
+            var data = _context.PRODUCTs.Join(_context.PRODUCT_PRICE, product => product.ProductID, product_price => product_price.ProductID, (product, product_price) => new { product, product_price })
+                .Where(x => x.product.Status == 1 && x.product_price.Status == 1).Select(x => new ProductionModel
+                {
+                    ProductID = x.product.ProductID,
+                    ProductNameDesc = x.product.ProductNameDesc,
+                    ProductNameSort = x.product.ProductNameSort,
+                    Color = x.product.Color,
+                    CurrentPrice = x.product_price.CurrentPrice
+                }).Count();
             return data;
         }
 

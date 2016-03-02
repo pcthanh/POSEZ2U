@@ -68,6 +68,12 @@ namespace POSEZ2U
         int flag;
         int OldWidthPn2 = 262;
         int NewWidthPn2 = Screen.PrimaryScreen.WorkingArea.Width - 400;
+        private int CurrentPage = 1;
+        private int TotalPage = 0;
+        //private int CurrentPageItem = 1;
+        //private int TotalPageItem = 0;
+        //private int CurrentPageGroup = 1;
+        private int PgSize = 10;
         private void ResizeTopriceList()
         {
             pn2.MaximumSize = new Size(NewWidthPn2, pn2.Height);
@@ -151,7 +157,8 @@ namespace POSEZ2U
 
         void ucProduct_Click(object sender, EventArgs e)
         {
-
+            this.CurrentPage = 1;
+            this.TotalPage = 0;
             UCProductSetting ucProduct = (UCProductSetting)sender;
             int tag = Convert.ToInt32(ucProduct.Tag);
             foreach (Control ctr in flpProdutcSetting.Controls)
@@ -172,16 +179,16 @@ namespace POSEZ2U
                     addMenuList("Menu List", tag);
                     break;
                 case 2:
-                    addGroupList("Group List", tag);
+                    addGroupList("Group List", tag, this.CurrentPage);
                     break;
                 case 3:
-                    addItemList("ItemList", tag);
+                    addItemList("ItemList", tag, this.CurrentPage);
                     break;
                 case 4:
-                    addModifier("Modifier List", tag);
+                    addModifier("Modifier List", tag, this.CurrentPage);
                     break;
                 case 5:
-                    addPriceList(tag);
+                    addPriceList(tag, this.CurrentPage);
                     break;
             }
 
@@ -196,6 +203,8 @@ namespace POSEZ2U
             txtSearch.Visible = false;
             txtSearch.Tag = i;
             btnAdd.Tag = i;
+            btBack.Tag = i;
+            btNext.Tag = i;
             ResizeToOthder();
             int index = 1;
 
@@ -226,7 +235,7 @@ namespace POSEZ2U
 
             }
         }
-        private void addModifier(string lblName, int i)
+        private void addModifier(string lblName, int i, int CurrentPage)
         {
             if (btnAdd.Visible == false)
             {
@@ -235,10 +244,17 @@ namespace POSEZ2U
             txtSearch.Visible = true;
             txtSearch.Tag = i;
             btnAdd.Tag = i;
+            btBack.Tag = i;
+            btNext.Tag = i;
             ResizeToOthder();
             int index = 1;
+            int RowCount = 1;
             //string[] str = { "No Sugar", "More Sugar", "More Ice", "Less Ice", "More Milk", "Them Bun", "Them Thit" };
-            var dataModifire = ModifireService.GetModifireList().ToList();
+            if (this.TotalPage == 0)
+            {
+                this.TotalPage = ModifireService.GetTotalModifire();
+            }
+            var dataModifire = ModifireService.GetModifireList(CurrentPage);
             if (i == 4)
             {
                 flpMenuList.Controls.Clear();
@@ -248,6 +264,7 @@ namespace POSEZ2U
                 txtNameMenuList.ForeColor = Color.FromArgb(255, 255, 255);
                 foreach (var data in dataModifire)
                 {
+                    RowCount++;
                     UCModifierItem ucModifierItem = new UCModifierItem();
                     ucModifierItem.lblModifierItemName.Text = data.ModifireName;
                     ucModifierItem.Tag = data;
@@ -263,7 +280,7 @@ namespace POSEZ2U
             }
 
         }
-        private void addGroupList(string lblName, int i)
+        private void addGroupList(string lblName, int i, int CurrentPage)
         {
             if (btnAdd.Visible == false)
             {
@@ -272,12 +289,18 @@ namespace POSEZ2U
             txtSearch.Visible = true;
             txtSearch.Tag = i;
             btnAdd.Tag = i;
+            btBack.Tag = i;
+            btNext.Tag = i;
             int index = 1;
             // string[] str = { "COM", "PHO", "HU TIEU", "CHAO", "Coffee", "Tea", "Smoothie" };
+            if (this.TotalPage == 0)
+            {
+                this.TotalPage = CatalogeService.GetTotalCategory();
+            }
             if (i == 2)
             {
 
-                var dataCategory = CatalogeService.GetListCategory().ToList();
+                var dataCategory = CatalogeService.GetListCategory(CurrentPage);
                 flpMenuList.Controls.Clear();
                 //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
@@ -296,7 +319,7 @@ namespace POSEZ2U
 
         }
 
-        private void addItemList(string lblName, int i)
+        private void addItemList(string lblName, int i, int CurrentPage)
         {
             if (btnAdd.Visible == false)
             {
@@ -305,10 +328,16 @@ namespace POSEZ2U
             txtSearch.Visible = true;
             txtSearch.Tag = i;
             btnAdd.Tag = i;
+            btBack.Tag = i;
+            btNext.Tag = i;
             ResizeToOthder();
             int index = 1;
             //string[] str = { "Ice coffee", "VNam Coffee", "Mocha", "Latte", "White Coffee", "Green Tea", "Apple Juice" };
-            var dataProduct = ProductService.GetProductsList().ToList();
+            if (this.TotalPage == 0)
+            {
+                this.TotalPage = ProductService.GetTotalProducts();
+            }
+            var dataProduct = ProductService.GetProductsList(CurrentPage);
             if (i == 3)
             {
                 flpMenuList.Controls.Clear();
@@ -334,11 +363,17 @@ namespace POSEZ2U
 
         }
 
-        public void addPriceList(int i)
+        public void addPriceList(int i, int CurrentPage)
         {
             txtSearch.Visible = false;
             btnAdd.Visible = false;
-            var data = PriceListSerice.GetDataProductAndModifire();
+            btBack.Tag = i;
+            btNext.Tag = i;
+            if (this.TotalPage == 0)
+            {
+                this.TotalPage = PriceListSerice.GetTotalProductAndModifire();
+            }
+            var data = PriceListSerice.GetDataProductAndModifire(CurrentPage);
             if (i == 5)
             {
                 this.ResizeTopriceList();
@@ -428,7 +463,7 @@ namespace POSEZ2U
                 frmEditProductPriceList frmEditProductPriceList = new frmEditProductPriceList(data);
                 if (frmEditProductPriceList.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    addPriceList(5);
+                    addPriceList(5, this.CurrentPage);
                 }
             }
         }
@@ -642,7 +677,7 @@ namespace POSEZ2U
                 var result = ModifireService.Delete(dataModifier);
                 if (result == 1)
                 {
-                    addModifier("Modifier List", 4);
+                    addModifier("Modifier List", 4, this.CurrentPage);
                     pnDetail.Controls.Clear();
                     frmMessager frm = new frmMessager("Messenger", "Delete modifire success.");
                     frm.ShowDialog();
@@ -691,7 +726,7 @@ namespace POSEZ2U
                 var message = "";
                 if (result == 1)
                 {
-                    addModifier("Modifier List", 4);
+                    addModifier("Modifier List", 4, this.CurrentPage);
                     pnDetail.Controls.Clear();
                     message = "Save modifier Successful";
                 }
@@ -774,7 +809,7 @@ namespace POSEZ2U
                 if (result == 1)
                 {
 
-                    addGroupList("Group List", 2);
+                    addGroupList("Group List", 2, this.CurrentPage);
                     message = "Save data group successful.";
                 }
                 else
@@ -814,7 +849,7 @@ namespace POSEZ2U
                     var messenge = "";
                     if (result == 1)
                     {
-                        addGroupList("Group List", 2);
+                        addGroupList("Group List", 2, this.CurrentPage);
                         pnDetail.Controls.Clear();
                         messenge = "Remove group successful.";
                     }
@@ -867,7 +902,7 @@ namespace POSEZ2U
                 var result = ProductService.Delete(dataProduct);
                 if (result == 1)
                 {
-                    addItemList("Item List", 3);
+                    addItemList("Item List", 3, this.CurrentPage);
                     pnDetail.Controls.Clear();
                     frmMessager frm = new frmMessager("Messenger", "Delete product success");
                     frm.ShowDialog();
@@ -915,7 +950,7 @@ namespace POSEZ2U
                 var message = "";
                 if (result == 1)
                 {
-                    addItemList("Item List", 3);
+                    addItemList("Item List", 3, this.CurrentPage);
                     pnDetail.Controls.Clear();
                     message = "Save Product Successful.";
                 }
@@ -1044,6 +1079,96 @@ namespace POSEZ2U
             }
         }
 
+        private void btBack_Click(object sender, EventArgs e)
+        {
+            pnDetail.Controls.Clear();
+            Button addNew = (Button)sender;
+            int tag = Convert.ToInt32(addNew.Tag);
 
+            switch (tag)
+            {
+                case 1:
+
+                    break;
+                case 2:
+                    if (this.CurrentPage > 1)
+                    {
+                        CurrentPage--;
+                        addGroupList("Group List", 2, this.CurrentPage);
+                    }
+                    break;
+                case 3:
+                    if (this.CurrentPage > 1)
+                    {
+                        CurrentPage--;
+                        addItemList("Item List", 3, this.CurrentPage);
+                    }
+                    break;
+                case 4:
+                    if (this.CurrentPage > 1)
+                    {
+                        CurrentPage--;
+                        addModifier("Modifier List", 4, CurrentPage);
+                    }
+                    break;
+                case 5:
+                    if (this.CurrentPage > 1)
+                    {
+                        CurrentPage--;
+                        addPriceList(5, this.CurrentPage);
+                    }
+                    if (this.CurrentPage == 1)
+                    {
+                        return;
+                    }
+                    break;
+            }
+        }
+
+        private void btNext_Click(object sender, EventArgs e)
+        {
+            pnDetail.Controls.Clear();
+            Button addNew = (Button)sender;
+            int tag = Convert.ToInt32(addNew.Tag);
+
+            switch (tag)
+            {
+                case 1:
+
+                    break;
+                case 2:
+                    double GroupCount = (double)((decimal)TotalPage / Convert.ToDecimal(PgSize));
+                    if (this.CurrentPage < GroupCount)
+                    {
+                        CurrentPage++;
+                        addGroupList("Group List", 2, this.CurrentPage);
+                    }
+                    break;
+                case 3:
+                    double ItemCount = (double)((decimal)TotalPage / Convert.ToDecimal(PgSize));
+                    if (this.CurrentPage < ItemCount)
+                    {
+                        CurrentPage++;
+                        addItemList("Item List", 3, this.CurrentPage);
+                    }
+                    break;
+                case 4:
+                    double ModifireCount = (double)((decimal)TotalPage / Convert.ToDecimal(PgSize));
+                    if (this.CurrentPage < ModifireCount)
+                    {
+                        CurrentPage++;
+                        addModifier("Modifier List", 4, CurrentPage);
+                    }
+                    break;
+                case 5:
+                    double PriceCount = (double)((decimal)TotalPage / Convert.ToDecimal(PgSize));
+                    if (this.CurrentPage < PriceCount)
+                    {
+                        CurrentPage++;
+                        addPriceList(5, this.CurrentPage);
+                    }
+                    break;
+            }
+        }
     }
 }

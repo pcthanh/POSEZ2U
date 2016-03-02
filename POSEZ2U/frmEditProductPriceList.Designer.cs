@@ -30,14 +30,16 @@
         {
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtProductPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
-            this.txtProductSize = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.txtProductName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbColor = new System.Windows.Forms.ComboBox();
+            this.txtProductName = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtProductSize = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtProductPrice = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,45 +73,12 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtProductPrice
-            // 
-            this.txtProductPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtProductPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProductPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtProductPrice.Location = new System.Drawing.Point(151, 109);
-            this.txtProductPrice.Multiline = true;
-            this.txtProductPrice.Name = "txtProductPrice";
-            this.txtProductPrice.Size = new System.Drawing.Size(519, 49);
-            this.txtProductPrice.TabIndex = 2;
-            // 
-            // txtProductSize
-            // 
-            this.txtProductSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtProductSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProductSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtProductSize.Location = new System.Drawing.Point(151, 56);
-            this.txtProductSize.Multiline = true;
-            this.txtProductSize.Name = "txtProductSize";
-            this.txtProductSize.Size = new System.Drawing.Size(519, 47);
-            this.txtProductSize.TabIndex = 1;
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtProductName.Location = new System.Drawing.Point(151, 3);
-            this.txtProductName.Multiline = true;
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(519, 47);
-            this.txtProductName.TabIndex = 1;
-            // 
             // label3
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 106);
+            this.label3.Location = new System.Drawing.Point(3, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 55);
+            this.label3.Size = new System.Drawing.Size(142, 34);
             this.label3.TabIndex = 0;
             this.label3.Text = "Product price";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,9 +86,9 @@
             // label2
             // 
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 53);
+            this.label2.Location = new System.Drawing.Point(3, 34);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 53);
+            this.label2.Size = new System.Drawing.Size(142, 34);
             this.label2.TabIndex = 0;
             this.label2.Text = "Product size";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -129,7 +98,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 53);
+            this.label1.Size = new System.Drawing.Size(142, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Product name";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,22 +107,25 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtProductName, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtProductSize, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtProductPrice, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cbColor, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(673, 161);
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(673, 136);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label4
@@ -162,6 +134,60 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 23);
             this.label4.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(3, 102);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(142, 34);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Product color";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbColor
+            // 
+            this.cbColor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbColor.FormattingEnabled = true;
+            this.cbColor.Location = new System.Drawing.Point(151, 105);
+            this.cbColor.Name = "cbColor";
+            this.cbColor.Size = new System.Drawing.Size(519, 27);
+            this.cbColor.TabIndex = 4;
+            this.cbColor.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cbColor_DrawItem);
+            // 
+            // txtProductName
+            // 
+            this.txtProductName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtProductName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtProductName.Location = new System.Drawing.Point(151, 3);
+            this.txtProductName.Multiline = true;
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(519, 28);
+            this.txtProductName.TabIndex = 1;
+            // 
+            // txtProductSize
+            // 
+            this.txtProductSize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtProductSize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtProductSize.Location = new System.Drawing.Point(151, 37);
+            this.txtProductSize.Multiline = true;
+            this.txtProductSize.Name = "txtProductSize";
+            this.txtProductSize.Size = new System.Drawing.Size(519, 28);
+            this.txtProductSize.TabIndex = 1;
+            // 
+            // txtProductPrice
+            // 
+            this.txtProductPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtProductPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProductPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtProductPrice.Location = new System.Drawing.Point(151, 71);
+            this.txtProductPrice.Multiline = true;
+            this.txtProductPrice.Name = "txtProductPrice";
+            this.txtProductPrice.Size = new System.Drawing.Size(519, 28);
+            this.txtProductPrice.TabIndex = 2;
             // 
             // frmEditProductPriceList
             // 
@@ -176,6 +202,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmEditProductPriceList";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmEditProductPriceList_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -194,5 +221,7 @@
         public System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbColor;
     }
 }

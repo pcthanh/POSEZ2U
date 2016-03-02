@@ -33,7 +33,7 @@ namespace ServicePOS
 
         #region Function Get List
 
-        public IEnumerable<ModifireModel> GetModifireList() 
+        public IEnumerable<ModifireModel> GetModifireList(int CurrentPage) 
         {
             var data = _context.MODIFIREs
                 .Join(_context.MODIFIRE_PRICE, modifire => modifire.ModifireID, modifire_price => modifire_price.ModifireID, (modifire, modifire_price) => new { modifire, modifire_price })
@@ -43,7 +43,25 @@ namespace ServicePOS
                 ModifireName = x.modifire.ModifireName,
                 Color = x.modifire.Color,
                 CurrentPrice = x.modifire_price.CurrentPrice
-            });
+            }).OrderBy(p => p.ModifireName).Skip(10 * (CurrentPage - 1))
+         .Take(10).ToList();
+            return data;
+        }
+        #endregion
+
+        #region Function Count Modifire
+
+        public int GetTotalModifire()
+        {
+            var data = _context.MODIFIREs
+                .Join(_context.MODIFIRE_PRICE, modifire => modifire.ModifireID, modifire_price => modifire_price.ModifireID, (modifire, modifire_price) => new { modifire, modifire_price })
+                .Where(x => x.modifire.Status == 1 && x.modifire_price.Status == 1).Select(x => new ModifireModel()
+                {
+                    ModifireID = x.modifire.ModifireID,
+                    ModifireName = x.modifire.ModifireName,
+                    Color = x.modifire.Color,
+                    CurrentPrice = x.modifire_price.CurrentPrice
+                }).Count();
             return data;
         }
         #endregion
