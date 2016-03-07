@@ -37,11 +37,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtPrintName = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.txtHeader = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.cbPrintType = new System.Windows.Forms.ComboBox();
             this.cbPrinter = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtPrintName = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.txtHeader = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.txtNumberOfTicket = new POSEZ2U.UC.UCTextBoxKeyPad();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -174,6 +174,28 @@
             this.label4.Text = "Printer Type";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // txtPrintName
+            // 
+            this.txtPrintName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPrintName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPrintName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtPrintName.Location = new System.Drawing.Point(3, 41);
+            this.txtPrintName.Multiline = true;
+            this.txtPrintName.Name = "txtPrintName";
+            this.txtPrintName.Size = new System.Drawing.Size(564, 32);
+            this.txtPrintName.TabIndex = 1;
+            // 
+            // txtHeader
+            // 
+            this.txtHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtHeader.Location = new System.Drawing.Point(3, 117);
+            this.txtHeader.Multiline = true;
+            this.txtHeader.Name = "txtHeader";
+            this.txtHeader.Size = new System.Drawing.Size(564, 32);
+            this.txtHeader.TabIndex = 1;
+            // 
             // cbPrintType
             // 
             this.cbPrintType.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -185,7 +207,8 @@
             "Ticket Printer",
             "JoinTable",
             "TransferTable",
-            "Payment Printer"});
+            "Payment Printer",
+            "Report"});
             this.cbPrintType.Location = new System.Drawing.Point(3, 269);
             this.cbPrintType.Name = "cbPrintType";
             this.cbPrintType.Size = new System.Drawing.Size(564, 33);
@@ -212,28 +235,6 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Number of Ticket";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtPrintName
-            // 
-            this.txtPrintName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtPrintName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPrintName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtPrintName.Location = new System.Drawing.Point(3, 41);
-            this.txtPrintName.Multiline = true;
-            this.txtPrintName.Name = "txtPrintName";
-            this.txtPrintName.Size = new System.Drawing.Size(564, 32);
-            this.txtPrintName.TabIndex = 1;
-            // 
-            // txtHeader
-            // 
-            this.txtHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtHeader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtHeader.Location = new System.Drawing.Point(3, 117);
-            this.txtHeader.Multiline = true;
-            this.txtHeader.Name = "txtHeader";
-            this.txtHeader.Size = new System.Drawing.Size(564, 32);
-            this.txtHeader.TabIndex = 1;
             // 
             // txtNumberOfTicket
             // 

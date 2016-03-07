@@ -22,6 +22,7 @@ namespace POSEZ2U
         /// 2.In khi Jointable
         /// 3.In khi TransferTable
         /// 4.In khi Tinh tien Order
+        /// 5.In Report
         /// </summary>
         public frmAddPrinter(PrinterModel _PrinterMain)
         {
