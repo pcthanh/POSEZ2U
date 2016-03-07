@@ -25,5 +25,7 @@ namespace ServicePOS
         IEnumerable<AccountSaleReportModel> GetDataAccountSaleReport(string dateSelect, int type);
 
         #endregion New Code Report
+
+        string GetLinkPathSaveDataReport();
     }
 }

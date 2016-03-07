@@ -182,5 +182,21 @@ namespace ServicePOS
         }
 
         #endregion New Code Report
+
+
+        public string GetLinkPathSaveDataReport()
+        {
+            try
+            {
+                var datapath = _context.CONFIG_SAVE_DATA.Where(x => x.Type == 2).FirstOrDefault();
+                if (datapath != null)
+                    return datapath.LinkPath;
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
