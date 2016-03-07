@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +19,31 @@ namespace POSEZ2U
 {
     public partial class frmReport : Form
     {
+
+        private List<ExportExcelToDataTable> DataPrinter = new List<ExportExcelToDataTable>();
+
         #region Variables & Constructors
 
         private IReportService _reportService;
+
         private IReportService ReportService
         {
             get { return _reportService ?? (_reportService = new ReportService()); }
             set { _reportService = value; }
         }
+
+        private IPrinterService _printService;
+
+        private IPrinterService PrintService
+        {
+            get { return _printService ?? (_printService = new PrinterService()); }
+            set { _printService = value; }
+        }
+
+        private Printer.POSPrinter posPrinter = new Printer.POSPrinter();
+        private List<PrinterModel> PrintData = new List<PrinterModel>();
+        private string Header = string.Empty;
+        private string TableNew = string.Empty;
 
 
         #endregion
@@ -64,7 +82,7 @@ namespace POSEZ2U
             }
         }
 
-        void ucReportTitle_Click(object sender, EventArgs e)
+        private void ucReportTitle_Click(object sender, EventArgs e)
         {
             UCReport ucReport = (UCReport)sender;
             int tag = Convert.ToInt32(ucReport.Tag);
@@ -134,7 +152,11 @@ namespace POSEZ2U
         {
             flpReportList.Controls.Clear();
             int i = 1;
-            string[] str = { "Summary", "Quantity Sale by Group", "Quantity Sale by Item", "Sale by Staff", "Total Account", "Payment Details" };
+            string[] str =
+            {
+                "Summary", "Quantity Sale by Group", "Quantity Sale by Item", "Sale by Staff",
+                "Total Account", "Payment Details"
+            };
             foreach (string strDaily in str)
             {
                 UCReportItem ucReportItem = new UCReportItem();
@@ -147,7 +169,7 @@ namespace POSEZ2U
             }
         }
 
-        void ucReportItem_Click(object sender, EventArgs e)
+        private void ucReportItem_Click(object sender, EventArgs e)
         {
             UCReportItem ucReportItem = (UCReportItem)sender;
             int tag = Convert.ToInt32(ucReportItem.Tag);
@@ -258,6 +280,9 @@ namespace POSEZ2U
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
 
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
+
 
         }
 
@@ -300,6 +325,9 @@ namespace POSEZ2U
             }
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
+
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
 
         }
 
@@ -346,6 +374,9 @@ namespace POSEZ2U
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
 
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
+
         }
 
         private void LoadReportCardSaleDetail()
@@ -391,6 +422,9 @@ namespace POSEZ2U
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
 
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
+
         }
 
         private void LoadReportAccountSaleDetail()
@@ -435,17 +469,25 @@ namespace POSEZ2U
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
 
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
+
         }
 
         #endregion Daily Report
 
 
         #region Weekly Report
+
         private void LoadReportWekky()
         {
             flpReportList.Controls.Clear();
             int i = 1;
-            string[] str = { "Summary", "Quantity Sale by Group", "Quantity Sale by Item", "Sale by Staff", "Total Account", "Payment Details" };
+            string[] str =
+            {
+                "Summary", "Quantity Sale by Group", "Quantity Sale by Item", "Sale by Staff",
+                "Total Account", "Payment Details"
+            };
             foreach (string strDaily in str)
             {
                 UCReportItem ucReportItem = new UCReportItem();
@@ -457,7 +499,8 @@ namespace POSEZ2U
                 flpReportList.Controls.Add(ucReportItem);
             }
         }
-        void ucWeeklyReportItem_Click(object sender, EventArgs e)
+
+        private void ucWeeklyReportItem_Click(object sender, EventArgs e)
         {
             UCReportItem ucReportItem = (UCReportItem)sender;
             int tag = Convert.ToInt32(ucReportItem.Tag);
@@ -506,6 +549,7 @@ namespace POSEZ2U
 
 
         }
+
         private void LoadWeeklyReportDetail()
         {
             pDetail.Controls.Clear();
@@ -537,7 +581,7 @@ namespace POSEZ2U
 
             var export = new List<ExportExcelToDataTable>();
 
-            
+
             var i = 1;
             foreach (var item in data)
             {
@@ -564,6 +608,9 @@ namespace POSEZ2U
 
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
+
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
 
 
         }
@@ -605,6 +652,9 @@ namespace POSEZ2U
             }
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
+
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
 
         }
 
@@ -651,6 +701,9 @@ namespace POSEZ2U
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
 
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
+
         }
 
         private void LoadReportWeeklyCardSaleDetail()
@@ -695,6 +748,9 @@ namespace POSEZ2U
             }
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
+
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
 
         }
 
@@ -741,11 +797,14 @@ namespace POSEZ2U
             UCQTYReport.btnExport.Tag = export;
             UCQTYReport.btnExport.Click += ExportExcel_Click;
 
+            UCQTYReport.btnPrint.Tag = export;
+            UCQTYReport.btnPrint.Click += PrinterClick_Click;
+
         }
 
         #endregion Weekly Report
 
-       
+
 
         #region Shift Report
 
@@ -769,7 +828,8 @@ namespace POSEZ2U
                 flpReportList.Controls.Add(ucReportItemShift);
             }
         }
-        void ucReportItemShift_Click(object sender, EventArgs e)
+
+        private void ucReportItemShift_Click(object sender, EventArgs e)
         {
             UCReportItem ucReportItem = (UCReportItem)sender;
             ShiftReportModel tag = (ShiftReportModel)(ucReportItem.Tag);
@@ -802,13 +862,16 @@ namespace POSEZ2U
 
                 shift.lblShiftNo.Text = data.ShiftName ?? "";
                 shift.lblStaff.Text = data.UserName ?? "";
-                shift.lblStartTime.Text = (data.StartShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                shift.lblEndTime.Text = (data.EndShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                shift.lblStartTime.Text = (data.StartShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss",
+                    CultureInfo.InvariantCulture);
+                shift.lblEndTime.Text = (data.EndShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss",
+                    CultureInfo.InvariantCulture);
                 shift.lblStartCash.Text = "$" + fomat.getValue(data.CashStart).ToString("N2");
                 shift.lblEndCash.Text = "$" + fomat.getValue(data.CashEnd).ToString("N2");
                 shift.lblSafeDrop.Text = "$" + fomat.getValue(data.SafeDrop).ToString("N2");
                 shift.lblTotal.Text = "$" + fomat.getValue(data.TotalCash).ToString("N2");
-                shift.lblVariation.Text = "$" + fomat.getValue(data.CashEnd - data.CashStart - data.TotalCash).ToString("N2");
+                shift.lblVariation.Text = "$" +
+                                          fomat.getValue(data.CashEnd - data.CashStart - data.TotalCash).ToString("N2");
                 shift.lblTotalNetSalse.Text = "$" + fomat.getValue(data.TotalSale).ToString("N2");
 
 
@@ -826,12 +889,14 @@ namespace POSEZ2U
 
                 var temp3 = new ExportExcelToDataTable();
                 temp3.Tilte = "Start Time";
-                temp3.Value = (data.StartShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                temp3.Value = (data.StartShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss",
+                    CultureInfo.InvariantCulture);
                 export.Add(temp3);
 
                 var temp4 = new ExportExcelToDataTable();
                 temp4.Tilte = "End Time";
-                temp4.Value = (data.EndShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                temp4.Value = (data.EndShift ?? DateTime.Now).ToString("dd/MM/yyyy hh:mm:ss",
+                    CultureInfo.InvariantCulture);
                 export.Add(temp4);
 
                 var temp5 = new ExportExcelToDataTable();
@@ -841,7 +906,7 @@ namespace POSEZ2U
 
                 var temp6 = new ExportExcelToDataTable();
                 temp6.Tilte = "End Cash(Counted by Staff)";
-                temp6.Value =fomat.getValue(data.CashEnd).ToString("N2");
+                temp6.Value = fomat.getValue(data.CashEnd).ToString("N2");
                 export.Add(temp6);
 
                 var temp7 = new ExportExcelToDataTable();
@@ -867,6 +932,8 @@ namespace POSEZ2U
                 shift.btnExport.Tag = export;
                 shift.btnExport.Click += ExportExcel_Click;
 
+                shift.btnPrint.Tag = export;
+                shift.btnPrint.Click += PrinterClick_Click;
 
 
                 pDetail.Controls.Add(shift);
@@ -887,7 +954,8 @@ namespace POSEZ2U
             ucDailyReport.lblGST.Text = fomat.getValue(data.GST).ToString("C");
             ucDailyReport.lblDiscount.Text = fomat.getValue(data.Discount).ToString("C");
             ucDailyReport.lblRefund.Text = fomat.getValue(data.Refund).ToString("C");
-            ucDailyReport.lblTotakReceiva.Text = "$"+fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("N2");
+            ucDailyReport.lblTotakReceiva.Text = "$" +
+                                                 fomat.getValue(data.NetSale + data.GST - data.Discount).ToString("N2");
             ucDailyReport.lblTotakCash.Text = "$" + fomat.getValue(data.CashTotal).ToString("N2");
             ucDailyReport.lblTotalCard.Text = fomat.getValue(data.CardTotal).ToString("C");
             ucDailyReport.lblTotalAccount.Text = fomat.getValue(data.AccountTotal).ToString("C");
@@ -937,10 +1005,13 @@ namespace POSEZ2U
             ucDailyReport.btnExport.Tag = export;
             ucDailyReport.btnExport.Click += ExportExcel_Click;
 
+            ucDailyReport.btnPrint.Tag = export;
+            ucDailyReport.btnPrint.Click += PrinterClick_Click;
+
 
         }
 
-        void ExportExcel_Click(object sender, EventArgs e)
+        private void ExportExcel_Click(object sender, EventArgs e)
         {
             Button ucReportItem = (Button)sender;
             List<ExportExcelToDataTable> tag = (List<ExportExcelToDataTable>)(ucReportItem.Tag);
@@ -949,7 +1020,29 @@ namespace POSEZ2U
             {
                 ExportExcelToDataTable.WriteExcelToFrom(tag);
             }
-            
+
+
+        }
+
+        private void PrinterClick_Click(object sender, EventArgs e)
+        {
+            Button ucReportItem = (Button)sender;
+            List<ExportExcelToDataTable> tag = (List<ExportExcelToDataTable>)(ucReportItem.Tag);
+
+            if (tag != null)
+            {
+                DataPrinter = new List<ExportExcelToDataTable>();
+                DataPrinter = tag;
+                GetListPrinter();
+                foreach (PrinterModel item in PrintData)
+                {
+                    Header = item.Header;
+                    posPrinter.SetPrinterName(item.PrinterName);
+                    posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+                    posPrinter.Print();
+                }
+            }
+
 
         }
 
@@ -965,5 +1058,54 @@ namespace POSEZ2U
             flpReportList.Controls.Clear();
             pDetail.Controls.Clear();
         }
+
+
+        #region Printer
+
+        private void GetListPrinter()
+        {
+            PrintData.Clear();
+            var listPrinter = PrintService.GetListPrinterReport();
+            foreach (PrinterModel item in listPrinter)
+            {
+                PrinterModel print = new PrinterModel();
+                print.PrinterName = item.PrinterName;
+                print.PrintName = item.PrintName;
+                print.PrinterType = item.PrinterType;
+                print.Header = item.Header;
+                print.ID = item.ID;
+                PrintData.Add(print);
+            }
+        }
+
+        private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            printJoinTable(e);
+        }
+
+        public void printJoinTable(PrintPageEventArgs e)
+        {
+            float l_y = 0;
+            l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+            l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e,
+                new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+
+            foreach (var item in DataPrinter)
+            {
+                string textstring = item.Tilte + " : " + item.Value;
+                l_y = posPrinter.DrawString(textstring, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+            }
+
+
+            l_y += posPrinter.GetHeightPrinterLine() / 2;
+            l_y = posPrinter.DrawString("www.bires.com.au", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
+            l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
+        }
+        #endregion
     }
 }
