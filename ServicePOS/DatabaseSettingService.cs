@@ -79,8 +79,13 @@ namespace ServicePOS
 
             try
             {
-
-                string filepath = "F:\\POSEZ2U_" + DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture) +".Bak";
+                var datapath = _context.CONFIG_SAVE_DATA.Where(x => x.Type == 1).FirstOrDefault();
+                string filepath = "F:\\POSEZ2U_" + DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture) + ".Bak";
+                
+                if (datapath != null)
+                {
+                    filepath = datapath.LinkPath + "POSEZ2U_" + DateTime.Now.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture) + ".Bak";
+                }
 
                 string dbname = _context.Database.Connection.Database;
                 string sqlCommand = @"BACKUP DATABASE POSEZ2U TO DISK = '" + filepath + "'";
@@ -105,7 +110,7 @@ namespace ServicePOS
 
         }
 
-      
+
 
         #endregion
     }
