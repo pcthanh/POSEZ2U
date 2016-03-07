@@ -515,5 +515,36 @@ namespace ServicePOS
             }
             return null;
         }
+
+
+        public IEnumerable<PrinterModel> GetListPrinterReport()
+        {
+            try
+            {
+                var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType == 5).Select
+                    (x => new PrinterModel()
+                    {
+                        ID = x.ID,
+                        PrinterName = x.PrinterName,
+                        PrintName = x.PrintName,
+                        PrinterType = x.PrinterType ?? 0,
+                        Status = x.Status,
+                        CreateBy = x.CreateBy,
+                        CreateDate = x.CreateDate,
+                        UpdateBy = x.UpdateBy,
+                        UpdateDate = x.UpdateDate,
+                        Header = x.Header
+
+                    }
+                    );
+                return data;
+            }
+
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
     }
 }
