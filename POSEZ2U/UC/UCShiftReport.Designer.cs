@@ -577,7 +577,6 @@
         private System.Windows.Forms.Panel panel10;
         public System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Button btnPrint;
         public System.Windows.Forms.Label lblShiftNo;
         public System.Windows.Forms.Label lblStaff;
         public System.Windows.Forms.Label lblStartTime;
@@ -588,5 +587,6 @@
         public System.Windows.Forms.Label lblVariation;
         public System.Windows.Forms.Label lblSafeDrop;
         public System.Windows.Forms.Label lblTotalNetSalse;
+        public System.Windows.Forms.Button btnPrint;
     }
 }
