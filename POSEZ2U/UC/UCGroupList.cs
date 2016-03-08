@@ -122,6 +122,11 @@ namespace POSEZ2U.UC
                 g.FillRectangle(b, rct);
             }
         }
+
+        private void txtGroupNameDesc_TextChanged(object sender, EventArgs e)
+        {
+            txtGroupNameSort.Text = txtGroupNameDesc.Text;
+        }
        
       
 

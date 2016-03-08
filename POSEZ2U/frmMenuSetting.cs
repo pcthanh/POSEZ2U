@@ -291,16 +291,15 @@ namespace POSEZ2U
             btnAdd.Tag = i;
             btBack.Tag = i;
             btNext.Tag = i;
+            ResizeToOthder();
             int index = 1;
-            // string[] str = { "COM", "PHO", "HU TIEU", "CHAO", "Coffee", "Tea", "Smoothie" };
             if (this.TotalPage == 0)
             {
                 this.TotalPage = CatalogeService.GetTotalCategory();
             }
+            var dataCategory = CatalogeService.GetListCategory(CurrentPage);
             if (i == 2)
             {
-
-                var dataCategory = CatalogeService.GetListCategory(CurrentPage);
                 flpMenuList.Controls.Clear();
                 //txtNameMenuList.Visible = true;
                 txtNameMenuList.lblMenuListName.Text = lblName;
@@ -315,6 +314,11 @@ namespace POSEZ2U
                     flpMenuList.Controls.Add(ucGroupListItem);
                     index++;
                 }
+            }
+            else
+            {
+                flpMenuList.Controls.Clear();
+                pnDetail.Controls.Clear();
             }
 
         }
@@ -425,33 +429,42 @@ namespace POSEZ2U
             FlowLayoutPanel flpButtonPriceList = new FlowLayoutPanel();
             flpButtonPriceList.Dock = DockStyle.Fill;
             flpButtonPriceList.BackColor = Color.FromArgb(215, 214, 216);
-            pnDetail.Controls.Add(flpButtonPriceList);
-            string[] strlst = { "Edit"};
-            foreach (string str in strlst)
+            if (pnDetail.Controls.Count > 0)
             {
-                Button btnGoToProduct = new Button();
-                btnGoToProduct.Width = 115;
-                btnGoToProduct.Height = 67;
-                btnGoToProduct.FlatStyle = FlatStyle.Flat;
-                btnGoToProduct.FlatAppearance.BorderSize = 0;
-                btnGoToProduct.Dock = DockStyle.Top;
-                btnGoToProduct.Text = str;
-                btnGoToProduct.Tag = tag;
-                btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
-                btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
-                btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                btnGoToProduct.Click += btnGoToProduct_Click;
-                i++;
+                flpButtonPriceList = (FlowLayoutPanel)pnDetail.Controls[0];
+            }
+            else
+            {
+                pnDetail.Controls.Add(flpButtonPriceList);
+            }
+            Button btnGoToProduct = new Button();
+            if (flpButtonPriceList.Controls.Count > 0)
+            {
+                btnGoToProduct = (Button)flpButtonPriceList.Controls[0];
+            }
+            else
+            {
                 flpButtonPriceList.Controls.Add(btnGoToProduct);
             }
-
+            btnGoToProduct.Width = 115;
+            btnGoToProduct.Height = 67;
+            btnGoToProduct.FlatStyle = FlatStyle.Flat;
+            btnGoToProduct.FlatAppearance.BorderSize = 0;
+            btnGoToProduct.Dock = DockStyle.Top;
+            btnGoToProduct.Text = "Edit";
+            btnGoToProduct.Tag = tag;
+            btnGoToProduct.BackColor = Color.FromArgb(51, 51, 51);
+            btnGoToProduct.ForeColor = Color.FromArgb(255, 255, 255);
+            btnGoToProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btnGoToProduct.Click += btnGoToProduct_Click;
+            i++;
         }
 
         void btnGoToProduct_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             PriceListModel data = (PriceListModel)(btn.Tag);
-            if (data.ID == null)
+            if (data.NameDesc == null)
             {
                 string title = "Waring.";
                 string description = "Please choose product.";
@@ -538,15 +551,25 @@ namespace POSEZ2U
         }
         private void addMenuListDetail(CatalogueModel cata)
         {
-            pnDetail.Controls.Clear();
-            UCMenu ucMenu = new UCMenu();
-            ucMenu.Dock = DockStyle.Fill;
+            //pnDetail.Controls.Clear();
+
 
             if (cata.CatalogueID > 0)
             {
+                UCMenu ucMenu = new UCMenu();
+                if (pnDetail.Controls.Count > 0)
+                {
+                    ucMenu = (UCMenu)pnDetail.Controls[0];
+                }
+                else
+                {
+                    ucMenu.Dock = DockStyle.Fill;
+                    pnDetail.Controls.Add(ucMenu);
+                }
                 ucMenu.TilteMenu.Text = cata.CatalogueName;
                 ucMenu.txtMenuName.Text = cata.CatalogueName;
 
+                ucMenu.flpIncludesGroup.Controls.Clear();
                 ucMenu.addUcMenuGroup(cata.CatalogueID);
                 ucMenu.addButton(cata.CatalogueID);
 
@@ -557,7 +580,6 @@ namespace POSEZ2U
                 ucMenu.btnRemove.Tag = cata;
                 ucMenu.btnRemove.Click += ucMenuList_btnRemove_Click;
 
-                pnDetail.Controls.Add(ucMenu);
 
                 ucMenu = (UCMenu)pnDetail.Controls[0];
                 ucMenu.cbColor.SelectedItem = cata.Color;
@@ -645,11 +667,21 @@ namespace POSEZ2U
 
         private void addModifierItemDetail(ModifireModel dataModifire)
         {
-            pnDetail.Controls.Clear();
-            UCModifier ucModifier = new UCModifier();
-            ucModifier.Dock = DockStyle.Fill;
+            //pnDetail.Controls.Clear();
+            
             if (dataModifire.ModifireID > 0)
             {
+                UCModifier ucModifier = new UCModifier();
+                if (pnDetail.Controls.Count > 0)
+                {
+                    ucModifier = (UCModifier)pnDetail.Controls[0];
+                }
+                else
+                {
+                    ucModifier.Dock = DockStyle.Fill;
+                    pnDetail.Controls.Add(ucModifier);
+                }
+                ucModifier.Dock = DockStyle.Fill;
                 ucModifier.lblModifierName.Text = dataModifire.ModifireName;
                 ucModifier.txtModifierName.Text = dataModifire.ModifireName;
                 ucModifier.txtModifierPrice.Text = Convert.ToString(dataModifire.CurrentPrice);
@@ -740,9 +772,9 @@ namespace POSEZ2U
                     {
                         message = "Save modifier fail";
                     }
-                    frmMessager frm = new frmMessager("Messenger", message);
-                    frm.ShowDialog();
                 }
+                frmMessager frm = new frmMessager("Messenger", message);
+                frm.ShowDialog();
             }
             else
             {
@@ -753,12 +785,20 @@ namespace POSEZ2U
 
         private void addGroupListDetail(CategoryModel cate)
         {
-            pnDetail.Controls.Clear();
-            UCGroupList ucGroupList = new UCGroupList();
-            ucGroupList.Dock = DockStyle.Fill;
+            //pnDetail.Controls.Clear();
+            
             if (cate.CategoryID > 0)
             {
-
+                UCGroupList ucGroupList = new UCGroupList();
+                if (pnDetail.Controls.Count > 0)
+                {
+                    ucGroupList = (UCGroupList)pnDetail.Controls[0];
+                }
+                else
+                {
+                    ucGroupList.Dock = DockStyle.Fill;
+                    pnDetail.Controls.Add(ucGroupList);
+                }
 
                 ucGroupList.lblTilte.Text = cate.CategoryName;
                 ucGroupList.txtGroupNameDesc.Text = cate.CategoryName;
@@ -770,13 +810,10 @@ namespace POSEZ2U
                 ucGroupList.btnRemove.Tag = cate;
                 ucGroupList.btnRemove.Click += ucGroupList_btnRemove_Click;
 
+                ucGroupList.flpGroup.Controls.Clear();
                 ucGroupList.addUcMenuGroup(cate.CategoryID);
                 ucGroupList.addButton(cate.CategoryID);
 
-                pnDetail.Controls.Add(ucGroupList);
-
-
-                ucGroupList = (UCGroupList)pnDetail.Controls[0];
                 ucGroupList.cbGroupColor.SelectedItem = cate.Color;
                 ucGroupList.cbProductColor.SelectedItem = cate.ProductColor;
             }
@@ -864,11 +901,19 @@ namespace POSEZ2U
         }
         private void addItemListDetail(ProductionModel productData)
         {
-            pnDetail.Controls.Clear();
-            UCItemList ucItemList = new UCItemList();
-            ucItemList.Dock = DockStyle.Fill;
+            //pnDetail.Controls.Clear();
             if (productData.ProductID > 0)
             {
+                UCItemList ucItemList = new UCItemList();
+                if (pnDetail.Controls.Count > 0)
+                {
+                    ucItemList = (UCItemList)pnDetail.Controls[0];
+                }
+                else
+                {
+                    ucItemList.Dock = DockStyle.Fill;
+                    pnDetail.Controls.Add(ucItemList);
+                }
                 ucItemList.lbProductName.Text = productData.ProductNameDesc;
                 ucItemList.txtNameDesc.Text = productData.ProductNameDesc;
                 ucItemList.txtNameSort.Text = productData.ProductNameSort;
@@ -880,10 +925,9 @@ namespace POSEZ2U
                 ucItemList.btnAddProtions.Visible = false;
                 ucItemList.lbPortions.Visible = false;
                 ucItemList.Tag = productData;
+                ucItemList.flpItemList.Controls.Clear();
                 ucItemList.addUcMenuGroup(productData.ProductID);
                 ucItemList.addButton(productData.ProductID);
-                pnDetail.Controls.Add(ucItemList);
-                ucItemList = (UCItemList)pnDetail.Controls[0];
                 ucItemList.cbProductColor.SelectedItem = productData.Color;
             }
             else
@@ -1119,6 +1163,7 @@ namespace POSEZ2U
                     }
                     if (this.CurrentPage == 1)
                     {
+                        addPriceList(5, this.CurrentPage);
                         return;
                     }
                     break;
@@ -1165,6 +1210,10 @@ namespace POSEZ2U
                     if (this.CurrentPage < PriceCount)
                     {
                         CurrentPage++;
+                        addPriceList(5, this.CurrentPage);
+                    }
+                    else
+                    {
                         addPriceList(5, this.CurrentPage);
                     }
                     break;

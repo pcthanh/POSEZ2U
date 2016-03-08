@@ -123,6 +123,7 @@
             this.txtNameDesc.Name = "txtNameDesc";
             this.txtNameDesc.Size = new System.Drawing.Size(552, 37);
             this.txtNameDesc.TabIndex = 1;
+            this.txtNameDesc.TextChanged += new System.EventHandler(this.txtNameDesc_TextChanged);
             // 
             // label3
             // 

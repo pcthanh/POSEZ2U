@@ -114,5 +114,10 @@ namespace POSEZ2U.UC
         {
 
         }
+
+        private void txtNameDesc_TextChanged(object sender, EventArgs e)
+        {
+            txtNameSort.Text = txtNameDesc.Text;
+        }
     }
 }

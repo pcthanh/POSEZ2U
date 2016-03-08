@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flpProdutcSetting = new System.Windows.Forms.FlowLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -42,15 +41,16 @@
             this.pn2 = new System.Windows.Forms.Panel();
             this.flpMenuList = new System.Windows.Forms.FlowLayoutPanel();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.txtSearch = new POSEZ2U.UC.UCTextBoxKeyBoard();
-            this.ucPriceListTitle = new POSEZ2U.UC.UCPriceList();
-            this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btBack = new System.Windows.Forms.Button();
+            this.btNext = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.btNext = new System.Windows.Forms.Button();
-            this.btBack = new System.Windows.Forms.Button();
+            this.txtSearch = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.ucPriceListTitle = new POSEZ2U.UC.UCPriceList();
+            this.txtNameMenuList = new POSEZ2U.UC.UCMenuList();
+            this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flpProdutcSetting.SuspendLayout();
@@ -70,14 +70,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(945, 39);
             this.panel1.TabIndex = 0;
-            // 
-            // ucInfoTop1
-            // 
-            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
-            this.ucInfoTop1.Name = "ucInfoTop1";
-            this.ucInfoTop1.Size = new System.Drawing.Size(945, 39);
-            this.ucInfoTop1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -208,6 +200,74 @@
             this.panel11.Size = new System.Drawing.Size(262, 35);
             this.panel11.TabIndex = 9;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.btBack);
+            this.panel6.Controls.Add(this.btNext);
+            this.panel6.Controls.Add(this.btnAdd);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 397);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(262, 51);
+            this.panel6.TabIndex = 7;
+            // 
+            // btBack
+            // 
+            this.btBack.BackColor = System.Drawing.Color.Gray;
+            this.btBack.FlatAppearance.BorderSize = 0;
+            this.btBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBack.ForeColor = System.Drawing.Color.White;
+            this.btBack.Location = new System.Drawing.Point(101, 7);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(71, 39);
+            this.btBack.TabIndex = 3;
+            this.btBack.Text = "Back";
+            this.btBack.UseVisualStyleBackColor = false;
+            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            // 
+            // btNext
+            // 
+            this.btNext.BackColor = System.Drawing.Color.Gray;
+            this.btNext.FlatAppearance.BorderSize = 0;
+            this.btNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btNext.ForeColor = System.Drawing.Color.White;
+            this.btNext.Location = new System.Drawing.Point(179, 7);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(71, 39);
+            this.btNext.TabIndex = 2;
+            this.btNext.Text = "Next";
+            this.btNext.UseVisualStyleBackColor = false;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(503, 49);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(10, 448);
+            this.panel7.TabIndex = 8;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Controls.Add(this.pnDetail);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(513, 49);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(432, 448);
+            this.panel9.TabIndex = 9;
+            // 
+            // panel10
+            // 
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(0, 39);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(945, 10);
+            this.panel10.TabIndex = 10;
+            // 
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -237,73 +297,13 @@
             this.txtNameMenuList.Size = new System.Drawing.Size(262, 35);
             this.txtNameMenuList.TabIndex = 0;
             // 
-            // panel6
+            // ucInfoTop1
             // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.btBack);
-            this.panel6.Controls.Add(this.btNext);
-            this.panel6.Controls.Add(this.btnAdd);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 397);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(262, 51);
-            this.panel6.TabIndex = 7;
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(503, 49);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(10, 448);
-            this.panel7.TabIndex = 8;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Controls.Add(this.pnDetail);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(513, 49);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(432, 448);
-            this.panel9.TabIndex = 9;
-            // 
-            // panel10
-            // 
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 39);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(945, 10);
-            this.panel10.TabIndex = 10;
-            // 
-            // btNext
-            // 
-            this.btNext.BackColor = System.Drawing.Color.Gray;
-            this.btNext.FlatAppearance.BorderSize = 0;
-            this.btNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btNext.ForeColor = System.Drawing.Color.White;
-            this.btNext.Location = new System.Drawing.Point(179, 7);
-            this.btNext.Name = "btNext";
-            this.btNext.Size = new System.Drawing.Size(71, 39);
-            this.btNext.TabIndex = 2;
-            this.btNext.Text = "Next";
-            this.btNext.UseVisualStyleBackColor = false;
-            this.btNext.Click += new System.EventHandler(this.btNext_Click);
-            // 
-            // btBack
-            // 
-            this.btBack.BackColor = System.Drawing.Color.Gray;
-            this.btBack.FlatAppearance.BorderSize = 0;
-            this.btBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBack.ForeColor = System.Drawing.Color.White;
-            this.btBack.Location = new System.Drawing.Point(101, 7);
-            this.btBack.Name = "btBack";
-            this.btBack.Size = new System.Drawing.Size(71, 39);
-            this.btBack.TabIndex = 3;
-            this.btBack.Text = "Back";
-            this.btBack.UseVisualStyleBackColor = false;
-            this.btBack.Click += new System.EventHandler(this.btBack_Click);
+            this.ucInfoTop1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInfoTop1.Location = new System.Drawing.Point(0, 0);
+            this.ucInfoTop1.Name = "ucInfoTop1";
+            this.ucInfoTop1.Size = new System.Drawing.Size(945, 39);
+            this.ucInfoTop1.TabIndex = 0;
             // 
             // frmMenuSetting
             // 

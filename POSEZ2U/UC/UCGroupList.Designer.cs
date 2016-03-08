@@ -113,6 +113,7 @@
             this.txtGroupNameDesc.Name = "txtGroupNameDesc";
             this.txtGroupNameDesc.Size = new System.Drawing.Size(495, 33);
             this.txtGroupNameDesc.TabIndex = 1;
+            this.txtGroupNameDesc.TextChanged += new System.EventHandler(this.txtGroupNameDesc_TextChanged);
             // 
             // label3
             // 
@@ -278,7 +279,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.FlowLayoutPanel flpGroup;
+        public System.Windows.Forms.FlowLayoutPanel flpGroup;
         public System.Windows.Forms.Label lblTilte;
         public UCTextBoxKeyBoard txtGroupNameDesc;
         public UCTextBoxKeyBoard txtGroupNameSort;
