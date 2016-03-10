@@ -259,10 +259,9 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmMenuAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmMenuAdd";
             this.Load += new System.EventHandler(this.frmMenuAdd_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

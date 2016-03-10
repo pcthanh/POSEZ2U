@@ -57,6 +57,7 @@
             this.panel5.SuspendLayout();
             this.panel8.SuspendLayout();
             this.pn2.SuspendLayout();
+            this.flpMenuList.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -183,6 +184,7 @@
             // 
             this.flpMenuList.AutoScroll = true;
             this.flpMenuList.BackColor = System.Drawing.Color.White;
+            this.flpMenuList.Controls.Add(this.ucPriceListTitle);
             this.flpMenuList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMenuList.Location = new System.Drawing.Point(0, 35);
             this.flpMenuList.Name = "flpMenuList";
@@ -192,7 +194,6 @@
             // panel11
             // 
             this.panel11.Controls.Add(this.txtSearch);
-            this.panel11.Controls.Add(this.ucPriceListTitle);
             this.panel11.Controls.Add(this.txtNameMenuList);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(0, 0);
@@ -219,9 +220,9 @@
             this.btBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBack.ForeColor = System.Drawing.Color.White;
-            this.btBack.Location = new System.Drawing.Point(101, 7);
+            this.btBack.Location = new System.Drawing.Point(95, 7);
             this.btBack.Name = "btBack";
-            this.btBack.Size = new System.Drawing.Size(71, 39);
+            this.btBack.Size = new System.Drawing.Size(84, 39);
             this.btBack.TabIndex = 3;
             this.btBack.Text = "Back";
             this.btBack.UseVisualStyleBackColor = false;
@@ -236,7 +237,7 @@
             this.btNext.ForeColor = System.Drawing.Color.White;
             this.btNext.Location = new System.Drawing.Point(179, 7);
             this.btNext.Name = "btNext";
-            this.btNext.Size = new System.Drawing.Size(71, 39);
+            this.btNext.Size = new System.Drawing.Size(80, 39);
             this.btNext.TabIndex = 2;
             this.btNext.Text = "Next";
             this.btNext.UseVisualStyleBackColor = false;
@@ -272,21 +273,22 @@
             // 
             this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtSearch.Location = new System.Drawing.Point(89, 6);
+            this.txtSearch.Location = new System.Drawing.Point(75, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(154, 26);
+            this.txtSearch.Size = new System.Drawing.Size(184, 26);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.TextChanged += new System.EventHandler(this.ucTextBoxKeyBoard1_TextChanged);
             // 
             // ucPriceListTitle
             // 
             this.ucPriceListTitle.BackColor = System.Drawing.Color.White;
-            this.ucPriceListTitle.Location = new System.Drawing.Point(-1, 3);
-            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(1200, 32);
+            this.ucPriceListTitle.Location = new System.Drawing.Point(3, 3);
+            this.ucPriceListTitle.MaximumSize = new System.Drawing.Size(966, 32);
             this.ucPriceListTitle.Name = "ucPriceListTitle";
-            this.ucPriceListTitle.Size = new System.Drawing.Size(1200, 32);
+            this.ucPriceListTitle.Size = new System.Drawing.Size(585, 32);
             this.ucPriceListTitle.TabIndex = 1;
             this.ucPriceListTitle.Visible = false;
+            this.ucPriceListTitle.Load += new System.EventHandler(this.ucPriceListTitle_Load);
             // 
             // txtNameMenuList
             // 
@@ -331,6 +333,7 @@
             this.panel5.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.pn2.ResumeLayout(false);
+            this.flpMenuList.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel6.ResumeLayout(false);

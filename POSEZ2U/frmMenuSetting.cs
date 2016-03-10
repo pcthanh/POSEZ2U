@@ -1219,5 +1219,10 @@ namespace POSEZ2U
                     break;
             }
         }
+
+        private void ucPriceListTitle_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
