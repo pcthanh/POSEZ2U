@@ -147,6 +147,22 @@ namespace ServicePOS
             return data;
         }
 
+        public IEnumerable<CategoryModel> GetCategoryByCatalogueID(int CatalogueID, int currentPage)
+        {
+
+            var data = _context.MAP_CATEGORY_TO_CATALOGUE.Join(_context.CATEGORies, cata => cata.CategoryID,
+                cate => cate.CategoryID, (cata, cate) => new { cata, cate })
+                .Where(x => x.cata.CatalogueID == CatalogueID && x.cata.Status == 1)
+                .Select(x => new CategoryModel()
+                {
+                    CatalogueID = x.cata.CatalogueID,
+                    CategoryID = x.cate.CategoryID,
+                    CategoryName = x.cate.CategoryName,
+                    Status = x.cate.Status
+                }).OrderBy(p => p.CategoryName).Skip(10 * (currentPage - 1))
+                .Take(10).ToList();
+            return data;
+        }
 
         public IEnumerable<CategoryModel> GetAllListCategoryByCatalogue(int CatalogueID)
         {
@@ -220,7 +236,7 @@ namespace ServicePOS
                 Color = x.Color ?? "",
                 ProductColor = x.ProductColor ?? ""
             }).OrderBy(p => p.CategoryName).Skip(10 * (CurrentPage - 1))
-         .Take(10).ToList();
+            .Take(10).ToList();
             return data;
         }
 
@@ -320,6 +336,25 @@ namespace ServicePOS
             return 0;
         }
 
+        public IEnumerable<ProductionModel> GetProductByCategoryID(int CategoryID, int CurrentPage)
+        {
+
+            var data = _context.MAP_PRODUCT_TO_CATEGORY.Join(_context.PRODUCTs, cate => cate.ProductID,
+                pro => pro.ProductID, (cate, pro) => new { cate, pro })
+                .Where(x => x.cate.CategoryID == CategoryID && x.cate.Status == 1)
+                .Select(x => new ProductionModel()
+                {
+                    ProductID = x.cate.ProductID,
+                    CategoryID = x.cate.CategoryID,
+                    ProductNameDesc = x.pro.ProductNameDesc,
+                    ProductNameSort = x.pro.ProductNameSort,
+                    Status = x.pro.Status
+
+                }).OrderBy(p => p.ProductNameDesc).Skip(10 * (CurrentPage - 1))
+            .Take(10).ToList(); 
+            return data;
+        }
+
         public IEnumerable<ProductionModel> GetProductByCategoryID(int CategoryID)
         {
 
@@ -333,7 +368,7 @@ namespace ServicePOS
                     ProductNameDesc = x.pro.ProductNameDesc,
                     ProductNameSort = x.pro.ProductNameSort,
                     Status = x.pro.Status
-                    
+
                 });
 
             return data;

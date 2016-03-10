@@ -570,8 +570,7 @@ namespace POSEZ2U
                 ucMenu.txtMenuName.Text = cata.CatalogueName;
 
                 ucMenu.flpIncludesGroup.Controls.Clear();
-                ucMenu.addUcMenuGroup(cata.CatalogueID);
-                ucMenu.addButton(cata.CatalogueID);
+                ucMenu.addUcMenuGroup(cata.CatalogueID, 1);
 
 
                 ucMenu.btnSave.Tag = cata;
@@ -811,8 +810,7 @@ namespace POSEZ2U
                 ucGroupList.btnRemove.Click += ucGroupList_btnRemove_Click;
 
                 ucGroupList.flpGroup.Controls.Clear();
-                ucGroupList.addUcMenuGroup(cate.CategoryID);
-                ucGroupList.addButton(cate.CategoryID);
+                ucGroupList.addUcMenuGroup(cate.CategoryID, 1);
 
                 ucGroupList.cbGroupColor.SelectedItem = cate.Color;
                 ucGroupList.cbProductColor.SelectedItem = cate.ProductColor;
@@ -926,8 +924,7 @@ namespace POSEZ2U
                 ucItemList.lbPortions.Visible = false;
                 ucItemList.Tag = productData;
                 ucItemList.flpItemList.Controls.Clear();
-                ucItemList.addUcMenuGroup(productData.ProductID);
-                ucItemList.addButton(productData.ProductID);
+                ucItemList.addUcMenuGroup(productData.ProductID, 1);
                 ucItemList.cbProductColor.SelectedItem = productData.Color;
             }
             else

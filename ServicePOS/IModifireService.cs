@@ -20,6 +20,7 @@ namespace ServicePOS
         IEnumerable<ModifireModel> GetModifireAllList(int productID);
 
         IEnumerable<ModifireModel> GetListModifireToProduct(int productID);
+        IEnumerable<ModifireModel> GetListModifireToProduct(int productID, int CurrentPage);
 
         IEnumerable<ModifireModel> GetModifireByProduct(int productID,int Page);
 

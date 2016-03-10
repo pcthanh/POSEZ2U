@@ -18,6 +18,7 @@ namespace ServicePOS
         int RemoveCatalogue(int catalogueid, int userid);
 
         IEnumerable<CategoryModel> GetCategoryByCatalogueID(int CatalogueID);
+        IEnumerable<CategoryModel> GetCategoryByCatalogueID(int CatalogueID, int currentPage);
         int SaveMapCategoryToCatalogue(List<CategoryModel> data, int catalogueid,int userid);
         IEnumerable<CategoryModel> GetAllListCategoryByCatalogue(int CatalogueID);
 
@@ -28,6 +29,8 @@ namespace ServicePOS
         int RemoveCategory(int categoryid, int userid);
 
         IEnumerable<ProductionModel> GetProductByCategoryID(int CategoryID);
+        IEnumerable<ProductionModel> GetProductByCategoryID(int CategoryID, int currentPage);
+
         IEnumerable<ProductionModel> GetAllListProductByCategory(int CategoryID);
 
         int SaveDataMapProductToCategory(List<ProductionModel> data, int categoryid, int userid);

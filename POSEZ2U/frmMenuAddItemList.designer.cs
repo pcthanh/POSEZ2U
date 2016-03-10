@@ -236,6 +236,7 @@
             // 
             // flpThisgroupitems
             // 
+            this.flpThisgroupitems.AutoScroll = true;
             this.flpThisgroupitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.flpThisgroupitems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpThisgroupitems.Location = new System.Drawing.Point(0, 0);

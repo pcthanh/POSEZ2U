@@ -24,7 +24,9 @@ namespace POSEZ2U.UC
             set { _catalogeService = value; }
         }
         #endregion
-
+        private int totalPage = 0;
+        private int CurrentPage = 1;
+        private int pageSize = 10;
         public UCGroupList()
         {
             InitializeComponent();
@@ -32,24 +34,35 @@ namespace POSEZ2U.UC
 
 
 
-        public void addUcMenuGroup(int categoryID)
+        public void addUcMenuGroup(int categoryID, int CurrentPage)
         {
 
            
             if (categoryID > 0)
             {
-                var productlist = CatalogeService.GetProductByCategoryID(categoryID).ToList();
-                if (productlist.Count > 0)
+                if (this.totalPage == 0)
                 {
-                    UCProductIncl[] ucProductIncl = new UCProductIncl[productlist.Count];
-                    for (int i = 0; i < productlist.Count; i++)
+                    this.totalPage = CatalogeService.GetProductByCategoryID(categoryID).Count();
+                }
+                var productlist = CatalogeService.GetProductByCategoryID(categoryID, CurrentPage);
+                this.CurrentPage = CurrentPage;
+                if (productlist.Count() > 0)
+                {
+                    flpGroup.Controls.Clear();
+                    foreach (var item in productlist)
                     {
-                        ucProductIncl[i] = new UCProductIncl();
-                        ucProductIncl[i].lblNameGroupIncl.Text = productlist[i].ProductNameDesc;
-                        ucProductIncl[i].Tag = productlist[i];
-                        ucProductIncl[i].Click += UCGroupList_Click;
-                        flpGroup.Controls.AddRange(ucProductIncl);
+                        UCProductIncl ucProductIncl = new UCProductIncl();
+                        ucProductIncl.lblNameGroupIncl.Text = item.ProductNameDesc;
+                        ucProductIncl.Tag = item;
+                        flpGroup.Controls.Add(ucProductIncl);
                     }
+                    addButton(categoryID);
+                    backButton(categoryID);
+                    nextButton(categoryID);
+                }
+                else
+                {
+                    addButton(categoryID);
                 }
             }
            
@@ -80,15 +93,66 @@ namespace POSEZ2U.UC
             if (frmGroupAdd.ShowDialog() == DialogResult.OK)
             {
                 flpGroup.Controls.Clear();
-                addUcMenuGroup(tag);
-                addButton(tag);
-
+                addUcMenuGroup(tag, this.CurrentPage);
             }
         }
-        void UCGroupList_Click(object sender, EventArgs e)
+
+        public void nextButton(int categoryID)
         {
-            UCProductIncl ucProduct = (UCProductIncl)sender;
-            MessageBox.Show(ucProduct.Tag.ToString().ToString());
+            Button btn = new Button();
+            btn.Width = 107;
+            btn.Height = 44;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(192, 192, 192);
+            btn.ForeColor = Color.White;
+            btn.Name = "btnNext";
+            btn.Text = "Next";
+            btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn.Tag = categoryID;
+            btn.Click += btnNext_Click;
+            flpGroup.Controls.Add(btn);
+        }
+
+        public void backButton(int categoryID)
+        {
+            Button btn = new Button();
+            btn.Width = 107;
+            btn.Height = 44;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.BackColor = Color.FromArgb(192, 192, 192);
+            btn.ForeColor = Color.White;
+            btn.Name = "btnBack";
+            btn.Text = "Back";
+            btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            btn.Tag = categoryID;
+            btn.Click += btnBack_Click;
+            flpGroup.Controls.Add(btn);
+        }
+
+        void btnNext_Click(object sender, EventArgs e)
+        {
+            Button addnewGroup = (Button)sender;
+            int tag = Convert.ToInt16(addnewGroup.Tag);
+            double GroupCount = (double)((decimal)totalPage / Convert.ToDecimal(pageSize));
+            if (this.CurrentPage < GroupCount)
+            {
+                this.CurrentPage++;
+                addUcMenuGroup(tag, this.CurrentPage);
+            }
+        }
+
+        void btnBack_Click(object sender, EventArgs e)
+        {
+            Button addnewGroup = (Button)sender;
+            int tag = Convert.ToInt16(addnewGroup.Tag);
+            if (this.CurrentPage == 1)
+            {
+                return;
+            }
+            CurrentPage--;
+            addUcMenuGroup(tag, this.CurrentPage);
         }
 
         private void UCGroupList_Load(object sender, EventArgs e)

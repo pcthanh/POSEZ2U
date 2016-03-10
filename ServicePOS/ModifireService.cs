@@ -199,6 +199,15 @@ namespace ServicePOS
         #endregion
 
         #region
+        public IEnumerable<ModifireModel> GetListModifireToProduct(int productID, int CurrentPage)
+        {
+            var data = _context.Database.SqlQuery<ModifireModel>("pos_th_GetListModifireToProduct @productID", new SqlParameter("productID", productID))
+                .OrderBy(x => x.ModifireName).Skip(10 * (CurrentPage - 1)).Take(10).ToList();
+            return data;
+        }
+        #endregion
+
+        #region
         public IEnumerable<ModifireModel> GetModifireAllList(int productID)
         {
             var data = _context.Database.SqlQuery<ModifireModel>("pos_th_GetListModifire @productID", new SqlParameter("productID", productID));
