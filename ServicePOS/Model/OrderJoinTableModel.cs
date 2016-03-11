@@ -12,5 +12,6 @@ namespace ServicePOS.Model
         public double SubTotalTable { get; set; }
         public int TableID { get; set; }
         public int TableIDNew { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

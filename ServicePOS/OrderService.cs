@@ -8,6 +8,7 @@ using ModelPOS.ModelEntity;
 using SystemLog;
 using ServicePOS.Model;
 using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 
 namespace ServicePOS
@@ -322,25 +323,24 @@ namespace ServicePOS
 
         public int UpdateOrder(OrderDateModel idOrder)
         {
-            int result = 0;
+            int Result = 0;
             try
             {
-                using (var Tranx = _context.Database.BeginTransaction())
+                using (var tran = _context.Database.BeginTransaction())
                 {
                     _context.Database.ExecuteSqlCommand("update ORDER_DATE set Status=2 where OrderID='" + idOrder.OrderID + "'");
-                    _context.SaveChanges();
-                    Tranx.Commit();
-                    result = 1;
+                    tran.Commit();
+                    Result = 1;
                 }
             }
             catch (Exception ex)
             {
-                LogPOS.WriteLog("OrderService:::::::::::::::::::::::UpdateOrder::::::::::::::::;" + ex.Message);
-            }
-            return result;
-        }
 
+            }
+            return Result;
        
+        }
+        
 
         StatusTable IOrderService.GetStatusTable(string TableID)
         {
@@ -355,6 +355,7 @@ namespace ServicePOS
                 st.TableID = status.FloorID.ToString();
                 st.SubTotal = status.TotalAmount.ToString();
                 st.Time = status.CreateDate.ToString();
+                st.OrderNum = status.OrderNumber??0;
             }
             return st;
         }
@@ -376,7 +377,7 @@ namespace ServicePOS
                 OrderMain.UpdateBy = dataOrder.UpdateBy;
                 OrderMain.Status = dataOrder.Status;
                 OrderMain.OrderNumber = dataOrder.OrderNumber??0;
-
+                OrderMain.CreateDate = dataOrder.CreateDate;
                 var seat = _context.ORDER_DATE.Join(_context.SEATs, order => order.OrderNumber, seatmap => seatmap.OrderNumber, (order, seatmap) => new { order, seatmap })
                     .Where(x => x.order.OrderNumber == dataOrder.OrderNumber && x.seatmap.OrderNumber == dataOrder.OrderNumber && x.order.OrderNumber == x.seatmap.OrderNumber)
                     .Select(x => new SeatModel { 
@@ -390,9 +391,6 @@ namespace ServicePOS
                     OrderMain.ListSeatOfOrder.Add(item);
                 }
                 
-                
-
-
                 var data = _context.ORDER_DATE.Join(_context.ORDER_DETAIL_DATE, order => order.OrderID,
                  item => item.OrderID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
@@ -741,39 +739,59 @@ namespace ServicePOS
                 int OrderIDNew;
                 using (var tranJoinTable = _context.Database.BeginTransaction())
                 {
-                     for (int i = 0; i < OrderJoin.Count; i++)
-                     {
-                         toal = toal+ OrderJoin[i].SubTotalTable;
-                     }
-                    ORDER_DATE OrderJoinNew = new ORDER_DATE();
-                    OrderJoinNew.FloorID = TableNew.ToString();
-                    OrderJoinNew.Seat = 0;
-                    OrderJoinNew.TotalAmount = toal;
-                    OrderJoinNew.CreateBy = 0;
-                    OrderJoinNew.CreateDate = DateTime.Now;
-                    OrderJoinNew.UpdateBy = 0;
-                    OrderJoinNew.UpdateDate = DateTime.Now;
-                    //OrderJoinNew.OrderNumber = order
-                    OrderJoinNew.ClientID = 0;
-                    _context.Entry(OrderJoinNew).State = System.Data.Entity.EntityState.Added;
-                    _context.SaveChanges();
-                    OrderIDNew = OrderJoinNew.OrderID;
-                    for (int j = 0; j < OrderJoin.Count; j++)
-                    {
-                        _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_DATE set OrderID='" + OrderIDNew + "',Seat=0 where OrderID='" +OrderJoin[j].OrderID+ "'");
-                    }
-                    for (int j = 0; j < OrderJoin.Count; j++)
-                    {
-                        _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_MODIFIRE_DATE set OrderID='" + OrderIDNew + "',Seat=0 where OrderID='" + OrderJoin[j].OrderID + "'");
-                    }
                     for (int i = 0; i < OrderJoin.Count; i++)
                     {
-                        
-                            _context.Database.ExecuteSqlCommand("delete  ORDER_DATE where OrderID='" + OrderJoin[i].OrderID + "'");
+                        toal = toal + OrderJoin[i].SubTotalTable;
                     }
-                    
-                    tranJoinTable.Commit();
-                    result = 1;
+                    OrderDateModel OrderCheck = GetOrderByTable(TableNew.ToString(), 0);
+                    if (OrderCheck.ListOrderDetail.Count > 0)
+                    {
+                        _context.Database.ExecuteSqlCommand("update ORDER_DATE SET TotalAmount=TotalAmount+'" + toal + "'WHERE OrderID='"+ OrderCheck.OrderID+"'AND OrderNumber='"+ OrderCheck.OrderNumber+"'");
+                        for (int i = 0; i < OrderJoin.Count; i++)
+                        {
+
+                            _context.Database.ExecuteSqlCommand("delete  ORDER_DATE where OrderID='" + OrderJoin[i].OrderID + "'");
+                           
+                            _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_DATE set OrderID='" + OrderCheck.OrderID + "',Seat=0,OrderNumber='"+ OrderCheck.OrderNumber+"' where OrderID='" + OrderJoin[i].OrderID + "'");
+                            _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_MODIFIRE_DATE set OrderID='" + OrderCheck.OrderID + "',Seat=0,OrderNumber='" + OrderCheck.OrderNumber + "'  where OrderID='" + OrderJoin[i].OrderID + "'");
+                            
+                        }
+                        tranJoinTable.Commit();
+                        result = 1;
+                    }
+                    else
+                    {
+                        
+                        ORDER_DATE OrderJoinNew = new ORDER_DATE();
+                        OrderJoinNew.FloorID = TableNew.ToString();
+                        OrderJoinNew.Seat = 0;
+                        OrderJoinNew.TotalAmount = toal;
+                        OrderJoinNew.CreateBy = 0;
+                        OrderJoinNew.CreateDate = DateTime.Now;
+                        OrderJoinNew.UpdateBy = 0;
+                        OrderJoinNew.UpdateDate = DateTime.Now;
+                        //OrderJoinNew.OrderNumber = order
+                        OrderJoinNew.ClientID = 0;
+                        _context.Entry(OrderJoinNew).State = System.Data.Entity.EntityState.Added;
+                        _context.SaveChanges();
+                        OrderIDNew = OrderJoinNew.OrderID;
+                        for (int j = 0; j < OrderJoin.Count; j++)
+                        {
+                            _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_DATE set OrderID='" + OrderIDNew + "',Seat=0 where OrderID='" + OrderJoin[j].OrderID + "'");
+                        }
+                        for (int j = 0; j < OrderJoin.Count; j++)
+                        {
+                            _context.Database.ExecuteSqlCommand("update  ORDER_DETAIL_MODIFIRE_DATE set OrderID='" + OrderIDNew + "',Seat=0 where OrderID='" + OrderJoin[j].OrderID + "'");
+                        }
+                        for (int i = 0; i < OrderJoin.Count; i++)
+                        {
+
+                            _context.Database.ExecuteSqlCommand("delete  ORDER_DATE where OrderID='" + OrderJoin[i].OrderID + "'");
+                        }
+
+                        tranJoinTable.Commit();
+                        result = 1;
+                    }
                     
                 }
             }
@@ -940,6 +958,12 @@ namespace ServicePOS
                 }
                 );
 
+                var Account = _context.INVOICEs.Join(_context.ACC_PAYMENT, invoice => invoice.InvoiceNumber, acc => acc.InvoiceNumber, (invoice, acc) => new { invoice, acc })
+                   .Join(_context.CLIENTs, cus => cus.acc.CusNo, c => c.ClientID, (cus, c) => new { cus, c })
+                   .Where(x => x.cus.acc.InvoiceID == x.cus.invoice.InvoiceID && x.cus.acc.InvoiceNumber == x.cus.acc.InvoiceNumber && x.c.ClientID == x.cus.acc.CusNo &&x.cus.acc.InvoiceNumber==dataOrder.InvoiceNumber).SingleOrDefault();
+
+                OrderMain.CusItem.Fname = Account.c.Fname;
+                OrderMain.CusItem.ClientID = Account.c.ClientID;
                 foreach (InByCardModel item in listCard)
                 {
                     var getCardName =_context.Cards.Where(x=>x.CardID==item.CardID).SingleOrDefault();
@@ -1009,17 +1033,7 @@ namespace ServicePOS
                            DynID = x.modi.modifire.DynId ?? 0
                        });
 
-                    var print = _context.PRINTE_JOB_DETAIL.Where(x => x.ProductID == item.ProductID)
-                       .Select(x => new PrinteJobDetailModel
-                       {
-                           ProductID = x.ProductID,
-                           PrinterID = x.PrinterID
-                       }
-                       );
-                    foreach (PrinteJobDetailModel p in print)
-                    {
-                        item.ListPrintJob.Add(p);
-                    }
+                   
                     OrderMain.addItemToList(item);
                     foreach (OrderDetailModifireModel itemmodifire in dataOrderModifire)
                     {
@@ -1091,6 +1105,39 @@ namespace ServicePOS
                 result = 1;
             }
             return result;
+        }
+
+
+        public StatusTable GetStatusTablePrinBill(string TableID)
+        {
+            StatusTable st = new StatusTable();
+            try
+            {
+                st.Complete = -1;
+                var status = _context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status != 1 && x.Status != 4)
+                    .Select(x => new OrderDateModel
+                    {
+                        Status = x.Status,
+                        OrderID = x.OrderID,
+                        FloorID = x.FloorID,
+                        TotalAmount = x.TotalAmount,
+                        CreateDate = x.CreateDate
+                    }).ToList();
+                if (status.Count > 0)
+                {
+                    foreach (OrderDateModel item in status)
+                    {
+                        st.Complete = item.Status;
+                        st.OrderID = item.OrderID;
+                        st.TableID = item.FloorID.ToString();
+                        st.SubTotal = item.TotalAmount.ToString();
+                        st.Time = item.CreateDate.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {}
+            return st;
         }
     }
 }

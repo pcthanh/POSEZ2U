@@ -14,5 +14,6 @@ namespace ServicePOS.Model
         public string TableID { get; set; }
         public int Seat { get; set; }
         public string Time { get; set; }
+        public int OrderNum { get; set; }
     }
 }

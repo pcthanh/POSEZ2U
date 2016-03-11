@@ -31,7 +31,7 @@ namespace ServicePOS
        OrderDateModel GetListOrderPrevOrder(string idTable, int idOrder,DateTime ts);
        int CancelOrder(OrderDateModel Order);
        int LastDynID();
-
+       StatusTable GetStatusTablePrinBill(string TableID);
        int DeleteTransferTableAll(OrderDateModel itemOrder);
     }
 }
