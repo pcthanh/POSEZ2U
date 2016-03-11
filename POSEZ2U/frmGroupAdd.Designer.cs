@@ -45,6 +45,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.flpThisgroupitems = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtSearch = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -236,12 +238,23 @@
             // 
             // flpThisgroupitems
             // 
+            this.flpThisgroupitems.AutoScroll = true;
             this.flpThisgroupitems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.flpThisgroupitems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpThisgroupitems.Location = new System.Drawing.Point(0, 0);
             this.flpThisgroupitems.Name = "flpThisgroupitems";
             this.flpThisgroupitems.Size = new System.Drawing.Size(227, 393);
             this.flpThisgroupitems.TabIndex = 0;
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearch.Location = new System.Drawing.Point(76, 6);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(152, 26);
+            this.txtSearch.TabIndex = 0;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // frmGroupAdd
             // 
@@ -257,9 +270,10 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmGroupAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "frmMenuAdd";
             this.Load += new System.EventHandler(this.frmMenuAdd_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -289,5 +303,6 @@
         public System.Windows.Forms.Button btnAllLeft;
         public System.Windows.Forms.Button btnRight;
         public System.Windows.Forms.Button btnLeft;
+        private UC.UCTextBoxKeyBoard txtSearch;
     }
 }

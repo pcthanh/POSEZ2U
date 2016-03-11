@@ -18,6 +18,8 @@ namespace ServicePOS
         int Delete(ModifireModel data);
 
         IEnumerable<ModifireModel> GetModifireAllList(int productID);
+        IEnumerable<ModifireModel> GetSearchModifireAllList(int productID, string txtSearch);
+
 
         IEnumerable<ModifireModel> GetListModifireToProduct(int productID);
         IEnumerable<ModifireModel> GetListModifireToProduct(int productID, int CurrentPage);

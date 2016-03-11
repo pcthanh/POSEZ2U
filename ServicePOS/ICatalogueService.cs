@@ -21,6 +21,8 @@ namespace ServicePOS
         IEnumerable<CategoryModel> GetCategoryByCatalogueID(int CatalogueID, int currentPage);
         int SaveMapCategoryToCatalogue(List<CategoryModel> data, int catalogueid,int userid);
         IEnumerable<CategoryModel> GetAllListCategoryByCatalogue(int CatalogueID);
+        IEnumerable<CategoryModel> GetSearchAllListCategoryByCatalogue(int CatalogueID, string txtSearch);
+
 
         IEnumerable<CategoryModel> GetListCategory();
         IEnumerable<CategoryModel> GetListCategory(int CurrentPage);
@@ -32,6 +34,7 @@ namespace ServicePOS
         IEnumerable<ProductionModel> GetProductByCategoryID(int CategoryID, int currentPage);
 
         IEnumerable<ProductionModel> GetAllListProductByCategory(int CategoryID);
+        IEnumerable<ProductionModel> GetSearchAllListProductByCategory(int CategoryID, string textSearch);
 
         int SaveDataMapProductToCategory(List<ProductionModel> data, int categoryid, int userid);
 

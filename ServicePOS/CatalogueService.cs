@@ -172,7 +172,14 @@ namespace ServicePOS
             return data;
         }
 
-
+        public IEnumerable<CategoryModel> GetSearchAllListCategoryByCatalogue(int CatalogueID, string textSearch)
+        {
+            var data = _context.Database.SqlQuery<CategoryModel>("pos_th_GetSearchAllListCategoryByCatalogue @catalogueid, @txtSearch",
+              new SqlParameter("catalogueid", CatalogueID),
+              new SqlParameter("txtSearch", textSearch)
+            ).ToList();
+            return data;
+        }
 
         public int SaveMapCategoryToCatalogue(List<CategoryModel> data, int catalogueid, int userid)
         {
@@ -378,6 +385,15 @@ namespace ServicePOS
         {
             var data = _context.Database.SqlQuery<ProductionModel>("pos_th_GetAllListProductByCategory @categoryid",
               new SqlParameter("categoryid", CategoryID)
+            ).ToList();
+            return data;
+        }
+
+        public IEnumerable<ProductionModel> GetSearchAllListProductByCategory(int CategoryID, string textSearch)
+        {
+            var data = _context.Database.SqlQuery<ProductionModel>("pos_th_GetSearchAllListProductByCategory @categoryid, @txtSearch",
+              new SqlParameter("categoryid", CategoryID),
+              new SqlParameter("txtSearch", textSearch)
             ).ToList();
             return data;
         }

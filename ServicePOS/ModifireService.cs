@@ -214,6 +214,13 @@ namespace ServicePOS
             return data;
         }
         #endregion
+        #region
+        public IEnumerable<ModifireModel> GetSearchModifireAllList(int productID, string txtSearch)
+        {
+            var data = _context.Database.SqlQuery<ModifireModel>("pos_th_GetSearchListModifireToProduct @productID, @txtSearch", new SqlParameter("productID", productID), new SqlParameter("txtSearch", txtSearch));
+            return data;
+        }
+        #endregion
 
         #region
         public int Delete(ModifireModel data)

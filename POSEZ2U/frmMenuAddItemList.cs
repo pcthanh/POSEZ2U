@@ -212,5 +212,26 @@ namespace POSEZ2U
             LoadThisGroupItems();
             LoadAllItem();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            var listAllSearch = new List<ModifireModel>();
+            listAllItem = new List<ModifireModel>();
+            listAllSearch = ModifireService.GetSearchModifireAllList(productID, txtSearch.Text).ToList();
+            flpAllitems.AutoScroll = true;
+            List<string> str = new List<string>();
+            for (var i = 0; i < listItem.Count(); i++)
+            {
+                str.Add(listItem[i].ModifireName);
+            }
+            foreach (var item in listAllSearch)
+            {
+                if (!str.Contains(item.ModifireName))
+                {
+                    listAllItem.Add(item);
+                }
+            }
+            LoadAllItem();
+        }
     }
 }
