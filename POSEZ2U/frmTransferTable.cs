@@ -47,7 +47,12 @@ namespace POSEZ2U
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
         }
-
+        private IConfigService _configService;
+        private IConfigService ConfigService
+        {
+            get { return _configService ?? (_configService = new ConfigService()); }
+            set { _configService = value; }
+        }
         private void TableNo(int ID)
         {
             if (lblNoTable.Text == "#")
@@ -374,6 +379,17 @@ namespace POSEZ2U
                         }
                         if (result >= 2)
                         {
+                            var list = ConfigService.GetConfig();
+                            foreach (ConfigModel item in list)
+                            {
+                                cofig.ABN = item.ABN;
+                                cofig.Name = item.Name;
+                                cofig.Tel = item.Tel;
+                                cofig.Web = item.Web;
+                                cofig.Logan = item.Logan;
+                                cofig.Note = item.Note;
+                                cofig.Address = item.Address;
+                            }
                             foreach (PrinterModel item in PrintData)
                             {
                                 Header = item.Header;
