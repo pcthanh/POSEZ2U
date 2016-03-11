@@ -857,7 +857,7 @@ namespace POSEZ2U
                         SeatModel seatAdd = new SeatModel();
                         seatAdd.Seat = seat;
                         lstSeat.Add(seatAdd);
-                        OrderMain.ListSeatOfOrder = lstSeat;
+                        OrderMain.ListSeatOfOrder.Add(seatAdd);
                         UCSeat ucSeat = new UCSeat();
                         ucSeat.lblSeat.Text = "Seat " + seat;
                         ucSeat.Click += ucSeat_Click;
@@ -914,6 +914,8 @@ namespace POSEZ2U
 
         private void btnVoid_Click(object sender, EventArgs e)
         {
+            bool isStopVoid = false;
+            int countChangeStatus=0;
             try
             {
                 if (OrderMain.Status == 1)
@@ -928,100 +930,117 @@ namespace POSEZ2U
                     OrderDetailModel items = null;
                     UCSeat ucSeat = null;
                     int CountIndexitemOfSeat = 0;
-                    if (flagClick == 1)
+                    for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                     {
-
-                        ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
-                        modifier = (OrderDetailModifireModel)ucItemModifireOfMenu.Tag;
+                        if (OrderMain.ListOrderDetail[i].ChangeStatus == 0)
+                            countChangeStatus++;
+                       
                     }
-
-                    else
+                    if (countChangeStatus == 1)
+                        isStopVoid = true;
+                    if (!isStopVoid)
                     {
+                        if (flagClick == 1)
+                        {
+
+                            ucItemModifireOfMenu = (UCItemModifierOfMenu)flpOrder.Controls[indexControl];
+                            modifier = (OrderDetailModifireModel)ucItemModifireOfMenu.Tag;
+                        }
+
+                        else
+                        {
+                            if (numSeat > 0)
+                            {
+                                ucSeat = (UCSeat)flpOrder.Controls[indexOfUcSeat];
+                            }
+                            else
+                            {
+                                ucOrder = (UCOrder)flpOrder.Controls[indexControl];
+                                items = (OrderDetailModel)ucOrder.Tag;
+                            }
+                        }
+                        if (items != null)
+                        {
+                            for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                            {
+                                if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
+                                {
+                                    if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                                    {
+                                        for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
+                                        {
+                                            flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
+                                        }
+                                        OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
+                                    }
+
+                                    //OrderMain.ListOrderDetail.RemoveAt(i);
+                                    OrderMain.ListOrderDetail[i].ChangeStatus = 2;
+                                }
+
+                            }
+
+                            flpOrder.Controls.RemoveAt(indexControl);
+
+                        }
+                        if (modifier != null)
+                        {
+                            for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                            {
+                                for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                                {
+                                    if (modifier.KeyModi == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi && modifier.ModifireID == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID)
+                                    {
+                                        //OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
+                                        OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus = 2;
+                                    }
+                                }
+                            }
+                            flpOrder.Controls.RemoveAt(indexControl);
+
+                        }
                         if (numSeat > 0)
                         {
-                            ucSeat = (UCSeat)flpOrder.Controls[indexOfUcSeat];
+                            for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
+                            {
+
+                                if (numSeat == OrderMain.ListOrderDetail[i].Seat && OrderMain.ListOrderDetail[i].ChangeStatus != 2)
+                                {
+                                    CountIndexitemOfSeat++;
+                                    OrderMain.ListOrderDetail[i].ChangeStatus = 2;
+                                }
+                            }
+                            for (int remove = 0; remove < OrderMain.ListSeatOfOrder.Count; remove++)
+                            {
+                                if (OrderMain.ListSeatOfOrder[remove].Seat == numSeat)
+                                {
+                                    OrderMain.ListSeatOfOrder[remove].ChangeStatus = 2;
+                                }
+                            }
+                            for (int count = CountIndexitemOfSeat + indexOfUcSeat; count > indexOfUcSeat; count--)
+                            {
+                                flpOrder.Controls.RemoveAt(count);
+                            }
+
+                            flpOrder.Controls.RemoveAt(indexOfUcSeat);
+                            numSeat = 0;
                         }
                         else
                         {
-                            ucOrder = (UCOrder)flpOrder.Controls[indexControl];
-                            items = (OrderDetailModel)ucOrder.Tag;
+                            //flpOrder.Controls.RemoveAt(indexControl);
+                            flagClick = 0;
                         }
-                    }
-                    if (items != null)
-                    {
-                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
-                        {
-                            if (items.KeyItem == OrderMain.ListOrderDetail[i].KeyItem)
-                            {
-                                if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
-                                {
-                                    for (int indexOfModifier = OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; indexOfModifier > 0; indexOfModifier--)
-                                    {
-                                        flpOrder.Controls.RemoveAt(indexControl + indexOfModifier);
-                                    }
-                                    OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Clear();
-                                }
-
-                                //OrderMain.ListOrderDetail.RemoveAt(i);
-                                OrderMain.ListOrderDetail[i].ChangeStatus = 2;
-                            }
-
-                        }
-
-                        flpOrder.Controls.RemoveAt(indexControl);
-
-                    }
-                    if (modifier != null)
-                    {
-                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
-                        {
-                            for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
-                            {
-                                if (modifier.KeyModi == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].KeyModi && modifier.ModifireID == OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireID)
-                                {
-                                    //OrderMain.ListOrderDetail[i].ListOrderDetailModifire.RemoveAt(j);
-                                    OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus = 2;
-                                }
-                            }
-                        }
-                        flpOrder.Controls.RemoveAt(indexControl);
-
-                    }
-                    if (numSeat > 0)
-                    {
-                        for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
-                        {
-
-                            if (numSeat == OrderMain.ListOrderDetail[i].Seat && OrderMain.ListOrderDetail[i].ChangeStatus!=2)
-                            { 
-                                CountIndexitemOfSeat++;
-                                OrderMain.ListOrderDetail[i].ChangeStatus = 2;
-                            }
-                        }
-                        for (int remove = 0; remove < OrderMain.ListSeatOfOrder.Count; remove++)
-                        {
-                            if (OrderMain.ListSeatOfOrder[remove].Seat == numSeat)
-                            {
-                                OrderMain.ListSeatOfOrder[remove].ChangeStatus = 2;
-                            }
-                        }
-                        for (int count = CountIndexitemOfSeat+indexOfUcSeat; count > indexOfUcSeat; count--)
-                        {
-                            flpOrder.Controls.RemoveAt(count);
-                        }
-                            
-                        flpOrder.Controls.RemoveAt(indexOfUcSeat);
-                        numSeat = 0;
+                        lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
+                        if (OrderMain.IsLoadFromData)
+                            OrderService.VoidItemHistory(OrderMain);
                     }
                     else
                     {
-                        //flpOrder.Controls.RemoveAt(indexControl);
-                        flagClick = 0;
+                        
+                            frmMessager frm = new frmMessager("Void Order", "Can not void");
+                            frm.ShowDialog();
+                        
                     }
-                    lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
-                    if (OrderMain.IsLoadFromData)
-                        OrderService.VoidItemHistory(OrderMain);
-                    
                 }
             }
             catch (Exception ex)
@@ -1057,6 +1076,35 @@ namespace POSEZ2U
             }
         }
 
+        private Boolean CheckSeatIsExits(int NoSeat)
+        {
+            Boolean flag = true;
+            try
+            {
+                int ina = flowLayoutPanel1.Controls.Count;
+                foreach (Control ctr in flowLayoutPanel1.Controls)
+                {
+                    if (ctr is UCSeat)
+                    {
+                        UCSeat ucSeat = (UCSeat)ctr;
+                        if (Convert.ToInt32(ucSeat.Tag) == NoSeat)
+                        {
+                            flag = true;
+                        }
+                        else
+                            flag = false;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmOrder:::::::::::::::::::::::::::::CheckSeatExits:::::::::::::::::::::" + ex.Message);
+               
+            }
+            return flag;
+
+        }
         public void LoadOrder(string TableID, int orderID)
         {
             indexControl = 1;
@@ -1070,19 +1118,26 @@ namespace POSEZ2U
                     OrderMain.IsLoadFromData = true;
                     lblSeat.Text = OrderMain.Seat.ToString();
                     lblStatus.Text = "OLD";
+                    Boolean addSet;
                     foreach (SeatModel seat in OrderMain.ListSeatOfOrder)
                     {
-                        UCSeat ucSeat = new UCSeat();
-                        ucSeat.lblSeat.Text ="Seat " +seat.Seat.ToString();
-                        ucSeat.Click += ucSeat_Click;
-                        flpOrder.Controls.Add(ucSeat);
-                        indexControl = flpOrder.Controls.Count;
+                        addSet = true;
                         if (OrderMain.ListOrderDetail.Count > 0)
                         {
                             for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
                             {
                                 if (OrderMain.ListOrderDetail[i].Seat == seat.Seat)
                                 {
+                                    if (addSet)
+                                    {
+                                        UCSeat ucSeat = new UCSeat();
+                                        ucSeat.lblSeat.Text = "Seat " + seat.Seat.ToString();
+                                        ucSeat.Tag = seat.Seat;
+                                        ucSeat.Click += ucSeat_Click;
+                                        flpOrder.Controls.Add(ucSeat);
+                                        indexControl = flpOrder.Controls.Count;
+                                        addSet = false;
+                                    }
                                     addOrder(OrderMain.ListOrderDetail[i]);
                                     indexControl++;
                                     for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
@@ -1094,6 +1149,23 @@ namespace POSEZ2U
                                         indexControl++;
                                     }
                                 }
+                                else
+                                {
+                                    if (OrderMain.ListOrderDetail[i].Seat == 0)
+                                    {
+                                        addOrder(OrderMain.ListOrderDetail[i]);
+                                        indexControl++;
+                                        for (int j = 0; j < OrderMain.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                                        {
+                                            UCItemModifierOfMenu uc = new UCItemModifierOfMenu();
+                                            uc.Tag = OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j];
+                                            uc.Click += ucItemModifierOfMenu_Click;
+                                            addModifreToOrder(uc, OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j]);
+                                            indexControl++;
+                                        }
+                                    }
+                                }
+                              
                             }
                         }
                         else
@@ -1144,7 +1216,7 @@ namespace POSEZ2U
             }
             catch (Exception ex)
             {
-                LogPOS.WriteLog("LoadOrder:::::::::::::::::::::::::::::::::" + ex.Message);
+                LogPOS.WriteLog("frmOrder:::::::::::::::::::::::LoadOrder:::::::::::::::::::::::::::::::::" + ex.Message);
             }
         }
 
@@ -1273,7 +1345,8 @@ namespace POSEZ2U
                                 }
                                 else
                                 {
-                                    CallBackStatusOrder(OrderMain);
+                                    //CallBackStatusOrder(OrderMain);
+                                    CallBackStatusOrderCancel();
                                     this.Close();
                                 }
 
@@ -1373,7 +1446,7 @@ namespace POSEZ2U
                                     }
                                     else
                                     {
-                                        CallBackStatusOrder(OrderMain);
+                                        CallBackStatusOrderCancel();
                                         this.Close();
                                     }
                                 }
@@ -1390,7 +1463,7 @@ namespace POSEZ2U
                                     }
                                     else
                                     {
-                                        CallBackStatusOrder(OrderMain);
+                                        CallBackStatusOrderCancel();
                                         this.Close();
                                     }
                                 }
@@ -1431,9 +1504,8 @@ namespace POSEZ2U
                     int result = OrderService.UpdateOrder(OrderMain);
                     if (result == 1)
                     {
-                        //PrinterServer print = new PrinterServer();
-                        //print.P
-                        CallBackStatusOrderPrintBill(OrderMain);
+                       
+                        CallBackStatusOrderCancel();
                         this.Close();
                     }
                 }

@@ -36,7 +36,7 @@ namespace POSEZ2U
         DiscountModel Discount = new DiscountModel();
         bool lockTextChange = false;
         bool RemoveUc = false;
-       
+        Double txtTempBalnces = 0;
         private IInvoiceService _invoiceService;
         private IInvoiceService InvoiceService
         {
@@ -714,7 +714,6 @@ namespace POSEZ2U
                         }
                     }
 
-
                 }
                 catch (Exception ex)
                 {
@@ -726,7 +725,10 @@ namespace POSEZ2U
 
         private void btnExact_Click(object sender, EventArgs e)
         {
-            double exact = OrderMain.SubTotal() / 1000.0;
+            string []arrBalance = txtBalance.Text.Split('$');
+            string tempBalance = arrBalance[1];
+            double balance = Convert.ToDouble(tempBalance)*1000;
+            double exact = balance / 1000.0;
             txtTender.Text = exact.ToString();
         }
 

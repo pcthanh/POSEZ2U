@@ -42,7 +42,7 @@ namespace POSEZ2U
         OrderDateModel OrderMain = new OrderDateModel();
         public delegate void CallBackStatusOrder(OrderDateModel orderMain);
         public delegate void CallBackStatusOrderCancel();
-        public delegate void CallBackStatusOrderPrintBill(OrderDateModel orderMain);
+        public delegate void CallBackStatusOrderPrintBill();
         private delegate void ChangeTextCallback(string text, Control control);
         public delegate void AfterJoinTable();
         const int AW_HOR_POSITIVE = 1;
@@ -76,7 +76,7 @@ namespace POSEZ2U
 
         void tRefesh_Tick(object sender, EventArgs e)
         {
-            CheckStatusTableRealTime();
+            //CheckStatusTableRealTime();
         }
 
         void ucTable_Click(object sender, EventArgs e)
@@ -89,9 +89,9 @@ namespace POSEZ2U
                 UCTable ucTable = (UCTable)sender;
                 frmOrder frm = new frmOrder();
                 frm.LoadOrder(ucTable.lbTableNo.Text, 0);
-                frm.CallBackStatusOrder = new CallBackStatusOrder(this.CallBackOrder);
+               // frm.CallBackStatusOrder = new CallBackStatusOrder(this.CallBackOrder);
                 frm.CallBackStatusOrderCancel = new CallBackStatusOrderCancel(this.CheckStatusTable);
-                frm.CallBackStatusOrderPrintBill = new CallBackStatusOrderPrintBill(this.CallBackOrder);
+                //frm.CallBackStatusOrderPrintBill = new CallBackStatusOrderPrintBill(this.CheckStatusTable);
                 frm.Show();
                 
             }
@@ -116,8 +116,13 @@ namespace POSEZ2U
         private void CallBackOrder(OrderDateModel orderCallBack)
         {
             
+            //UCTable uctable = (UCTable)flowLayoutPanel1.Controls[Convert.ToInt32(orderCallBack.FloorID)-1];
+            //uctable.BackColor = Color.FromArgb(0, 102, 204);
+            //uctable.ForeColor = Color.White;
+            //uctable.lbTime.Text = orderCallBack.CreateDate.ToString();
+            //uctable.Tag = orderCallBack;
+            //SetText("$" + monetFormat.Format(Convert.ToDouble(orderCallBack.SubTotal())), uctable.lbSubTotal);
             CheckStatusTable();
-            
         }
         private void CallBackOrderCancel(OrderDateModel orderCallBack)
         {
@@ -132,7 +137,7 @@ namespace POSEZ2U
                 for (int i = 0; i < flowLayoutPanel1.Controls.Count; i++)
                 {
                     UCTable ucTable = (UCTable)flowLayoutPanel1.Controls[i];
-                    if (ucTable.BackColor != Color.Green)
+                    if (ucTable.BackColor != Color.Green && ucTable.BackColor != Color.FromArgb(0, 102, 204))
                     {
                         StatusTable statusTable = OrderService.GetStatusTable(ucTable.lbTableNo.Text);
                         if (statusTable.Complete == 0)
@@ -178,7 +183,7 @@ namespace POSEZ2U
                 {
                     UCTable ucTable = (UCTable)flowLayoutPanel1.Controls[i];
                     
-                        StatusTable statusTable = OrderService.GetStatusTable(ucTable.lbTableNo.Text);
+                        StatusTable statusTable = OrderService.GetStatusTablePrinBill(ucTable.lbTableNo.Text);
                         if (statusTable.Complete == 0)
                         {
                             ucTable.BackColor = Color.Green;

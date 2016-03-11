@@ -231,7 +231,7 @@ namespace POSEZ2U
                                 JoinTable.TableID = Convert.ToInt32(st.TableID);
                                 JoinTable.SubTotalTable = Convert.ToDouble(st.SubTotal);
                                 JoinTable.TableIDNew = frm.TableNo;
-                                
+                                JoinTable.OrderNumber = st.OrderNum;
                                 lstJoinTable.Add(JoinTable);
                             }
                         }

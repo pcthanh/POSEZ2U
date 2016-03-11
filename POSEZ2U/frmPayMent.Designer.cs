@@ -716,7 +716,6 @@
             this.Controls.Add(this.txtTender);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmPayMent";
-            this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmPayMent_Load);
             this.panel1.ResumeLayout(false);
