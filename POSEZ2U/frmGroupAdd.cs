@@ -203,23 +203,30 @@ namespace POSEZ2U
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            var listAllSearch = new List<ProductionModel>();
-            listall = new List<ProductionModel>();
-            listAllSearch = CatalogeService.GetSearchAllListProductByCategory(categoryid, txtSearch.Text).ToList();
-            flpAllitems.AutoScroll = true;
-            List<string> str = new List<string>();
-            for (var i = 0; i < listmap.Count(); i++)
+            try
             {
-                str.Add(listmap[i].ProductNameDesc);
-            }
-            foreach (var item in listAllSearch)
-            {
-                if (!str.Contains(item.ProductNameDesc))
+                var listAllSearch = new List<ProductionModel>();
+                listall = new List<ProductionModel>();
+                listAllSearch = CatalogeService.GetSearchAllListProductByCategory(categoryid, txtSearch.Text).ToList();
+                flpAllitems.AutoScroll = true;
+                List<string> str = new List<string>();
+                for (var i = 0; i < listmap.Count(); i++)
                 {
-                    listall.Add(item);
+                    str.Add(listmap[i].ProductNameDesc);
                 }
+                foreach (var item in listAllSearch)
+                {
+                    if (!str.Contains(item.ProductNameDesc))
+                    {
+                        listall.Add(item);
+                    }
+                }
+                LoadAllItem();
             }
-            LoadAllItem();
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmGroupAdd:::::::::::::::::::txtSearch_TextChanged:::::::::::::::::" + ex.Message);
+            }
         }
     }
 }

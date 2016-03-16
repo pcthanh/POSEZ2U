@@ -123,7 +123,9 @@ namespace POSEZ2U.UC
             Application.Exit();
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }

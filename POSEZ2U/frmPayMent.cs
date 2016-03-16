@@ -198,7 +198,7 @@ namespace POSEZ2U
         {
             try
             {
-                if (txtTender.Text != string.Empty)
+                if (txtTender.Text != string.Empty && Convert.ToDouble(txtTender.Text)>0)
                 {
                     lockTextChange = true;
                     CashModel item = new CashModel();
@@ -254,7 +254,7 @@ namespace POSEZ2U
         {
             try
             {
-                if (txtTender.Text != string.Empty)
+                if (txtTender.Text != string.Empty && Convert.ToDouble(txtTender.Text)>0)
                 {
                     lockTextChange = true;
                     frmChooseCard frm = new frmChooseCard(cardTemp);
@@ -821,7 +821,7 @@ namespace POSEZ2U
         {
             try
             {
-                if (txtTender.Text != string.Empty)
+                if (txtTender.Text != string.Empty&& Convert.ToDouble(txtTender.Text)>0)
                 {
                     frmPaymentAcc frm = new frmPaymentAcc();
                     if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
