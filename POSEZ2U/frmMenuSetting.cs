@@ -370,7 +370,7 @@ namespace POSEZ2U
         public void addPriceList(int i, int CurrentPage)
         {
             txtSearch.Visible = false;
-            btnAdd.Visible = false;
+            btnAdd.Enabled = false;
             btBack.Tag = i;
             btNext.Tag = i;
             if (this.TotalPage == 0)
