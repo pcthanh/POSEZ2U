@@ -63,7 +63,7 @@ namespace POSEZ2U
                     else
                     {
                         frmAgainShift frm = new frmAgainShift();
-                        if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
                         {
                             this.picWarning.Show();
                             this.lbWarning.Show();
@@ -160,7 +160,7 @@ namespace POSEZ2U
                     else
                     {
                         frmAgainShift frm = new frmAgainShift();
-                        if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
                         {
                             frmTakeAway frm1 = new frmTakeAway();
                             this.picWarning.Show();

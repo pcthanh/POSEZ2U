@@ -105,8 +105,8 @@ namespace POSEZ2U
             }
             else
             {
-                frmMessager frm = new frmMessager("Payment", "money not enought");
-                 frmOpacity.ShowDialog(this, frm);
+                frmMessager frm = new frmMessager("Payment", "Insufficient Amount");
+                frmOpacity.ShowDialog(this, frm);
             }
 
         }

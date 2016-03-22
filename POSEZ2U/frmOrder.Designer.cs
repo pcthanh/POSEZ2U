@@ -557,6 +557,7 @@
             this.btnNote.TabIndex = 1;
             this.btnNote.Text = "NOTE";
             this.btnNote.UseVisualStyleBackColor = false;
+            this.btnNote.Click += new System.EventHandler(this.btnNote_Click);
             // 
             // btnPayMent
             // 

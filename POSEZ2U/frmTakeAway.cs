@@ -311,7 +311,7 @@ namespace POSEZ2U
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
             frmCustomer frm = new frmCustomer();
-            frm.ShowDialog();
+            frmOpacity.ShowDialog(this, frm);
         }
     }
 }

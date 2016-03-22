@@ -387,7 +387,7 @@ namespace POSEZ2U
         void btnOpenItemItem_Click(object sender, EventArgs e)
         {
             frmOpenItem frm = new frmOpenItem(0);
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
             {
                 int resul = 0;
                 OrderOpenItemModel OpenItem = new OrderOpenItemModel();
@@ -849,7 +849,7 @@ namespace POSEZ2U
             {
                 frmAddSeat frm = new frmAddSeat();
 
-                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
                 {
                     
                         seat = frm.NumberSeat;
@@ -1425,7 +1425,7 @@ namespace POSEZ2U
                     if (OrderMain.ListOrderDetail.Count > 0)
                     {
                         frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
-                        if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                        if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
                         {
                             GetListPaymentPrinter();
                             int result = 0;
@@ -1616,7 +1616,7 @@ namespace POSEZ2U
             {
 
                 frmPrevOrder frm = new frmPrevOrder();
-                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
                 {
                     LoadOrderPrev(frm.OrderID);
                     OrderMain.isPrevOrder = 1;
@@ -1728,8 +1728,15 @@ namespace POSEZ2U
                 LogPOS.WriteLog("frmOrder::::::::::::::::::btnPrice_Click::::::::::::::::::" + ex.Message);
             }
         }
-            
-        
-        
+
+        private void btnNote_Click(object sender, EventArgs e)
+        {
+            frmNote frm = new frmNote();
+            if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
+            {
+ 
+            }
+        }
+ 
     }
 }

@@ -33,13 +33,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.cbTitle = new System.Windows.Forms.ComboBox();
             this.txtFristName = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.label5 = new System.Windows.Forms.Label();
             this.txtPhoneNumber = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtEmail = new POSEZ2U.UC.UCTextBoxKeyBoard();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtNote = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -72,8 +72,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.72781F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.60355F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.91519F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.41617F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.47505F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -109,7 +109,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 40);
+            this.label2.Size = new System.Drawing.Size(242, 40);
             this.label2.TabIndex = 0;
             this.label2.Text = "Title";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,9 +120,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 40);
+            this.label1.Size = new System.Drawing.Size(242, 40);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Add New Shift";
+            this.label1.Text = "Create new customer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
@@ -131,43 +131,10 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 80);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 40);
+            this.label3.Size = new System.Drawing.Size(242, 40);
             this.label3.TabIndex = 0;
             this.label3.Text = "Frist Name";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 40);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Phone Number";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 160);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 40);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Email";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label7
-            // 
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(3, 200);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(165, 40);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Note";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbTitle
             // 
@@ -185,11 +152,22 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtFristName, 2);
             this.txtFristName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtFristName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtFristName.Location = new System.Drawing.Point(174, 83);
+            this.txtFristName.Location = new System.Drawing.Point(251, 83);
             this.txtFristName.Multiline = true;
             this.txtFristName.Name = "txtFristName";
-            this.txtFristName.Size = new System.Drawing.Size(330, 34);
+            this.txtFristName.Size = new System.Drawing.Size(253, 34);
             this.txtFristName.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 120);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(242, 40);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Phone Number";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPhoneNumber
             // 
@@ -197,11 +175,22 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtPhoneNumber, 2);
             this.txtPhoneNumber.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtPhoneNumber.Location = new System.Drawing.Point(174, 123);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(251, 123);
             this.txtPhoneNumber.Multiline = true;
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(330, 34);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(253, 34);
             this.txtPhoneNumber.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 160);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(242, 40);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Email";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtEmail
             // 
@@ -209,11 +198,22 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtEmail, 2);
             this.txtEmail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtEmail.Location = new System.Drawing.Point(174, 163);
+            this.txtEmail.Location = new System.Drawing.Point(251, 163);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(330, 34);
+            this.txtEmail.Size = new System.Drawing.Size(253, 34);
             this.txtEmail.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 200);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(242, 40);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Note";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtNote
             // 
@@ -221,11 +221,11 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtNote, 2);
             this.txtNote.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.txtNote.Location = new System.Drawing.Point(174, 203);
+            this.txtNote.Location = new System.Drawing.Point(251, 203);
             this.txtNote.Multiline = true;
             this.txtNote.Name = "txtNote";
             this.tableLayoutPanel1.SetRowSpan(this.txtNote, 3);
-            this.txtNote.Size = new System.Drawing.Size(330, 115);
+            this.txtNote.Size = new System.Drawing.Size(253, 115);
             this.txtNote.TabIndex = 2;
             // 
             // panel2
