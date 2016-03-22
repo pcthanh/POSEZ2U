@@ -24,6 +24,7 @@ namespace POSEZ2U
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            
         }
 
         private void frmMessager_Load(object sender, EventArgs e)
@@ -31,5 +32,6 @@ namespace POSEZ2U
             this.lblTitle.Text = Title;
             this.lblDescsription.Text = Descsription;
         }
+        
     }
 }

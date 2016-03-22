@@ -228,13 +228,13 @@ namespace POSEZ2U
                         messenger = "Role name is exist. Please change role name.";
                     }
                     frmMessager frm = new frmMessager("Messenger", messenger);
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
 
                 }
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", "Role name is't empty.Please input data.");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
 
@@ -278,7 +278,7 @@ namespace POSEZ2U
                         messenger = "Delete role successful.";
                     }
                     frmMessager frm = new frmMessager("Messenger", messenger);
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
 
@@ -413,12 +413,12 @@ namespace POSEZ2U
                         messenger = "User name is exist. Please change user name.";
                     }
                     frmMessager frm = new frmMessager("Messenger", messenger);
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", messenger + "Please input data.");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
 
 
@@ -447,7 +447,7 @@ namespace POSEZ2U
                         messenger = "Delete user successful.";
                     }
                     frmMessager frm = new frmMessager("Messenger", messenger);
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
 

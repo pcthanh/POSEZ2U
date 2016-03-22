@@ -487,7 +487,7 @@ namespace POSEZ2U
         private void OrderCompleted()
         {
             frmMessager frm = new frmMessager("Order", "Order Completed");
-            frm.ShowDialog();
+            frmOpacity.ShowDialog(this, frm);
         }
         void ucMenuOfGroup_Click(object sender, EventArgs e)
         {
@@ -1038,7 +1038,7 @@ namespace POSEZ2U
                     {
                         
                             frmMessager frm = new frmMessager("Void Order", "Can not void");
-                            frm.ShowDialog();
+                            frmOpacity.ShowDialog(this, frm);
                         
                     }
                 }
@@ -1061,7 +1061,7 @@ namespace POSEZ2U
                     if (OrderMain.IsLoadFromData)
                     {
                         frmMessager frm = new frmMessager("Meesager", "Can not delete Order");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                     else
                     {
@@ -1473,7 +1473,7 @@ namespace POSEZ2U
                     else
                     {
                         frmMessager frm = new frmMessager("PayMent", "Order empty");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                 }
             }
@@ -1512,7 +1512,7 @@ namespace POSEZ2U
                 else
                 {
                     frmMessager frm = new frmMessager("Print Bill", "Order is empty");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
         }
@@ -1535,7 +1535,7 @@ namespace POSEZ2U
                 else
                 {
                     frmMessager frm = new frmMessager("Print Bill", "Order is empty");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
         }

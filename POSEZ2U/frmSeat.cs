@@ -268,7 +268,7 @@ namespace POSEZ2U
                 if (Seat == 0)
                 {
                     frmMessager frm = new frmMessager("Messager", "Input Number Seat");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
                 else
                 {

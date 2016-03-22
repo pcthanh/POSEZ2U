@@ -62,7 +62,7 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("Messenger", "Please select row befor end shift.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
           
         }

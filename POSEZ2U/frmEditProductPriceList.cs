@@ -123,14 +123,14 @@ namespace POSEZ2U
                     else
                     {
                         frmMessager frmMessager = new frmMessager("Edit Product Price", "Error");
-                        frmMessager.ShowDialog();
+                        frmOpacity.ShowDialog(this, frmMessager);
                         this.Hide();
                     }
                 }
                 else
                 {
                     frmMessager frmMessager = new frmMessager("Edit Product Price", message_error);
-                    frmMessager.ShowDialog();
+                    frmOpacity.ShowDialog(this, frmMessager);
                 }
             }
         }

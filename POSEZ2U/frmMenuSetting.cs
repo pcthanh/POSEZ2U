@@ -469,7 +469,7 @@ namespace POSEZ2U
                 string title = "Waring.";
                 string description = "Please choose product.";
                 frmMessager frmMessager = new frmMessager(title, description);
-                frmMessager.ShowDialog();
+                frmOpacity.ShowDialog(this, frmMessager);
             }
             else
             {
@@ -625,12 +625,12 @@ namespace POSEZ2U
                     }
                 }
                 frmMessager frm = new frmMessager("Messager", message);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
             else
             {
                 frmMessager frm = new frmMessager("Messager","Menu name isn't empty.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
 
 
@@ -652,12 +652,12 @@ namespace POSEZ2U
                         addMenuList("Menu List", 1);
                         pnDetail.Controls.Clear();
                         frmMessager frm = new frmMessager("Messenger", "Delete menu successful.");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                     else
                     {
                         frmMessager frm = new frmMessager("Messenger", "Delete menu fail.");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                 }
             }
@@ -711,12 +711,12 @@ namespace POSEZ2U
                     addModifier("Modifier List", 4, this.CurrentPage);
                     pnDetail.Controls.Clear();
                     frmMessager frm = new frmMessager("Messenger", "Delete modifire success.");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", "Delete modifire fail.");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
         }
@@ -773,12 +773,12 @@ namespace POSEZ2U
                     }
                 }
                 frmMessager frm = new frmMessager("Messenger", message);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
             else
             {
                 frmMessager frm = new frmMessager("Messenger", message_error);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
         }
 
@@ -860,12 +860,12 @@ namespace POSEZ2U
 
                 }
                 frmMessager frm = new frmMessager("Messenger", message);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
             else
             {
                 frmMessager frm = new frmMessager("Messenger", "Group name isn't empty.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
 
         }
@@ -893,7 +893,7 @@ namespace POSEZ2U
                         messenge = "Remove group fail.";
                     }
                     frmMessager frm = new frmMessager("Messenger", messenge);
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
         }
@@ -946,7 +946,7 @@ namespace POSEZ2U
                     addItemList("Item List", 3, this.CurrentPage);
                     pnDetail.Controls.Clear();
                     frmMessager frm = new frmMessager("Messenger", "Delete product success");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
         }
@@ -1007,12 +1007,12 @@ namespace POSEZ2U
                     }
                 }
                 frmMessager frm_item = new frmMessager("Messenger", message);
-                frm_item.ShowDialog();
+                frmOpacity.ShowDialog(this, frm_item);
             }
             else
             {
                 frmMessager frm_item = new frmMessager("Messenger", messageError);
-                frm_item.ShowDialog();
+                frmOpacity.ShowDialog(this, frm_item);
             }
         }
         private void frmMenuSetting_Load(object sender, EventArgs e)

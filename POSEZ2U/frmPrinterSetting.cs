@@ -247,12 +247,12 @@ namespace POSEZ2U
                         pDetail.Controls.Clear();
                     }
                     frmMessager frm = new frmMessager("Messenger", messenger);
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", messenger + "Please input data.");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
 
 
@@ -261,7 +261,7 @@ namespace POSEZ2U
             catch (Exception ex)
             {
                 frmMessager frm = new frmMessager("Messenger", "Please save again.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
                 LogPOS.WriteLog("frmPrinterSetting:::::::::::::::::::btnSaveInforPrinterJob_Click::::::::::::::::" + ex.Message);
             }
 
@@ -291,13 +291,13 @@ namespace POSEZ2U
                        pDetail.Controls.Clear();
                    }
                    frmMessager frm = new frmMessager("Messenger", messenger);
-                   frm.ShowDialog();
+                   frmOpacity.ShowDialog(this, frm);
                 }
             }
             catch (Exception ex)
             {
                 frmMessager frm = new frmMessager("Messenger", "Please remove again.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
                 LogPOS.WriteLog("frmPrinterSetting:::::::::::::::::::btnRemovePrinterJob_Click::::::::::::::::" + ex.Message);
             }
            
@@ -407,7 +407,7 @@ namespace POSEZ2U
                     pDetail.Controls.Clear();
                 }
                 frmMessager frm = new frmMessager("Messenger", messenger);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
 
             }
             catch (Exception ex)
@@ -460,12 +460,12 @@ namespace POSEZ2U
                             LoadDataOfPrinter();
                         }
                         frmMessager frm = new frmMessager("Messenger", messenger);
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                     else
                     {
                         frmMessager frm = new frmMessager("Messenger", messenger + "Please input data.");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
 
 
@@ -507,12 +507,12 @@ namespace POSEZ2U
 
                         }
                         frmMessager frm = new frmMessager("Messenger", messenger);
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                     else
                     {
                         frmMessager frm = new frmMessager("Messenger", messenger + "Please input data.");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                 }
 

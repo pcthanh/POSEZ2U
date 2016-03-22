@@ -106,7 +106,7 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("Payment", "money not enought");
-                frm.ShowDialog();
+                 frmOpacity.ShowDialog(this, frm);
             }
 
         }
@@ -612,7 +612,7 @@ namespace POSEZ2U
                 if (CheckDiscount() == 1)
                 {
                     frmMessager frm = new frmMessager("Discount", "Exitst discount");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
                 else
                 {
@@ -770,7 +770,7 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("Payment", "money not enought");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
 
         }

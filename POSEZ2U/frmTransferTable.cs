@@ -339,7 +339,7 @@ namespace POSEZ2U
                     if (OrderSlpitNew.FloorID == "#" ||Convert.ToInt32(OrderSlpitNew.FloorID)>40)
                     {
                         frmMessager frm = new frmMessager("Messager", "TableNo is unavailable");
-                        frm.ShowDialog();
+                        frmOpacity.ShowDialog(this, frm);
                     }
                     else
                     {

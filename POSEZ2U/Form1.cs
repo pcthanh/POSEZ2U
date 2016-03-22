@@ -249,7 +249,7 @@ namespace POSEZ2U
                 if (passshow.Count() > 0)
                 {
                     frmMessager frm = new frmMessager("Messenger", "Please chose user name");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                     textBox1.Text = "";
                 }
 

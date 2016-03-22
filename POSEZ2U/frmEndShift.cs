@@ -97,7 +97,7 @@ namespace POSEZ2U
             if (modelShift.CashEnd < modelShift.CashStart)
             {
                 frmMessager frm = new frmMessager("Messenger", "Cash end isn't less than cash start. ");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
             else
             {
@@ -111,7 +111,7 @@ namespace POSEZ2U
                 }
 
                 frmMessager frm = new frmMessager("Messenger", messenger);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
             
 

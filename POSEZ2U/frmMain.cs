@@ -77,7 +77,7 @@ namespace POSEZ2U
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
             catch (Exception ex)
@@ -89,16 +89,24 @@ namespace POSEZ2U
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            //UserLoginModel.UserLoginInfo= new StaffModel();
-            //Form1 frm = new Form1();
-            //this.Hide();
-            //frm.ShowDialog();
-            frmDailogExit frm = new frmDailogExit();
-            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                UserLoginModel.UserLoginInfo = new StaffModel();
-                System.Diagnostics.Process.Start(Application.ExecutablePath);
-                System.Diagnostics.Process.GetCurrentProcess().Kill();
+                //UserLoginModel.UserLoginInfo= new StaffModel();
+                //Form1 frm = new Form1();
+                //this.Hide();
+                //frm.ShowDialog();
+                frmDailogExit frm = new frmDailogExit();
+                // frmOpacity.ShowDialog(this, frm);
+                if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
+                {
+                    UserLoginModel.UserLoginInfo = new StaffModel();
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmMain::::::::::::::::btnLogOut_Click:::::::::::::::::::" + ex.Message);
             }
         }
 
@@ -120,7 +128,7 @@ namespace POSEZ2U
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
             catch (Exception ex)
@@ -165,7 +173,7 @@ namespace POSEZ2U
                 else
                 {
                     frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                    frm.ShowDialog();
+                    frmOpacity.ShowDialog(this, frm);
                 }
             }
             catch (Exception ex)
@@ -189,7 +197,7 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
         }
 
@@ -211,7 +219,7 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
         }
 

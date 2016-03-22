@@ -50,7 +50,7 @@ namespace POSEZ2U
             //if (tag != null)
             //{
                 frmMessager frm = new frmMessager("Messenger", "Please contact IT support if you want restore database.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             //}
             //else
             //{
@@ -71,7 +71,7 @@ namespace POSEZ2U
                 text = "Backup database successful.";
             }
             frmMessager frm = new frmMessager("Messenger", text);
-            frm.ShowDialog();
+            frmOpacity.ShowDialog(this, frm);
         }
 
         private void AddDatabaseSetting()

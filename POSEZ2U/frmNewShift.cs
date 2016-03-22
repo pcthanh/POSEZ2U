@@ -131,7 +131,7 @@ namespace POSEZ2U
                 }
 
                 frmMessager frm = new frmMessager("Messenger", messenger);
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
 
                
 
@@ -139,7 +139,7 @@ namespace POSEZ2U
             else
             {
                 frmMessager frm = new frmMessager("Messenger", messenger + "Please input data.");
-                frm.ShowDialog();
+                frmOpacity.ShowDialog(this, frm);
             }
 
 

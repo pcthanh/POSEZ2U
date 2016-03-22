@@ -75,7 +75,7 @@ namespace POSEZ2U
                         if (ucTable.BackColor == Color.FromArgb(0, 102, 204))
                         {
                             frmMessager frm = new frmMessager("Join Table", "Table waitting print BILL");
-                            frm.ShowDialog();
+                            frmOpacity.ShowDialog(this, frm);
                         }
                         else
                         {
@@ -257,7 +257,7 @@ namespace POSEZ2U
                     else
                     {
                         frmMessager frmmes = new frmMessager("Join Table", "TableNo is unavailable");
-                        frmmes.ShowDialog();
+                        frmOpacity.ShowDialog(this, frmmes);
                     }
                 }
             }
