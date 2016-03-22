@@ -427,7 +427,7 @@ namespace ServicePOS
 
             try
             {
-                var data = _context.PRINTERs.Where(x => x.Status == 1).Select
+                var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType==1).Select
                     (x => new PrinterModel()
                     {
                         ID = x.ID,
@@ -545,6 +545,36 @@ namespace ServicePOS
                 return null;
             }
 
+        }
+
+
+        public IEnumerable<PrinterModel> GetListPrinterNote()
+        {
+            try
+            {
+                var data = _context.PRINTERs.Where(x => x.Status == 1 && x.PrinterType == 1 ||x.PrinterType==0).Select
+                    (x => new PrinterModel()
+                    {
+                        ID = x.ID,
+                        PrinterName = x.PrinterName,
+                        PrintName = x.PrintName,
+                        PrinterType = x.PrinterType ?? 0,
+                        Status = x.Status,
+                        CreateBy = x.CreateBy,
+                        CreateDate = x.CreateDate,
+                        UpdateBy = x.UpdateBy,
+                        UpdateDate = x.UpdateDate
+
+                    }
+                    );
+                return data;
+            }
+
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
     }
 }

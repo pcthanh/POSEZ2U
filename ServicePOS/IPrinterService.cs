@@ -32,6 +32,7 @@ namespace ServicePOS
         IEnumerable<PrinterModel> GetListPrinterTransferTable();
 
         IEnumerable<PrinterModel> GetListPrinterReport();
+        IEnumerable<PrinterModel> GetListPrinterNote();
 
     }
 }
