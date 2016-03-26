@@ -1002,6 +1002,8 @@ namespace POSEZ2U
             temp8.Value = fomat.getValue(data.AccountTotal).ToString("N2");
             export.Add(temp8);
 
+          
+
             ucDailyReport.btnExport.Tag = export;
             ucDailyReport.btnExport.Click += ExportExcel_Click;
 
@@ -1080,11 +1082,6 @@ namespace POSEZ2U
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            printJoinTable(e);
-        }
-
-        public void printJoinTable(PrintPageEventArgs e)
-        {
             float l_y = 0;
             l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
             l_y += posPrinter.GetHeightPrinterLine() / 10;
@@ -1106,6 +1103,8 @@ namespace POSEZ2U
             l_y = posPrinter.DrawString("Eat.Drink.Laugh-A touch of Laos", e, new Font("Arial", 10), l_y, 2);
             l_y = posPrinter.DrawString("Thank you,see you soon", e, new Font("Arial", 10), l_y, 2);
         }
+
+       
         #endregion
     }
 }

@@ -74,12 +74,12 @@ namespace POSEZ2U
 
             if (data != null)
             {
-                frmConfirm frm = new frmConfirm("Confirm", "Do you want again shift old ?");
+                frmMessager frm = new frmMessager("Warning", "Only one working period can be used. To create a new working period, please end the current.");
                 frm.ShowDialog();
-                if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
-                {
-                    UserLoginModel.ShiffID = data.ShiftHistoryID;
-                }
+                //if (frm.DialogResult == System.Windows.Forms.DialogResult.OK)
+                //{
+                //    UserLoginModel.ShiffID = data.ShiftHistoryID;
+                //}
             }
             else
             {
