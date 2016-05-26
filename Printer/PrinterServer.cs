@@ -85,6 +85,7 @@ namespace Printer
                for (int i = 0; i < printData.Count; i++)
                {
                    OrderPrint = new OrderDateModel();
+                  
                    for (int j = 0; j < OrderMain.ListOrderDetail.Count; j++)
                    {
                        for (int k = 0; k < OrderMain.ListOrderDetail[j].ListPrintJob.Count; k++)
@@ -107,11 +108,14 @@ namespace Printer
                            }
                        }
                    }
+                    
                    if (OrderPrint.ListOrderDetail.Count > 0)
                    {
                        if (printData[i].PrinterType == 1)
                        {
                            Header = printData[i].Header;
+                           if (OrderMain.PrinterNote == printData[i].ID || OrderMain.PrinterNote == 0)
+                               OrderPrint.Note = OrderMain.Note;
                            Print(OrderPrint, printData[i]);
                        }
                        
@@ -137,14 +141,32 @@ namespace Printer
            }
        }
        public void Print(OrderDateModel _OrderMain,PrinterModel data)
-       {
-           
-           
-               posPrinter.SetPrinterName(data.PrinterName);
-               posPrinter.printDocument.PrintPage += printDocument_PrintPage;
-                
+       {    
+           posPrinter.SetPrinterName(data.PrinterName);
+           posPrinter.printDocument.PrintPage += printDocument_PrintPage;
+           if (OrderMain.IsLoadFromData && OrderMain.PrintType!=this.PRINTBILL)
+           {
+               if (OrderMain.IsPrePrint)
+               {
+                   posPrinter.Print();
+               }
+               else
+               {
+                   if (checkOrderChange(_OrderMain))
+                   {
+                       posPrinter.Print();
+                   }
+                   if (checkOrderChangeRemove(_OrderMain))
+                   {
+                       posPrinter.Print();
+                   }
+
+               }
+           }
+           else
+           {
                posPrinter.Print();
-           
+           }
            
        }
        void printDocument_PrintPage(object sender, PrintPageEventArgs e)
@@ -153,7 +175,7 @@ namespace Printer
            if (OrderMain.PrintType == this.PRINTBAR)
            {
                if(OrderPrint.ListOrderDetail.Count>0)
-                    PrintOrderToKitchenOrBar(OrderPrint, e);
+                   PrintOrderToKitchenOrBar(OrderPrint, e);
                else
                    PrintOrderToKitchenOrBar(OrderMain, e);
            }
@@ -167,77 +189,208 @@ namespace Printer
            }
               
        }
+       public bool checkOrderChange(OrderDateModel order)
+       {
+           bool flag = false;
+           for (int i = 0; i < order.ListOrderDetail.Count; i++)
+           {
+               if (order.ListOrderDetail[i].ChangeStatus == 1)
+                   flag = true;
+               if (order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+               {
+                   for (int j = 0; j < order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                   {
+                       if (order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 1)
+                           flag = true;
+                   }
+               }
+
+           }
+           return flag;
+       }
+       public bool checkOrderChangeRemove(OrderDateModel order)
+       {
+           bool flag = false;
+           for (int i = 0; i < order.ListOrderDetail.Count; i++)
+           {
+               if (order.ListOrderDetail[i].ChangeStatus == 2)
+                   flag= true;
+               if (order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+               {
+                   for (int j = 0; j < order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                   {
+                       if (order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus==2)
+                       flag = true;
+                   }
+               }
+              
+           }
+           return flag;
+       }
        public float PrintOrderToKitchenOrBar(OrderDateModel Order, PrintPageEventArgs e)
        {
            float l_y = 0;
-           l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
-           l_y += posPrinter.GetHeightPrinterLine() / 10;
-           l_y=posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
-           l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
-           l_y += posPrinter.GetHeightPrinterLine() / 10;
-           l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
-           posPrinter.DrawString("Table# " + OrderMain.FloorID, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
-           l_y = posPrinter.DrawString("Order#" + OrderMain.OrderID, e, new Font("Arial", 14), l_y, 3);
-           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
-           l_y += posPrinter.GetHeightPrinterLine() / 10;
-           int countItem =0;
-           for (int i = 0; i < Order.ListOrderDetail.Count; i++)
+           if (OrderMain.IsLoadFromData)
            {
-               float yStart  = l_y;
-
-               if (Order.ListOrderDetail[i].ChangeStatus == 2)
+               if (OrderMain.IsPrePrint)
                {
-                   l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
-                   posPrinter.DrawCancelLine(e, yStart, l_y);
+                   l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+                   l_y += posPrinter.GetHeightPrinterLine() / 10;
+                   l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                   l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                   l_y += posPrinter.GetHeightPrinterLine() / 10;
+                   l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                   posPrinter.DrawString("Table# " + OrderMain.FloorID, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                   l_y = posPrinter.DrawString("Order#" + OrderMain.OrderID, e, new Font("Arial", 14), l_y, 3);
+                   posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                   l_y += posPrinter.GetHeightPrinterLine() / 10;
+                   int countItem = 0;
+                   for (int i = 0; i < Order.ListOrderDetail.Count; i++)
+                   {
+                       
+
+                               countItem++;
+                               l_y = posPrinter.DrawString(Order.ListOrderDetail[i].Qty.ToString() + " " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                        
+
+                       if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                       {
+                           for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                           {
+                               
+                                       l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+
+                                   
+                           }
+                       }
+                   }
+                   l_y += posPrinter.GetHeightPrinterLine() / 10;
+
+                   posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                   l_y = posPrinter.DrawString("", e, new Font("Arial", 14), l_y, 1);
+                   l_y += posPrinter.GetHeightPrinterLine() / 10;
+                   posPrinter.DrawString("Total item: " + countItem, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
+                   l_y += posPrinter.GetHeightPrinterLine() / 2;
+                   if (Order.Note != null)
+                       posPrinter.DrawString("Note:" + OrderMain.Note, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
                }
                else
                {
-                   if (Order.ListOrderDetail[i].ChangeStatus == 1)
+                   if (checkOrderChange(Order))
                    {
-                       l_y = posPrinter.DrawString("--Add  " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
-                   }
-                   else
-                   {
-                       countItem++;
-                       l_y = posPrinter.DrawString(Order.ListOrderDetail[i].Qty.ToString() + " " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
-                   }
-               }
-               //l_y = posPrinter.DrawString(OrderMain.ListOrderDetail[i].Qty.ToString(), e, new Font("Arial", 14), l_y, 2);
-               //posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].Price.ToString()), e, new Font("Arial", 14), yStart, 3);
+                       l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+                       l_y += posPrinter.GetHeightPrinterLine() / 10;
+                       l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                       l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                       l_y += posPrinter.GetHeightPrinterLine() / 10;
+                       l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                       posPrinter.DrawString("Table# " + OrderMain.FloorID, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                       l_y = posPrinter.DrawString("Order#" + OrderMain.OrderID, e, new Font("Arial", 14), l_y, 3);
+                       posPrinter.DrawString("ADD", e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+                       posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                       l_y += posPrinter.GetHeightPrinterLine() / 10;
+                       for (int i = 0; i < Order.ListOrderDetail.Count; i++)
+                       {
+                           if (Order.ListOrderDetail[i].ChangeStatus == 1)
+                           {
 
-               if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
-               {
-                   for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                               l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                           }
+                           if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                           {
+                               for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                               {
+                                   if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 1)
+                                   {
+
+                                       l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                                   }
+                               }
+                           }
+                       }
+                   }
+                   if (checkOrderChangeRemove(Order))
                    {
-                       if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
+                       l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+                       l_y += posPrinter.GetHeightPrinterLine() / 10;
+                       l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                       l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                       l_y += posPrinter.GetHeightPrinterLine() / 10;
+                       l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                       posPrinter.DrawString("Table# " + OrderMain.FloorID, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+                       l_y = posPrinter.DrawString("Order#" + OrderMain.OrderID, e, new Font("Arial", 14), l_y, 3);
+                       posPrinter.DrawString("REMOVE", e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+                       posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+                       l_y += posPrinter.GetHeightPrinterLine() / 10;
+                       for (int i = 0; i < Order.ListOrderDetail.Count; i++)
                        {
-                           l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
-                           posPrinter.DrawCancelLine(e, yStart, l_y);
-                       }
-                       else
-                       {
-                           if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 1)
+                           float yStart = l_y;
+                           if (Order.ListOrderDetail[i].ChangeStatus == 2)
                            {
-                               l_y = posPrinter.DrawString("--Add" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                               l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                               posPrinter.DrawCancelLine(e, yStart, l_y);
                            }
-                           else
+                           if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
                            {
-                               //if(!OrderMain.IsLoadFromData)
-                                    l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                               for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                               {
+                                   if (Order.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
+                                   {
+                                       l_y = posPrinter.DrawString(Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
+                                       posPrinter.DrawCancelLine(e, yStart, l_y);
+                                   }
+                               }
                            }
                        }
-                       //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 14), l_y, 3);
                    }
                }
            }
-           l_y += posPrinter.GetHeightPrinterLine() / 10;
+           else
+           {
+             
+               l_y = posPrinter.DrawString(Header, e, new Font("Arial", 14, FontStyle.Italic), l_y, 2);
+               l_y += posPrinter.GetHeightPrinterLine() / 10;
+               l_y = posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+               l_y = posPrinter.DrawString(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString(), e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+               l_y += posPrinter.GetHeightPrinterLine() / 10;
+               l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+               posPrinter.DrawString("Table# " + OrderMain.FloorID, e, new Font("Arial", 14, FontStyle.Italic), l_y, 1);
+               l_y = posPrinter.DrawString("Order#" + OrderMain.OrderID, e, new Font("Arial", 14), l_y, 3);
+               posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+               l_y += posPrinter.GetHeightPrinterLine() / 10;
+               int countItem = 0;
+               for (int i = 0; i < Order.ListOrderDetail.Count; i++)
+               {
+                     
+                           countItem++;
+                           l_y = posPrinter.DrawString(Order.ListOrderDetail[i].Qty.ToString() + " " + Order.ListOrderDetail[i].ProductName, e, new Font("Arial", 14), l_y, 1);
+                       
+                   
 
-           posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
-           l_y = posPrinter.DrawString("", e, new Font("Arial", 14), l_y, 1);
-           l_y += posPrinter.GetHeightPrinterLine() / 10;
-           posPrinter.DrawString("Total item: "+countItem, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
-           //l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 14, FontStyle.Bold), l_y, 3);
-           l_y += posPrinter.GetHeightPrinterLine()/2;
+                   if (Order.ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                   {
+                       for (int j = 0; j < Order.ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                       {
+                           
+
+                                   
+                                   l_y = posPrinter.DrawString("--" + Order.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+                           
+                       }
+                   }
+               }
+               l_y += posPrinter.GetHeightPrinterLine() / 10;
+
+               posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
+               l_y = posPrinter.DrawString("", e, new Font("Arial", 14), l_y, 1);
+               l_y += posPrinter.GetHeightPrinterLine() / 10;
+               posPrinter.DrawString("Total item: " + countItem, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
+               
+               l_y += posPrinter.GetHeightPrinterLine() / 2;
+               if (Order.Note != null)
+                   posPrinter.DrawString("Note:" + OrderMain.Note, e, new Font("Arial", 14, FontStyle.Bold), l_y, 1);
+           }
+          
            return l_y;
        }
 
