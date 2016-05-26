@@ -52,6 +52,8 @@ namespace ServicePOS
             orderDate.Note = itemOrder.Note ?? "";
             orderDate.Seat = itemOrder.Seat;
             orderDate.ShiftID = itemOrder.ShiftID;
+            orderDate.Note = itemOrder.Note;
+            orderDate.PrinterNote = itemOrder.PrinterNote;
             return orderDate;
         }
         private List<ORDER_DETAIL_DATE> CopyOrderDetailDate(OrderDateModel itemOrder)
@@ -364,8 +366,6 @@ namespace ServicePOS
         {
             OrderDateModel OrderMain = new OrderDateModel();
             var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == idTable && x.Status!=1 && x.Status!=4).SingleOrDefault();
-            
-          
             if (dataOrder != null)
             {
                 OrderMain.Seat = dataOrder.Seat ?? 0;
@@ -378,6 +378,8 @@ namespace ServicePOS
                 OrderMain.Status = dataOrder.Status;
                 OrderMain.OrderNumber = dataOrder.OrderNumber??0;
                 OrderMain.CreateDate = dataOrder.CreateDate;
+                OrderMain.Note = dataOrder.Note;
+                OrderMain.PrinterNote = dataOrder.PrinterNote ?? 0;
                 var seat = _context.ORDER_DATE.Join(_context.SEATs, order => order.OrderNumber, seatmap => seatmap.OrderNumber, (order, seatmap) => new { order, seatmap })
                     .Where(x => x.order.OrderNumber == dataOrder.OrderNumber && x.seatmap.OrderNumber == dataOrder.OrderNumber && x.order.OrderNumber == x.seatmap.OrderNumber)
                     .Select(x => new SeatModel { 
@@ -696,17 +698,30 @@ namespace ServicePOS
             List<OrderTKAModel> lst = new List<OrderTKAModel>();
             try
             {
-                var ListTKA = _context.ORDER_DATE.Join(_context.CLIENTs, order => order.ClientID, client => client.ClientID, (order, client) => new { order, client })
-                    .Where(x => x.order.FloorID.Contains("TKA-") && x.order.Status != 1 && x.order.ClientID == x.client.ClientID).ToList();
+                var ListTKA = _context.Database.SqlQuery<OrderTKAModel>("LISTTKA");
+
+                
                 foreach (var item in ListTKA)
                 {
-                    OrderTKAModel items= new OrderTKAModel();
-                    items.CusName = item.client.Fname + " " + item.client.Lname;
-                    items.CusPhone = item.client.Phone;
-                    items.Total = item.order.TotalAmount??0;
-                    items.Waiting = item.order.CreateDate ?? DateTime.Now;
-                    items.TKAID = item.order.FloorID;
+                    OrderTKAModel items = new OrderTKAModel();
+                    if (item.CusName!=null)
+                    {
+                        items.CusName = item.CusName;
+                        items.CusPhone = item.CusPhone;
+                        items.Total = item.Total;
+                        items.Waiting = item.Waiting;
+                        items.TKAID = item.TKAID;
+                    }
+                    else
+                    {
+                        items.CusName = "N/A";
+                        items.CusPhone = "N/A";
+                        items.Total = item.Total;
+                        items.Waiting = item.Waiting;
+                        items.TKAID = item.TKAID;
+                    }
                     lst.Add(items);
+
                 }
             }
             catch (Exception ex)
