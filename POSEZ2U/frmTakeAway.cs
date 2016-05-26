@@ -102,7 +102,7 @@ namespace POSEZ2U
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
         private void GetDataTKA()
         {
@@ -122,6 +122,10 @@ namespace POSEZ2U
                 ucTKA.lblWait.Text = item.Waiting.ToString();
                 ucTKA.Width = flpTkAInfor.Width;
                 ucTKA.Tag = item;
+                if (i % 2 == 0)
+                    ucTKA.BackColor = Color.FromArgb(255, 255, 255);
+                else
+                    ucTKA.BackColor = Color.FromArgb(242, 242, 242);
                 ucTKA.Click += ucTKA_Click;
                 flpTkAInfor.Controls.Add(ucTKA);
                 i++;

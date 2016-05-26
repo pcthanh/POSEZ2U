@@ -79,7 +79,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(176, 30);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Cus.Nam";
+            this.label2.Text = "Cus.Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3

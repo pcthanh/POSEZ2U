@@ -1261,8 +1261,12 @@ namespace POSEZ2U
                         }
                         else
                         {
+
                             OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
-                            OrderMain.ClientID = ClientID;
+                            if (ClientID > 0)
+                                OrderMain.ClientID = ClientID;
+                            else
+                                OrderMain.ClientID = 0;
                             OrderMain.ShiftID = UserLoginModel.ShiffID;
                             OrderMain.CreateBy = UserLoginModel.UserLoginInfo.StaffID;
                             OrderMain.UpdateBy = UserLoginModel.UserLoginInfo.StaffID;
@@ -1340,7 +1344,7 @@ namespace POSEZ2U
                                 {
                                     frmTakeAway frm = new frmTakeAway();
                                     //CallBackStatusOrderTKA(OrderMain);
-                                    frm.Show();
+                                    //frm.Show();
                                     this.Close();
                                 }
                                 else
@@ -1734,7 +1738,8 @@ namespace POSEZ2U
             frmNote frm = new frmNote();
             if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
             {
- 
+                OrderMain.Note = frm.Note;
+                OrderMain.PrinterNote = frm.PrinterNote;
             }
         }
  

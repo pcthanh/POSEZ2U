@@ -1106,5 +1106,10 @@ namespace POSEZ2U
 
        
         #endregion
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

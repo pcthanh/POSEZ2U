@@ -44,46 +44,59 @@ namespace POSEZ2U
         }
         private void LoadCustomer()
         {
-            flpCustomer.Controls.Clear();
-            var listCustomer = CustomerService.GetCustomer();
-            int i = 0;
-            foreach (CustomerModel item in listCustomer)
+            try
             {
-                UCCustomerItem ucCusItem = new UCCustomerItem();
-                ucCusItem.lblCusID.Text = item.ClientID.ToString();
-                ucCusItem.lblCusName.Text = item.Fname + " " + item.Lname;
-                ucCusItem.lblCusPhone.Text = item.Phone;
-                ucCusItem.lblDetail.Text = "View";
-                ucCusItem.Click += ucCusItem_Click;
-                ucCusItem.Width = flpCustomer.Width;
-                ucCusItem.Tag = item;
-                if (i % 2 == 0)
-                    ucCusItem.BackColor = Color.FromArgb(255, 255, 255);
-                else
-                    ucCusItem.BackColor = Color.FromArgb(242, 242, 242);
-                flpCustomer.Controls.Add(ucCusItem);
-                i++;
+                flpCustomer.Controls.Clear();
+                var listCustomer = CustomerService.GetCustomer();
+                int i = 0;
+                foreach (CustomerModel item in listCustomer)
+                {
+                    UCCustomerItem ucCusItem = new UCCustomerItem();
+                    ucCusItem.lblCusID.Text = item.ClientID.ToString();
+                    ucCusItem.lblCusName.Text = item.Fname + " " + item.Lname;
+                    ucCusItem.lblCusPhone.Text = item.Phone;
+                    ucCusItem.lblDetail.Text = "View";
+                    ucCusItem.Click += ucCusItem_Click;
+                    ucCusItem.Width = flpCustomer.Width;
+                    ucCusItem.Tag = item;
+                    if (i % 2 == 0)
+                        ucCusItem.BackColor = Color.FromArgb(255, 255, 255);
+                    else
+                        ucCusItem.BackColor = Color.FromArgb(242, 242, 242);
+                    flpCustomer.Controls.Add(ucCusItem);
+                    i++;
 
+                }
             }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmCustomer::::::::::::::::LoadCustomer:::::::::::::::::::::" + ex.Message);
+            }
+            
         }
 
         void ucCusItem_Click(object sender, EventArgs e)
         {
-            UCCustomerItem ucCus = (UCCustomerItem)sender;
-            itemS= (CustomerModel)ucCus.Tag;
-            foreach (Control ctr in flpCustomer.Controls)
+            try
             {
-                if (ctr.BackColor == Color.FromArgb(0, 153, 0))
+                UCCustomerItem ucCus = (UCCustomerItem)sender;
+                itemS = (CustomerModel)ucCus.Tag;
+                foreach (Control ctr in flpCustomer.Controls)
                 {
-                    ctr.BackColor = Color.FromArgb(255, 255, 255);
-                    ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                    if (ctr.BackColor == Color.FromArgb(0, 153, 0))
+                    {
+                        ctr.BackColor = Color.FromArgb(255, 255, 255);
+                        ctr.ForeColor = Color.FromArgb(51, 51, 51);
+                    }
                 }
+                ucCus.BackColor = Color.FromArgb(0, 153, 0);
+                ucCus.ForeColor = Color.FromArgb(255, 255, 255);
             }
-            ucCus.BackColor = Color.FromArgb(0, 153, 0);
-            ucCus.ForeColor = Color.FromArgb(255, 255, 255);
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmCustomer::::::::::::::ucCusItem_Click:::::::::::::::::::" + ex.Message);
+            }
             
-            
-
         }
 
         private void frmCustomer_Load(object sender, EventArgs e)
@@ -93,12 +106,42 @@ namespace POSEZ2U
 
         private void btnMakeOrder_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                if (itemS.ClientID > 0)
+                {
+                    this.Close();
 
-            frmOrder frm = new frmOrder();
-            frm.LoadOrderTKA("TKA-", itemS.ClientID);
+                    frmOrder frm = new frmOrder();
+                    frm.LoadOrderTKA("TKA-", itemS.ClientID);
 
-            frm.ShowDialog();
+                    frm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmCustomer::::::::::::::::::btnMakeOrder_Click::::::::::::" + ex.Message);
+            }
+            
+        }
+
+        private void btnQickOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (itemS == null)
+                {
+                    this.Close();
+                    frmOrder frm = new frmOrder();
+                    frm.LoadOrderTKA("TKA-", 0);
+                    frm.ShowDialog();
+                }
+            }
+            catch(Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmCustomer:::::::::::::::::::::::btnQickOrder_Click:::::::::::::::::::" + ex.Message);
+            }
+            
         }
     }
 }

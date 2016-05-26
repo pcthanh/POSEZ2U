@@ -53,6 +53,9 @@
             this.panel12 = new System.Windows.Forms.Panel();
             this.flpCustomer = new System.Windows.Forms.FlowLayoutPanel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.btnQickOrder = new System.Windows.Forms.Button();
             this.ucCustomerTitle1 = new POSEZ2U.UC.UCCustomerTitle();
             this.txtSearchCusName = new POSEZ2U.UC.UCTextBoxKeyBoard();
             this.panel1.SuspendLayout();
@@ -64,6 +67,7 @@
             this.panel18.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
+            this.panel22.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -188,6 +192,8 @@
             // 
             // panel11
             // 
+            this.panel11.Controls.Add(this.panel22);
+            this.panel11.Controls.Add(this.panel21);
             this.panel11.Controls.Add(this.panel20);
             this.panel11.Controls.Add(this.panel19);
             this.panel11.Controls.Add(this.panel18);
@@ -203,7 +209,7 @@
             // 
             // panel20
             // 
-            this.panel20.Controls.Add(this.btnCancel);
+            this.panel20.Controls.Add(this.btnQickOrder);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel20.Location = new System.Drawing.Point(546, 14);
             this.panel20.Name = "panel20";
@@ -220,7 +226,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(0, 0);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(119, 39);
+            this.btnCancel.Size = new System.Drawing.Size(126, 39);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -318,6 +324,39 @@
             this.panel13.Size = new System.Drawing.Size(860, 25);
             this.panel13.TabIndex = 0;
             // 
+            // panel21
+            // 
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel21.Location = new System.Drawing.Point(536, 14);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(10, 39);
+            this.panel21.TabIndex = 7;
+            // 
+            // panel22
+            // 
+            this.panel22.Controls.Add(this.btnCancel);
+            this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel22.Location = new System.Drawing.Point(410, 14);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(126, 39);
+            this.panel22.TabIndex = 8;
+            // 
+            // btnQickOrder
+            // 
+            this.btnQickOrder.BackColor = System.Drawing.Color.Blue;
+            this.btnQickOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnQickOrder.FlatAppearance.BorderSize = 0;
+            this.btnQickOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQickOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQickOrder.ForeColor = System.Drawing.Color.White;
+            this.btnQickOrder.Location = new System.Drawing.Point(0, 0);
+            this.btnQickOrder.Name = "btnQickOrder";
+            this.btnQickOrder.Size = new System.Drawing.Size(119, 39);
+            this.btnQickOrder.TabIndex = 0;
+            this.btnQickOrder.Text = "Quick Order";
+            this.btnQickOrder.UseVisualStyleBackColor = false;
+            this.btnQickOrder.Click += new System.EventHandler(this.btnQickOrder_Click);
+            // 
             // ucCustomerTitle1
             // 
             this.ucCustomerTitle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -364,6 +403,7 @@
             this.panel18.ResumeLayout(false);
             this.panel12.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
+            this.panel22.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -397,5 +437,8 @@
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnMakeOrder;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Button btnQickOrder;
     }
 }

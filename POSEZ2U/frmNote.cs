@@ -18,6 +18,8 @@ namespace POSEZ2U
         {
             InitializeComponent();
         }
+        public string Note;
+        public int PrinterNote;
         private IPrinterService _printService;
         private IPrinterService PrintService
         {
@@ -48,6 +50,20 @@ namespace POSEZ2U
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if(txtTextNote.Text!=string.Empty)
+            {
+                 PrinterModel Printer = (PrinterModel)cblistPrinter.SelectedValue;
+                 Note = txtTextNote.Text;
+                 if (Printer.PrinterType == 0)
+                     PrinterNote = 0;
+                else
+                    PrinterNote = Printer.ID;
+                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
         }
     }
 }
