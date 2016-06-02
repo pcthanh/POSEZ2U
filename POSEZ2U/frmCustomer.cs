@@ -108,7 +108,7 @@ namespace POSEZ2U
         {
             try
             {
-                if (itemS.ClientID > 0)
+                if (itemS!=null)
                 {
                     this.Close();
 
