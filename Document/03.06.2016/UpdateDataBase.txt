@@ -1,0 +1,9 @@
+ALTER PROCEDURE [dbo].[LISTTKA]
+AS
+BEGIN
+	SELECT C.Fname AS CusName,C.Phone AS CusPhone,O.TotalAmount AS Total,O.CreateDate AS Waiting,O.FloorID AS TKAID
+
+FROM ORDER_DATE O LEFT JOIN CLIENT C ON O.ClientID=C.ClientID
+	
+WHERE (O.ClientID=C.ClientID OR O.ClientID=0)AND O.FloorID LIKE '%TKA-%'AND O.Status!=1 AND CONVERT(DATE,O.CreateDate)=CONVERT(DATE,GETDATE())
+END
