@@ -348,8 +348,8 @@ namespace ServicePOS
         {
             StatusTable st = new StatusTable();
             st.Complete = -1;
-           
-            var status =_context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status!=1 && x.Status!=4).SingleOrDefault();
+
+            var status = _context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status != 1 && x.Status != 4 && x.CreateDate.Year == DateTime.Now.Year && x.CreateDate.Month == DateTime.Now.Month && x.CreateDate.Day == DateTime.Now.Day).SingleOrDefault();
             if (status != null)
             {
                 st.Complete = status.Status;
@@ -365,7 +365,7 @@ namespace ServicePOS
         public OrderDateModel GetOrderByTable(string idTable, int idOrder)
         {
             OrderDateModel OrderMain = new OrderDateModel();
-            var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == idTable && x.Status!=1 && x.Status!=4).SingleOrDefault();
+            var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == idTable && x.Status != 1 && x.Status != 4 && x.CreateDate.Year == DateTime.Now.Year && x.CreateDate.Month == DateTime.Now.Month && x.CreateDate.Day == DateTime.Now.Day).SingleOrDefault();
             if (dataOrder != null)
             {
                 OrderMain.Seat = dataOrder.Seat ?? 0;
@@ -577,7 +577,7 @@ namespace ServicePOS
             OrderDateModel OrderTKA = new OrderDateModel();
             try
             {
-                var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == tkaID && x.Status != 1).SingleOrDefault();
+                var dataOrder = _context.ORDER_DATE.Where(x => x.FloorID == tkaID && x.Status != 1 && x.CreateDate.Year == DateTime.Now.Year && x.CreateDate.Month == DateTime.Now.Month && x.CreateDate.Day == DateTime.Now.Day).SingleOrDefault();
 
 
                 if (dataOrder != null)
@@ -734,12 +734,12 @@ namespace ServicePOS
 
         public int CountTotalEaIn()
         {
-            return _context.ORDER_DATE.Where(x => x.Status != 1 &&!x.FloorID.Contains("TKA-") && x.Status!=4).Count();
+            return _context.ORDER_DATE.Where(x => x.Status != 1 && !x.FloorID.Contains("TKA-") && x.Status != 4 && x.CreateDate.Year == DateTime.Now.Year && x.CreateDate.Month == DateTime.Now.Month && x.CreateDate.Day == DateTime.Now.Day).Count();
         }
 
         public int CountTotalTKA()
         {
-            return _context.ORDER_DATE.Where(x => x.Status != 1 && x.FloorID.Contains("TKA-")).Count();
+            return _context.ORDER_DATE.Where(x => x.Status != 1 && x.FloorID.Contains("TKA-") && x.CreateDate.Year == DateTime.Now.Year && x.CreateDate.Month == DateTime.Now.Month && x.CreateDate.Day == DateTime.Now.Day).Count();
         }
 
 
@@ -1129,7 +1129,7 @@ namespace ServicePOS
             try
             {
                 st.Complete = -1;
-                var status = _context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status != 1 && x.Status != 4)
+                var status = _context.ORDER_DATE.Where(x => x.FloorID == TableID && x.Status != 1 && x.Status != 4 && x.CreateDate.Year==DateTime.Now.Year && x.CreateDate.Month==DateTime.Now.Month && x.CreateDate.Day==DateTime.Now.Day)
                     .Select(x => new OrderDateModel
                     {
                         Status = x.Status,
@@ -1151,7 +1151,9 @@ namespace ServicePOS
                 }
             }
             catch (Exception ex)
-            {}
+            {
+                LogPOS.WriteLog("OrderService::::::::::::::::::::::::GetStatusTablePrinBill::::::::::::::::::" + ex.Message);
+            }
             return st;
         }
     }

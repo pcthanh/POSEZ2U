@@ -14,5 +14,7 @@ namespace ServicePOS
         int UpdateDataShiftHistory(ShiftHistoryModel model);
 
         IEnumerable<ShiftHistoryModel> GetListShiftHistoryByUserid(int userid, int type);
+
+        int CountShiftWorking();
     }
 }

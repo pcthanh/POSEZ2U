@@ -148,12 +148,19 @@ namespace ServicePOS
 
                 return data;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                SystemLog.LogPOS.WriteLog("ShiftService::::::::::::::GetListShiftHistoryByUserid::::::::::::::::" + ex.Message);
                 return null;
             }
 
         }
         #endregion
+
+
+        public int CountShiftWorking()
+        {
+            return _context.SHIFT_HISTORY.Where(x => x.Status == 1).Count();
+        }
     }
 }
