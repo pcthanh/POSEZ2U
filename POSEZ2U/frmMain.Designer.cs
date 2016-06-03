@@ -217,6 +217,7 @@
             this.btnWorkingPeriod.TabIndex = 0;
             this.btnWorkingPeriod.UseVisualStyleBackColor = true;
             this.btnWorkingPeriod.Click += new System.EventHandler(this.btnWorkingPeriod_Click);
+            this.btnWorkingPeriod.Paint += new System.Windows.Forms.PaintEventHandler(this.btnWorkingPeriod_Paint);
             // 
             // btnEatIn
             // 

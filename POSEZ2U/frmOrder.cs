@@ -46,8 +46,9 @@ namespace POSEZ2U
         List<SeatModel> lstSeat = new List<SeatModel>();
         private int PgSizeModi = 21;
         private int CurrentPageIndexModi = 1;
-        private int TotalPageModi = 0; 
-
+        private int TotalPageModi = 0;
+        string colorName = "";
+        UCMenuOfGroup ucMenuOfGroup;
 
         List<PrinterModel> PrintData = new List<PrinterModel>();
         OrderDateModel OrderMain;
@@ -499,11 +500,12 @@ namespace POSEZ2U
                 }
                 else
                 {
-                    UCMenuOfGroup ucMenuOfGroup = (UCMenuOfGroup)sender;
+                    ucMenuOfGroup = (UCMenuOfGroup)sender;
                     OrderDetailModel item = new OrderDetailModel();
                     if (seat > 0)
                         item.Seat = seat;
                     ProductionModel itemProduct = (ProductionModel)ucMenuOfGroup.Tag;
+                    colorName = itemProduct.Color;
                     item.ProductName = itemProduct.ProductNameSort;
                     item.Price = Convert.ToDouble(itemProduct.CurrentPrice);
                     item.ProductID = itemProduct.ProductID;
@@ -541,6 +543,9 @@ namespace POSEZ2U
                     OrderMain.addItemToList(item);
                     addOrder(item);
                     lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal().ToString());
+                    ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromArgb(0, 122, 204);
+                    timeChangeColor.Enabled = true;
+                    timeChangeColor.Start();
                 }
             }
             catch (Exception ex)
@@ -1742,6 +1747,28 @@ namespace POSEZ2U
                 OrderMain.PrinterNote = frm.PrinterNote;
             }
         }
- 
+
+        private void timeChangeColor_Tick(object sender, EventArgs e)
+        {
+            ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(colorName);
+            timeChangeColor.Stop();
+        }
+
+        private void ucSendOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucSendOrder_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

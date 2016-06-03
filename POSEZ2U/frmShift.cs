@@ -150,51 +150,58 @@ namespace POSEZ2U
 
         public void addOnDutyList(string lblName, int i)
         {
-
-            flpShiftDetail.Controls.Clear();
-           
-            if (i == 1)
-            {
-                this.btnAdd.Show();
-                this.btnEnd.Show();
-                var data = ShiftService.GetListShiftHistoryByUserid(userid, 0).ToList();
-
-                double totalsafe = 0;
-
-                foreach (var item in data)
-                {
-                    var ucShift = new UCShiftItem();
-
-                    //ucShift.Dock = DockStyle.Fill;
-                    MoneyFortmat Fomat = new MoneyFortmat(1);
-
-                    totalsafe = totalsafe + item.SafeDrop ?? 0;
-
-                    ucShift.lblNo.Text = item.ShiftName;
-                    ucShift.lblStaff.Text = item.UserName;
-                    ucShift.lblStart.Text = (item.StartShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblEnd.Text = " ";
-                    if (item.EndShift != null)
-                        ucShift.lblEnd.Text = (item.EndShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
-                    ucShift.lblCashstart.Text = Fomat.getValue(item.CashStart ?? 0).ToString("C");
-                    ucShift.lblCashend.Text = Fomat.getValue(item.CashEnd ?? 0).ToString("C");
-                    ucShift.lblSfaedrop.Text = Fomat.getValue(item.SafeDrop ?? 0).ToString("C");
-
-                    ucShift.Size = new System.Drawing.Size(flpShiftDetail.Width-5, ucShift.Height);
-
-                    ucShift.Tag = item;
-                    ucShift.Click += UCShiftItem_Click;
-
-                    flpShiftDetail.Controls.Add(ucShift);
-                }
-
-                this.lblTotalSafeDrop.Text = totalsafe.ToString("C");
-
-            }
-            else
+            try 
             {
                 flpShiftDetail.Controls.Clear();
+
+                if (i == 1)
+                {
+                    this.btnAdd.Show();
+                    this.btnEnd.Show();
+                    var data = ShiftService.GetListShiftHistoryByUserid(userid, 0).ToList();
+
+                    double totalsafe = 0;
+
+                    foreach (var item in data)
+                    {
+                        var ucShift = new UCShiftItem();
+
+                        //ucShift.Dock = DockStyle.Fill;
+                        MoneyFortmat Fomat = new MoneyFortmat(1);
+
+                        totalsafe = totalsafe + item.SafeDrop ?? 0;
+
+                        ucShift.lblNo.Text = item.ShiftName;
+                        ucShift.lblStaff.Text = item.UserName;
+                        ucShift.lblStart.Text = (item.StartShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        ucShift.lblEnd.Text = " ";
+                        if (item.EndShift != null)
+                            ucShift.lblEnd.Text = (item.EndShift ?? DateTime.Now).ToString("dd-MM-yyyy hh:mm:ss", CultureInfo.InvariantCulture);
+                        ucShift.lblCashstart.Text = Fomat.getValue(item.CashStart ?? 0).ToString("C");
+                        ucShift.lblCashend.Text = Fomat.getValue(item.CashEnd ?? 0).ToString("C");
+                        ucShift.lblSfaedrop.Text = Fomat.getValue(item.SafeDrop ?? 0).ToString("C");
+
+                        ucShift.Size = new System.Drawing.Size(flpShiftDetail.Width - 5, ucShift.Height);
+
+                        ucShift.Tag = item;
+                        ucShift.Click += UCShiftItem_Click;
+                        ucShift.Width = flpShiftDetail.Width;
+                        flpShiftDetail.Controls.Add(ucShift);
+                    }
+
+                    this.lblTotalSafeDrop.Text = totalsafe.ToString("C");
+
+                }
+                else
+                {
+                    flpShiftDetail.Controls.Clear();
+                }
             }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmShift::::::::::::::::addOnDutyList:::::::::::::" + ex.Message);
+            }
+            
         }
 
 

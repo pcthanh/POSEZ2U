@@ -78,7 +78,7 @@
             this.label1.Size = new System.Drawing.Size(49, 27);
             this.label1.TabIndex = 0;
             this.label1.Text = "#";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -93,7 +93,7 @@
             this.label2.Size = new System.Drawing.Size(121, 27);
             this.label2.TabIndex = 0;
             this.label2.Text = "Staff";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -108,7 +108,7 @@
             this.label3.Size = new System.Drawing.Size(121, 27);
             this.label3.TabIndex = 0;
             this.label3.Text = "Start";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -123,7 +123,7 @@
             this.label4.Size = new System.Drawing.Size(121, 27);
             this.label4.TabIndex = 0;
             this.label4.Text = "End";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -138,7 +138,7 @@
             this.label5.Size = new System.Drawing.Size(92, 27);
             this.label5.TabIndex = 0;
             this.label5.Text = "Cash start";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
@@ -153,7 +153,7 @@
             this.label6.Size = new System.Drawing.Size(92, 27);
             this.label6.TabIndex = 0;
             this.label6.Text = "Cash end";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -168,7 +168,7 @@
             this.label7.Size = new System.Drawing.Size(96, 27);
             this.label7.TabIndex = 0;
             this.label7.Text = "Safe drop";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UCShiftTitle
             // 

@@ -69,8 +69,8 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.23077F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.76923F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.63636F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.36364F));
             this.tableLayoutPanel2.Controls.Add(this.btnSubmit, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -89,11 +89,11 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(299, 3);
+            this.btnSubmit.Location = new System.Drawing.Point(276, 3);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(127, 39);
+            this.btnSubmit.Size = new System.Drawing.Size(150, 39);
             this.btnSubmit.TabIndex = 0;
-            this.btnSubmit.Text = "Again";
+            this.btnSubmit.Text = "Continue this shift";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
@@ -105,9 +105,9 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(167, 3);
+            this.btnCancel.Location = new System.Drawing.Point(146, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(126, 39);
+            this.btnCancel.Size = new System.Drawing.Size(124, 39);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -183,12 +183,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 45);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Shift";
+            this.label1.Text = " Opening Shift";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2

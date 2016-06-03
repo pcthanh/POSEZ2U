@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOrder));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,28 +58,29 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSendOrder = new System.Windows.Forms.Button();
             this.btnReprint = new System.Windows.Forms.Button();
             this.btnJoinTable = new System.Windows.Forms.Button();
             this.btnTransferTable = new System.Windows.Forms.Button();
-            this.btnVoid = new System.Windows.Forms.Button();
-            this.btnVoidAll = new System.Windows.Forms.Button();
             this.btnAddSeat = new System.Windows.Forms.Button();
-            this.btnNewItem = new System.Windows.Forms.Button();
             this.btnNote = new System.Windows.Forms.Button();
             this.btnPayMent = new System.Windows.Forms.Button();
-            this.btnPrintBill = new System.Windows.Forms.Button();
             this.btnPrice = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnRefund = new System.Windows.Forms.Button();
             this.btnCancelOrder = new System.Windows.Forms.Button();
             this.btnPrevOrder = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.timeChangeColor = new System.Windows.Forms.Timer(this.components);
+            this.ucOpenTill1 = new POSEZ2U.UC.UCOpenTill();
+            this.ucVoidAll = new POSEZ2U.UC.UCVoidAll();
+            this.ucVoidItem = new POSEZ2U.UC.UCVoidItem();
+            this.ucSendOrder = new POSEZ2U.UC.UCSendOrder();
+            this.ucOpenItem = new POSEZ2U.UC.UCOpenItem();
+            this.ucPrintBill = new POSEZ2U.UC.UCPrintBill();
+            this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -381,22 +383,22 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Controls.Add(this.btnSendOrder, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnReprint, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ucOpenTill1, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ucVoidAll, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ucVoidItem, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ucSendOrder, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnJoinTable, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnTransferTable, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnVoid, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnVoidAll, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnAddSeat, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnNewItem, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnNote, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnPayMent, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnPrintBill, 5, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnPrice, 5, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnRefund, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCancelOrder, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnPrevOrder, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ucOpenItem, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ucPrintBill, 5, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -407,23 +409,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(448, 193);
             this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // btnSendOrder
-            // 
-            this.btnSendOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
-            this.btnSendOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSendOrder.FlatAppearance.BorderSize = 0;
-            this.btnSendOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendOrder.Location = new System.Drawing.Point(0, 0);
-            this.btnSendOrder.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSendOrder.Name = "btnSendOrder";
-            this.tableLayoutPanel1.SetRowSpan(this.btnSendOrder, 2);
-            this.btnSendOrder.Size = new System.Drawing.Size(74, 128);
-            this.btnSendOrder.TabIndex = 0;
-            this.btnSendOrder.Text = "SEND ORDER";
-            this.btnSendOrder.UseVisualStyleBackColor = false;
-            this.btnSendOrder.Click += new System.EventHandler(this.btnSendOrder_Click);
             // 
             // btnReprint
             // 
@@ -473,43 +458,6 @@
             this.btnTransferTable.UseVisualStyleBackColor = false;
             this.btnTransferTable.Visible = false;
             // 
-            // btnVoid
-            // 
-            this.btnVoid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnVoid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVoid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVoid.FlatAppearance.BorderSize = 0;
-            this.btnVoid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoid.ForeColor = System.Drawing.Color.White;
-            this.btnVoid.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVoid.Location = new System.Drawing.Point(74, 64);
-            this.btnVoid.Margin = new System.Windows.Forms.Padding(0);
-            this.btnVoid.Name = "btnVoid";
-            this.btnVoid.Size = new System.Drawing.Size(78, 64);
-            this.btnVoid.TabIndex = 1;
-            this.btnVoid.Text = "VOID";
-            this.btnVoid.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.btnVoid.UseVisualStyleBackColor = false;
-            this.btnVoid.Click += new System.EventHandler(this.btnVoid_Click);
-            // 
-            // btnVoidAll
-            // 
-            this.btnVoidAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnVoidAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVoidAll.FlatAppearance.BorderSize = 0;
-            this.btnVoidAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoidAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoidAll.ForeColor = System.Drawing.Color.White;
-            this.btnVoidAll.Location = new System.Drawing.Point(152, 64);
-            this.btnVoidAll.Margin = new System.Windows.Forms.Padding(0);
-            this.btnVoidAll.Name = "btnVoidAll";
-            this.btnVoidAll.Size = new System.Drawing.Size(70, 64);
-            this.btnVoidAll.TabIndex = 1;
-            this.btnVoidAll.Text = "VOID ALL";
-            this.btnVoidAll.UseVisualStyleBackColor = false;
-            this.btnVoidAll.Click += new System.EventHandler(this.btnVoidAll_Click);
-            // 
             // btnAddSeat
             // 
             this.btnAddSeat.BackColor = System.Drawing.Color.Black;
@@ -526,23 +474,6 @@
             this.btnAddSeat.Text = "ADD SEAT";
             this.btnAddSeat.UseVisualStyleBackColor = false;
             this.btnAddSeat.Click += new System.EventHandler(this.btnAddSeat_Click);
-            // 
-            // btnNewItem
-            // 
-            this.btnNewItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.btnNewItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnNewItem.FlatAppearance.BorderSize = 0;
-            this.btnNewItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewItem.ForeColor = System.Drawing.Color.White;
-            this.btnNewItem.Location = new System.Drawing.Point(222, 64);
-            this.btnNewItem.Margin = new System.Windows.Forms.Padding(0);
-            this.btnNewItem.Name = "btnNewItem";
-            this.btnNewItem.Size = new System.Drawing.Size(74, 64);
-            this.btnNewItem.TabIndex = 1;
-            this.btnNewItem.Text = "OPEN ITEM";
-            this.btnNewItem.UseVisualStyleBackColor = false;
-            this.btnNewItem.Click += new System.EventHandler(this.btnNewItem_Click);
             // 
             // btnNote
             // 
@@ -579,23 +510,6 @@
             this.btnPayMent.UseVisualStyleBackColor = false;
             this.btnPayMent.Click += new System.EventHandler(this.btnPayMent_Click);
             // 
-            // btnPrintBill
-            // 
-            this.btnPrintBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.btnPrintBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPrintBill.FlatAppearance.BorderSize = 0;
-            this.btnPrintBill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintBill.ForeColor = System.Drawing.Color.White;
-            this.btnPrintBill.Location = new System.Drawing.Point(370, 64);
-            this.btnPrintBill.Margin = new System.Windows.Forms.Padding(0);
-            this.btnPrintBill.Name = "btnPrintBill";
-            this.btnPrintBill.Size = new System.Drawing.Size(78, 64);
-            this.btnPrintBill.TabIndex = 1;
-            this.btnPrintBill.Text = "PRINT BILL";
-            this.btnPrintBill.UseVisualStyleBackColor = false;
-            this.btnPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
-            // 
             // btnPrice
             // 
             this.btnPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
@@ -611,21 +525,6 @@
             this.btnPrice.Text = "PRICE";
             this.btnPrice.UseVisualStyleBackColor = false;
             this.btnPrice.Click += new System.EventHandler(this.btnPrice_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(145)))), ((int)(((byte)(116)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(296, 64);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(74, 64);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "OPEN TILL";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // btnRefund
             // 
@@ -682,20 +581,11 @@
             this.panel8.Size = new System.Drawing.Size(10, 193);
             this.panel8.TabIndex = 0;
             // 
-            // ucKeyPadOrder1
-            // 
-            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
-            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
-            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
-            this.ucKeyPadOrder1.TabIndex = 0;
-            this.ucKeyPadOrder1.txtResult = null;
-            // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
-            this.panel11.Controls.Add(this.panel15);
             this.panel11.Controls.Add(this.flowLayoutPanel1);
+            this.panel11.Controls.Add(this.panel15);
             this.panel11.Controls.Add(this.panel14);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(10, 100);
@@ -715,9 +605,9 @@
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 10);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(629, 178);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(629, 168);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // panel14
@@ -727,6 +617,88 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(629, 10);
             this.panel14.TabIndex = 0;
+            // 
+            // timeChangeColor
+            // 
+            this.timeChangeColor.Interval = 200;
+            this.timeChangeColor.Tick += new System.EventHandler(this.timeChangeColor_Tick);
+            // 
+            // ucOpenTill1
+            // 
+            this.ucOpenTill1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(145)))), ((int)(((byte)(116)))));
+            this.ucOpenTill1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucOpenTill1.Location = new System.Drawing.Point(296, 64);
+            this.ucOpenTill1.Margin = new System.Windows.Forms.Padding(0);
+            this.ucOpenTill1.Name = "ucOpenTill1";
+            this.ucOpenTill1.Size = new System.Drawing.Size(74, 64);
+            this.ucOpenTill1.TabIndex = 3;
+            // 
+            // ucVoidAll
+            // 
+            this.ucVoidAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ucVoidAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucVoidAll.Location = new System.Drawing.Point(152, 64);
+            this.ucVoidAll.Margin = new System.Windows.Forms.Padding(0);
+            this.ucVoidAll.Name = "ucVoidAll";
+            this.ucVoidAll.Size = new System.Drawing.Size(70, 64);
+            this.ucVoidAll.TabIndex = 2;
+            this.ucVoidAll.Click += new System.EventHandler(this.btnVoidAll_Click);
+            // 
+            // ucVoidItem
+            // 
+            this.ucVoidItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ucVoidItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucVoidItem.Location = new System.Drawing.Point(74, 64);
+            this.ucVoidItem.Margin = new System.Windows.Forms.Padding(0);
+            this.ucVoidItem.Name = "ucVoidItem";
+            this.ucVoidItem.Size = new System.Drawing.Size(78, 64);
+            this.ucVoidItem.TabIndex = 2;
+            this.ucVoidItem.Click += new System.EventHandler(this.btnVoid_Click);
+            // 
+            // ucSendOrder
+            // 
+            this.ucSendOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(153)))), ((int)(((byte)(0)))));
+            this.ucSendOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucSendOrder.Location = new System.Drawing.Point(0, 0);
+            this.ucSendOrder.Margin = new System.Windows.Forms.Padding(0);
+            this.ucSendOrder.Name = "ucSendOrder";
+            this.tableLayoutPanel1.SetRowSpan(this.ucSendOrder, 2);
+            this.ucSendOrder.Size = new System.Drawing.Size(74, 128);
+            this.ucSendOrder.TabIndex = 1;
+            this.ucSendOrder.Load += new System.EventHandler(this.ucSendOrder_Load);
+            this.ucSendOrder.Click += new System.EventHandler(this.btnSendOrder_Click);
+            // 
+            // ucOpenItem
+            // 
+            this.ucOpenItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.ucOpenItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucOpenItem.Location = new System.Drawing.Point(222, 64);
+            this.ucOpenItem.Margin = new System.Windows.Forms.Padding(0);
+            this.ucOpenItem.Name = "ucOpenItem";
+            this.ucOpenItem.Size = new System.Drawing.Size(74, 64);
+            this.ucOpenItem.TabIndex = 6;
+            this.ucOpenItem.Click += new System.EventHandler(this.btnNewItem_Click);
+            // 
+            // ucPrintBill
+            // 
+            this.ucPrintBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.ucPrintBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ucPrintBill.Location = new System.Drawing.Point(370, 64);
+            this.ucPrintBill.Margin = new System.Windows.Forms.Padding(0);
+            this.ucPrintBill.Name = "ucPrintBill";
+            this.ucPrintBill.Size = new System.Drawing.Size(78, 64);
+            this.ucPrintBill.TabIndex = 7;
+            this.ucPrintBill.Click += new System.EventHandler(this.btnPrintBill_Click);
+            // 
+            // ucKeyPadOrder1
+            // 
+            this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ucKeyPadOrder1.Location = new System.Drawing.Point(458, 0);
+            this.ucKeyPadOrder1.Name = "ucKeyPadOrder1";
+            this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
+            this.ucKeyPadOrder1.TabIndex = 0;
+            this.ucKeyPadOrder1.txtResult = null;
             // 
             // ucInfoTop1
             // 
@@ -793,17 +765,12 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnSendOrder;
         private System.Windows.Forms.Button btnReprint;
         private System.Windows.Forms.Button btnJoinTable;
         private System.Windows.Forms.Button btnTransferTable;
-        private System.Windows.Forms.Button btnVoid;
-        private System.Windows.Forms.Button btnVoidAll;
         private System.Windows.Forms.Button btnAddSeat;
-        private System.Windows.Forms.Button btnNewItem;
         private System.Windows.Forms.Button btnNote;
         private System.Windows.Forms.Button btnPayMent;
-        private System.Windows.Forms.Button btnPrintBill;
         private System.Windows.Forms.Button btnPrice;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Panel panel13;
@@ -825,9 +792,15 @@
         private System.Windows.Forms.Label lblTable;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblSeat;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnRefund;
         private System.Windows.Forms.Button btnCancelOrder;
         private System.Windows.Forms.Button btnPrevOrder;
+        private System.Windows.Forms.Timer timeChangeColor;
+        private UC.UCSendOrder ucSendOrder;
+        private UC.UCVoidItem ucVoidItem;
+        private UC.UCVoidAll ucVoidAll;
+        private UC.UCOpenItem ucOpenItem;
+        private UC.UCOpenTill ucOpenTill1;
+        private UC.UCPrintBill ucPrintBill;
     }
 }

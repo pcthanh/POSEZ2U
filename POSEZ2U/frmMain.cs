@@ -42,6 +42,13 @@ namespace POSEZ2U
             get { return _orderService ?? (_orderService = new OrderService()); }
             set { _orderService = value; }
         }
+
+        private IShiftService _shiftService;
+        private IShiftService ShiftService
+        {
+            get { return _shiftService ?? (_shiftService = new ShiftService()); }
+            set { _shiftService = value; }
+        }
         private void btnEatIn_Click(object sender, EventArgs e)
         {
             try
@@ -225,70 +232,109 @@ namespace POSEZ2U
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            userid = UserLoginModel.UserLoginInfo.StaffID;
-            if (userid == 0)
+            try
             {
-                Form1 frm = new Form1();
-                this.Hide();
-                frm.ShowDialog();
-            }
-            else
-            {
-
-                var shiftid = UserLoginModel.ShiffID;
-                if (shiftid > 0)
+                userid = UserLoginModel.UserLoginInfo.StaffID;
+                if (userid == 0)
                 {
-                    this.picWarning.Show();
-                    this.lbWarning.Show();
+                    Form1 frm = new Form1();
+                    this.Hide();
+                    frm.ShowDialog();
                 }
                 else
                 {
-                    this.picWarning.Hide();
-                    this.lbWarning.Hide();
+
+                    var shiftid = UserLoginModel.ShiffID;
+                    if (shiftid > 0)
+                    {
+                        this.picWarning.Show();
+                        this.lbWarning.Show();
+                    }
+                    else
+                    {
+                        this.picWarning.Hide();
+                        this.lbWarning.Hide();
+                    }
+
+                    btnEatIn.Tag = 1;
+
+
+                    btnTakeAway.Tag = 2;
+
+
+                    btnStore.Tag = 3;
+
+                    btnWorkingPeriod.Tag = 4;
+
+
+                    btnReport.Tag = 5;
+
+                    btnSettingAll.Tag = 6;
+
+                    this.lblNameUser.Text = UserLoginModel.UserLoginInfo.UserName;
                 }
-
-                btnEatIn.Tag = 1;
-
-
-                btnTakeAway.Tag = 2;
-
-
-                btnStore.Tag = 3;
-
-                btnWorkingPeriod.Tag = 4;
-
-
-                btnReport.Tag = 5;
-
-                btnSettingAll.Tag = 6;
-
-                this.lblNameUser.Text =UserLoginModel.UserLoginInfo.UserName;
             }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmMain::::::::::::::::frmMain_Load:::::::::::::::::::::::" + ex.Message);
+            }
+            
 
         }
 
         private void btnEatIn_Paint(object sender, PaintEventArgs e)
         {
-           
-            Font drawFont = new Font("Arial", 20);
-            SolidBrush drawBrush = new SolidBrush(Color.White);
-            PointF drawPoint = new PointF(185.0F, 12.0F);
-            String drawString = OrderService.CountTotalEaIn() + "";
-            e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+            try
+            {
+                Font drawFont = new Font("Arial", 20);
+                SolidBrush drawBrush = new SolidBrush(Color.White);
+                PointF drawPoint = new PointF(185.0F, 12.0F);
+                String drawString = OrderService.CountTotalEaIn() + "";
+                e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmMain:::::::::::::::::btnEatIn_Paint::::::::::::::::::::::" + ex.Message);
+            }
+            
         }
 
         private void btnTakeAway_Paint(object sender, PaintEventArgs e)
         {
-            Font drawFont = new Font("Arial", 20);
-            SolidBrush drawBrush = new SolidBrush(Color.White);
-            PointF drawPoint = new PointF(185.0F, 12.0F);
-            String drawString = OrderService.CountTotalTKA() + "";
-            e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+            try
+            {
+                Font drawFont = new Font("Arial", 20);
+                SolidBrush drawBrush = new SolidBrush(Color.White);
+                PointF drawPoint = new PointF(185.0F, 12.0F);
+                String drawString = OrderService.CountTotalTKA() + "";
+                e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmMain:::::::::::::::::::::btnTakeAway_Paint::::::::::::::::::::::::" + ex.Message);
+            }
+            
         }
 
         private void btnStore_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnWorkingPeriod_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                Font drawFont = new Font("Arial", 20);
+                SolidBrush drawBrush = new SolidBrush(Color.White);
+                PointF drawPoint = new PointF(185.0F, 12.0F);
+                String drawString = ShiftService.CountShiftWorking() + "";
+                e.Graphics.DrawString(drawString, drawFont, drawBrush, drawPoint);
+            }
+            catch (Exception ex)
+            {
+                LogPOS.WriteLog("frmMain::::::::::::::btnWorkingPeriod_Paint:::::::::::::::::::::;" + ex.Message);
+            }
         }
     }
 }
