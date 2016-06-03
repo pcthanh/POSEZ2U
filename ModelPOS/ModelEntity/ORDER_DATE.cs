@@ -15,15 +15,18 @@ namespace ModelPOS.ModelEntity
     public partial class ORDER_DATE
     {
         public int OrderID { get; set; }
-        public string OrderNumber { get; set; }
+        public Nullable<int> OrderNumber { get; set; }
         public Nullable<int> ClientID { get; set; }
-        public Nullable<int> FloorID { get; set; }
+        public string FloorID { get; set; }
         public int Status { get; set; }
         public Nullable<double> TotalAmount { get; set; }
+        public Nullable<int> Seat { get; set; }
         public Nullable<int> CreateBy { get; set; }
-        public Nullable<System.DateTime> CreateDate { get; set; }
+        public System.DateTime CreateDate { get; set; }
         public Nullable<int> UpdateBy { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string Note { get; set; }
+        public Nullable<int> ShiftID { get; set; }
+        public Nullable<int> PrinterNote { get; set; }
     }
 }
