@@ -100,6 +100,27 @@ namespace ServicePOS.Model
             TotalAmount = total;
             return total;
         }
+        public Double SubTotalVoid()
+        {
+            Double total = 0;
+            for (int i = 0; i < ListOrderDetail.Count; i++)
+            {
+                if(ListOrderDetail[i].ChangeStatus!=2)
+                {
+                    total += Convert.ToDouble(ListOrderDetail[i].Price * ListOrderDetail[i].Qty);
+                    if (ListOrderDetail[i].ListOrderDetailModifire.Count > 0)
+                    {
+                        for (int j = 0; j < ListOrderDetail[i].ListOrderDetailModifire.Count; j++)
+                        {
+                            total += Convert.ToDouble(ListOrderDetail[i].ListOrderDetailModifire[j].Price * ListOrderDetail[i].ListOrderDetailModifire[j].Qty);
+                        }
+                    }
+                }
+            }
+
+            TotalAmount = total;
+            return total;
+        }
         public void addSeat(int numberSeat)
         {
             Seat = numberSeat;

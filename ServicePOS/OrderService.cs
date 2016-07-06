@@ -397,6 +397,7 @@ namespace ServicePOS
                  item => item.OrderID, (order, item) => new { order, item })
                  .Join(_context.PRODUCTs, pro => pro.item.ProductID, c => c.ProductID, (pro, c) => new { pro, c })
                  .Where(x => x.pro.order.FloorID == dataOrder.FloorID && x.pro.order.OrderID == x.pro.item.OrderID && x.pro.order.OrderID == dataOrder.OrderID && x.pro.item.OrderID == dataOrder.OrderID && x.pro.item.ProductID==x.c.ProductID)
+                 .OrderBy(x=>x.pro.item.OrderDetailID)
                  .Select(x => new OrderDetailModel()
                  {
                      ProductID = x.pro.item.ProductID,
