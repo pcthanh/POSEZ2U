@@ -44,15 +44,15 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnDatabase = new System.Windows.Forms.Button();
-            this.btnStoreDetail = new System.Windows.Forms.Button();
-            this.btnProduct = new System.Windows.Forms.Button();
-            this.btnPrinter = new System.Windows.Forms.Button();
-            this.btnUserSetting = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.btnAccount = new System.Windows.Forms.Button();
+            this.ucFloorPlan1 = new POSEZ2U.UC.UCFloorPlan();
+            this.ucInventory1 = new POSEZ2U.UC.UCInventory();
+            this.ucAccount = new POSEZ2U.UC.UCAccount();
+            this.ucStore1 = new POSEZ2U.UC.UCStore();
+            this.ucDatabase = new POSEZ2U.UC.UCDatabase();
+            this.uCbtnPrinter = new POSEZ2U.UC.UCbtnPrinter();
+            this.ucUser = new POSEZ2U.UC.UCUser();
+            this.ucProduct = new POSEZ2U.UC.UCProduct();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -177,6 +177,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
             this.panel5.Controls.Add(this.tableLayoutPanel2);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Controls.Add(this.tableLayoutPanel1);
@@ -189,13 +190,15 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.SystemColors.Control;
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnAccount, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.ucFloorPlan1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ucInventory1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.ucAccount, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(210, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -216,13 +219,14 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tableLayoutPanel1.BackgroundImage")));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.btnDatabase, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnStoreDetail, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnProduct, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnPrinter, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.btnUserSetting, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ucStore1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.ucDatabase, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.uCbtnPrinter, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ucUser, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.ucProduct, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -235,101 +239,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 418);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(201, 77);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(3, 86);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(201, 77);
-            this.button2.TabIndex = 1;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // btnDatabase
-            // 
-            this.btnDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDatabase.FlatAppearance.BorderSize = 0;
-            this.btnDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDatabase.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDatabase.Image = ((System.Drawing.Image)(resources.GetObject("btnDatabase.Image")));
-            this.btnDatabase.Location = new System.Drawing.Point(3, 335);
-            this.btnDatabase.Name = "btnDatabase";
-            this.btnDatabase.Size = new System.Drawing.Size(194, 80);
-            this.btnDatabase.TabIndex = 4;
-            this.btnDatabase.UseVisualStyleBackColor = true;
-            this.btnDatabase.Click += new System.EventHandler(this.btnDatabase_Click);
-            // 
-            // btnStoreDetail
-            // 
-            this.btnStoreDetail.AccessibleName = "";
-            this.btnStoreDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStoreDetail.FlatAppearance.BorderSize = 0;
-            this.btnStoreDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStoreDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStoreDetail.Image = ((System.Drawing.Image)(resources.GetObject("btnStoreDetail.Image")));
-            this.btnStoreDetail.Location = new System.Drawing.Point(3, 252);
-            this.btnStoreDetail.Name = "btnStoreDetail";
-            this.btnStoreDetail.Size = new System.Drawing.Size(194, 77);
-            this.btnStoreDetail.TabIndex = 4;
-            this.btnStoreDetail.UseVisualStyleBackColor = true;
-            // 
-            // btnProduct
-            // 
-            this.btnProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnProduct.FlatAppearance.BorderSize = 0;
-            this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProduct.Image = ((System.Drawing.Image)(resources.GetObject("btnProduct.Image")));
-            this.btnProduct.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnProduct.Location = new System.Drawing.Point(3, 3);
-            this.btnProduct.Name = "btnProduct";
-            this.btnProduct.Size = new System.Drawing.Size(194, 77);
-            this.btnProduct.TabIndex = 0;
-            this.btnProduct.UseVisualStyleBackColor = true;
-            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
-            // 
-            // btnPrinter
-            // 
-            this.btnPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPrinter.FlatAppearance.BorderSize = 0;
-            this.btnPrinter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrinter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrinter.Image = ((System.Drawing.Image)(resources.GetObject("btnPrinter.Image")));
-            this.btnPrinter.Location = new System.Drawing.Point(3, 169);
-            this.btnPrinter.Name = "btnPrinter";
-            this.btnPrinter.Size = new System.Drawing.Size(194, 77);
-            this.btnPrinter.TabIndex = 2;
-            this.btnPrinter.UseVisualStyleBackColor = true;
-            this.btnPrinter.Click += new System.EventHandler(this.btnPrinter_Click);
-            // 
-            // btnUserSetting
-            // 
-            this.btnUserSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUserSetting.FlatAppearance.BorderSize = 0;
-            this.btnUserSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUserSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUserSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnUserSetting.Image")));
-            this.btnUserSetting.Location = new System.Drawing.Point(3, 86);
-            this.btnUserSetting.Name = "btnUserSetting";
-            this.btnUserSetting.Size = new System.Drawing.Size(194, 77);
-            this.btnUserSetting.TabIndex = 1;
-            this.btnUserSetting.UseVisualStyleBackColor = true;
-            this.btnUserSetting.Click += new System.EventHandler(this.btnUserSetting_Click);
-            // 
             // pictureBox6
             // 
             this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -340,33 +249,105 @@
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
-            // btnAccount
+            // ucFloorPlan1
             // 
-            this.btnAccount.BackColor = System.Drawing.Color.White;
-            this.btnAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAccount.FlatAppearance.BorderSize = 0;
-            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccount.Location = new System.Drawing.Point(3, 169);
-            this.btnAccount.Name = "btnAccount";
-            this.btnAccount.Size = new System.Drawing.Size(201, 77);
-            this.btnAccount.TabIndex = 2;
-            this.btnAccount.Text = "ACCOUNT";
-            this.btnAccount.UseVisualStyleBackColor = false;
-            this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
+            this.ucFloorPlan1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ucFloorPlan1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucFloorPlan1.Location = new System.Drawing.Point(0, 0);
+            this.ucFloorPlan1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.ucFloorPlan1.Name = "ucFloorPlan1";
+            this.ucFloorPlan1.Size = new System.Drawing.Size(207, 82);
+            this.ucFloorPlan1.TabIndex = 3;
+            // 
+            // ucInventory1
+            // 
+            this.ucInventory1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ucInventory1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInventory1.Location = new System.Drawing.Point(0, 83);
+            this.ucInventory1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.ucInventory1.Name = "ucInventory1";
+            this.ucInventory1.Size = new System.Drawing.Size(207, 80);
+            this.ucInventory1.TabIndex = 4;
+            // 
+            // ucAccount
+            // 
+            this.ucAccount.BackColor = System.Drawing.Color.White;
+            this.ucAccount.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucAccount.Location = new System.Drawing.Point(0, 166);
+            this.ucAccount.Margin = new System.Windows.Forms.Padding(0);
+            this.ucAccount.Name = "ucAccount";
+            this.ucAccount.Size = new System.Drawing.Size(207, 83);
+            this.ucAccount.TabIndex = 5;
+            this.ucAccount.Click += new System.EventHandler(this.btnAccount_Click);
+            // 
+            // ucStore1
+            // 
+            this.ucStore1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ucStore1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucStore1.Location = new System.Drawing.Point(0, 249);
+            this.ucStore1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.ucStore1.Name = "ucStore1";
+            this.ucStore1.Size = new System.Drawing.Size(200, 80);
+            this.ucStore1.TabIndex = 6;
+            // 
+            // ucDatabase
+            // 
+            this.ucDatabase.BackColor = System.Drawing.Color.White;
+            this.ucDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDatabase.Location = new System.Drawing.Point(0, 332);
+            this.ucDatabase.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.ucDatabase.Name = "ucDatabase";
+            this.ucDatabase.Size = new System.Drawing.Size(200, 83);
+            this.ucDatabase.TabIndex = 6;
+            this.ucDatabase.Load += new System.EventHandler(this.ucDatabase_Load);
+            this.ucDatabase.Click += new System.EventHandler(this.btnDatabase_Click);
+            // 
+            // uCbtnPrinter
+            // 
+            this.uCbtnPrinter.BackColor = System.Drawing.Color.White;
+            this.uCbtnPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uCbtnPrinter.Location = new System.Drawing.Point(0, 166);
+            this.uCbtnPrinter.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.uCbtnPrinter.Name = "uCbtnPrinter";
+            this.uCbtnPrinter.Size = new System.Drawing.Size(200, 80);
+            this.uCbtnPrinter.TabIndex = 6;
+            this.uCbtnPrinter.Click += new System.EventHandler(this.btnPrinter_Click);
+            // 
+            // ucUser
+            // 
+            this.ucUser.BackColor = System.Drawing.Color.White;
+            this.ucUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucUser.Location = new System.Drawing.Point(0, 83);
+            this.ucUser.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.ucUser.Name = "ucUser";
+            this.ucUser.Size = new System.Drawing.Size(200, 80);
+            this.ucUser.TabIndex = 6;
+            this.ucUser.Click += new System.EventHandler(this.btnUserSetting_Click);
+            // 
+            // ucProduct
+            // 
+            this.ucProduct.BackColor = System.Drawing.Color.White;
+            this.ucProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucProduct.Location = new System.Drawing.Point(0, 0);
+            this.ucProduct.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.ucProduct.Name = "ucProduct";
+            this.ucProduct.Size = new System.Drawing.Size(200, 80);
+            this.ucProduct.TabIndex = 6;
+            this.ucProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // frmSettingAll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(742, 491);
-            this.ControlBox = false;
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmSettingAll";
             this.ShowInTaskbar = false;
@@ -392,9 +373,6 @@
          private System.Windows.Forms.Panel panel3;
          private System.Windows.Forms.Panel panel4;
          private System.Windows.Forms.Panel panel5;
-         private System.Windows.Forms.Button btnProduct;
-         private System.Windows.Forms.Button btnUserSetting;
-         private System.Windows.Forms.Button btnPrinter;
          private System.Windows.Forms.Button btnLogOut;
          private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
          private System.Windows.Forms.PictureBox pictureBox6;
@@ -404,12 +382,15 @@
          private System.Windows.Forms.Panel panel7;
          private System.Windows.Forms.Panel panel10;
          private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-         private System.Windows.Forms.Button btnDatabase;
-         private System.Windows.Forms.Button btnStoreDetail;
          private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
          private System.Windows.Forms.Panel panel6;
-         private System.Windows.Forms.Button button1;
-         private System.Windows.Forms.Button button2;
-         private System.Windows.Forms.Button btnAccount;
+         private UC.UCProduct ucProduct;
+         private UC.UCUser ucUser;
+         private UC.UCbtnPrinter uCbtnPrinter;
+         private UC.UCDatabase ucDatabase;
+         private UC.UCStore ucStore1;
+         private UC.UCFloorPlan ucFloorPlan1;
+         private UC.UCInventory ucInventory1;
+         private UC.UCAccount ucAccount;
      }
  }

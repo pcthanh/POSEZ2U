@@ -176,16 +176,16 @@ namespace POSEZ2U
             switch (tag)
             {
                 case 1:
-                    addMenuList("Menu List", tag);
+                    addMenuList("Search", tag);
                     break;
                 case 2:
-                    addGroupList("Group List", tag, this.CurrentPage);
+                    addGroupList("Search", tag, this.CurrentPage);
                     break;
                 case 3:
-                    addItemList("ItemList", tag, this.CurrentPage);
+                    addItemList("Search", tag, this.CurrentPage);
                     break;
                 case 4:
-                    addModifier("Modifier List", tag, this.CurrentPage);
+                    addModifier("Search", tag, this.CurrentPage);
                     break;
                 case 5:
                     addPriceList(tag, this.CurrentPage);
@@ -222,6 +222,7 @@ namespace POSEZ2U
                     UCMenuList ucMenuList = new UCMenuList();
                     ucMenuList.lblMenuListName.Text = item.CatalogueName;
                     ucMenuList.Tag = item;
+                    ucMenuList.Width = flpMenuList.Width;
                     ucMenuList.Click += ucMenuList_Click;
                     flpMenuList.Controls.Add(ucMenuList);
                     index++;
@@ -268,6 +269,7 @@ namespace POSEZ2U
                     UCModifierItem ucModifierItem = new UCModifierItem();
                     ucModifierItem.lblModifierItemName.Text = data.ModifireName;
                     ucModifierItem.Tag = data;
+                    ucModifierItem.Width = flpMenuList.Width;
                     ucModifierItem.Click += ucModifierItem_Click;
                     flpMenuList.Controls.Add(ucModifierItem);
                     index++;
@@ -310,6 +312,7 @@ namespace POSEZ2U
                     UCGroupListItem ucGroupListItem = new UCGroupListItem();
                     ucGroupListItem.lblGroupListItemName.Text = item.CategoryName;
                     ucGroupListItem.Tag = item;
+                    ucGroupListItem.Width = flpMenuList.Width;
                     ucGroupListItem.Click += ucGroupListItem_Click;
                     flpMenuList.Controls.Add(ucGroupListItem);
                     index++;
@@ -353,6 +356,7 @@ namespace POSEZ2U
                     UCItem ucItem = new UCItem();
                     ucItem.lblItem.Text = data.ProductNameDesc;
                     ucItem.Tag = data;
+                    ucItem.Width = flpMenuList.Width;
                     ucItem.Click += ucItem_Click;
                     flpMenuList.Controls.Add(ucItem);
                     index++;
@@ -396,6 +400,7 @@ namespace POSEZ2U
                     ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
                     //ucPriceList.Dock = DockStyle.Fill;
                     ucPriceList.Tag = strPriceList;
+                    ucPriceList.Width = flpMenuList.Width;
                     ucPriceList.Click += ucPriceList_Click;
                     flpMenuList.Controls.Add(ucPriceList);
                 }

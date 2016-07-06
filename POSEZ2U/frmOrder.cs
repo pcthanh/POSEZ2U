@@ -19,14 +19,14 @@ namespace POSEZ2U
 {
     public partial class frmOrder : Form
     {
-        
+
         public frmOrder()
         {
             InitializeComponent();
-           
+
             posPrinter.printDocument.PrintPage += printDocument_PrintPage;
         }
-       
+
         public POSEZ2U.frmFloor.CallBackStatusOrder CallBackStatusOrder;
         public POSEZ2U.frmFloor.CallBackStatusOrderCancel CallBackStatusOrderCancel;
         public POSEZ2U.frmFloor.CallBackStatusOrderPrintBill CallBackStatusOrderPrintBill;
@@ -49,7 +49,7 @@ namespace POSEZ2U
         private int TotalPageModi = 0;
         string colorName = "";
         UCMenuOfGroup ucMenuOfGroup;
-
+        frmSecondDisplay frmse;
         List<PrinterModel> PrintData = new List<PrinterModel>();
         OrderDateModel OrderMain;
         private int flags;
@@ -60,15 +60,15 @@ namespace POSEZ2U
             get { return _catalogeService ?? (_catalogeService = new CatalogueService()); }
             set { _catalogeService = value; }
         }
-       
+
         private IProductService _productService;
         private IProductService ProductService
         {
             get { return _productService ?? (_productService = new ProductService()); }
             set { _productService = value; }
         }
-        
-       
+
+
         private IModifireService _modifireService;
         private IModifireService ModifireService
         {
@@ -108,8 +108,10 @@ namespace POSEZ2U
             this.SelectGroupMenu();
             if (OrderMain != null)
                 this.lblTable.Text = OrderMain.FloorID.ToString();
+            frmse = new frmSecondDisplay();
+            frmse.ShowCustomerDisplay();
         }
-        
+
         private void AddButtonOpenItem()
         {
             Button btn = new Button();
@@ -137,7 +139,7 @@ namespace POSEZ2U
             btnBack.FlatAppearance.BorderSize = 0;
             btnBack.FlatStyle = FlatStyle.Flat;
             var margin = btnBack.Margin;
-            margin.All=1;
+            margin.All = 1;
             btnBack.Margin = margin;
             btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnBack.Click += btnBack_Click;
@@ -165,10 +167,10 @@ namespace POSEZ2U
 
         void btnBackSubItem_Click(object sender, EventArgs e)
         {
-           // this.LoadItemOfGroup();
+            // this.LoadItemOfGroup();
             try
             {
-                LoadItemOfGroup(CategoryIDMain,CurrentPageIndex);
+                LoadItemOfGroup(CategoryIDMain, CurrentPageIndex);
             }
             catch (Exception ex)
             {
@@ -218,11 +220,11 @@ namespace POSEZ2U
             try
             {
                 frmOpenItem frm = new frmOpenItem(1);
-                if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
                 {
                     //Order.Item itemTemp = new Order.Item();
                     OrderDetailModel itemTemp = new OrderDetailModel();
-                   
+
                     OrderOpenItemModel OpenItem = new OrderOpenItemModel();
                     OpenItem.ItemNameDesc = frm.items.ProductName;
                     OpenItem.ItemNameShort = frm.items.ProductName;
@@ -252,7 +254,7 @@ namespace POSEZ2U
                         this.addModifreToOrder(ucItemModifierOfMenu, modifierTemp);
                     }
                     //Order.Modifier modifierTemp = new Order.Modifier();
-                   
+
                 }
             }
             catch (Exception ex)
@@ -272,7 +274,7 @@ namespace POSEZ2U
             btnBackSubItemPage.ForeColor = Color.FromArgb(13, 13, 13);
             btnBackSubItemPage.FlatAppearance.BorderSize = 0;
             btnBackSubItemPage.FlatStyle = FlatStyle.Flat;
-            
+
             btnBackSubItemPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnBackSubItemPage.Click += btnBackSubItemPage_Click;
             flowLayoutPanel1.Controls.Add(btnBackSubItemPage);
@@ -298,7 +300,7 @@ namespace POSEZ2U
             btnNextSubItemPage.ForeColor = Color.FromArgb(13, 13, 13);
             btnNextSubItemPage.FlatAppearance.BorderSize = 0;
             btnNextSubItemPage.FlatStyle = FlatStyle.Flat;
-            
+
             btnNextSubItemPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             btnNextSubItemPage.Click += btnNextSubItemPage_Click;
             flowLayoutPanel1.Controls.Add(btnNextSubItemPage);
@@ -350,7 +352,7 @@ namespace POSEZ2U
         }
         private void CalculateTotalPages(int rowCount)
         {
-            
+
             this.TotalPage = rowCount / PgSize;
             if (rowCount % PgSize > 0) // if remainder is more than  zero 
             {
@@ -361,7 +363,7 @@ namespace POSEZ2U
         private void CalculateTotalPagesModi(int rowCount)
         {
 
-            this.TotalPageModi = rowCount/ PgSizeModi;
+            this.TotalPageModi = rowCount / PgSizeModi;
             if (rowCount % PgSizeModi > 0) // if remainder is more than  zero 
             {
                 this.TotalPageModi += 1;
@@ -375,7 +377,7 @@ namespace POSEZ2U
                 LoadItemOfGroup(CategoryIDMain, CurrentPageIndex);
             }
         }
-        
+
         void btnBackItem_Click(object sender, EventArgs e)
         {
             if (this.CurrentPageIndex > 1)
@@ -388,13 +390,13 @@ namespace POSEZ2U
         void btnOpenItemItem_Click(object sender, EventArgs e)
         {
             frmOpenItem frm = new frmOpenItem(0);
-            if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
+            if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
             {
                 int resul = 0;
                 OrderOpenItemModel OpenItem = new OrderOpenItemModel();
                 OpenItem.ItemNameDesc = frm.items.ProductName;
                 OpenItem.ItemNameShort = frm.items.ProductName;
-                OpenItem.UnitPrice =Convert.ToInt32(frm.items.Price);
+                OpenItem.UnitPrice = Convert.ToInt32(frm.items.Price);
                 OpenItem.PrintType = frm.items.Printer;
                 OpenItem.PrinterID = frm.items.Printer;
                 resul = OrderService.InsertOpenItem(OpenItem);
@@ -428,7 +430,7 @@ namespace POSEZ2U
             {
                 LogPOS.WriteLog("btnBack_Click:::::::::::::::::::::::::::" + ex.Message);
             }
-            
+
         }
 
         void btn_Click(object sender, EventArgs e)
@@ -558,7 +560,7 @@ namespace POSEZ2U
         {
             try
             {
-                
+
                 UCOrder ucOrder = new UCOrder();
                 ucOrder.lblNameItem.Text = items.ProductName;
                 ucOrder.lblQuanityItem.Text = "1";
@@ -570,10 +572,10 @@ namespace POSEZ2U
                 flpOrder.Controls.Add(ucOrder);
                 if (flagUcSeatClick > 0)
                 {
-                    if(indexOfUcSeat==0)
-                        flpOrder.Controls.SetChildIndex(ucOrder,  1+ countItemOfSeat);
+                    if (indexOfUcSeat == 0)
+                        flpOrder.Controls.SetChildIndex(ucOrder, 1 + countItemOfSeat);
                     else
-                        flpOrder.Controls.SetChildIndex(ucOrder,indexOfUcSeat+countItemOfSeat);
+                        flpOrder.Controls.SetChildIndex(ucOrder, indexOfUcSeat + countItemOfSeat);
                 }
             }
             catch (Exception ex)
@@ -589,7 +591,7 @@ namespace POSEZ2U
             {
                 flowLayoutPanel1.Controls.Clear();
                 this.AddButtonBackSubItem();
-                keyItemTemp =ItemMain.KeyItem;
+                keyItemTemp = ItemMain.KeyItem;
                 int Row = 1;
                 foreach (ModifireModel Modififer in listModifire)
                 {
@@ -640,7 +642,7 @@ namespace POSEZ2U
                 LogPOS.WriteLog("ucOrder_Click:::::::::::::::::::::::::::" + ex.Message);
             }
 
-            
+
         }
 
         void ucModifierOfMenu_Click(object sender, EventArgs e)
@@ -651,7 +653,16 @@ namespace POSEZ2U
                 OrderDetailModifireModel modifier = new OrderDetailModifireModel();
                 ModifireModel itemsModifre = (ModifireModel)ucModifierOfMenu.Tag;
                 modifier.ModifireName = itemsModifre.ModifireName;
-                modifier.Price =Convert.ToDouble(itemsModifre.CurrentPrice);
+                if (modifier.Price > 0)
+                {
+                    modifier.Price = 0;
+                }
+                else
+                {
+
+                    modifier.Price = Convert.ToDouble(itemsModifre.CurrentPrice);
+                }
+
                 modifier.ModifireID = itemsModifre.ModifireID;
                 modifier.OrderID = OrderMain.OrderID;
                 modifier.Qty = 1;
@@ -666,7 +677,7 @@ namespace POSEZ2U
             }
             catch (Exception ex)
             {
-                LogPOS.WriteLog("ucModifierOfMenu_Click:::::::::::::::::::::::::"+ ex.Message);
+                LogPOS.WriteLog("ucModifierOfMenu_Click:::::::::::::::::::::::::" + ex.Message);
             }
 
         }
@@ -696,9 +707,9 @@ namespace POSEZ2U
             {
                 LogPOS.WriteLog("ucItemModifierOfMenu_Click:::::::::::::::::::::::::::::::::::" + ex.Message);
             }
-            
+
         }
-        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu,OrderDetailModifireModel modifier)
+        private void addModifreToOrder(UCItemModifierOfMenu ucMdifireOfMenu, OrderDetailModifireModel modifier)
         {
             try
             {
@@ -733,7 +744,7 @@ namespace POSEZ2U
         }
         void ucGroupMenuOrder_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
 
@@ -780,29 +791,29 @@ namespace POSEZ2U
             }
         }
 
-        private void LoadItemOfGroup(int CategoryId,int PageSki)
+        private void LoadItemOfGroup(int CategoryId, int PageSki)
         {
             try
             {
                 this.flowLayoutPanel1.Controls.Clear();
                 this.AddButtonBackItem();
                 int keyItem = 1;
-                var dataPrduct = ProductService.GetProdutcByCategory(CategoryId,PageSki);
-                int RowCount=1;
-                
-                    foreach (ProductionModel itemProductionModel in dataPrduct)
-                    {
-                        keyItem++;
-                        RowCount++;
-                        UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
-                        ucMenuOfGroup.lblNameMenuOfGroup.Text = itemProductionModel.ProductNameSort;
-                        ucMenuOfGroup.Tag = itemProductionModel;
-                        ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(itemProductionModel.Color);
-                        ucMenuOfGroup.Click += ucMenuOfGroup_Click;
-                        flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
+                var dataPrduct = ProductService.GetProdutcByCategory(CategoryId, PageSki);
+                int RowCount = 1;
 
-                    }
-                    CalculateTotalPages(RowCount);
+                foreach (ProductionModel itemProductionModel in dataPrduct)
+                {
+                    keyItem++;
+                    RowCount++;
+                    UCMenuOfGroup ucMenuOfGroup = new UCMenuOfGroup();
+                    ucMenuOfGroup.lblNameMenuOfGroup.Text = itemProductionModel.ProductNameSort;
+                    ucMenuOfGroup.Tag = itemProductionModel;
+                    ucMenuOfGroup.lblNameMenuOfGroup.BackColor = Color.FromName(itemProductionModel.Color);
+                    ucMenuOfGroup.Click += ucMenuOfGroup_Click;
+                    flowLayoutPanel1.Controls.Add(ucMenuOfGroup);
+
+                }
+                CalculateTotalPages(RowCount);
                 this.AddButtonOpenItemItem();
                 this.AddButtonBackItemPage();
                 this.AddButtonMextItemPage();
@@ -814,13 +825,13 @@ namespace POSEZ2U
         }
         void ucMenuOrder_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 UCMenuOrdercs ucGroup = (UCMenuOrdercs)sender;
                 CategoryModel item = (CategoryModel)ucGroup.Tag;
                 CategoryIDMain = item.CategoryID;
-                LoadItemOfGroup(item.CategoryID,CurrentPageIndex);
+                LoadItemOfGroup(item.CategoryID, CurrentPageIndex);
             }
             catch (Exception ex)
             {
@@ -830,7 +841,7 @@ namespace POSEZ2U
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            
+
             this.Close();
         }
 
@@ -854,37 +865,37 @@ namespace POSEZ2U
             {
                 frmAddSeat frm = new frmAddSeat();
 
-                if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
+                if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
                 {
-                    
-                        seat = frm.NumberSeat;
-                        //OrderMain.addSeat(seat);
-                        SeatModel seatAdd = new SeatModel();
-                        seatAdd.Seat = seat;
-                        lstSeat.Add(seatAdd);
-                        OrderMain.ListSeatOfOrder.Add(seatAdd);
-                        UCSeat ucSeat = new UCSeat();
-                        ucSeat.lblSeat.Text = "Seat " + seat;
-                        ucSeat.Click += ucSeat_Click;
-                        lblSeat.Text = seat.ToString();
-                        flpOrder.Controls.Add(ucSeat);
-                        flagUcSeatClick = 0;
-                        ClearBackColorSeat();
-                    
+
+                    seat = frm.NumberSeat;
+                    //OrderMain.addSeat(seat);
+                    SeatModel seatAdd = new SeatModel();
+                    seatAdd.Seat = seat;
+                    lstSeat.Add(seatAdd);
+                    OrderMain.ListSeatOfOrder.Add(seatAdd);
+                    UCSeat ucSeat = new UCSeat();
+                    ucSeat.lblSeat.Text = "Seat " + seat;
+                    ucSeat.Click += ucSeat_Click;
+                    lblSeat.Text = seat.ToString();
+                    flpOrder.Controls.Add(ucSeat);
+                    flagUcSeatClick = 0;
+                    ClearBackColorSeat();
+
                 }
             }
             catch (Exception ex)
             {
                 LogPOS.WriteLog("btnAddSeat_Click::::::::::::::::::::::::::::::::" + ex.Message);
             }
-            
+
         }
 
         void ucSeat_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
                 UCSeat ucSeat = (UCSeat)sender;
                 flagUcSeatClick = 1;
                 indexOfUcSeat = flpOrder.Controls.GetChildIndex(ucSeat);
@@ -902,8 +913,8 @@ namespace POSEZ2U
                 ucSeat.BackColor = Color.FromArgb(29, 211, 0);
                 ucSeat.ForeColor = Color.FromArgb(51, 51, 51);
                 string textSeat = ucSeat.lblSeat.Text;
-                string []splitStr = textSeat.Split(' ');
-                numSeat =Convert.ToInt32(splitStr[1]);
+                string[] splitStr = textSeat.Split(' ');
+                numSeat = Convert.ToInt32(splitStr[1]);
                 countItemOfSeat = OrderMain.CountIteminSeat(numSeat);
             }
             catch (Exception ex)
@@ -914,13 +925,13 @@ namespace POSEZ2U
 
         private void flpOrder_Scroll(object sender, ScrollEventArgs e)
         {
-           // flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
+            // flpOrder.Controls.OfType<VScrollBar>().First().Width = 20; 
         }
 
         private void btnVoid_Click(object sender, EventArgs e)
         {
             bool isStopVoid = false;
-            int countChangeStatus=0;
+            int countChangeStatus = 0;
             try
             {
                 if (OrderMain.Status == 1)
@@ -939,7 +950,7 @@ namespace POSEZ2U
                     {
                         if (OrderMain.ListOrderDetail[i].ChangeStatus == 0)
                             countChangeStatus++;
-                       
+
                     }
                     if (countChangeStatus == 1)
                         isStopVoid = true;
@@ -1035,16 +1046,16 @@ namespace POSEZ2U
                             //flpOrder.Controls.RemoveAt(indexControl);
                             flagClick = 0;
                         }
-                        lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotal());
+                        lblSubtotal.Text = "$" + money.Format2(OrderMain.SubTotalVoid());
                         if (OrderMain.IsLoadFromData)
                             OrderService.VoidItemHistory(OrderMain);
                     }
                     else
                     {
-                        
-                            frmMessager frm = new frmMessager("Void Order", "Can not void");
-                            frmOpacity.ShowDialog(this, frm);
-                        
+
+                        frmMessager frm = new frmMessager("Void Order", "Can not void");
+                        frmOpacity.ShowDialog(this, frm);
+
                     }
                 }
             }
@@ -1052,7 +1063,7 @@ namespace POSEZ2U
             {
                 LogPOS.WriteLog("btnVoid_Click::::e:::::::::::::::::::::::::::::::::::::::::" + ex.Message);
             }
-        
+
         }
 
         private void btnVoidAll_Click(object sender, EventArgs e)
@@ -1105,7 +1116,7 @@ namespace POSEZ2U
             catch (Exception ex)
             {
                 LogPOS.WriteLog("frmOrder:::::::::::::::::::::::::::::CheckSeatExits:::::::::::::::::::::" + ex.Message);
-               
+
             }
             return flag;
 
@@ -1117,7 +1128,15 @@ namespace POSEZ2U
             {
                 OrderMain = new OrderDateModel();
                 OrderMain = OrderService.GetOrderByTable(TableID, 0);
-                lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
+                OrderMain.ListOrderDetail = OrderMain.ListOrderDetail.OrderBy(x => x.OrderDetailID).ToList();
+                if (OrderMain.TotalAmount > 0)
+                {
+                    lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
+                }
+                else
+                {
+                    lblSubtotal.Text = "0.0";
+                }
                 if (OrderMain.ListSeatOfOrder.Count > 0)
                 {
                     OrderMain.IsLoadFromData = true;
@@ -1170,7 +1189,7 @@ namespace POSEZ2U
                                         }
                                     }
                                 }
-                              
+
                             }
                         }
                         else
@@ -1214,10 +1233,8 @@ namespace POSEZ2U
                         int OrderID = OrderService.CountOrder() + 1;
                         OrderMain.OrderID = OrderID;
                         lblStatus.Text = "NEW";
-
                     }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -1266,7 +1283,6 @@ namespace POSEZ2U
                         }
                         else
                         {
-
                             OrderMain.FloorID = TableID + "" + (OrderService.CountOrder() + 1);
                             if (ClientID > 0)
                                 OrderMain.ClientID = ClientID;
@@ -1317,14 +1333,14 @@ namespace POSEZ2U
                 LogPOS.WriteLog("LoadOrder:::::::::::::::::::::::::::::::::" + ex.Message);
             }
         }
-       
+
         private void btnSendOrder_Click(object sender, EventArgs e)
         {
             try
             {
                 if (OrderMain == null)
                 {
-                    
+
                 }
                 else
                 {
@@ -1339,7 +1355,7 @@ namespace POSEZ2U
                         {
                             int result = 0;
                             OrderMain.PrintType = 1;
-                           
+
                             result = OrderService.InsertOrder(OrderMain);
                             if (result == 1)
                             {
@@ -1379,15 +1395,15 @@ namespace POSEZ2U
             l_y = posPrinter.DrawString("Date :" + DateTime.Now.ToShortDateString(), e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
             l_y = posPrinter.DrawString("Table:" + OrderMain.FloorID, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
             l_y = posPrinter.DrawString("No # Seat:" + OrderMain.Seat, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
-            
-            l_y += posPrinter.GetHeightPrinterLine()/10;
-            
+
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+
             for (int i = 0; i < OrderMain.ListOrderDetail.Count; i++)
             {
                 float yStart = l_y;
                 if (OrderMain.ListOrderDetail[i].ChangeStatus == 2)
                 {
-                    posPrinter.DrawString("--Remove  "+OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 10), l_y, 1);
+                    posPrinter.DrawString("--Remove  " + OrderMain.ListOrderDetail[i].ProductName, e, new Font("Arial", 10), l_y, 1);
                 }
                 else
                 {
@@ -1402,23 +1418,23 @@ namespace POSEZ2U
                     {
                         if (OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ChangeStatus == 2)
                         {
-                            posPrinter.DrawString("---Remove  "+OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
+                            posPrinter.DrawString("---Remove  " + OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10), l_y, 1);
                         }
                         else
                         {
-                            posPrinter.DrawString("--"+OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10,FontStyle.Italic), l_y, 1);
-                            
+                            posPrinter.DrawString("--" + OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].ModifireName, e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
+
                         }
                         l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.ListOrderDetail[i].ListOrderDetailModifire[j].Price.ToString()), e, new Font("Arial", 10), l_y, 3);
                     }
                 }
             }
             posPrinter.DrawLine("", new Font("Arial", 10), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
-            l_y=posPrinter.DrawString("", e, new Font("Arial", 10), l_y, 1);
-            l_y += posPrinter.GetHeightPrinterLine()/10;
-            posPrinter.DrawString("Total:",e, new Font("Arial", 10,FontStyle.Bold), l_y, 1);
-            l_y=posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 10,FontStyle.Bold), l_y, 3);
-           
+            l_y = posPrinter.DrawString("", e, new Font("Arial", 10), l_y, 1);
+            l_y += posPrinter.GetHeightPrinterLine() / 10;
+            posPrinter.DrawString("Total:", e, new Font("Arial", 10, FontStyle.Bold), l_y, 1);
+            l_y = posPrinter.DrawString("$" + money.Format2(OrderMain.SubTotal()), e, new Font("Arial", 10, FontStyle.Bold), l_y, 3);
+
             return l_y;
         }
 
@@ -1433,8 +1449,9 @@ namespace POSEZ2U
                 {
                     if (OrderMain.ListOrderDetail.Count > 0)
                     {
+                        frmse.BindOrder(OrderMain);
                         frmPayMent frm = new frmPayMent(OrderMain, 1000, 131073);
-                        if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
+                        if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
                         {
                             GetListPaymentPrinter();
                             int result = 0;
@@ -1462,7 +1479,7 @@ namespace POSEZ2U
                                 else
                                 {
                                     PrinterServer printServer = new PrinterServer();
-                                    printServer.PrintData(OrderMain,PrintData);
+                                    printServer.PrintData(OrderMain, PrintData);
                                     if (OrderMain.isTKA == 1)
                                     {
                                         this.Close();
@@ -1472,11 +1489,13 @@ namespace POSEZ2U
                                     }
                                     else
                                     {
+                                        frmse.fullScreen();
                                         CallBackStatusOrderCancel();
                                         this.Close();
                                     }
                                 }
                             }
+                           
                         }
                     }
                     else
@@ -1494,15 +1513,15 @@ namespace POSEZ2U
 
         private void btnNewItem_Click(object sender, EventArgs e)
         {
-            btnOpenItemItem_Click(sender,e);
+            btnOpenItemItem_Click(sender, e);
         }
 
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
-            if (OrderMain.isPrevOrder==1)
+            if (OrderMain.isPrevOrder == 1)
             {
                 GetListPaymentPrinter();
-                OrderMain.PrintType=2;
+                OrderMain.PrintType = 2;
                 PrinterServer print = new PrinterServer();
                 print.PrintData(OrderMain, PrintData);
             }
@@ -1513,7 +1532,7 @@ namespace POSEZ2U
                     int result = OrderService.UpdateOrder(OrderMain);
                     if (result == 1)
                     {
-                       
+
                         CallBackStatusOrderCancel();
                         this.Close();
                     }
@@ -1538,8 +1557,8 @@ namespace POSEZ2U
                 OrderMain.IsLoadFromData = false;
                 if (OrderMain.ListOrderDetail.Count > 0)
                 {
-                     PrinterServer printServer = new PrinterServer();
-                     printServer.PrintData(OrderMain, PrintData);
+                    PrinterServer printServer = new PrinterServer();
+                    printServer.PrintData(OrderMain, PrintData);
                 }
                 else
                 {
@@ -1554,7 +1573,7 @@ namespace POSEZ2U
             try
             {
                 OrderMain = new OrderDateModel();
-                OrderMain = OrderService.GetListOrderPrevOrder("",orderID,DateTime.Now.Date);
+                OrderMain = OrderService.GetListOrderPrevOrder("", orderID, DateTime.Now.Date);
                 lblSubtotal.Text = money.Format2(Convert.ToDouble(OrderMain.TotalAmount));
                 if (OrderMain.Seat > 0)
                 {
@@ -1587,7 +1606,7 @@ namespace POSEZ2U
                                 }
                             }
                         }
-                        
+
                     }
                 }
                 else
@@ -1610,7 +1629,7 @@ namespace POSEZ2U
                             }
                         }
                     }
-                    
+
                 }
 
             }
@@ -1625,7 +1644,7 @@ namespace POSEZ2U
             {
 
                 frmPrevOrder frm = new frmPrevOrder();
-                if (frmOpacity.ShowDialog(this,frm) == System.Windows.Forms.DialogResult.OK)
+                if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
                 {
                     LoadOrderPrev(frm.OrderID);
                     OrderMain.isPrevOrder = 1;
@@ -1641,7 +1660,7 @@ namespace POSEZ2U
         {
             PrintData.Clear();
             var listPrinter = PrintService.GetListPrinterMapping();
-            foreach(PrinterModel item in listPrinter)
+            foreach (PrinterModel item in listPrinter)
             {
                 PrinterModel print = new PrinterModel();
                 print.PrinterName = item.PrinterName;
@@ -1674,7 +1693,7 @@ namespace POSEZ2U
             {
                 if (OrderMain.ListOrderDetail.Count > 0)
                 {
-                    frmConfirm frm = new frmConfirm("Order","Are You sure CANCEL ORDER???");
+                    frmConfirm frm = new frmConfirm("Order", "Are You sure CANCEL ORDER???");
                     if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         int result = OrderService.CancelOrder(OrderMain);
@@ -1686,13 +1705,13 @@ namespace POSEZ2U
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogPOS.WriteLog("frmOrder:::::::::::::::::btnCancelOrder_Click:::::::::::::::::::" + ex.Message);
             }
         }
 
-        private void ModifireItemInOrder(OrderDateModel Order,OrderDetailModel Item)
+        private void ModifireItemInOrder(OrderDateModel Order, OrderDetailModel Item)
         {
             for (int i = 0; i < Order.ListOrderDetail.Count; i++)
             {
@@ -1707,7 +1726,7 @@ namespace POSEZ2U
             try
             {
                 if (OrderMain.Status == PRINTBILL)
-                        OrderCompleted();
+                    OrderCompleted();
                 else
                 {
                     frmChangePrice frm = new frmChangePrice(ItemMain);
@@ -1769,6 +1788,6 @@ namespace POSEZ2U
 
         }
 
-        
+
     }
 }

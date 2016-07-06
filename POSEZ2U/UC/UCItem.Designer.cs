@@ -49,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblItem);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCItem";
             this.Size = new System.Drawing.Size(238, 37);
             this.ResumeLayout(false);

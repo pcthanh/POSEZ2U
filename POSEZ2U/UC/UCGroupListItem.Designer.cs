@@ -49,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblGroupListItemName);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCGroupListItem";
             this.Size = new System.Drawing.Size(245, 37);
             this.ResumeLayout(false);

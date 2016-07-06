@@ -36,6 +36,7 @@
             this.lblMenuListName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblMenuListName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMenuListName.Location = new System.Drawing.Point(0, 0);
+            this.lblMenuListName.Margin = new System.Windows.Forms.Padding(0);
             this.lblMenuListName.Name = "lblMenuListName";
             this.lblMenuListName.Size = new System.Drawing.Size(245, 37);
             this.lblMenuListName.TabIndex = 0;
@@ -48,6 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lblMenuListName);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "UCMenuList";
             this.Size = new System.Drawing.Size(245, 37);
             this.ResumeLayout(false);

@@ -20,27 +20,21 @@ namespace POSEZ2U
             InitializeComponent();
            
         }
-
-        
-
         private void btnProduct_Click(object sender, EventArgs e)
         {
             frmMenuSetting frm = new frmMenuSetting();
-            this.Close();
             frm.ShowDialog();
         }
 
         private void btnUserSetting_Click(object sender, EventArgs e)
         {
             frmUserSetting frm = new frmUserSetting();
-            this.Close();
             frm.ShowDialog();
         }
 
         private void btnPrinter_Click(object sender, EventArgs e)
         {
             frmSettingPrint frm = new frmSettingPrint();
-            this.Close();
             frm.ShowDialog();
         }
 
@@ -51,19 +45,12 @@ namespace POSEZ2U
 
         private void btnDatabase_Click(object sender, EventArgs e)
         {
-           // frmDatabaseSetting frm = new frmDatabaseSetting();
             frmBackupData frm = new frmBackupData();
-            this.Close();
             frm.ShowDialog();
         }
-
-      
-
         private void frmSettingAll_Load(object sender, EventArgs e)
         {
             var userid = UserLoginModel.UserLoginInfo.StaffID;
-
-            //MessageBox.Show("userid", userid.ToString());
             if (userid == 0)
             {
                 Form1 frm = new Form1();
@@ -74,7 +61,6 @@ namespace POSEZ2U
             {
                 this.lblNameUser.Text = UserLoginModel.UserLoginInfo.Fname;
             }
-           
         }
 
         private void panel5_Paint(object sender, PaintEventArgs e)
@@ -86,6 +72,11 @@ namespace POSEZ2U
         {
             frmAccountDebit frm = new frmAccountDebit();
             frm.ShowDialog();
+        }
+
+        private void ucDatabase_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

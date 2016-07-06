@@ -90,7 +90,7 @@
             this.lblPriceItem.Size = new System.Drawing.Size(73, 37);
             this.lblPriceItem.TabIndex = 0;
             this.lblPriceItem.Text = "4.00";
-            this.lblPriceItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPriceItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblPriceItem.Click += new System.EventHandler(this.UCOrder_Click);
             // 
             // UCOrder

@@ -32,24 +32,27 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtOpenitemName.Text != string.Empty & txtOpenItemPrice.Text != string.Empty)
+            try
             {
-                items.ProductName = txtOpenitemName.Text;
-                items.Price = Convert.ToDouble(txtOpenItemPrice.Text)*1000;
-                items.OpenItem = 1;
-                PrinterModel Printer = (PrinterModel)cbPrinter.SelectedValue;
-                PrinteJobDetailModel job = new PrinteJobDetailModel();
-                if (Flag == 0)
+                if (txtOpenitemName.Text != string.Empty & txtOpenItemPrice.Text != string.Empty)
                 {
-                    
-                    items.Printer = Printer.ID;
-                    
-                    job.PrinterID = Printer.ID;
+                    items.ProductName = txtOpenitemName.Text;
+                    items.Price = Convert.ToDouble(txtOpenItemPrice.Text) * 1000;
+                    items.OpenItem = 1;
+                    //PrinterModel Printer = (PrinterModel)cbPrinter.Tag;
+                    PrinteJobDetailModel job = new PrinteJobDetailModel();
+                    if (Flag == 0)
+                    {
+                        items.Printer = Convert.ToInt32(cbPrinter.SelectedValue.ToString());
+                        job.PrinterID = Convert.ToInt32(cbPrinter.SelectedValue.ToString());
+                    }
+                    items.ListPrintJob.Add(job);
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
-                
-             
-                items.ListPrintJob.Add(job);
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmOpenItem:::::::::::::::::::::::btnOK_Click:::::::::::::::::::::::::" + ex.Message);
             }
         }
 
@@ -59,18 +62,24 @@ namespace POSEZ2U
         }
         private void LoadPrinter()
         {
-            var data = PrintService.GetListPrinterNotPayment();
-           
-
-            List<PrinterModel> lst = new List<PrinterModel>();
-            foreach (PrinterModel item in data)
+            try
             {
-                lst.Add(item);
+                var data = PrintService.GetListPrinterNotPayment();
+                List<PrinterModel> lst = new List<PrinterModel>();
+                foreach (PrinterModel item in data)
+                {
+                    lst.Add(item);
+                }
+                cbPrinter.DataSource = lst;
+                cbPrinter.Tag = lst;
+                cbPrinter.DisplayMember = "PrintName";
+                cbPrinter.ValueMember = "ID";
             }
-            cbPrinter.DataSource = lst;
-            cbPrinter.DisplayMember = "PrintName";
-            cbPrinter.SelectedValue = "ID";
-            
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmOpenItem::::::::::::::::::::::::LoadPrinter::::::::::::::::::" + ex.Message);
+            }
+
         }
 
         private void frmOpenItem_Load(object sender, EventArgs e)
@@ -83,9 +92,7 @@ namespace POSEZ2U
             {
                 LoadPrinter();
             }
-            
-        }
-        
 
+        }
     }
 }
