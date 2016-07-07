@@ -27,7 +27,7 @@ namespace ServicePOS.Model
         public int Discount { get; set; }
         public int Payment { get; set; }
         public int Change { get; set; }
-        public int CashOut { get; set; }
+        public double CashOut { get; set; }
         public int isTKA { get; set; }
         public int isNoPrintBill { get; set; }
         public int ShiftID { get; set; }

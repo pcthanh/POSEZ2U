@@ -148,6 +148,7 @@ namespace ServicePOS
             invoice.Discount =(itemOrder.Discount);
             invoice.Payment = itemOrder.Payment;
             invoice.Change = itemOrder.Change;
+            invoice.CashOut =Convert.ToInt32(itemOrder.CashOut);
             if (itemOrder.ListInvoiceByCard.Count > 0)
                 invoice.InvoiceByCardID =Convert.ToInt32(CustomerInvoiceByCardID());
             else
