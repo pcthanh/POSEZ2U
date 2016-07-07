@@ -409,7 +409,7 @@ namespace Printer
            l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
            posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
-           l_y = posPrinter.DrawString("TAX INVOICE", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString("BILL", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
@@ -499,7 +499,7 @@ namespace Printer
            l_y = posPrinter.DrawString("OPERATOR#MANAGER", e, new Font("Arial", 10, FontStyle.Italic), l_y, 1);
            posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
-           l_y = posPrinter.DrawString("BILL", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
+           l_y = posPrinter.DrawString(" TAX INVOICE", e, new Font("Arial", 10, FontStyle.Bold), l_y, 2);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
            posPrinter.DrawLine("", new Font("Arial", 14), e, System.Drawing.Drawing2D.DashStyle.Dot, l_y, 1);
            l_y += posPrinter.GetHeightPrinterLine() / 10;
