@@ -1759,11 +1759,18 @@ namespace POSEZ2U
 
         private void btnNote_Click(object sender, EventArgs e)
         {
-            frmNote frm = new frmNote();
-            if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
+            try
             {
-                OrderMain.Note = frm.Note;
-                OrderMain.PrinterNote = frm.PrinterNote;
+                frmNote frm = new frmNote();
+                if (frmOpacity.ShowDialog(this, frm) == System.Windows.Forms.DialogResult.OK)
+                {
+                    OrderMain.Note = frm.Note;
+                    OrderMain.PrinterNote = frm.PrinterNote;
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmOrder::::::::::::::::::::::::::::::btnNote_Click:::::::::::::::::::::::::" + ex.Message);
             }
         }
 
@@ -1784,6 +1791,16 @@ namespace POSEZ2U
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucBtnPayment_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucNote_Load(object sender, EventArgs e)
         {
 
         }

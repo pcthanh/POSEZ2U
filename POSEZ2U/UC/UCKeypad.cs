@@ -12,9 +12,11 @@ namespace POSEZ2U.UC
 {
     public partial class UCKeypad : UserControl
     {
+        public int isExit;
         public UCKeypad()
         {
             InitializeComponent();
+            
         }
         public TextBox txtResult { get; set; }
 
@@ -117,10 +119,28 @@ namespace POSEZ2U.UC
             txtResult.Focus();
             SendKeys.Send("0");
         }
+        private bool CheckOpened(string name)
+        {
+            FormCollection fc = Application.OpenForms;
 
+            foreach (Form frm in fc)
+            {
+                if (frm.Text == name)
+                {
+                    frm.Close();
+                }
+            }
+            return false;
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if (isExit == 0)
+                Application.Exit();
+            else
+            {
+
+                CheckOpened("Form1");
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

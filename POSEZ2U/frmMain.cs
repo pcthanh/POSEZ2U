@@ -210,24 +210,39 @@ namespace POSEZ2U
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            Button SettingAll = (Button)sender;
-            var menuid = Convert.ToInt32(SettingAll.Tag);
-            var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
-            var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
-           // frmReport frm = new frmReport();
-           //// this.Close();
-           // frm.ShowDialog();
-            if (result > 0)
+            try
             {
-                frmReport frm = new frmReport();
-               
-                frm.ShowDialog();
+                Form1 frmLogin = new Form1();
+                frmLogin.CheckCallform = 1;
+                
+                if (frmLogin.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    Button SettingAll = (Button)sender;
+                    var menuid = Convert.ToInt32(SettingAll.Tag);
+                    var departmentid = UserLoginModel.UserLoginInfo.DepartmentID;
+                    var result = PermissionService.GetPermissionByDepartment(departmentid, menuid);
+                    // frmReport frm = new frmReport();
+                    //// this.Close();
+                    // frm.ShowDialog();
+                    if (result > 0)
+                    {
+                        frmReport frm = new frmReport();
+
+                        frm.ShowDialog();
+                        frmLogin.CheckCallform = 0;
+                    }
+                    else
+                    {
+                        frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
+                        frmOpacity.ShowDialog(this, frm);
+                    }
+                }
             }
-            else
+            catch(Exception ex)
             {
-                frmMessager frm = new frmMessager("Messenger", "You can not accept. Please contact admin");
-                frmOpacity.ShowDialog(this, frm);
+                SystemLog.LogPOS.WriteLog("frmMain::::::::::::::::::::::::::::::btnReport_Click:::::::::::::::::::::::::" + ex.Message);
             }
+           
         }
 
         private void frmMain_Load(object sender, EventArgs e)

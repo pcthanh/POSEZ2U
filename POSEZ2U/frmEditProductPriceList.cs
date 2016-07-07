@@ -34,6 +34,7 @@ namespace POSEZ2U
         }
         #endregion
         public PriceListModel pricelist = new PriceListModel();
+        POSEZ2U.Class.MoneyFortmat money = new MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
         public frmEditProductPriceList(PriceListModel _pricelist)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace POSEZ2U
             {
                 btnSave.Tag = _pricelist;
                 txtProductName.Text = _pricelist.NameDesc;
-                txtProductPrice.Text = Convert.ToString(_pricelist.CurrentPrice);
+                txtProductPrice.Text = (_pricelist.CurrentPrice/1000).ToString();
                 txtProductSize.Text = _pricelist.Portions;
                 txtProductSize.Enabled = false;
                 cbColor.Text = _pricelist.Color;
@@ -54,7 +55,7 @@ namespace POSEZ2U
             {
                 btnSave.Tag = _pricelist;
                 txtProductName.Text = _pricelist.NameDesc;
-                txtProductPrice.Text = Convert.ToString(_pricelist.CurrentPrice);
+                txtProductPrice.Text = (_pricelist.CurrentPrice/1000).ToString();
                 txtProductSize.Text = _pricelist.Portions;
                 cbColor.Text = _pricelist.Color;
                 txtProductSize.Enabled = false;
@@ -90,7 +91,7 @@ namespace POSEZ2U
 
                 if (message_error == "")
                 {
-                    dataPriceList.CurrentPrice = Int32.Parse(txtPrice);
+                    dataPriceList.CurrentPrice = Convert.ToDouble(txtPrice)*1000;
                     dataPriceList.NameDesc = txtName;
                     if(comboColor == ""){
                         dataPriceList.Color = dataPriceList.Color;

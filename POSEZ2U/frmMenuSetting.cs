@@ -73,6 +73,7 @@ namespace POSEZ2U
         //private int CurrentPageItem = 1;
         //private int TotalPageItem = 0;
         //private int CurrentPageGroup = 1;
+        POSEZ2U.Class.MoneyFortmat money = new Class.MoneyFortmat(POSEZ2U.Class.MoneyFortmat.AU_TYPE);
         private int PgSize = 10;
         private void ResizeTopriceList()
         {
@@ -396,7 +397,7 @@ namespace POSEZ2U
                     UCPriceList ucPriceList = new UCPriceList();
                     ucPriceList.lblPriceNameProduct.Text = strPriceList.NameDesc;
                     ucPriceList.lblPriceSizeProduct.Text = strPriceList.Portions;
-                    ucPriceList.lblPriceProduct.Text = Convert.ToString(strPriceList.CurrentPrice);
+                    ucPriceList.lblPriceProduct.Text =money.Format2 (strPriceList.CurrentPrice.ToString());
                     ucPriceListTitle.Size = new System.Drawing.Size(NewWidthPn2, ucPriceList.Height);
                     //ucPriceList.Dock = DockStyle.Fill;
                     ucPriceList.Tag = strPriceList;
@@ -688,7 +689,10 @@ namespace POSEZ2U
                 ucModifier.Dock = DockStyle.Fill;
                 ucModifier.lblModifierName.Text = dataModifire.ModifireName;
                 ucModifier.txtModifierName.Text = dataModifire.ModifireName;
-                ucModifier.txtModifierPrice.Text = Convert.ToString(dataModifire.CurrentPrice);
+                if (dataModifire.CurrentPrice > 0)
+                    ucModifier.txtModifierPrice.Text = money.Format2(dataModifire.CurrentPrice.ToString());
+                else
+                    ucModifier.txtModifierPrice.Text = "0";
                 ucModifier.btnSave.Tag = dataModifire;
                 ucModifier.btnSave.Click += ucModifier_btnSave_Click;
                 ucModifier.btnRemove.Tag = dataModifire;
@@ -728,62 +732,69 @@ namespace POSEZ2U
 
         private void ucModifier_btnSave_Click(object sender, EventArgs e)
         {
-            Button modifier = (Button)sender;
-            ModifireModel dataModifier = (ModifireModel)(modifier.Tag);
-            string message_error = "";
-            var ucModifier = (UCModifier)pnDetail.Controls[0];
-            var modifierName = ucModifier.txtModifierName.Text;
-            var modifierColor = ucModifier.cbColor.Text;
-            var modifierPrice = ucModifier.txtModifierPrice.Text;
+            try
+            {
+                Button modifier = (Button)sender;
+                ModifireModel dataModifier = (ModifireModel)(modifier.Tag);
+                string message_error = "";
+                var ucModifier = (UCModifier)pnDetail.Controls[0];
+                var modifierName = ucModifier.txtModifierName.Text;
+                var modifierColor = ucModifier.cbColor.Text;
+                var modifierPrice = Convert.ToDouble(ucModifier.txtModifierPrice.Text) * 1000;
 
-            if (dataModifier == null)
-            {
-                dataModifier = new ModifireModel();
-            }
-
-            if (modifierName == "")
-            {
-                message_error += "Modifire name isn't empty.";
-            }
-            if (modifierColor == "")
-            {
-                message_error += "Modifire Color isn't empty";
-            }
-            if (modifierPrice == "")
-            {
-                message_error += "Modifre price isn't empty";
-            }
-            if (message_error == "")
-            {
-                dataModifier.ModifireName = modifierName;
-                dataModifier.Color = modifierColor;
-                dataModifier.CurrentPrice = double.Parse(modifierPrice);
-                var result = ModifireService.Created(dataModifier);
-                var message = "";
-                if (result == 1)
+                if (dataModifier == null)
                 {
-                    addModifier("Modifier List", 4, this.CurrentPage);
-                    pnDetail.Controls.Clear();
-                    message = "Save modifier Successful";
+                    dataModifier = new ModifireModel();
                 }
-                else
+
+                if (modifierName == "")
                 {
-                    if (result == -1)
+                    message_error += "Modifire name isn't empty.";
+                }
+                if (modifierColor == "")
+                {
+                    message_error += "Modifire Color isn't empty";
+                }
+                if (modifierPrice.ToString() == "")
+                {
+                    message_error += "Modifre price isn't empty";
+                }
+                if (message_error == "")
+                {
+                    dataModifier.ModifireName = modifierName;
+                    dataModifier.Color = modifierColor;
+                    dataModifier.CurrentPrice = (modifierPrice);
+                    var result = ModifireService.Created(dataModifier);
+                    var message = "";
+                    if (result == 1)
                     {
-                        message = "Modifier name already exist. Please change modifire name.";
+                        addModifier("Modifier List", 4, this.CurrentPage);
+                        pnDetail.Controls.Clear();
+                        message = "Save modifier Successful";
                     }
                     else
                     {
-                        message = "Save modifier fail";
+                        if (result == -1)
+                        {
+                            message = "Modifier name already exist. Please change modifire name.";
+                        }
+                        else
+                        {
+                            message = "Save modifier fail";
+                        }
                     }
+                    frmMessager frm = new frmMessager("Messenger", message);
+                    frmOpacity.ShowDialog(this, frm);
                 }
-                frmMessager frm = new frmMessager("Messenger", message);
-                frmOpacity.ShowDialog(this, frm);
+                else
+                {
+                    frmMessager frm = new frmMessager("Messenger", message_error);
+                    frmOpacity.ShowDialog(this, frm);
+                }
             }
-            else
+            catch ( Exception ex)
             {
-                frmMessager frm = new frmMessager("Messenger", message_error);
-                frmOpacity.ShowDialog(this, frm);
+                SystemLog.LogPOS.WriteLog("frmMenuSetting::::::::::::::::::::::ucModifier_btnSave_Click::::::::::::::::"+ex.Message);
             }
         }
 
@@ -920,7 +931,7 @@ namespace POSEZ2U
                 ucItemList.lbProductName.Text = productData.ProductNameDesc;
                 ucItemList.txtNameDesc.Text = productData.ProductNameDesc;
                 ucItemList.txtNameSort.Text = productData.ProductNameSort;
-                ucItemList.txtPrice.Text = Convert.ToString(productData.CurrentPrice);
+                ucItemList.txtPrice.Text =money.Format2((productData.CurrentPrice.ToString()));
                 ucItemList.btnSave.Tag = productData;
                 ucItemList.btnSave.Click += ucItemList_btnSave_Click;
                 ucItemList.btnRemove.Click += ucItemList_btnRemove_Click;
@@ -963,7 +974,7 @@ namespace POSEZ2U
             var ucItemList = (UCItemList)pnDetail.Controls[0];
             var productNameDesc = ucItemList.txtNameDesc.Text;
             var productNameSort = ucItemList.txtNameSort.Text;
-            var productPrice = ucItemList.txtPrice.Text;
+            var productPrice =Convert.ToDouble(ucItemList.txtPrice.Text)*1000;
             var productColor = ucItemList.cbProductColor.Text;
 
             if (dataProduct == null)
@@ -982,7 +993,7 @@ namespace POSEZ2U
             {
                 messageError += "Product Color isn't empty";
             }
-            if (productPrice == "")
+            if (productPrice.ToString() == "")
             {
                 messageError += "Product price isn't empty";
             }
@@ -991,7 +1002,7 @@ namespace POSEZ2U
                 dataProduct.ProductNameDesc = productNameDesc;
                 dataProduct.ProductNameSort = productNameSort;
                 dataProduct.Color = productColor;
-                dataProduct.CurrentPrice = double.Parse(productPrice);
+                dataProduct.CurrentPrice = productPrice;
                 var result = ProductService.Created(dataProduct);
                 var message = "";
                 if (result == 1)

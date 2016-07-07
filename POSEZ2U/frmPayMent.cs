@@ -806,14 +806,35 @@ namespace POSEZ2U
             
             try
             {
-                //if (IsCheckCashOut())
-                //{
-                MessageBox.Show(txtTender.Text);
-                //}
+                frmCashOut frmCashOut = new frmCashOut();
+                if (frmCashOut.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    OrderMain.CashOut = frmCashOut.CashOut;
+                    UCCashOut ucCashOut = new UCCashOut();
+                    ucCashOut.lblMethodType .Text= "CashOut";
+                    ucCashOut.lblTotal.Text = money.Format2(OrderMain.CashOut.ToString());
+                    ucCashOut.lblStt.Text = "#" + CountUcPayMent().ToString();
+                    ucCashOut.Click += ucCashOut_Click;
+                    flpPaymentType.Controls.Add(ucCashOut);
+                }
             }
             catch (Exception ex)
             {
- 
+                SystemLog.LogPOS.WriteLog("frmPayment:::::::::::::::::::btnCashOut_Click::::::::::::::::::::" + ex.Message);
+            }
+        }
+
+        void ucCashOut_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UCCashOut ucCacshOut = (UCCashOut)sender;
+                flpPaymentType.Controls.Remove(ucCacshOut);
+                OrderMain.CashOut = 0;
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmPayMent::::::::::::::::::::::::::ucCashOut_Click::::::::::::::::::::::" + ex.Message);
             }
         }
 

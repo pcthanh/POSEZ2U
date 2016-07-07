@@ -124,6 +124,7 @@ namespace POSEZ2U.Class
             }
             if (FortmatType == AU_TYPE)
             {
+                //return String.Format("{0:#,#.00}", value / 1000);
                 return String.Format("{0:#,#.00}", value / 1000);
             }
             else

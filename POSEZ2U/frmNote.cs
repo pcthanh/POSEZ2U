@@ -28,17 +28,23 @@ namespace POSEZ2U
         }
         private void LoadPrinter()
         {
-            var data = PrintService.GetListPrinterNote();
-
-
-            List<PrinterModel> lst = new List<PrinterModel>();
-            foreach (PrinterModel item in data)
+            try
             {
-                lst.Add(item);
+                var data = PrintService.GetListPrinterNotPayment();
+                List<PrinterModel> lst = new List<PrinterModel>();
+                foreach (PrinterModel item in data)
+                {
+                    lst.Add(item);
+                }
+                cblistPrinter.DataSource = lst;
+                cblistPrinter.Tag = lst;
+                cblistPrinter.DisplayMember = "PrintName";
+                cblistPrinter.ValueMember = "ID";
             }
-            cblistPrinter.DataSource = lst;
-            cblistPrinter.DisplayMember = "PrintName";
-            cblistPrinter.SelectedValue = "ID";
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmOpenItem::::::::::::::::::::::::LoadPrinter::::::::::::::::::" + ex.Message);
+            }
 
         }
 

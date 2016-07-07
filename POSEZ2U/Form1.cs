@@ -32,6 +32,7 @@ namespace POSEZ2U
         private StaffModel usermodel = new StaffModel();
         private List<StaffModel> listUser = new List<StaffModel>();
         private int Page = 0;
+        public int CheckCallform = 0;
         public Form1()
         {
             InitializeComponent();
@@ -221,11 +222,19 @@ namespace POSEZ2U
                 {
                     if (passinput == passcheck)
                     {
-                       
-                        UserLoginModel.UserLoginInfo = usermodel;
-                        frmMain frm = new frmMain();
-                        frm.ShowDialog();
-                        this.Close();
+                        if (CheckCallform == 0)
+                        {
+                            UserLoginModel.UserLoginInfo = usermodel;
+                            frmMain frm = new frmMain();
+                            frm.ShowDialog();
+                            this.Close();
+                        }
+                        else 
+                        {
+                           
+                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                            this.Close();
+                        }
                         
                     }
                     else
@@ -290,6 +299,16 @@ namespace POSEZ2U
                 CheckPass4.Image = image;
             }
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (CheckCallform == 0)
+                Application.Exit();
+            else
+            {
+                this.Close();
+            }
         }
 
 

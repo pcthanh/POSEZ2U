@@ -46,6 +46,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnExit = new System.Windows.Forms.Button();
             this.ucKeypadLogin = new POSEZ2U.UC.UCKeypad();
             ((System.ComponentModel.ISupportInitialize)(this.CheckPass1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CheckPass2)).BeginInit();
@@ -256,6 +257,19 @@
             this.textBox1.TabIndex = 8;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.Color.White;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Location = new System.Drawing.Point(332, 375);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(92, 62);
+            this.btnExit.TabIndex = 9;
+            this.btnExit.Text = "Cancel";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // ucKeypadLogin
             // 
             this.ucKeypadLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
@@ -272,6 +286,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(618, 488);
             this.ControlBox = false;
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -300,7 +315,6 @@
 
         #endregion
 
-        private UC.UCKeypad ucKeypadLogin;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -318,6 +332,8 @@
         public System.Windows.Forms.PictureBox CheckPass3;
         public System.Windows.Forms.PictureBox CheckPass4;
         public System.Windows.Forms.Label lblMessger;
+        public UC.UCKeypad ucKeypadLogin;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 
