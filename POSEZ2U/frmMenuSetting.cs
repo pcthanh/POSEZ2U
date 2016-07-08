@@ -968,67 +968,74 @@ namespace POSEZ2U
         }
         private void ucItemList_btnSave_Click(object sender, EventArgs e)
         {
-            Button product = (Button)sender;
-            ProductionModel dataProduct = (ProductionModel)(product.Tag);
-            string messageError = "";
-            var ucItemList = (UCItemList)pnDetail.Controls[0];
-            var productNameDesc = ucItemList.txtNameDesc.Text;
-            var productNameSort = ucItemList.txtNameSort.Text;
-            var productPrice =Convert.ToDouble(ucItemList.txtPrice.Text)*1000;
-            var productColor = ucItemList.cbProductColor.Text;
+            try
+            {
+                Button product = (Button)sender;
+                ProductionModel dataProduct = (ProductionModel)(product.Tag);
+                string messageError = "";
+                var ucItemList = (UCItemList)pnDetail.Controls[0];
+                var productNameDesc = ucItemList.txtNameDesc.Text;
+                var productNameSort = ucItemList.txtNameSort.Text;
+                var productPrice = Convert.ToDouble(ucItemList.txtPrice.Text) * 1000;
+                var productColor = ucItemList.cbProductColor.Text;
 
-            if (dataProduct == null)
-            {
-                dataProduct = new ProductionModel();
-            }
-            if (productNameDesc == "")
-            {
-                messageError += "Product name desc isn't empty.";
-            }
-            if (productNameSort == "")
-            {
-                messageError += "Product name sort isn't empty.";
-            }
-            if (productColor == "")
-            {
-                messageError += "Product Color isn't empty";
-            }
-            if (productPrice.ToString() == "")
-            {
-                messageError += "Product price isn't empty";
-            }
-            if (messageError == "")
-            {
-                dataProduct.ProductNameDesc = productNameDesc;
-                dataProduct.ProductNameSort = productNameSort;
-                dataProduct.Color = productColor;
-                dataProduct.CurrentPrice = productPrice;
-                var result = ProductService.Created(dataProduct);
-                var message = "";
-                if (result == 1)
+                if (dataProduct == null)
                 {
-                    addItemList("Item List", 3, this.CurrentPage);
-                    pnDetail.Controls.Clear();
-                    message = "Save Product Successful.";
+                    dataProduct = new ProductionModel();
                 }
-                else
+                if (productNameDesc == "")
                 {
-                    if (result == -1)
+                    messageError += "Product name desc isn't empty.";
+                }
+                if (productNameSort == "")
+                {
+                    messageError += "Product name sort isn't empty.";
+                }
+                if (productColor == "")
+                {
+                    messageError += "Product Color isn't empty";
+                }
+                if (productPrice.ToString() == "")
+                {
+                    messageError += "Product price isn't empty";
+                }
+                if (messageError == "")
+                {
+                    dataProduct.ProductNameDesc = productNameDesc;
+                    dataProduct.ProductNameSort = productNameSort;
+                    dataProduct.Color = productColor;
+                    dataProduct.CurrentPrice = productPrice;
+                    var result = ProductService.Created(dataProduct);
+                    var message = "";
+                    if (result == 1)
                     {
-                        message = "Product name already exist. Please change product name.";
+                        addItemList("Item List", 3, this.CurrentPage);
+                        pnDetail.Controls.Clear();
+                        message = "Save Product Successful.";
                     }
                     else
                     {
-                        message = "Save product fail.";
+                        if (result == -1)
+                        {
+                            message = "Product name already exist. Please change product name.";
+                        }
+                        else
+                        {
+                            message = "Save product fail.";
+                        }
                     }
+                    frmMessager frm_item = new frmMessager("Messenger", message);
+                    frmOpacity.ShowDialog(this, frm_item);
                 }
-                frmMessager frm_item = new frmMessager("Messenger", message);
-                frmOpacity.ShowDialog(this, frm_item);
+                else
+                {
+                    frmMessager frm_item = new frmMessager("Messenger", messageError);
+                    frmOpacity.ShowDialog(this, frm_item);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                frmMessager frm_item = new frmMessager("Messenger", messageError);
-                frmOpacity.ShowDialog(this, frm_item);
+                SystemLog.LogPOS.WriteLog("frmMenuSetting:::::::::::::::::::::::::::ucItemList_btnSave_Click::::::::::::::::::" + ex.Message);
             }
         }
         private void frmMenuSetting_Load(object sender, EventArgs e)

@@ -419,6 +419,7 @@
             this.ucOpenTill1.Name = "ucOpenTill1";
             this.ucOpenTill1.Size = new System.Drawing.Size(74, 64);
             this.ucOpenTill1.TabIndex = 3;
+            this.ucOpenTill1.Click += new System.EventHandler(this.ucOpenTill1_Click);
             // 
             // ucPreOrder
             // 
@@ -463,6 +464,7 @@
             this.ucVoidAll.Name = "ucVoidAll";
             this.ucVoidAll.Size = new System.Drawing.Size(70, 64);
             this.ucVoidAll.TabIndex = 2;
+            this.ucVoidAll.Load += new System.EventHandler(this.ucVoidAll_Load);
             this.ucVoidAll.Click += new System.EventHandler(this.btnVoidAll_Click);
             // 
             // ucVoidItem
@@ -599,6 +601,7 @@
             this.ucAddseat.Name = "ucAddseat";
             this.ucAddseat.Size = new System.Drawing.Size(74, 64);
             this.ucAddseat.TabIndex = 12;
+            this.ucAddseat.Load += new System.EventHandler(this.ucAddseat_Load);
             this.ucAddseat.Click += new System.EventHandler(this.btnAddSeat_Click);
             // 
             // panel8

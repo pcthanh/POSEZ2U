@@ -34,10 +34,13 @@ namespace POSEZ2U
         {
             try
             {
-                if (txtOpenitemName.Text != string.Empty & txtOpenItemPrice.Text != string.Empty)
+                if (txtOpenitemName.Text != string.Empty)
                 {
                     items.ProductName = txtOpenitemName.Text;
-                    items.Price = Convert.ToDouble(txtOpenItemPrice.Text) * 1000;
+                    if (txtOpenItemPrice.Text != string.Empty)
+                        items.Price = Convert.ToDouble(txtOpenItemPrice.Text) * 1000;
+                    else
+                        items.Price = 0;
                     items.OpenItem = 1;
                     //PrinterModel Printer = (PrinterModel)cbPrinter.Tag;
                     PrinteJobDetailModel job = new PrinteJobDetailModel();

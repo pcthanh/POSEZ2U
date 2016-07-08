@@ -610,8 +610,11 @@ namespace POSEZ2U
             }
             else
             {
+
                 flowLayoutPanel1.Controls.Clear();
+                keyItemTemp = ItemMain.KeyItem;
                 this.AddButtonBackSubItem();
+                this.AddButtonOpenItemSubItem();
             }
         }
         void ucOrder_Click(object sender, EventArgs e)
@@ -715,7 +718,10 @@ namespace POSEZ2U
             {
 
                 ucMdifireOfMenu.lblNameItenModifierMenu.Text = modifier.ModifireName;
-                ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
+                if (modifier.Price > 0)
+                    ucMdifireOfMenu.lblPriceItenModifierMenu.Text = money.Format2(modifier.Price.ToString());
+                else
+                    ucMdifireOfMenu.lblPriceItenModifierMenu.Text = "";
                 ucMdifireOfMenu.lblQtyItenModifierMenu.Text = modifier.Qty.ToString();
                 ucMdifireOfMenu.Width = flpOrder.Width;
                 flpOrder.Controls.Add(ucMdifireOfMenu);
@@ -859,6 +865,29 @@ namespace POSEZ2U
                 }
             }
         }
+        /// <summary>
+        /// thanh.phan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private Boolean isChekSeat(int seat)
+        {
+            Boolean flag = false;
+            try
+            {
+                for (int i = 0; i < lstSeat.Count; i++)
+                {
+                    if (lstSeat[i].Seat == seat)
+                        flag = true;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmOrder::::::::::::::::::isSeat::::::::::::::::" + ex.Message);
+            }
+            return flag;
+        }
         private void btnAddSeat_Click(object sender, EventArgs e)
         {
             try
@@ -869,18 +898,28 @@ namespace POSEZ2U
                 {
 
                     seat = frm.NumberSeat;
+                    if (isChekSeat(seat))
+                    {
+                        frmMessager frmseat = new frmMessager("AddSeat", "Seat Exists");
+                        frmOpacity.ShowDialog(this, frmseat);
+                    }
+                    else
+                    {
+                        SeatModel seatAdd = new SeatModel();
+                        seatAdd.Seat = seat;
+
+                        lstSeat.Add(seatAdd);
+                        OrderMain.ListSeatOfOrder.Add(seatAdd);
+                        UCSeat ucSeat = new UCSeat();
+                        ucSeat.lblSeat.Text = "Seat " + seat;
+                        ucSeat.Click += ucSeat_Click;
+                        lblSeat.Text = seat.ToString();
+                        flpOrder.Controls.Add(ucSeat);
+                        flagUcSeatClick = 0;
+                        ClearBackColorSeat();
+                    }
                     //OrderMain.addSeat(seat);
-                    SeatModel seatAdd = new SeatModel();
-                    seatAdd.Seat = seat;
-                    lstSeat.Add(seatAdd);
-                    OrderMain.ListSeatOfOrder.Add(seatAdd);
-                    UCSeat ucSeat = new UCSeat();
-                    ucSeat.lblSeat.Text = "Seat " + seat;
-                    ucSeat.Click += ucSeat_Click;
-                    lblSeat.Text = seat.ToString();
-                    flpOrder.Controls.Add(ucSeat);
-                    flagUcSeatClick = 0;
-                    ClearBackColorSeat();
+                    
 
                 }
             }
@@ -1494,6 +1533,13 @@ namespace POSEZ2U
                                         this.Close();
                                     }
                                 }
+                                foreach(PrinterModel item in PrintData)
+                                {
+                                    if (item.PrinterType == 4)
+                                        Class.RawPrinterHelper.openCashDrawer(item.PrinterName);
+                                }
+
+                               
                             }
                            
                         }
@@ -1803,6 +1849,25 @@ namespace POSEZ2U
         private void ucNote_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ucVoidAll_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucAddseat_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ucOpenTill1_Click(object sender, EventArgs e)
+        {
+            foreach (PrinterModel item in PrintData)
+            {
+                if (item.PrinterType == 4)
+                    Class.RawPrinterHelper.openCashDrawer(item.PrinterName);
+            }
         }
 
 
