@@ -477,7 +477,7 @@ namespace ServicePOS
                         OrderMain.addModifierToList(itemmodifire, item.KeyItem);
                     }
                     var openItemModiier = _context.ORDER_DETAIL_MODIFIRE_DATE.Join(_context.ORDER_OPEN_ITEM,modi=>modi.DynId,open=>open.dynID,(modi,open)=>new{modi,open})
-                        .Where(x=>x.modi.DynId ==x.open.dynID && x.modi.ProductID ==item.ProductID && x.modi.OrderID == item.OrderID && x.modi.KeyModi==keyItemOld)
+                        .Where(x => x.modi.DynId == x.open.dynID && x.modi.ProductID == item.ProductID && x.modi.OrderID == item.OrderID && x.modi.KeyModi == keyItemOld )
                         .Select(x=>new OrderDetailModifireModel()
                         {
                             ModifireID = x.modi.ModifireID,
