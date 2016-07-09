@@ -848,7 +848,7 @@ namespace POSEZ2U
                     if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         AccountModel accItem = new AccountModel();
-                        accItem.PaymentID = 3;
+                        accItem.PaymentID = 4;
                         accItem.Total = Convert.ToDouble(txtTender.Text);
                         UCAccPayment acc = new UCAccPayment();
                         acc.lblStt.Text = "#" + CountUcPayMent().ToString();
