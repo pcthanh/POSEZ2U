@@ -37,6 +37,7 @@ namespace ServicePOS.Model
         public int InvoiceNumber { get; set; }
         public int Account { get; set; }
         public int PrinterNote { get; set; }
+        public int HaveNote { get; set; }
         public List<OrderDetailModel> ListOrderDetail = new List<OrderDetailModel>();
         public List<CardModel> ListCard = new List<CardModel>();
         public List<CashModel> ListCash = new List<CashModel>();
