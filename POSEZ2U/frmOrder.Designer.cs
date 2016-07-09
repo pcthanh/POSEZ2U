@@ -58,6 +58,14 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnJoinTable = new System.Windows.Forms.Button();
+            this.btnTransferTable = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.timeChangeColor = new System.Windows.Forms.Timer(this.components);
             this.ucOpenTill1 = new POSEZ2U.UC.UCOpenTill();
             this.ucPreOrder = new POSEZ2U.UC.UCPreOrder();
             this.ucCancelOrder = new POSEZ2U.UC.UCCancelOrder();
@@ -65,8 +73,6 @@
             this.ucVoidAll = new POSEZ2U.UC.UCVoidAll();
             this.ucVoidItem = new POSEZ2U.UC.UCVoidItem();
             this.ucSendOrder = new POSEZ2U.UC.UCSendOrder();
-            this.btnJoinTable = new System.Windows.Forms.Button();
-            this.btnTransferTable = new System.Windows.Forms.Button();
             this.ucOpenItem = new POSEZ2U.UC.UCOpenItem();
             this.ucPrintBill = new POSEZ2U.UC.UCPrintBill();
             this.ucNote = new POSEZ2U.UC.UCNote();
@@ -74,13 +80,7 @@
             this.ucRice = new POSEZ2U.UC.UCRice();
             this.ucRefund = new POSEZ2U.UC.UCRefund();
             this.ucAddseat = new POSEZ2U.UC.UCAddseat();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.ucKeyPadOrder1 = new POSEZ2U.UC.UCKeyPadOrder();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.timeChangeColor = new System.Windows.Forms.Timer(this.components);
             this.ucInfoTop1 = new POSEZ2U.UC.UCInfoTop();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -410,6 +410,88 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(448, 193);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // btnJoinTable
+            // 
+            this.btnJoinTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
+            this.btnJoinTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnJoinTable.FlatAppearance.BorderSize = 0;
+            this.btnJoinTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnJoinTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnJoinTable.Location = new System.Drawing.Point(74, 0);
+            this.btnJoinTable.Margin = new System.Windows.Forms.Padding(0);
+            this.btnJoinTable.Name = "btnJoinTable";
+            this.btnJoinTable.Size = new System.Drawing.Size(78, 64);
+            this.btnJoinTable.TabIndex = 1;
+            this.btnJoinTable.Text = "Join Table";
+            this.btnJoinTable.UseVisualStyleBackColor = false;
+            this.btnJoinTable.Visible = false;
+            // 
+            // btnTransferTable
+            // 
+            this.btnTransferTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
+            this.btnTransferTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTransferTable.FlatAppearance.BorderSize = 0;
+            this.btnTransferTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransferTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTransferTable.Location = new System.Drawing.Point(152, 0);
+            this.btnTransferTable.Margin = new System.Windows.Forms.Padding(0);
+            this.btnTransferTable.Name = "btnTransferTable";
+            this.btnTransferTable.Size = new System.Drawing.Size(70, 64);
+            this.btnTransferTable.TabIndex = 1;
+            this.btnTransferTable.Text = "Transfer Table";
+            this.btnTransferTable.UseVisualStyleBackColor = false;
+            this.btnTransferTable.Visible = false;
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel8.Location = new System.Drawing.Point(448, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(10, 193);
+            this.panel8.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
+            this.panel11.Controls.Add(this.flowLayoutPanel1);
+            this.panel11.Controls.Add(this.panel15);
+            this.panel11.Controls.Add(this.panel14);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(10, 100);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(629, 188);
+            this.panel11.TabIndex = 11;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 10);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(629, 168);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // panel15
+            // 
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(629, 10);
+            this.panel15.TabIndex = 2;
+            // 
+            // panel14
+            // 
+            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel14.Location = new System.Drawing.Point(0, 178);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(629, 10);
+            this.panel14.TabIndex = 0;
+            // 
+            // timeChangeColor
+            // 
+            this.timeChangeColor.Interval = 200;
+            this.timeChangeColor.Tick += new System.EventHandler(this.timeChangeColor_Tick);
+            // 
             // ucOpenTill1
             // 
             this.ucOpenTill1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(145)))), ((int)(((byte)(116)))));
@@ -491,38 +573,6 @@
             this.ucSendOrder.Load += new System.EventHandler(this.ucSendOrder_Load);
             this.ucSendOrder.Click += new System.EventHandler(this.btnSendOrder_Click);
             // 
-            // btnJoinTable
-            // 
-            this.btnJoinTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
-            this.btnJoinTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnJoinTable.FlatAppearance.BorderSize = 0;
-            this.btnJoinTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnJoinTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJoinTable.Location = new System.Drawing.Point(74, 0);
-            this.btnJoinTable.Margin = new System.Windows.Forms.Padding(0);
-            this.btnJoinTable.Name = "btnJoinTable";
-            this.btnJoinTable.Size = new System.Drawing.Size(78, 64);
-            this.btnJoinTable.TabIndex = 1;
-            this.btnJoinTable.Text = "Join Table";
-            this.btnJoinTable.UseVisualStyleBackColor = false;
-            this.btnJoinTable.Visible = false;
-            // 
-            // btnTransferTable
-            // 
-            this.btnTransferTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
-            this.btnTransferTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTransferTable.FlatAppearance.BorderSize = 0;
-            this.btnTransferTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransferTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTransferTable.Location = new System.Drawing.Point(152, 0);
-            this.btnTransferTable.Margin = new System.Windows.Forms.Padding(0);
-            this.btnTransferTable.Name = "btnTransferTable";
-            this.btnTransferTable.Size = new System.Drawing.Size(70, 64);
-            this.btnTransferTable.TabIndex = 1;
-            this.btnTransferTable.Text = "Transfer Table";
-            this.btnTransferTable.UseVisualStyleBackColor = false;
-            this.btnTransferTable.Visible = false;
-            // 
             // ucOpenItem
             // 
             this.ucOpenItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
@@ -591,6 +641,7 @@
             this.ucRefund.Name = "ucRefund";
             this.ucRefund.Size = new System.Drawing.Size(74, 64);
             this.ucRefund.TabIndex = 11;
+            this.ucRefund.Visible = false;
             // 
             // ucAddseat
             // 
@@ -604,14 +655,6 @@
             this.ucAddseat.Load += new System.EventHandler(this.ucAddseat_Load);
             this.ucAddseat.Click += new System.EventHandler(this.btnAddSeat_Click);
             // 
-            // panel8
-            // 
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(448, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(10, 193);
-            this.panel8.TabIndex = 0;
-            // 
             // ucKeyPadOrder1
             // 
             this.ucKeyPadOrder1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -620,48 +663,6 @@
             this.ucKeyPadOrder1.Size = new System.Drawing.Size(171, 193);
             this.ucKeyPadOrder1.TabIndex = 0;
             this.ucKeyPadOrder1.txtResult = null;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(214)))), ((int)(((byte)(216)))));
-            this.panel11.Controls.Add(this.flowLayoutPanel1);
-            this.panel11.Controls.Add(this.panel15);
-            this.panel11.Controls.Add(this.panel14);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel11.Location = new System.Drawing.Point(10, 100);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(629, 188);
-            this.panel11.TabIndex = 11;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 10);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(629, 168);
-            this.flowLayoutPanel1.TabIndex = 1;
-            // 
-            // panel15
-            // 
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(629, 10);
-            this.panel15.TabIndex = 2;
-            // 
-            // panel14
-            // 
-            this.panel14.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel14.Location = new System.Drawing.Point(0, 178);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(629, 10);
-            this.panel14.TabIndex = 0;
-            // 
-            // timeChangeColor
-            // 
-            this.timeChangeColor.Interval = 200;
-            this.timeChangeColor.Tick += new System.EventHandler(this.timeChangeColor_Tick);
             // 
             // ucInfoTop1
             // 

@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.KeyPadChosseTable = new POSEZ2U.UC.UCKeyPadOrder();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.lblNoTable = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
             this.txtNoTable = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.KeyPadChosseTable = new POSEZ2U.UC.UCKeyPadOrder();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,6 +57,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(279, 55);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(279, 55);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Which is the final table of these?";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -71,6 +82,33 @@
             this.panel2.Size = new System.Drawing.Size(279, 59);
             this.panel2.TabIndex = 1;
             // 
+            // lblNoTable
+            // 
+            this.lblNoTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNoTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoTable.Location = new System.Drawing.Point(0, 0);
+            this.lblNoTable.Name = "lblNoTable";
+            this.lblNoTable.Size = new System.Drawing.Size(248, 59);
+            this.lblNoTable.TabIndex = 0;
+            this.lblNoTable.Text = "Move to table";
+            this.lblNoTable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel7.Location = new System.Drawing.Point(248, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(31, 59);
+            this.panel7.TabIndex = 1;
+            // 
+            // txtNoTable
+            // 
+            this.txtNoTable.Location = new System.Drawing.Point(21, 16);
+            this.txtNoTable.Name = "txtNoTable";
+            this.txtNoTable.Size = new System.Drawing.Size(100, 20);
+            this.txtNoTable.TabIndex = 2;
+            this.txtNoTable.TextChanged += new System.EventHandler(this.txtNoTable_TextChanged);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.KeyPadChosseTable);
@@ -80,6 +118,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(279, 221);
             this.panel3.TabIndex = 2;
+            // 
+            // KeyPadChosseTable
+            // 
+            this.KeyPadChosseTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KeyPadChosseTable.Location = new System.Drawing.Point(0, 0);
+            this.KeyPadChosseTable.Name = "KeyPadChosseTable";
+            this.KeyPadChosseTable.Size = new System.Drawing.Size(185, 221);
+            this.KeyPadChosseTable.TabIndex = 1;
+            this.KeyPadChosseTable.txtResult = null;
             // 
             // panel4
             // 
@@ -91,15 +138,6 @@
             this.panel4.Size = new System.Drawing.Size(94, 221);
             this.panel4.TabIndex = 0;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnCancel);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(94, 65);
-            this.panel5.TabIndex = 0;
-            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnOK);
@@ -108,62 +146,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(94, 156);
             this.panel6.TabIndex = 1;
-            // 
-            // KeyPadChosseTable
-            // 
-            this.KeyPadChosseTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KeyPadChosseTable.Location = new System.Drawing.Point(0, 0);
-            this.KeyPadChosseTable.Name = "KeyPadChosseTable";
-            this.KeyPadChosseTable.Size = new System.Drawing.Size(185, 221);
-            this.KeyPadChosseTable.TabIndex = 1;
-            this.KeyPadChosseTable.txtResult = null;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(279, 55);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Which is the final table of these?";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblNoTable
-            // 
-            this.lblNoTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNoTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoTable.Location = new System.Drawing.Point(0, 0);
-            this.lblNoTable.Name = "lblNoTable";
-            this.lblNoTable.Size = new System.Drawing.Size(248, 59);
-            this.lblNoTable.TabIndex = 0;
-            this.lblNoTable.Text = "label2";
-            this.lblNoTable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel7
-            // 
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(248, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(31, 59);
-            this.panel7.TabIndex = 1;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(0)))));
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(0, 0);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(94, 65);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "CANCEL";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
@@ -182,13 +164,31 @@
             this.btnOK.UseVisualStyleBackColor = false;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // txtNoTable
+            // panel5
             // 
-            this.txtNoTable.Location = new System.Drawing.Point(21, 16);
-            this.txtNoTable.Name = "txtNoTable";
-            this.txtNoTable.Size = new System.Drawing.Size(100, 20);
-            this.txtNoTable.TabIndex = 2;
-            this.txtNoTable.TextChanged += new System.EventHandler(this.txtNoTable_TextChanged);
+            this.panel5.Controls.Add(this.btnCancel);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(94, 65);
+            this.panel5.TabIndex = 0;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(51)))), ((int)(((byte)(0)))));
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(0, 0);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(94, 65);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmChooseeTableJoin
             // 
@@ -208,8 +208,8 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

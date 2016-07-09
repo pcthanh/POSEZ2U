@@ -60,15 +60,23 @@ namespace POSEZ2U
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if(txtTextNote.Text!=string.Empty)
+            try
             {
-                 PrinterModel Printer = (PrinterModel)cblistPrinter.SelectedValue;
-                 Note = txtTextNote.Text;
-                 if (Printer.PrinterType == 0)
-                     PrinterNote = 0;
-                else
-                    PrinterNote = Printer.ID;
-                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                if (txtTextNote.Text != string.Empty)
+                {
+                    //PrinterModel Printer = (PrinterModel)cblistPrinter.SelectedValue;
+                    int selectValue =Convert.ToInt32(cblistPrinter.SelectedValue.ToString());
+                    Note = txtTextNote.Text;
+                    if (selectValue == 0)
+                        PrinterNote = 0;
+                    else
+                        PrinterNote = selectValue;
+                    this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmNote:::::::::::::::::btnOK_Click:::::::::::::::::::::" + ex.Message);
             }
         }
     }

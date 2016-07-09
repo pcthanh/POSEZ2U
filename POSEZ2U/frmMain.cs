@@ -11,6 +11,9 @@ using POSEZ2U.Class;
 using ServicePOS;
 using ServicePOS.Model;
 using SystemLog;
+using ModelPOS.ModelEntity;
+using ServicePOS;
+using ServicePOS.Model;
 
 namespace POSEZ2U
 {
@@ -18,7 +21,26 @@ namespace POSEZ2U
     {
         private int userid = 0;
         
-         
+         private POSEZ2UEntities _context;
+        ORDER_DATE orderDate = new ORDER_DATE();
+        public int DynID;
+       
+        public frmMain ()
+        {
+            InitializeComponent();
+            _context = new POSEZ2UEntities();
+          
+        }
+
+        public frmMain(POSEZ2UEntities context)
+        {
+            _context = context;
+        }
+
+        public void SetProxyCreationEnabled(bool proxyCreationEnabled)
+        {
+            _context.Configuration.ProxyCreationEnabled = proxyCreationEnabled;
+        }
 
         #region Variables & Constructors
 
@@ -32,10 +54,7 @@ namespace POSEZ2U
 
         #endregion
 
-        public frmMain()
-        {
-            InitializeComponent();
-        }
+        
         private IOrderService _orderService;
         private IOrderService OrderService
         {
@@ -287,6 +306,8 @@ namespace POSEZ2U
                     btnSettingAll.Tag = 6;
 
                     this.lblNameUser.Text = UserLoginModel.UserLoginInfo.UserName;
+
+                    UpdateToServer();
                 }
             }
             catch (Exception ex)
@@ -295,6 +316,30 @@ namespace POSEZ2U
             }
             
 
+        }
+        private void UpdateToServer()
+        {
+            try
+            {
+                var result = _context.Database.ExecuteSqlCommand("EXEC  UpdateToServer");
+                if (_context.ORDER_DATE.Count() == 0)
+                {
+                    _context.Database.ExecuteSqlCommand("truncate table ORDER_DATE;");
+
+                }
+                if (_context.ORDER_DETAIL_DATE.Count() == 0)
+                {
+                    _context.Database.ExecuteSqlCommand("truncate table ORDER_DETAIL_MODIFIRE_DATE;");
+                }
+                if (_context.ORDER_OPEN_ITEM.Count() == 0)
+                {
+                    _context.Database.ExecuteSqlCommand("truncate table ORDER_OPEN_ITEM;");
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemLog.LogPOS.WriteLog("frmMain::::::::::::::::::::frmLoad:::::::::::::::UpdateToServer" + ex.Message);
+            }
         }
 
         private void btnEatIn_Paint(object sender, PaintEventArgs e)

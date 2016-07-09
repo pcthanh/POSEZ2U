@@ -1377,9 +1377,9 @@ namespace POSEZ2U
         {
             try
             {
-                if (OrderMain == null)
+                if (OrderMain.isPrevOrder==1)
                 {
-
+                    OrderCompleted();
                 }
                 else
                 {
@@ -1564,9 +1564,10 @@ namespace POSEZ2U
 
         private void btnPrintBill_Click(object sender, EventArgs e)
         {
+            GetListPaymentPrinter();
             if (OrderMain.isPrevOrder == 1)
             {
-                GetListPaymentPrinter();
+                
                 OrderMain.PrintType = 2;
                 PrinterServer print = new PrinterServer();
                 print.PrintData(OrderMain, PrintData);
@@ -1578,7 +1579,9 @@ namespace POSEZ2U
                     int result = OrderService.UpdateOrder(OrderMain);
                     if (result == 1)
                     {
-
+                        OrderMain.PrintType = 3;
+                        PrinterServer print = new PrinterServer();
+                        print.PrintData(OrderMain, PrintData);
                         CallBackStatusOrderCancel();
                         this.Close();
                     }
@@ -1812,6 +1815,7 @@ namespace POSEZ2U
                 {
                     OrderMain.Note = frm.Note;
                     OrderMain.PrinterNote = frm.PrinterNote;
+                    OrderMain.HaveNote = 1;
                 }
             }
             catch (Exception ex)
@@ -1863,6 +1867,7 @@ namespace POSEZ2U
 
         private void ucOpenTill1_Click(object sender, EventArgs e)
         {
+            GetListPaymentPrinter();
             foreach (PrinterModel item in PrintData)
             {
                 if (item.PrinterType == 4)
